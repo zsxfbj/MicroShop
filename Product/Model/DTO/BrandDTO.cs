@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace MicroShop.Model.Product
+namespace MicroShop.Product.Model
 {
     /// <summary>
     /// 品牌视图

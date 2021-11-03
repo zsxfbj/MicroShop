@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>MicroShop.Product.IService</RootNamespace>
+    <AssemblyName>MicroShop.Product.IService</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Projects\CSharp\MicroShop\Product\IService\MicroShop.Product.IService.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>
