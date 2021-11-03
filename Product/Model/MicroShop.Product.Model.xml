@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MicroShop.Product.Model</name>
+    </assembly>
+    <members>
+        <member name="T:MicroShop.Product.Model.BrandDTO">
+            <summary>
+            品牌视图
+            </summary>
+        </member>
+        <member name="P:MicroShop.Product.Model.BrandDTO.BrandId">
+            <summary>
+            品牌编号
+            </summary>
+        </member>
+        <member name="P:MicroShop.Product.Model.BrandDTO.BrandName">
+            <summary>
+            品牌名称
+            </summary>
+        </member>
+        <member name="P:MicroShop.Product.Model.BrandDTO.Prefix">
+            <summary>
+            前缀
+            </summary>
+        </member>
+        <member name="P:MicroShop.Product.Model.BrandDTO.BrandEnglishName">
+            <summary>
+            品牌英文名
+            </summary>
+        </member>
+        <member name="P:MicroShop.Product.Model.BrandDTO.LogoUrl">
+            <summary>
+            品牌Logo
+            </summary>
+        </member>
+        <member name="P:MicroShop.Product.Model.BrandDTO.IsRecommend">
+            <summary>
+            是否推荐
+            </summary>
+        </member>
+    </members>
+</doc>

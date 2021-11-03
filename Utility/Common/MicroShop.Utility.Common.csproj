@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>MicroShop.Utility.Common</RootNamespace>
+    <AssemblyName>MicroShop.Utility.Common</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Projects\CSharp\MicroShop\Utility\Common\MicroShop.Utility.Common.xml</DocumentationFile>
+  </PropertyGroup>
+
+</Project>

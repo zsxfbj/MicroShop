@@ -24,6 +24,13 @@ namespace MicroShop.Product.Model
         public String BrandName { get; set; }
 
         /// <summary>
+        /// 前缀
+        /// </summary>
+        [Description("前缀，品牌英文单词（或者拼音）首字母")]
+        [DisplayName("前缀")]
+        public String Prefix { get; set; }
+
+        /// <summary>
         /// 品牌英文名
         /// </summary>
         [Description("品牌英文或者拼音名称，最多64个字")]
@@ -44,12 +51,7 @@ namespace MicroShop.Product.Model
         [DisplayName("是否推荐")]
         public Boolean IsRecommend { get; set; }
 
-        /// <summary>
-        /// 前缀
-        /// </summary>
-        [Description("前缀，品牌英文单词（或者拼音）首字母")]
-        [DisplayName("前缀")]
-        public String PreFix { get; set; }
+       
 
     }
 }
