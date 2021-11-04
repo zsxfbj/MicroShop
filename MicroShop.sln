@@ -9,9 +9,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Product.Enums", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Product.IService", "Product\IService\MicroShop.Product.IService.csproj", "{D59C1740-EDD5-462A-8BF4-8F55448BC716}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Product.Entity", "Product\Entity\MicroShop.Product.Entity.csproj", "{167FB9AD-26A4-43A9-822B-EBF4BB6F4249}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Product.Entity", "Product\Entity\MicroShop.Product.Entity.csproj", "{167FB9AD-26A4-43A9-822B-EBF4BB6F4249}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Utility.Common", "Utility\Common\MicroShop.Utility.Common.csproj", "{4018EDC0-255B-47A7-A82C-E4393C1D1C9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Utility.Common", "Utility\Common\MicroShop.Utility.Common.csproj", "{4018EDC0-255B-47A7-A82C-E4393C1D1C9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Permission.Entity", "Permission\Entity\MicroShop.Permission.Entity.csproj", "{07893180-A83E-4717-AC62-F903413F59E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Permission.Model", "Permission\Model\MicroShop.Permission.Model.csproj", "{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Permission.Enums", "Permission\Enums\MicroShop.Permission.Enums.csproj", "{7C141DB7-0C49-41F7-A65D-7B988573D602}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{4018EDC0-255B-47A7-A82C-E4393C1D1C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4018EDC0-255B-47A7-A82C-E4393C1D1C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4018EDC0-255B-47A7-A82C-E4393C1D1C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07893180-A83E-4717-AC62-F903413F59E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07893180-A83E-4717-AC62-F903413F59E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07893180-A83E-4717-AC62-F903413F59E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07893180-A83E-4717-AC62-F903413F59E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C141DB7-0C49-41F7-A65D-7B988573D602}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C141DB7-0C49-41F7-A65D-7B988573D602}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C141DB7-0C49-41F7-A65D-7B988573D602}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C141DB7-0C49-41F7-A65D-7B988573D602}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
