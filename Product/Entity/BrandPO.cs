@@ -16,6 +16,7 @@ namespace MicroShop.Product.ntity
         /// </summary>
         [Key]
         [Column("brand_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Int32 BrandId { get; set; }
 
         /// <summary>
@@ -40,10 +41,10 @@ namespace MicroShop.Product.ntity
         public String BrandEnglishName { get; set; }
 
         /// <summary>
-        /// 品牌Logo
+        /// 品牌Logo地址
         /// </summary>
         [Column("logo_url")]
-        [MaxLength(256)]
+        [MaxLength(256, ErrorMessage = "logo图片地址长度不能超过250个字符")]
         public String LogoUrl { get; set; }
 
         /// <summary>
@@ -63,6 +64,21 @@ namespace MicroShop.Product.ntity
         /// </summary>
         [Column("updated_at")]        
         public DateTime UpdatedAt { get; set; }
+
+        /// <summary>
+        /// 默认的构造函数
+        /// </summary>
+        public BrandPO()
+        {
+            BrandId = 0;
+            BrandName = "";
+            Prefix = "";
+            BrandEnglishName = "";
+            LogoUrl = "";
+            IsRecommend = false;
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
+        }
 
     }
 }

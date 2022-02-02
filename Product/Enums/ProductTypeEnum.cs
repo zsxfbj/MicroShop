@@ -11,22 +11,22 @@ namespace MicroShop.Product.Enums
         /// <summary>
         /// 商品
         /// </summary>
-        [Description("商品")]
-        [EnumMember(Value = "1")]
-        Item = 1,
+        [Description("实物")]
+        [EnumMember(Value = "10")]
+        Item = 10,
 
         /// <summary>
         /// 电子卡
         /// </summary>
         [Description("电子卡")]
-        [EnumMember(Value = "2")]
-        Card = 2,
+        [EnumMember(Value = "20")]
+        Card = 20,
 
         /// <summary>
         /// 服务
         /// </summary>
         [Description("服务")]
-        [EnumMember(Value = "3")]
-        Service = 3
+        [EnumMember(Value = "30")]
+        Service = 30
     }
 }
