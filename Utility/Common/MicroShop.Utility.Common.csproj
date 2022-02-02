@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Projects\CSharp\MicroShop\Utility\Common\MicroShop.Utility.Common.xml</DocumentationFile>
+    <DocumentationFile>bin\MicroShop.Utility.Common.xml</DocumentationFile>
   </PropertyGroup>
 
 </Project>

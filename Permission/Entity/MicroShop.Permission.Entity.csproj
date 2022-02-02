@@ -8,4 +8,11 @@
     <DocumentationFile>D:\Projects\CSharp\MicroShop\Permission\Entity\MicroShop.Permission.Entity.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.13" />
+    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="5.13.7" />
+  </ItemGroup>
+
 </Project>

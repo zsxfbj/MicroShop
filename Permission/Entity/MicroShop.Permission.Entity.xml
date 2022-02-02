@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MicroShop.Permission.Entity</name>
+    </assembly>
+    <members>
+        <member name="T:MicroShop.Permission.Entity.RoleEntity">
+            <summary>
+            系统管理库的角色表
+            </summary>
+        </member>
+        <member name="P:MicroShop.Permission.Entity.RoleEntity.RoleId">
+            <summary>
+            角色编号
+            </summary>
+        </member>
+        <member name="P:MicroShop.Permission.Entity.RoleEntity.RoleName">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+    </members>
+</doc>
