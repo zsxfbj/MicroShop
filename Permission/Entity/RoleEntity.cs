@@ -23,15 +23,15 @@ namespace MicroShop.Permission.Entity
         /// 角色名称
         /// </summary>
         [Column("role_name")]
-        [MaxLength(32, ErrorMessage = "角色名称最多32个字"), Required(ErrorMessage = "角色名称必须填写")]
+        [MaxLength(30, ErrorMessage = "角色名称最多30个字"), Required(ErrorMessage = "角色名称必须填写")]
         public string RoleName { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
         [Column("note")]
-        [MaxLength(256, ErrorMessage = "备注最多256个字")]
-        public string Note { get; set; }
+        [MaxLength(255, ErrorMessage = "备注不能超过255个字")]
+        public string Note { get; set; } = string.Empty;
 
         /// <summary>
         /// 创建时间

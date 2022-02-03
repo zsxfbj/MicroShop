@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+using System;
 
 namespace MicroShop.Permission.Entity
 {
@@ -40,14 +40,12 @@ namespace MicroShop.Permission.Entity
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-            {                
-                optionsBuilder.UseSqlServer(connectionString);                
+            {
+                optionsBuilder.UseSqlServer(connectionString);
                 //允许打开SQL日志              
-                optionsBuilder.LogTo(System.Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
+                optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
             }
             base.OnConfiguring(optionsBuilder);
-
-
         }
 
         /// <summary>
@@ -56,7 +54,21 @@ namespace MicroShop.Permission.Entity
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<RoleEntity>(r =>
+            {
+                r.HasIndex(i => i.RoleName).IsUnique();
+                r.HasData(new RoleEntity { RoleId = 1, RoleName = "管理员", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now });
+            });
 
+            modelBuilder.Entity<MenuEntity>(r =>
+            {
+                r.HasIndex(i => i.ParentId);
+                r.HasIndex(i => i.OrderValue);
+                r.HasData(new MenuEntity { MenuId = 1, MenuName = "工作台", OrderValue = 1, ParentId = 0, MenuUrl = "", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now });
+                r.HasData(new MenuEntity { MenuId = 2, MenuName = "商品管理", OrderValue = 2, ParentId = 0, MenuUrl = "", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now });
+                r.HasData(new MenuEntity { MenuId = 3, MenuName = "订单管理", OrderValue = 3, ParentId = 0, MenuUrl = "", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now });
+                r.HasData(new MenuEntity { MenuId = 4, MenuName = "系统设置", OrderValue = 4, ParentId = 0, MenuUrl = "", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now });              
+            });
 
             base.OnModelCreating(modelBuilder);
         }
@@ -65,6 +77,11 @@ namespace MicroShop.Permission.Entity
         /// 角色表
         /// </summary>
         public DbSet<RoleEntity> Roles { get; set; }
+
+        /// <summary>
+        /// 菜单表
+        /// </summary>
+        public DbSet<MenuEntity> Menus { get; set; }
 
     }
 }
