@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MicroShop.Permission.Enums;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace MicroShop.Permission.Entity
+namespace MicroShop.Permission.Enums
 {
     /// <summary>
     /// 登录状态
