@@ -15,34 +15,34 @@ namespace MicroShop.Permission.Entity
         /// 角色编号
         /// </summary>
         [Key]
-        [Column("role_id")]
+        [Column("role_id", TypeName = "int")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int RoleId { get; set; }
 
         /// <summary>
         /// 角色名称
         /// </summary>
-        [Column("role_name")]
+        [Column("role_name", TypeName = "nvarchar(30)")]
         [MaxLength(30, ErrorMessage = "角色名称最多30个字"), Required(ErrorMessage = "角色名称必须填写")]
         public string RoleName { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
-        [Column("note")]
+        [Column("note", TypeName = "nvarchar(255)")]
         [MaxLength(255, ErrorMessage = "备注不能超过255个字")]
         public string Note { get; set; } = string.Empty;
 
         /// <summary>
         /// 创建时间
         /// </summary>
-        [Column("created_at")]
+        [Column("created_at", TypeName = "datetime")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         /// <summary>
         /// 更新时间
         /// </summary>
-        [Column("updated_at")]
+        [Column("updated_at", TypeName = "datetime")]
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
     }
 }
