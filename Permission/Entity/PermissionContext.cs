@@ -94,6 +94,19 @@ namespace MicroShop.Permission.Entity
                   r.HasData(new SystemUserEntity { UserId = 1, LoginName = "admin", LoginPassword = "6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e", CreatedAt = DateTime.Now, LoginCount = 0, RoleId = 1, UpdatedAt = DateTime.Now, UserName = "管理员" });
               });
 
+            //系统用户日志
+            modelBuilder.Entity<SystemUserActionLogEntity>(r =>
+            {
+                r.Property(i => i.ActionType).HasConversion<int>();
+                r.Property(i => i.CreatedAt).HasDefaultValue(DateTime.Now);
+                r.HasIndex(i => i.UserName);
+                r.HasIndex(i => i.AccessToken);
+                r.HasIndex(i => i.RemoteIp);
+                r.HasIndex(i => i.CreatedAt);
+            });
+
+
+
             base.OnModelCreating(modelBuilder);
         }
 
