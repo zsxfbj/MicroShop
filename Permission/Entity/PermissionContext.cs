@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
@@ -7,7 +6,7 @@ using System.IO;
 namespace MicroShop.Permission.Entity
 {
     /// <summary>
-    /// 
+    /// 权限库
     /// </summary>
     public class PermissionContext : DbContext
     {
@@ -60,7 +59,7 @@ namespace MicroShop.Permission.Entity
                 r.Property(i => i.CreatedAt).HasDefaultValue(DateTime.Now);
                 r.Property(i => i.UpdatedAt).HasDefaultValue(DateTime.Now);
                 r.HasIndex(i => i.RoleName).IsUnique();
-                r.HasData(new RoleEntity { RoleId = 1, RoleName = "系统管理员", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now });
+                r.HasData(new RoleEntity { RoleId = 1, RoleName = "系统管理员", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now, IsAdmin = true, IsEnable = true });
             });
 
             //菜单表
@@ -79,20 +78,20 @@ namespace MicroShop.Permission.Entity
                 r.HasData(new MenuEntity { MenuId = 4, MenuName = "系统设置", OrderValue = 4, ParentId = 0, MenuUrl = "", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now });
             });
 
-
             //系统用户
             modelBuilder.Entity<SystemUserEntity>(r =>
-              {
-                  r.Property(i => i.LoginName).IsRequired().HasMaxLength(50);
-                  r.Property(i => i.LoginPassword).IsRequired().HasMaxLength(256).HasDefaultValue("6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e");
-                  r.Property(i => i.UserName).IsRequired().HasMaxLength(30).HasDefaultValue("");
-                  r.Property(i => i.CreatedAt).HasDefaultValue(DateTime.Now);
-                  r.Property(i => i.UpdatedAt).HasDefaultValue(DateTime.Now);
-                  r.Property(i => i.LoginStatus).HasConversion<int>();
-                  r.Property(i => i.LoginCount).HasDefaultValue(0);
-                  r.HasIndex(i => i.LoginName).IsUnique();
-                  r.HasData(new SystemUserEntity { UserId = 1, LoginName = "admin", LoginPassword = "6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e", CreatedAt = DateTime.Now, LoginCount = 0, RoleId = 1, UpdatedAt = DateTime.Now, UserName = "管理员" });
-              });
+            {
+                r.Property(i => i.LoginName).IsRequired().HasMaxLength(50);
+                r.Property(i => i.LoginPassword).IsRequired().HasMaxLength(256).HasDefaultValue("6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e");
+                r.Property(i => i.UserName).IsRequired().HasMaxLength(30).HasDefaultValue("");
+                r.Property(i => i.CreatedAt).HasDefaultValue(DateTime.Now);
+                r.Property(i => i.UpdatedAt).HasDefaultValue(DateTime.Now);
+                r.Property(i => i.LoginStatus).HasConversion<int>();
+                r.Property(i => i.LoginCount).HasDefaultValue(0);
+                r.HasIndex(i => i.LoginName).IsUnique();
+                r.HasIndex(i => i.AccessToken);
+                r.HasData(new SystemUserEntity { UserId = 1, LoginName = "admin", LoginPassword = "6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e", CreatedAt = DateTime.Now, LoginCount = 0, RoleId = 1, UpdatedAt = DateTime.Now, UserName = "管理员" });
+            });
 
             //系统用户日志
             modelBuilder.Entity<SystemUserActionLogEntity>(r =>
@@ -105,7 +104,17 @@ namespace MicroShop.Permission.Entity
                 r.HasIndex(i => i.CreatedAt);
             });
 
-
+            //角色菜单表
+            modelBuilder.Entity<RoleMenuRelationEntity>(r =>
+            {
+                r.HasKey(k => new { k.RoleId, k.MenuId });
+                r.HasData(
+                    new RoleMenuRelationEntity { MenuId = 1, RoleId = 1, CreatedAt = DateTime.Now },
+                    new RoleMenuRelationEntity { RoleId = 1, MenuId = 2, CreatedAt = DateTime.Now },
+                    new RoleMenuRelationEntity { RoleId = 1, MenuId = 3, CreatedAt = DateTime.Now },
+                    new RoleMenuRelationEntity { RoleId = 1, MenuId = 4, CreatedAt = DateTime.Now }
+                    );
+            });
 
             base.OnModelCreating(modelBuilder);
         }
@@ -115,6 +124,11 @@ namespace MicroShop.Permission.Entity
         /// 系统用户
         /// </summary>
         public DbSet<SystemUserEntity> SystemUsers { get; set; }
+
+        /// <summary>
+        /// 系统用户操作日志
+        /// </summary>
+        public DbSet<SystemUserActionLogEntity> SystemUserActionLogs { get; set; }
 
         /// <summary>
         /// 角色表

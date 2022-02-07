@@ -27,6 +27,18 @@ namespace MicroShop.Permission.Entity
         public string RoleName { get; set; }
 
         /// <summary>
+        /// 是否启用
+        /// </summary>
+        [Column("is_enable", TypeName = "bit")]
+        public bool IsEnable { get; set; } = true;
+
+        /// <summary>
+        /// 是否管理员
+        /// </summary>
+        [Column("is_admin", TypeName = "bit")]
+        public bool IsAdmin { get; set; } = false;
+
+        /// <summary>
         /// 备注
         /// </summary>
         [Column("note", TypeName = "nvarchar(255)")]

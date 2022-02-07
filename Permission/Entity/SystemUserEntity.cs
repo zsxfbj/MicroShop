@@ -49,6 +49,12 @@ namespace MicroShop.Permission.Entity
         public string UserName { get; set; } = string.Empty;
 
         /// <summary>
+        /// 访问的令牌
+        /// </summary>
+        [Column("access_token", TypeName = "varchar(256)")]
+        public string AccessToken { get; set; } = "";
+
+        /// <summary>
         /// 登录次数
         /// </summary>
         [Column("login_count", TypeName = "int")]

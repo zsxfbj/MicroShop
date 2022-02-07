@@ -5,7 +5,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Projects\CSharp\MicroShop\Permission\Model\MicroShop.Permission.Model.xml</DocumentationFile>
+    <DocumentationFile>bin\MicroShop.Permission.Model.xml</DocumentationFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Enums\MicroShop.Permission.Enums.csproj" />
+  </ItemGroup>
 
 </Project>
