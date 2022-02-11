@@ -17,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.Model"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.Enums", "Permission\Enums\MicroShop.Permission.Enums.csproj", "{35417E99-7C3C-413D-8E47-27EAA1302C36}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.WebApi", "Permission\WebApi\MicroShop.Permission.WebApi.csproj", "{FEC125A6-A9FF-47D3-9B43-7190F1A9E848}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Web\Common\Common.csproj", "{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{35417E99-7C3C-413D-8E47-27EAA1302C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35417E99-7C3C-413D-8E47-27EAA1302C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35417E99-7C3C-413D-8E47-27EAA1302C36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FEC125A6-A9FF-47D3-9B43-7190F1A9E848}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEC125A6-A9FF-47D3-9B43-7190F1A9E848}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEC125A6-A9FF-47D3-9B43-7190F1A9E848}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEC125A6-A9FF-47D3-9B43-7190F1A9E848}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
