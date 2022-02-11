@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
 namespace MicroShop.Web.Common.User
@@ -19,16 +14,26 @@ namespace MicroShop.Web.Common.User
         /// </summary>
         [Key]
         [Required(ErrorMessage = "访问令牌不能为空")]
-        public string Token { get; set; }
+        public string? Token { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
         /// 用户编号
         /// </summary>
+        [JsonConverter(typeof(Utility.Serialize.Json.LongToStringConverter))]
+        public long UserId { get; set; } = 0;
+
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        public string? UserName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 用户头像
+        /// </summary>
+        public string HeadImage { get; set; } = string.Empty;
+
+
         
-        public long UserId { get; set; }
-
-
-
 
     }
 }
