@@ -7,7 +7,7 @@ namespace MicroShop.Permission.Model.Request
     /// 修改角色信息请求
     /// </summary>
     [Serializable]
-    public class ModifyRoleParam : CreateRoleParam
+    public class ModifyRoleDTO : CreateRoleParam
     {
         /// <summary>
         /// 角色编号

@@ -30,13 +30,7 @@ namespace MicroShop.Permission.Entity
         /// 是否启用
         /// </summary>
         [Column("is_enable", TypeName = "bit")]
-        public bool IsEnable { get; set; } = true;
-
-        /// <summary>
-        /// 是否管理员
-        /// </summary>
-        [Column("is_admin", TypeName = "bit")]
-        public bool IsAdmin { get; set; } = false;
+        public bool IsEnable { get; set; } = true;             
 
         /// <summary>
         /// 备注

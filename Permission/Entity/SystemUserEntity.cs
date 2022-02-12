@@ -1,4 +1,5 @@
 ﻿using MicroShop.Permission.Enums;
+using MicroShop.Web.Common;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -47,6 +48,18 @@ namespace MicroShop.Permission.Entity
         [Column("user_name", TypeName = "nvarchar(30)")]
         [Required(ErrorMessage = "用户名不能为空"), StringLength(30, ErrorMessage = "用户名最多30个字")]
         public string UserName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 是否管理员
+        /// </summary>
+        [Column("is_admin", TypeName = "bit")]
+        public bool IsAdmin { get; set; } = false;
+
+        /// <summary>
+        /// 访问的客户端类型
+        /// </summary>
+        [Column("client_type", TypeName = "int")]
+        public ClientTypeEnum ClientType   { get; set; }
 
         /// <summary>
         /// 访问的令牌

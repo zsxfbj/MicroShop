@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Web\Common\MicroShop.Web.Common.csproj" />
     <ProjectReference Include="..\Enums\MicroShop.Permission.Enums.csproj" />
   </ItemGroup>
 

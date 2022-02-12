@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Utility\Serialize\MicroShop.Utility.Serialize.csproj" />
     <ProjectReference Include="..\Enums\MicroShop.Permission.Enums.csproj" />
   </ItemGroup>
 

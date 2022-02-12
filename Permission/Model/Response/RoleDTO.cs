@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using Newtonsoft.Json;
 
 namespace MicroShop.Permission.Model.Response
 {
@@ -21,7 +22,30 @@ namespace MicroShop.Permission.Model.Response
         [Description("角色名称")]
         public string RoleName { get; set; }
 
+        /// <summary>
+        /// 是否可用
+        /// </summary>
+        [Description("是否可用")]
+        public bool IsEnable { get; set; }
 
+        /// <summary>
+        /// 备注
+        /// </summary>
+        [Description("备注")]
+        public string Note { get; set; }
 
+        /// <summary>
+        /// 创建时间
+        /// </summary>
+        [JsonConverter(typeof(Utility.Serialize.Json.DefaultDateTimeConverter))]
+        [Description("创建时间")]      
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// 更新时间
+        /// </summary>
+        [JsonConverter(typeof(Utility.Serialize.Json.DefaultDateTimeConverter))]       
+        [Description("更新时间")]
+        public DateTime UpdatedAt { get; set; }
     }
 }
