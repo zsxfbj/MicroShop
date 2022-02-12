@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +23,9 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
+
+builder.Services.AddDbContext<MicroShop.Permission.Entity.PermissionContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("PermissionDb")).EnableSensitiveDataLogging());
 
 var app = builder.Build();
 

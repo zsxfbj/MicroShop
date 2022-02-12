@@ -24,27 +24,7 @@ namespace MicroShop.Permission.Entity
         {
         }
 
-        /// <summary>
-        /// 重载读取配置
-        /// </summary>
-        /// <param name="optionsBuilder"></param>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
-                optionsBuilder.UseSqlServer(builder.Build().GetConnectionString("PermissionDbConnString"));
-
-                //MySQL链接
-                //optionsBuilder.UseMySql(builder.Build().GetConnectionString("AutoPssDb"), ServerVersion.AutoDetect(builder.Build().GetConnectionString("AutoPssDb")));
-
-                //允许打开SQL日志              
-                optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
-            }
-            base.OnConfiguring(optionsBuilder);
-        }
-
+       
         /// <summary>
         /// 模型创建
         /// </summary>
@@ -59,7 +39,7 @@ namespace MicroShop.Permission.Entity
                 r.Property(i => i.CreatedAt).HasDefaultValue(DateTime.Now);
                 r.Property(i => i.UpdatedAt).HasDefaultValue(DateTime.Now);
                 r.HasIndex(i => i.RoleName).IsUnique();
-                r.HasData(new RoleEntity { RoleId = 1, RoleName = "系统管理员", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now, IsAdmin = true, IsEnable = true });
+                r.HasData(new RoleEntity { RoleId = 1, RoleName = "系统管理员", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now, IsEnable = true });
             });
 
             //菜单表
