@@ -4,6 +4,7 @@ using MicroShop.Web.Common.Filter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
+using Ocelot.Values;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,8 +16,7 @@ builder.Services.AddControllers(options =>
 });
 
 // add HttpContextAccessor 
-builder.Services.AddHttpContextAccessor();
- 
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -34,6 +34,7 @@ builder.Services.AddSwaggerGen(options =>
             Url = new Uri("https://www.cnblogs.com/zsxfbj/")
         }
     });
+    options.OrderActionsBy(o => o.RelativePath);
 
     //获取应用程序所在目录（绝对，不受工作目录影响，建议采用此方法获取路径）
     var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
@@ -45,7 +46,8 @@ builder.Services.AddSwaggerGen(options =>
         options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Permission.WebApi.xml"));
     }    
     options.OperationFilter<HeaderParameterOperationFilter>();
-
+    options.DocumentFilter<HideOcelotControllersFilter>();
+    options.DocumentFilter<SwaggerEnumFilter>();
 });
 //数据库配置
 builder.Services.AddDbContext<MicroShop.Permission.Entity.PermissionContext>(options =>

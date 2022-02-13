@@ -15,16 +15,35 @@ namespace MicroShop.Permission.Entity
         /// </summary>
         public PermissionContext() : base() { }
 
+         
         /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="options">数据库访问选项</param>
-        public PermissionContext(DbContextOptions<PermissionContext> options)
-        : base(options)
+        public PermissionContext(DbContextOptions<PermissionContext> options) : base(options)
         {
         }
 
-       
+        /// <summary>
+        /// 重载读取配置
+        /// </summary>
+        /// <param name="optionsBuilder"></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+                optionsBuilder.UseSqlServer(builder.Build().GetConnectionString("PermissionDb"));
+                 
+                //允许打开SQL日志              
+                //optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
+            }
+            base.OnConfiguring(optionsBuilder);
+        }
+
+
+
         /// <summary>
         /// 模型创建
         /// </summary>
