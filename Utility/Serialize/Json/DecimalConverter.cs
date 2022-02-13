@@ -35,7 +35,10 @@ namespace MicroShop.Utility.Serialize.Json
             if (token.Type == JTokenType.String)
             {
                 // customize this to suit your needs
-                decimal.TryParse(token.ToString(), out decimal value);
+                if (!decimal.TryParse(token.ToString(), out decimal value))
+                {
+                    value = 0;
+                }
                 return value;
             }
             throw new JsonSerializationException("Unexpected token type: " + token.Type);
@@ -61,8 +64,14 @@ namespace MicroShop.Utility.Serialize.Json
         {
             if (value != null)
             {
-                decimal.TryParse(value.ToString(), out decimal destValue);
-                serializer.Serialize(writer, destValue.ToString("#0.###"));
+                if (decimal.TryParse(value.ToString(), out decimal destValue))
+                {
+                    serializer.Serialize(writer, destValue.ToString("#0.###"));
+                }
+                else
+                {
+                    serializer.Serialize(writer, "");
+                }
             }
             else
             {

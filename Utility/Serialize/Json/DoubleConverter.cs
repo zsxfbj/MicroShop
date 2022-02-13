@@ -35,8 +35,12 @@ namespace MicroShop.Utility.Serialize.Json
             if (token.Type == JTokenType.String)
             {
                 // customize this to suit your needs
-                double.TryParse(token.ToString(), out double value);
+                if(!double.TryParse(token.ToString(), out double value))
+                {
+                    value = 0;
+                }
                 return value;
+                
             }
             throw new JsonSerializationException("Unexpected token type: " + token.Type);
         }
@@ -61,8 +65,14 @@ namespace MicroShop.Utility.Serialize.Json
         {
             if (value != null)
             {
-                double.TryParse(value.ToString(), out double destValue);
-                serializer.Serialize(writer, destValue.ToString("#0.###"));
+                if(double.TryParse(value.ToString(), out double destValue))
+                {
+                    serializer.Serialize(writer, destValue.ToString("#0.###"));
+                }
+                else
+                {
+                    serializer.Serialize(writer, "");
+                }
             }
             else
             {

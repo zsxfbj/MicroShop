@@ -15,13 +15,26 @@ namespace MicroShop.Web.Common
         [EnumMember(Value = "200")]
         Success = 200,
 
+        /// <summary>
+        /// 请求参数错误
+        /// </summary>
         [EnumMember(Value = "400")]
         [Description("请求参数错误")]
         RequestParameterError = 400,
 
+        /// <summary>
+        /// 资源不存在
+        /// </summary>
         [EnumMember(Value = "404")]
-        [Description("记录不存在")]
+        [Description("资源不存在")]
         NotFound = 404,
+
+        /// <summary>
+        /// 未知错误
+        /// </summary>
+        [EnumMember(Value = "500")]
+        [Description("未知错误")]
+        UnkownError = 500
 
     }
 }

@@ -10,7 +10,7 @@ namespace MicroShop.Utility.Common.Snowflake
         /// <summary>
         /// 
         /// </summary>
-        public static Func<long> currentTimeFunc = InternalCurrentTimeMillis;
+        private static Func<long> currentTimeFunc = InternalCurrentTimeMillis;
 
         /// <summary>
         /// 

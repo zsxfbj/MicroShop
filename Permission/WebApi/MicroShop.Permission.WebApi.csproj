@@ -14,14 +14,22 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Ocelot" Version="18.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Utility\Common\MicroShop.Utility.Common.csproj" />
+    <ProjectReference Include="..\..\Web\Common\MicroShop.Web.Common.csproj" />
     <ProjectReference Include="..\Entity\MicroShop.Permission.Entity.csproj" />
     <ProjectReference Include="..\Enums\MicroShop.Permission.Enums.csproj" />
     <ProjectReference Include="..\Model\MicroShop.Permission.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Ocelot.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

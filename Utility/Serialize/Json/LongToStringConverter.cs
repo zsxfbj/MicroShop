@@ -25,7 +25,10 @@ namespace MicroShop.Utility.Serialize.Json
             }
             if (token.Type == JTokenType.String)
             {
-                long.TryParse(token.ToString(), out long value);
+                if (!long.TryParse(token.ToString(), out long value)) 
+                {
+                    value = 0;
+                }
                 return value;
             }
             if (token.Type == JTokenType.Null && objectType == typeof(long?))

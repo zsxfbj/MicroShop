@@ -1,5 +1,9 @@
 ﻿namespace MicroShop.Web.Common
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     [Serializable]
     public class ApiResultDTO<T>
     {
@@ -25,7 +29,7 @@
         {
             this.RequestResultCode = RequestResultCodeEnum.Success;
             this.ErrorMessage = string.Empty;
-            this.Result = default(T);
+            this.Result = default;
         }
 
     }

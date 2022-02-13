@@ -21,7 +21,9 @@ namespace MicroShop.Web.Common
         /// </summary>
         public const string CLIENT_TYPE_KEY = "X-Client-Type";
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public const string SYSTEM_USER_AUTH_TOKEN_KEY = "X-System-Auth-Token";
     }
 }

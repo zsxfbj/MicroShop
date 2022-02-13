@@ -15,9 +15,7 @@ namespace MicroShop.Utility.Common.Snowflake
         /// <param name="action"></param>
         public DisposableAction(Action action)
         {
-            if (action == null)
-                throw new ArgumentNullException("action");
-            _action = action;
+            _action = action ?? throw new ArgumentNullException("action");
         }
 
         /// <summary>
@@ -25,6 +23,7 @@ namespace MicroShop.Utility.Common.Snowflake
         /// </summary>
         public void Dispose()
         {
+            GC.SuppressFinalize(this);
             _action();
         }
     }

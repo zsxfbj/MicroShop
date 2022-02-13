@@ -1,0 +1,6 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "http://api.ksmai.cn"
+  },
+  "ReRoutes": []
+}
