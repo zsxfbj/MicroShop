@@ -10,4 +10,13 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Permission\BLL\MicroShop.Permission.BLL.csproj" />
+    <ProjectReference Include="..\Common\MicroShop.Web.Common.csproj" />
+  </ItemGroup>
+
 </Project>

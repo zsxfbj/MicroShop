@@ -1,4 +1,6 @@
-﻿namespace MicroShop.Web.Common
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace MicroShop.Web.Common
 {
     /// <summary>
     /// 分页请求
@@ -9,11 +11,13 @@
         /// <summary>
         /// 当前索引，默认1开始
         /// </summary>
+        [Range(1, int.MaxValue, ErrorMessage = "页面索引从1开始")]
         public int? PageIndex { get; set; }
 
         /// <summary>
         /// 每页记录数
         /// </summary>
+        [Range(1, int.MaxValue, ErrorMessage = "每页记录数不能少于1")]
         public int? PageSize { get; set; }
 
         /// <summary>

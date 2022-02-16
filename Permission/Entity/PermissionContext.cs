@@ -77,6 +77,8 @@ namespace MicroShop.Permission.Entity
                 r.HasData(new MenuEntity { MenuId = 4, MenuName = "系统设置", OrderValue = 4, ParentId = 0, MenuUrl = "", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now });
             });
 
+            
+
             //系统用户
             modelBuilder.Entity<SystemUserEntity>(r =>
             {
@@ -134,6 +136,11 @@ namespace MicroShop.Permission.Entity
         /// 角色表
         /// </summary>
         public DbSet<RoleEntity> Roles { get; set; }
+
+        /// <summary>
+        /// 角色菜单表
+        /// </summary>
+        public DbSet<RoleMenuRelationEntity> RoleMenuRelations { get; set; }
 
         /// <summary>
         /// 菜单表

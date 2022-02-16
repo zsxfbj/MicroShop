@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="6.13.10" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Utility\Common\MicroShop.Utility.Common.csproj" />
     <ProjectReference Include="..\Entity\MicroShop.Permission.Entity.csproj" />
     <ProjectReference Include="..\Enums\MicroShop.Permission.Enums.csproj" />

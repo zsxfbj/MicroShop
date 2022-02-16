@@ -13,7 +13,7 @@ namespace MicroShop.Permission.Model.Request
         /// 角色编号
         /// </summary>
         [Required(ErrorMessage = "角色编号不能为空")]
-        [Range(1, int.MaxValue, ErrorMessage ="角色编号格式错误")]
+        [Range(1, int.MaxValue, ErrorMessage ="角色编号数据错误")]
         public int RoleId { get; set; }
     }
 }

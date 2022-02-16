@@ -1,6 +1,6 @@
 ﻿using MicroShop.Permission.Model.Request;
 using MicroShop.Permission.Model.Response;
-using MicroShop.Permission.WebApi.BLL;
+using MicroShop.Permission.BLL;
 using MicroShop.Web.Common;
 using Microsoft.AspNetCore.Mvc;
 

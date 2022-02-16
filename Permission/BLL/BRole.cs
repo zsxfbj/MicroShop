@@ -2,6 +2,7 @@
 using MicroShop.Permission.Model.Request;
 using MicroShop.Permission.Model.Response;
 using MicroShop.Web.Common;
+using Z.EntityFramework.Plus;
 
 namespace MicroShop.Permission.BLL
 {
@@ -43,6 +44,7 @@ namespace MicroShop.Permission.BLL
         /// </summary>
         /// <param name="createRole"></param>
         /// <returns></returns>
+        /// <exception cref="ServiceException"></exception>
         public RoleDTO CreateRole(CreateRoleDTO createRole)
         {
             using var context = new PermissionContext();
@@ -66,6 +68,7 @@ namespace MicroShop.Permission.BLL
         }
         #endregion public RoleDTO CreateRole(CreateRoleDTO createRole)
 
+        #region public void ModifyRole(ModifyRoleDTO modifyRole)
         /// <summary>
         /// 
         /// </summary>
@@ -81,7 +84,144 @@ namespace MicroShop.Permission.BLL
                     ErrorMessage = "提交的修改内容为空"
                 };
             }
+
+            using var context = new PermissionContext();
+
+            RoleEntity? role = GetRoleEntity(modifyRole.RoleId, context, true);
+
+            if (context.Roles.Any(x => x.RoleName == modifyRole.RoleName.Trim() && x.RoleId != modifyRole.RoleId))
+            {
+                throw new ServiceException { ErrorCode = RequestResultCodeEnum.RoleNameIsExist, ErrorMessage = "存在相同名称的角色" };
+            }
+
+            if (role != null)
+            {
+                role.IsEnable = modifyRole.IsEnable;
+                role.Note = string.IsNullOrEmpty(modifyRole.Note) ? "" : modifyRole.Note.Trim();
+                role.UpdatedAt = DateTime.Now;
+                context.Roles.Update(role);
+                context.SaveChanges();
+            }
         }
+        #endregion public void ModifyRole(ModifyRoleDTO modifyRole)
+
+        #region public void DeleteRole(int roleId)
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        /// <param name="roleId"></param>
+        public void DeleteRole(int roleId)
+        {
+            using var context = new PermissionContext();
+
+            RoleEntity? role = GetRoleEntity(roleId, context, true);
+            if (role != null)
+            {
+                context.SystemUsers.Where(x => x.RoleId == roleId).Update(po => new SystemUserEntity { RoleId = 0, UpdatedAt = DateTime.Now });
+                context.Roles.Remove(role);
+
+                List<RoleMenuRelationEntity> roleMenuRelations = context.RoleMenuRelations.Where(x => x.RoleId == roleId).ToList();
+                if (roleMenuRelations.Count > 0)
+                {
+                    context.RoleMenuRelations.RemoveRange(roleMenuRelations);
+                }
+                context.SaveChanges();
+            }
+        }
+        #endregion public void DeleteRole(int roleId)
+
+        #region public PageResultDTO<RoleDTO> GetPageResult(QueryRoleDTO queryRole)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="queryRole"></param>
+        /// <returns></returns>
+        public PageResultDTO<RoleDTO> GetPageResult(QueryRoleDTO queryRole)
+        {
+            if (queryRole == null)
+            {
+                return new PageResultDTO<RoleDTO> { PageIndex = 1, PageSize = 10, Data = new List<RoleDTO>(), RecordCount = 0 };
+            }
+
+            queryRole.InitData();
+
+            PageResultDTO<RoleDTO> pageResult = new PageResultDTO<RoleDTO>
+            {
+                PageIndex = queryRole.PageIndex.Value,
+                PageSize = queryRole.PageSize.Value,
+                RecordCount = 0,
+                Data = new List<RoleDTO>()
+            };
+
+            using var context = new PermissionContext();
+            if (string.IsNullOrWhiteSpace(queryRole.RoleName))
+            {
+                pageResult.RecordCount = context.Roles.Count();
+                pageResult.Data = context.Roles.Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => GetRole(entity)).ToList();
+            }
+            else
+            {
+                var query = context.Roles.Where(x => x.RoleName.Contains(queryRole.RoleName.Trim()));
+                pageResult.RecordCount = query.Count();
+                pageResult.Data = query.Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => GetRole(entity)).ToList();
+            }
+            return pageResult;
+        }
+        #endregion  public PageResultDTO<RoleDTO> GetPageResult(QueryRoleDTO queryRole)
+
+        #region public List<RoleDTO> GetRoles()
+        /// <summary>
+        /// 获取角色列表
+        /// </summary>
+        /// <returns></returns>
+        public List<RoleDTO> GetRoles()
+        {            
+            using var context = new PermissionContext();
+            return context.Roles.Where(x=>x.IsEnable == true).Select(entity => GetRole(entity)).ToList();
+        }
+        #endregion public List<RoleDTO> GetRoles()
+
+        #region private RoleEntity? GetRoleEntity(int roleId, PermissionContext context, bool isValid = true)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <param name="context"></param>
+        /// <param name="isValid"></param>
+        /// <returns></returns>
+        /// <exception cref="ServiceException"></exception>
+        private RoleEntity? GetRoleEntity(int roleId, PermissionContext context, bool isValid = true)
+        {
+            if (roleId < 1)
+            {
+                if (isValid)
+                {
+                    throw new ServiceException
+                    {
+                        ErrorCode = RequestResultCodeEnum.RequestParameterError,
+                        ErrorMessage = "角色编号数据错误"
+                    };
+                }
+                return null;
+            }
+
+            if (context == null)
+            {
+                context = new PermissionContext();
+            }
+
+            RoleEntity? role = context.Roles.FirstOrDefault(x => x.RoleId == roleId);
+            if (role == null && isValid)
+            {
+                throw new ServiceException
+                {
+                    ErrorCode = RequestResultCodeEnum.NotFound,
+                    ErrorMessage = "角色数据不存在"
+                };
+            }
+            return role;
+        }
+        #endregion private RoleEntity? GetRoleEntity(int roleId, PermissionContext context, bool isValid = true)
 
         #region private RoleDTO GetRole(RoleEntity role)
         /// <summary>

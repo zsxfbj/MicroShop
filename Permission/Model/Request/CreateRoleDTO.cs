@@ -20,12 +20,7 @@ namespace MicroShop.Permission.Model.Request
         /// 是否启用
         /// </summary>
         public bool IsEnable { get; set; }
-
-        /// <summary>
-        /// 是否管理员
-        /// </summary>
-        public bool IsAdmin { get; set; }
-
+               
         /// <summary>
         /// 备注
         /// </summary>
