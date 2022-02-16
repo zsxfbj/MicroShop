@@ -13,7 +13,7 @@ namespace MicroShop.Permission.Model.Request
         /// 角色名称
         /// </summary>
         [Required(ErrorMessage = "角色名称必须填写")]
-        [StringLength(30, ErrorMessage = "角色名称最多30个字")]
+        [StringLength(30, ErrorMessage = "角色名称最多30个字", MinimumLength = 2)]
         public string RoleName { get; set; }
 
         /// <summary>

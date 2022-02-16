@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Web\Common\MicroShop.Web.Common.csproj" />
+    <ProjectReference Include="..\BLL\MicroShop.Permission.BLL.csproj" />
     <ProjectReference Include="..\Entity\MicroShop.Permission.Entity.csproj" />
     <ProjectReference Include="..\Enums\MicroShop.Permission.Enums.csproj" />
     <ProjectReference Include="..\Model\MicroShop.Permission.Model.csproj" />

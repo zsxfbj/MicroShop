@@ -34,7 +34,24 @@ namespace MicroShop.Web.Common
         /// </summary>
         [EnumMember(Value = "500")]
         [Description("未知错误")]
-        UnkownError = 500
+        UnkownError = 500,
+
+        /// <summary>
+        /// 数据访问错误
+        /// </summary>
+        [EnumMember(Value = "501")]
+        [Description("数据访问错误")]
+        DatabaseAccessError = 501,
+
+        /// <summary>
+        /// 角色名称重复
+        /// </summary>
+        [EnumMember(Value = "1000")]
+        [Description("角色名称重复")]       
+        RoleNameIsExist = 1000
+
+
+
 
     }
 }

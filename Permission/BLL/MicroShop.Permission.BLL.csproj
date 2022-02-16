@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utility\Common\MicroShop.Utility.Common.csproj" />
+    <ProjectReference Include="..\Entity\MicroShop.Permission.Entity.csproj" />
+    <ProjectReference Include="..\Enums\MicroShop.Permission.Enums.csproj" />
+    <ProjectReference Include="..\Model\MicroShop.Permission.Model.csproj" />
+  </ItemGroup>
+
+</Project>

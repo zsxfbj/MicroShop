@@ -19,9 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.Enums"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.WebApi", "Permission\WebApi\MicroShop.Permission.WebApi.csproj", "{FEC125A6-A9FF-47D3-9B43-7190F1A9E848}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Web.Common", "Web\Common\MicroShop.Web.Common.csproj", "{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Web.Common", "Web\Common\MicroShop.Web.Common.csproj", "{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Utility.Serialize", "Utility\Serialize\MicroShop.Utility.Serialize.csproj", "{9B43157A-26CD-43C9-AFA3-2C96467E192B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Utility.Serialize", "Utility\Serialize\MicroShop.Utility.Serialize.csproj", "{9B43157A-26CD-43C9-AFA3-2C96467E192B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.BLL", "Permission\BLL\MicroShop.Permission.BLL.csproj", "{B67B9F7C-E2C0-4A78-A612-5A4A3B4024E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminWebApi", "Web\AdminWebApi\AdminWebApi.csproj", "{45242A08-2783-41A5-9328-A132590F7937}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -69,6 +73,14 @@ Global
 		{9B43157A-26CD-43C9-AFA3-2C96467E192B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B43157A-26CD-43C9-AFA3-2C96467E192B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B43157A-26CD-43C9-AFA3-2C96467E192B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B67B9F7C-E2C0-4A78-A612-5A4A3B4024E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B67B9F7C-E2C0-4A78-A612-5A4A3B4024E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B67B9F7C-E2C0-4A78-A612-5A4A3B4024E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B67B9F7C-E2C0-4A78-A612-5A4A3B4024E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45242A08-2783-41A5-9328-A132590F7937}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45242A08-2783-41A5-9328-A132590F7937}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45242A08-2783-41A5-9328-A132590F7937}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45242A08-2783-41A5-9328-A132590F7937}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
