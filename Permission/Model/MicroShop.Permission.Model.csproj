@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Utility\Serialize\MicroShop.Utility.Serialize.csproj" />
+    <ProjectReference Include="..\..\Web\Common\MicroShop.Web.Common.csproj" />
     <ProjectReference Include="..\Enums\MicroShop.Permission.Enums.csproj" />
   </ItemGroup>
 
