@@ -4,7 +4,6 @@ using MicroShop.Web.Common.Filter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Ocelot.DependencyInjection;
-using Ocelot.Values;
 
 var builder = WebApplication.CreateBuilder(args);
 
