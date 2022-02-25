@@ -46,8 +46,5 @@ namespace MicroShop.Permission.BLL
             }             
         }
         #endregion public void SetRoleMenuRelation(RoleMenuRelationDTO roleMenuRelation, PermissionContext context)
-
-
-       
     }
 }
