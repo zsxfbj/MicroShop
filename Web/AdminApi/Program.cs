@@ -41,7 +41,7 @@ builder.Services.AddSwaggerGen(options =>
         options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Permission.Enums.xml"));
         options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Permission.Model.xml"));
         options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Web.Common.xml"));
-        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Permission.WebApi.xml"));
+        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Web.AdminApi.xml"));
     }
     options.OperationFilter<HeaderParameterOperationFilter>();    
     options.DocumentFilter<SwaggerEnumFilter>();
