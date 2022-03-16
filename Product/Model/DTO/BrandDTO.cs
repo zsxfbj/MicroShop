@@ -49,9 +49,7 @@ namespace MicroShop.Product.Model
         /// </summary>
         [Description("是否推荐，true：是；false：否")]
         [DisplayName("是否推荐")]
-        public Boolean IsRecommend { get; set; }
-
-       
+        public Boolean IsRecommend { get; set; }       
 
     }
 }

@@ -85,9 +85,7 @@ namespace MicroShop.Permission.BLL
                 };
             }
 
-            using var context = new PermissionContext();
-
-          
+            using var context = new PermissionContext();          
 
             if (context.Roles.Any(x => x.RoleName == modifyRole.RoleName.Trim() && x.RoleId != modifyRole.RoleId))
             {
@@ -187,7 +185,7 @@ namespace MicroShop.Permission.BLL
         /// <param name="isValid"></param>
         /// <returns></returns>
         /// <exception cref="ServiceException"></exception>
-        private RoleEntity GetRoleEntity(int roleId, PermissionContext context)
+        private static RoleEntity GetRoleEntity(int roleId, PermissionContext context)
         {
             if (roleId < 1)
             {
@@ -202,8 +200,6 @@ namespace MicroShop.Permission.BLL
             {
                 context = new PermissionContext();
             }
-
-
 
             RoleEntity? entity = context.Roles.FirstOrDefault(x => x.RoleId == roleId);
             if(entity == null)
@@ -224,7 +220,7 @@ namespace MicroShop.Permission.BLL
         /// </summary>
         /// <param name="role"></param>
         /// <returns></returns>
-        private RoleDTO GetRole(RoleEntity role)
+        private static RoleDTO GetRole(RoleEntity role)
         {
             return new RoleDTO
             {
