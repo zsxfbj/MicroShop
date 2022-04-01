@@ -3,6 +3,8 @@ using MicroShop.Web.AdminApi.Filter;
 using MicroShop.Web.Common.Filter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,7 @@ builder.Services.AddControllers(options =>
 
 // add HttpContextAccessor 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

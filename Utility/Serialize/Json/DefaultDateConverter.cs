@@ -1,18 +1,36 @@
-﻿using Newtonsoft.Json.Converters;
+﻿using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MicroShop.Utility.Serialize.Json
 {
     /// <summary>
     /// 默认日期格式输出
     /// </summary>
-    public class DefaultDateConverter : IsoDateTimeConverter
+    public class DefaultDateConverter : JsonConverter<DateTime>
     {
         /// <summary>
-        /// 构造函数
+        /// 
         /// </summary>
-        public DefaultDateConverter()
+        /// <param name="reader"></param>
+        /// <param name="typeToConvert"></param>
+        /// <param name="options"></param>
+        /// <returns></returns>
+        public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            DateTimeFormat = "yyyy-MM-dd";
+            Debug.Assert(typeToConvert == typeof(DateTime));
+            return DateTime.Parse(reader.GetString());
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="writer"></param>
+        /// <param name="value"></param>
+        /// <param name="options"></param>
+        public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
+        {
+            writer.WriteStringValue(value.ToString("yyyy-MM-dd"));
         }
     }
 }

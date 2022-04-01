@@ -1,62 +1,36 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Linq;
+﻿using System.Diagnostics;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace MicroShop.Utility.Serialize.Json
 {
     /// <summary>
     /// 默认日期时间格式转化类
     /// </summary>
-    public class DefaultDateTimeConverter : JsonConverter
+    public class DefaultDateTimeConverter : JsonConverter<DateTime>
     {
-        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
-        {
-            JToken token = JToken.Load(reader);
-            if (token.Type == JTokenType.Date)
-            {
-                return token.ToObject<DateTime>();
-            }
-            if (token.Type == JTokenType.String)
-            {
-                if (!DateTime.TryParse(token.ToString(), out DateTime value))
-                {
-                    value = DateTime.Now;
-                }
-                return value;
-            }
-            if (token.Type == JTokenType.Null && objectType == typeof(DateTime?))
-            {
-                return null;
-            }
-            throw new JsonSerializationException("Unexpected token type: " + token.Type);
-        }
-
         /// <summary>
-        /// 判断是否可以转换
+        /// 
         /// </summary>
-        /// <param name="objectType"></param>
+        /// <param name="reader"></param>
+        /// <param name="typeToConvert"></param>
+        /// <param name="options"></param>
         /// <returns></returns>
-        public override bool CanConvert(Type objectType)
+        public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            return (typeof(DateTime) == objectType || typeof(DateTime?) == objectType);
+            Debug.Assert(typeToConvert == typeof(DateTime));
+            return DateTime.Parse(reader.GetString());
         }
 
         /// <summary>
-        /// 写到JSON里
+        /// 
         /// </summary>
         /// <param name="writer"></param>
         /// <param name="value"></param>
-        /// <param name="serializer"></param>
-        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+        /// <param name="options"></param>
+        public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
         {
-            if (value == null)
-            {
-                serializer.Serialize(writer, "");
-            }
-            else
-            {
-                serializer.Serialize(writer, ((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss"));
-            }
+            writer.WriteStringValue(value.ToString("yyyy-MM-dd HH:mm:ss"));
         }
     }
 }
