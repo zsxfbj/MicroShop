@@ -24,6 +24,27 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         }
 
         /// <summary>
+        /// 获取一级菜单列表
+        /// </summary>    
+        /// <returns></returns>
+        [HttpGet("list")]
+        public ApiResultDTO<List<MenuDTO>> GetMenus()
+        {
+            return new ApiResultDTO<List<MenuDTO>> { Result = BMenu.GetInstance().GetMenus(0), RequestResultCode = RequestResultCodeEnum.Success };
+        }
+
+        /// <summary>
+        /// 获取菜单列表
+        /// </summary>
+        /// <param name="parentId">上级编号</param>
+        /// <returns></returns>
+        [HttpGet("list/{parentId}")]
+        public ApiResultDTO<List<MenuDTO>> GetMenus([FromRoute] int parentId)
+        {
+            return new ApiResultDTO<List<MenuDTO>> { Result = BMenu.GetInstance().GetMenus(parentId), RequestResultCode = RequestResultCodeEnum.Success };
+        }
+
+        /// <summary>
         /// 删除菜单
         /// </summary>
         /// <param name="menuId">菜单编号</param>

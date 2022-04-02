@@ -177,8 +177,7 @@ namespace MicroShop.Permission.BLL
         /// 
         /// </summary>
         /// <param name="menuId"></param>
-        /// <param name="permissionContext"></param>
-        /// <param name="isValid"></param>
+        /// <param name="permissionContext"></param>        
         /// <returns></returns>
         /// <exception cref="ServiceException"></exception>
         private static MenuEntity? GetMenuEntity(int menuId, PermissionContext permissionContext)
