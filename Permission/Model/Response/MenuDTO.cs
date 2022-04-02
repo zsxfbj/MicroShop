@@ -1,6 +1,6 @@
 ﻿using System;
 using MicroShop.Utility.Serialize.Json;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace MicroShop.Permission.Model.Response
 {

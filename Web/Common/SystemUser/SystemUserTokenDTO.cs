@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace MicroShop.Web.Common.SystemUser
+﻿namespace MicroShop.Web.Common.SystemUser
 {
     /// <summary>
     /// 系统用户访问令牌
@@ -10,10 +8,8 @@ namespace MicroShop.Web.Common.SystemUser
     {
         /// <summary>
         /// 令牌
-        /// </summary>
-        [Key]
-        [Required(ErrorMessage = "访问令牌不能为空")]
-        public string? Token { get; set; } = Guid.NewGuid().ToString();
+        /// </summary>        
+        public string AccessToken { get; set; }
 
         /// <summary>
         /// 用户编号
@@ -33,12 +29,37 @@ namespace MicroShop.Web.Common.SystemUser
         /// <summary>
         /// 用户名
         /// </summary>
-        public string UserName { set; get; } = string.Empty;
+        public string UserName { set; get; }
+
+        /// <summary>
+        /// 电子邮箱
+        /// </summary>
+        public string Email { get; set; }
 
         /// <summary>
         /// 访问的客户端类型
         /// </summary>
         public ClientTypeEnum ClientType { get; set; }
+
+        /// <summary>
+        /// 手机号
+        /// </summary>
+        public string Mobile { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public SystemUserTokenDTO()
+        {
+            AccessToken = Guid.NewGuid().ToString("N");
+            UserId = 0;
+            RoleId = 0;
+            UserName = string.Empty;
+            Email = string.Empty;
+            Mobile = string.Empty;
+            ClientType = ClientTypeEnum.PCWeb;
+            IsAdmin = false;
+        }
 
     }
 }

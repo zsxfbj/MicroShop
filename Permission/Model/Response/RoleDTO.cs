@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
+using MicroShop.Utility.Serialize.Json;
 
 namespace MicroShop.Permission.Model.Response
 {
@@ -37,14 +38,14 @@ namespace MicroShop.Permission.Model.Response
         /// <summary>
         /// 创建时间
         /// </summary>
-        [JsonConverter(typeof(Utility.Serialize.Json.DefaultDateTimeConverter))]
+        [JsonConverter(typeof(DefaultDateTimeConverter))]
         [Description("创建时间")]      
         public DateTime CreatedAt { get; set; }
 
         /// <summary>
         /// 更新时间
         /// </summary>
-        [JsonConverter(typeof(Utility.Serialize.Json.DefaultDateTimeConverter))]       
+        [JsonConverter(typeof(DefaultDateTimeConverter))]       
         [Description("更新时间")]
         public DateTime UpdatedAt { get; set; }
     }
