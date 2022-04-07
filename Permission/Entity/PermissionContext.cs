@@ -88,7 +88,7 @@ namespace MicroShop.Permission.Entity
                 r.Property(p => p.LoginCount).HasDefaultValue(0);
                 r.HasIndex(i => i.LoginName).IsUnique();
 
-                r.HasData(new SystemUserEntity { UserId = 1, LoginName = "admin", LoginPassword = "6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e", CreatedAt = DateTime.Now, LoginCount = 0, RoleId = 1, UpdatedAt = DateTime.Now, UserName = "管理员", IsAdmin = true, , LoginStatus = Enums.LoginStatusEnum.Allowable });
+                r.HasData(new SystemUserEntity { UserId = 1, LoginName = "admin", LoginPassword = "6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e", CreatedAt = DateTime.Now, LoginCount = 0, RoleId = 1, UpdatedAt = DateTime.Now, UserName = "管理员", IsAdmin = true, LoginStatus = Enums.LoginStatusEnum.Allowable });
             });
 
             //系统用户访问令牌管理
@@ -97,7 +97,7 @@ namespace MicroShop.Permission.Entity
                 r.Property(i => i.ClientType).HasConversion<int>();
                 r.Property(i => i.CreatedAt).HasDefaultValue(DateTime.Now);
                 r.HasIndex(i => i.UserId);
-                r.HasIndex(i => i.AccessToken);
+                r.HasIndex(i => i.AccessToken).IsUnique();
                 r.HasIndex(i => i.OutUserId);
                 r.HasIndex(i => i.CreatedAt);
                 r.HasData(new SystemUserAccessTokenEntity { Id = 1, OutUserId = "", AccessToken = Guid.NewGuid().ToString("N"), ClientType = Web.Common.ClientTypeEnum.PCWeb, CreatedAt = DateTime.Now, LoginStatus = Enums.LoginStatusEnum.Allowable, OutUserToken = "", UpdatedAt = DateTime.Now, UserId = 1 });

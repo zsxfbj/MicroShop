@@ -22,6 +22,38 @@
         /// </summary>
         public T? Result { get; set; }
 
+
+        /// <summary>
+        /// 获取错误结果
+        /// </summary>
+        /// <param name="requestResultCode">错误码</param>
+        /// <param name="errorMessage">错误消息</param>
+        /// <returns>ApiResult</returns>
+        public static ApiResultDTO<T> Error(RequestResultCodeEnum requestResultCode, string errorMessage)
+        {
+            return new ApiResultDTO<T>
+            {
+                RequestResultCode = requestResultCode,
+                ErrorMessage = errorMessage,
+                Result = default
+            };             
+        }
+
+        /// <summary>
+        /// 获取成功的消息
+        /// </summary>
+        /// <param name="result"></param>
+        /// <returns></returns>
+        public static ApiResultDTO<T> Success(T result)
+        {
+            return new ApiResultDTO<T>
+            {
+                RequestResultCode = RequestResultCodeEnum.Success,
+                ErrorMessage = String.Empty,
+                Result = result
+            };
+        }
+
         /// <summary>
         /// 构造函数
         /// </summary>
