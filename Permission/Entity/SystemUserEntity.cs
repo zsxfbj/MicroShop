@@ -56,19 +56,7 @@ namespace MicroShop.Permission.Entity
         public bool IsAdmin { get; set; } = false;
 
         /// <summary>
-        /// 访问的客户端类型
-        /// </summary>
-        [Column("client_type", TypeName = "int")]
-        public ClientTypeEnum ClientType   { get; set; }
-
-        /// <summary>
-        /// 访问的令牌
-        /// </summary>
-        [Column("access_token", TypeName = "varchar(256)")]
-        public string AccessToken { get; set; } = "";
-
-        /// <summary>
-        /// 登录次数
+        /// 登录状态
         /// </summary>
         [Column("login_count", TypeName = "int")]
         public LoginStatusEnum LoginStatus { get; set; } = LoginStatusEnum.Allowable;

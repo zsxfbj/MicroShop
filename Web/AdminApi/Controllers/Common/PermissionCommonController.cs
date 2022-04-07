@@ -8,9 +8,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Common
     /// <summary>
     /// 通用接口系统人员相关设置
     /// </summary>
-    [Route("common/system-user")]
+    [Route("common/permission")]
     [ApiController]
-    public class UserController
+    public class PermissionCommonController
     {
         /// <summary>
         /// 获取系统用户的登录状态列表
@@ -25,7 +25,6 @@ namespace MicroShop.Web.AdminApi.Controllers.Common
             {
                 keyValues.Add(new KeyValueDTO {  Key = ((int)status).ToString(), Value = status.GetDescription() });
             }
-
             return new ApiResultDTO<List<KeyValueDTO>> { Result = keyValues, RequestResultCode = RequestResultCodeEnum.Success };
         }
 

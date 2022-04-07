@@ -47,7 +47,7 @@
         public string Mobile { get; set; }
 
         /// <summary>
-        /// 
+        /// 构造函数
         /// </summary>
         public SystemUserTokenDTO()
         {

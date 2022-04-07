@@ -15,7 +15,7 @@ namespace MicroShop.Permission.Entity
         /// </summary>
         public PermissionContext() : base() { }
 
-         
+
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -35,14 +35,12 @@ namespace MicroShop.Permission.Entity
                 var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json");
                 optionsBuilder.UseSqlServer(builder.Build().GetConnectionString("PermissionDb"));
-                 
+
                 //允许打开SQL日志              
                 //optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Information).EnableSensitiveDataLogging();
             }
             base.OnConfiguring(optionsBuilder);
         }
-
-
 
         /// <summary>
         /// 模型创建
@@ -77,22 +75,32 @@ namespace MicroShop.Permission.Entity
                 r.HasData(new MenuEntity { MenuId = 4, MenuName = "系统设置", OrderValue = 4, ParentId = 0, MenuUrl = "", CreatedAt = DateTime.Now, Note = "", UpdatedAt = DateTime.Now });
             });
 
-            
-
             //系统用户
             modelBuilder.Entity<SystemUserEntity>(r =>
             {
                 r.Property(p => p.LoginName).IsRequired().HasMaxLength(50);
                 r.Property(p => p.LoginPassword).IsRequired().HasMaxLength(256).HasDefaultValue("6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e");
                 r.Property(p => p.UserName).IsRequired().HasMaxLength(30).HasDefaultValue("");
-                r.Property(p => p.ClientType).HasConversion<int>();
+
                 r.Property(p => p.CreatedAt).HasDefaultValue(DateTime.Now);
                 r.Property(p => p.UpdatedAt).HasDefaultValue(DateTime.Now);
                 r.Property(p => p.LoginStatus).HasConversion<int>();
                 r.Property(p => p.LoginCount).HasDefaultValue(0);
                 r.HasIndex(i => i.LoginName).IsUnique();
+
+                r.HasData(new SystemUserEntity { UserId = 1, LoginName = "admin", LoginPassword = "6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e", CreatedAt = DateTime.Now, LoginCount = 0, RoleId = 1, UpdatedAt = DateTime.Now, UserName = "管理员", IsAdmin = true, , LoginStatus = Enums.LoginStatusEnum.Allowable });
+            });
+
+            //系统用户访问令牌管理
+            modelBuilder.Entity<SystemUserAccessTokenEntity>(r =>
+            {
+                r.Property(i => i.ClientType).HasConversion<int>();
+                r.Property(i => i.CreatedAt).HasDefaultValue(DateTime.Now);
+                r.HasIndex(i => i.UserId);
                 r.HasIndex(i => i.AccessToken);
-                r.HasData(new SystemUserEntity { UserId = 1, LoginName = "admin", LoginPassword = "6aee2767ea6575bc7e3cf613762fd27e81768c28c1942a5258b12e2b0175bc6e", CreatedAt = DateTime.Now, LoginCount = 0, RoleId = 1, UpdatedAt = DateTime.Now, UserName = "管理员", ClientType = Web.Common.ClientTypeEnum.PCWeb, IsAdmin = true, AccessToken = Guid.NewGuid().ToString(), LoginStatus = Enums.LoginStatusEnum.Allowable });
+                r.HasIndex(i => i.OutUserId);
+                r.HasIndex(i => i.CreatedAt);
+                r.HasData(new SystemUserAccessTokenEntity { Id = 1, OutUserId = "", AccessToken = Guid.NewGuid().ToString("N"), ClientType = Web.Common.ClientTypeEnum.PCWeb, CreatedAt = DateTime.Now, LoginStatus = Enums.LoginStatusEnum.Allowable, OutUserToken = "", UpdatedAt = DateTime.Now, UserId = 1 });
             });
 
             //系统用户日志
@@ -126,6 +134,11 @@ namespace MicroShop.Permission.Entity
         /// 系统用户
         /// </summary>
         public DbSet<SystemUserEntity> SystemUsers { get; set; }
+
+        /// <summary>
+        /// 系统用户访问令牌控制
+        /// </summary>
+        public DbSet<SystemUserAccessTokenEntity> SystemUserAccessTokens { get; set; }
 
         /// <summary>
         /// 系统用户操作日志
