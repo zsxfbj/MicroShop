@@ -14,7 +14,7 @@ namespace MicroShop.Web.Common.User
         /// </summary>
         [Key]
         [Required(ErrorMessage = "访问令牌不能为空")]
-        public string? Token { get; set; } = Guid.NewGuid().ToString();
+        public string? Token { get; set; } = Utility.Common.StringHelper.GetGuid();
 
         /// <summary>
         /// 用户编号

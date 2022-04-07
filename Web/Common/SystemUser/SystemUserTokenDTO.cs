@@ -51,7 +51,7 @@
         /// </summary>
         public SystemUserTokenDTO()
         {
-            AccessToken = Guid.NewGuid().ToString("N");
+            AccessToken = Utility.Common.StringHelper.GetGuid();
             UserId = 0;
             RoleId = 0;
             UserName = string.Empty;
