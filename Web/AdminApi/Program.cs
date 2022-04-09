@@ -3,8 +3,6 @@ using MicroShop.Web.AdminApi.Filter;
 using MicroShop.Web.Common.Filter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
-
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +47,7 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<HeaderParameterOperationFilter>();    
     options.DocumentFilter<SwaggerEnumFilter>();
 });
+
 // ˝æ›ø‚≈‰÷√
 builder.Services.AddDbContext<MicroShop.Permission.Entity.PermissionContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PermissionDb")).EnableSensitiveDataLogging());
@@ -64,7 +63,6 @@ builder.Services.AddCors(options =>
        .AllowAnyMethod();
     });
 });
-
 
 var app = builder.Build();
 

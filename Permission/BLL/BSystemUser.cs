@@ -11,6 +11,8 @@ namespace MicroShop.Permission.BLL
     public class BSystemUser : Singleton<BSystemUser>
     {
 
+         
+
         #region public LoginResultDTO Login(SystemUserLoginDTO systemUserLogin, RequestHeaderDTO requestHeader)
         /// <summary>
         /// 系统用户登录

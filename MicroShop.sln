@@ -27,6 +27,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.BLL", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Web.AdminApi", "Web\AdminApi\MicroShop.Web.AdminApi.csproj", "{D9640492-C125-4E6A-B4EF-0EDA7301B768}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Utility.Cache", "Utility\Cache\MicroShop.Utility.Cache.csproj", "{BAFFDA13-3C65-43DB-A282-EB99A337AAAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{D9640492-C125-4E6A-B4EF-0EDA7301B768}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9640492-C125-4E6A-B4EF-0EDA7301B768}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9640492-C125-4E6A-B4EF-0EDA7301B768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAFFDA13-3C65-43DB-A282-EB99A337AAAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAFFDA13-3C65-43DB-A282-EB99A337AAAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAFFDA13-3C65-43DB-A282-EB99A337AAAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAFFDA13-3C65-43DB-A282-EB99A337AAAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

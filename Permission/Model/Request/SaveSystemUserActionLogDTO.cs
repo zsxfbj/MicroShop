@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MicroShop.Permission.Model.Request
 {
@@ -16,5 +12,7 @@ namespace MicroShop.Permission.Model.Request
         /// 系统用户编号
         /// </summary>
         public long UserId { get; set; }
+
+
     }
 }
