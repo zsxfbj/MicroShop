@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Permission\BLL\MicroShop.Permission.BLL.csproj" />
+    <ProjectReference Include="..\..\Product\BLL\MicroShop.Product.BLL.csproj" />
+    <ProjectReference Include="..\Common\MicroShop.Web.Common.csproj" />
+  </ItemGroup>
+
+</Project>

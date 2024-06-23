@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>MicroShop.Product.Model</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Projects\CSharp\MicroShop\Product\Model\MicroShop.Product.Model.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utility\MicroShop.Utility.csproj" />
+    <ProjectReference Include="..\..\Web\Common\MicroShop.Web.Common.csproj" />
+    <ProjectReference Include="..\Enums\MicroShop.Product.Enums.csproj" />
+  </ItemGroup>
+
+</Project>

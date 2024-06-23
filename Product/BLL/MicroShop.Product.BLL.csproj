@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Web\Common\MicroShop.Web.Common.csproj" />
+    <ProjectReference Include="..\Entity\MicroShop.Product.Entity.csproj" />
+    <ProjectReference Include="..\Enums\MicroShop.Product.Enums.csproj" />
+    <ProjectReference Include="..\Model\MicroShop.Product.Model.csproj" />
+  </ItemGroup>
+
+</Project>
