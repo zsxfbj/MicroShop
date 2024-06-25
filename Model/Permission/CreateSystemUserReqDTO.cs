@@ -9,7 +9,7 @@ namespace MicroShop.Model.Permission
     /// 创建系统用户请求
     /// </summary>
     [Serializable]
-    public class CreateSystemUserDTO
+    public class CreateSystemUserReqDTO
     {
         /// <summary>
         /// 角色编号
@@ -65,46 +65,5 @@ namespace MicroShop.Model.Permission
         [StringLength (16, ErrorMessage = "手机号码长度超过16位")]
         public string Mobile { get; set; }
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public CreateSystemUserDTO()
-        {
-            RoleId = 0;
-            LoginName = "";
-            UserName = "";
-            IsAdmin = false;
-            LoginStatus = LoginStatusEnum.Forbidden;
-            Email = "";
-            Mobile = "";
-        }
-
-        /// <summary>
-        /// 初始化数据
-        /// </summary>
-        public void InitData()
-        {
-            LoginName = LoginName.Trim();
-            UserName = UserName.Trim();
-            LoginPassword = LoginPassword.Trim();
-            
-            if (string.IsNullOrEmpty(Email))
-            {
-                Email = "";
-            }
-            else
-            {
-                Email = Email.Trim();
-            }
-
-            if (string.IsNullOrEmpty(Mobile))
-            {
-                Mobile = "";
-            }
-            else
-            {
-                Mobile = Mobile.Trim();
-            }
-        }
     }
 }

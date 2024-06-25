@@ -22,7 +22,6 @@
         /// </summary>
         public T? Result { get; set; }
 
-
         /// <summary>
         /// 获取错误结果
         /// </summary>

@@ -19,7 +19,7 @@ namespace MicroShop.IDAL.Common
         /// 修改分类
         /// </summary>
         /// <param name="req">修改请求</param>
-        void Modify(ModifyCategoryReqDTO req);
+        CategoryDTO Modify(ModifyCategoryReqDTO req);
 
         /// <summary>
         /// 根据Id删除记录
@@ -40,7 +40,7 @@ namespace MicroShop.IDAL.Common
         /// <param name="parentId">父级Id</param>
         /// <param name="categoryType">分类类型</param>
         /// <returns></returns>
-        List<CategoryDTO> GetCategories(int parentId, int? categoryType = null );
+        List<CategoryDTO> GetCategories(int parentId, int? categoryType = null);
 
      
     }

@@ -9,17 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Product.Enums", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Product.Entity", "Product\Entity\MicroShop.Product.Entity.csproj", "{167FB9AD-26A4-43A9-822B-EBF4BB6F4249}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.Entity", "Permission\Entity\MicroShop.Permission.Entity.csproj", "{07893180-A83E-4717-AC62-F903413F59E5}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.Model", "Permission\Model\MicroShop.Permission.Model.csproj", "{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.Enums", "Permission\Enums\MicroShop.Permission.Enums.csproj", "{35417E99-7C3C-413D-8E47-27EAA1302C36}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Web.Common", "Web\Common\MicroShop.Web.Common.csproj", "{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Permission.BLL", "Permission\BLL\MicroShop.Permission.BLL.csproj", "{B67B9F7C-E2C0-4A78-A612-5A4A3B4024E5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Web.AdminApi", "Web\AdminApi\MicroShop.Web.AdminApi.csproj", "{D9640492-C125-4E6A-B4EF-0EDA7301B768}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.WebApi", "Web\AdminApi\MicroShop.WebApi.csproj", "{D9640492-C125-4E6A-B4EF-0EDA7301B768}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Product.BLL", "Product\BLL\MicroShop.Product.BLL.csproj", "{3E1A2CE6-E1F0-4B0E-865C-633BE9BE8AC0}"
 EndProject
@@ -35,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.IDAL", "IDAL\Micr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.BLL", "BLL\MicroShop.BLL.csproj", "{E0F2D094-0CCF-43AF-B35B-B9DC98052175}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Model", "Model\MicroShop.Model.csproj", "{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Model", "Model\MicroShop.Model.csproj", "{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.DALFactory", "DALFactory\MicroShop.DALFactory.csproj", "{928A5E47-5873-4957-BA2E-65FAD01F31B7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,18 +51,6 @@ Global
 		{167FB9AD-26A4-43A9-822B-EBF4BB6F4249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{167FB9AD-26A4-43A9-822B-EBF4BB6F4249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{167FB9AD-26A4-43A9-822B-EBF4BB6F4249}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07893180-A83E-4717-AC62-F903413F59E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07893180-A83E-4717-AC62-F903413F59E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07893180-A83E-4717-AC62-F903413F59E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07893180-A83E-4717-AC62-F903413F59E5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9A2FE97E-B8AB-4C34-B62F-13F602ABFE1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35417E99-7C3C-413D-8E47-27EAA1302C36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35417E99-7C3C-413D-8E47-27EAA1302C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35417E99-7C3C-413D-8E47-27EAA1302C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35417E99-7C3C-413D-8E47-27EAA1302C36}.Release|Any CPU.Build.0 = Release|Any CPU
 		{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{86B1AD2A-FCB8-4E68-8410-11F9AB74ADE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -111,6 +95,10 @@ Global
 		{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{928A5E47-5873-4957-BA2E-65FAD01F31B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{928A5E47-5873-4957-BA2E-65FAD01F31B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{928A5E47-5873-4957-BA2E-65FAD01F31B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{928A5E47-5873-4957-BA2E-65FAD01F31B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

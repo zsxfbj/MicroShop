@@ -11,4 +11,8 @@
     <ProjectReference Include="..\Model\MicroShop.Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Product\" />
+  </ItemGroup>
+
 </Project>

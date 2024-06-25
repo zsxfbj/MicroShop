@@ -66,54 +66,5 @@ namespace MicroShop.Model.Common.Category
         [DefaultValue(1)]
         public int? OrderValue { get; set; } = 1;
 
-        #region public void InitData()
-        /// <summary>
-        /// 初始化数据
-        /// </summary>
-        public void InitData()
-        {
-            if (!string.IsNullOrEmpty(CategoryName))
-            {
-                CategoryName = CategoryName.Trim();
-            }
-            else
-            {
-                CategoryName = "";
-            }
-
-            if (!string.IsNullOrEmpty(ImageUrl))
-            {
-                ImageUrl = ImageUrl.Trim();
-            }
-            else
-            {
-                ImageUrl = "";
-            }
-
-            if (!string.IsNullOrEmpty(IconUrl))
-            {
-                IconUrl = IconUrl.Trim();
-            }
-            else
-            {
-                IconUrl = "";
-            }
-
-            if (!string.IsNullOrEmpty(Note))
-            {
-                Note = Note.Trim();
-            }
-            else
-            {
-                Note = "";
-            }
-
-            if (!OrderValue.HasValue)
-            {
-                OrderValue = 1;
-            }
-        }
-        #endregion public void InitData()
-
     }
 }

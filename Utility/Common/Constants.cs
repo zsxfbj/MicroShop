@@ -16,6 +16,10 @@ namespace MicroShop.Utility.Common
         /// 15
         /// </summary>
         public const Int32 FIFTEEN = 15;
-       
+
+        /// <summary>
+        /// 默认数据访问仓库
+        /// </summary>
+        public const string MICRO_SHOP_DAL = "MicroShop.SQLServerDAL";
     }
 }

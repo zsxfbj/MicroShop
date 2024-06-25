@@ -11,12 +11,12 @@ namespace MicroShop.Model.Permission
         /// <summary>
         /// 访问令牌
         /// </summary>
-        public string AccessToken { get; set; }
+        public string AccessToken { get; set; } = string.Empty;
 
         /// <summary>
         /// 用户名称
         /// </summary>
-        public string UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
         /// <summary>
         /// 登录账号
@@ -36,7 +36,7 @@ namespace MicroShop.Model.Permission
         /// <summary>
         /// 是否管理员
         /// </summary>
-        public bool IsAdmin { get; set; }
+        public bool IsAdmin { get; set; } = false;
 
         /// <summary>
         /// 登录次数
@@ -52,6 +52,6 @@ namespace MicroShop.Model.Permission
         /// <summary>
         /// 用户菜单
         /// </summary>
-        public List<RoleMenuDTO> RoleMenus { get; set; }
+        public List<RoleMenuDTO> RoleMenus { get; set; } = new List<RoleMenuDTO>();
     }
 }

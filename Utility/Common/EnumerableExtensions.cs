@@ -63,9 +63,10 @@ namespace MicroShop.Utility.Common
         /// <typeparam name="TEnum"></typeparam>
         /// <param name="enumerationValue">enum.value</param>
         /// <returns>description of enum.value</returns>
-        public static string? GetDescription<TEnum>(this TEnum enumerationValue)
+        public static string GetDescription<TEnum>(this TEnum enumerationValue)
             where TEnum : struct, IComparable, IFormattable, IConvertible
         {
+            
             Type type = enumerationValue.GetType();
             if (!type.IsEnum)
             {
@@ -74,7 +75,7 @@ namespace MicroShop.Utility.Common
 
             //Tries to find a DescriptionAttribute for a potential friendly name
             //for the enum
-            MemberInfo[] memberInfo = type.GetMember(enumerationValue.ToString());
+            MemberInfo[] memberInfo = type.GetMember(enumerationValue.ToString()!);
             if (memberInfo != null && memberInfo.Length > 0)
             {
                 object[] attrs = memberInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
@@ -86,7 +87,7 @@ namespace MicroShop.Utility.Common
                 }
             }
             //If we have no description attribute, just return the ToString of the enum
-            return enumerationValue.ToString();
+            return enumerationValue.ToString()!;
         }
 
     }

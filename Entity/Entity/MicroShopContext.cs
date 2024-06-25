@@ -1,5 +1,4 @@
-﻿using MicroShop.Enums.Permission;
-using MicroShop.SQLServerDAL.Entity.Common;
+﻿using MicroShop.SQLServerDAL.Entity.Common;
 using MicroShop.SQLServerDAL.Entity.Permission;
 using MicroShop.SQLServerDAL.Entity.Product;
 using Microsoft.EntityFrameworkCore;
@@ -12,28 +11,22 @@ namespace MicroShop.SQLServerDAL.Entity
     /// </summary>
     public class MicroShopContext : DbContext
     {
-        private readonly string _connectionString;
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public MicroShopContext()
-        {
-            _connectionString = System.Configuration.ConfigurationManager.ConnectionStrings["CONNECTION_STRING_NON_DTC"].ConnectionString;
-        }
-
         /// <summary>
         /// 重载读取配置
         /// </summary>
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
+        {           
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(_connectionString);
-                var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+                IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+
+                var appSettings = builder.Build();
+
+                optionsBuilder.UseSqlServer(appSettings.GetConnectionString("CONNECTION_STRING_NON_DTC"));
+
                 //允许打开SQL日志
-                if (builder.Build().GetSection("debug").Equals("true"))
+                if (appSettings.GetSection("debug").Equals("true"))
                 {
                     optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Debug).EnableDetailedErrors();
                 }

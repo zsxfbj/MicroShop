@@ -37,10 +37,10 @@ namespace MicroShop.Enums.Web
         NotAllowAccess = 403,
 
         /// <summary>
-        /// 资源不存在
+        /// 访问的记录不存在
         /// </summary>
         [EnumMember(Value = "404")]
-        [Description("资源不存在")]
+        [Description("访问的记录不存在")]
         NotFound = 404,
 
         /// <summary>
@@ -58,39 +58,32 @@ namespace MicroShop.Enums.Web
         DatabaseAccessError = 501,
 
         /// <summary>
-        /// 角色名重复
+        /// 名称重复
         /// </summary>
         [EnumMember(Value = "10000")]
-        [Description("角色名重复")]
-        RoleNameIsExist = 10000,
+        [Description("名称重复")]
+        NameIsExist = 10000,
+
+        /// <summary>  
+        /// 键名重复
+        /// </summary>
+        [EnumMember(Value = "10001")]
+        [Description("键名重复")]        
+        KeyIsExist = 10001,
 
         /// <summary>
         /// 登录名重复
         /// </summary>
-        [EnumMember(Value = "10001")]
-        [Description("登录名重复")]
-        LoginNameIsExist = 10001,
-
-        /// <summary>
-        /// 用户重复
-        /// </summary>
         [EnumMember(Value = "10002")]
-        [Description("用户名重复")]
-        UserNameIsExist = 10002,
+        [Description("登录名重复")]
+        LoginNameIsExist = 10002,
 
         /// <summary>
-        /// 品牌名重复
+        /// 存在下级记录
         /// </summary>
         [EnumMember(Value = "10003")]
-        [Description("品牌名重复")]
-        BrandNameIsExist = 10003,
-
-        /// <summary>
-        /// 产品分类名重复
-        /// </summary>
-        [EnumMember(Value = "10004")]
-        [Description("产品分类名重复")]
-        CategoryNameIsExist = 10004,
+        [Description("存在下级记录")]
+        HasSubRecords = 10003,
 
         /// <summary>
         /// 验证码已失效
@@ -111,15 +104,10 @@ namespace MicroShop.Enums.Web
         /// </summary>
         [EnumMember(Value = "10200")]
         [Description("系统用户记录不存在")]
-        SystemUserNotExist = 10200,
+        SystemUserNotExist = 10200
 
 
-        /// <summary>
-        /// 存在子分类
-        /// </summary>
-        [EnumMember(Value = "10300")]
-        [Description("存在子分类")]
-        HasSubCategories = 10300
+        
 
 
 

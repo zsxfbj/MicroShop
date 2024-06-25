@@ -49,7 +49,7 @@ namespace MicroShop.Model.Permission
         /// 登录状态
         /// </summary>       
         [Description("登录状态")]
-        public LoginStatusEnum LoginStatus { get; set; }
+        public LoginStatusEnum LoginStatus { get; set; } = LoginStatusEnum.Forbidden;
 
         /// <summary>
         /// 登录状态名称

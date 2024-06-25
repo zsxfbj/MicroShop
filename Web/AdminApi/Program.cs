@@ -1,14 +1,31 @@
 using Lazy.Captcha.Core.Generator;
 using Lazy.Captcha.Core;
-using MicroShop.Permission.Entity;
 using MicroShop.Utility.Cache;
 using MicroShop.Web.AdminApi.Filter;
 using MicroShop.Web.Common.Filter;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using MicroShop.Product.Entity;
+using MicroShop.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
+
+//Init Redis
+StaticGlobalVariables.RedisConnectionString = builder.Configuration.GetConnectionString("RedisConnectionString");
+if (!string.IsNullOrEmpty(StaticGlobalVariables.RedisConnectionString))
+{
+    RedisClient.InitConnect(StaticGlobalVariables.RedisConnectionString);
+}
+
+//数据库链接字符串
+StaticGlobalVariables.SQLConnectionString = builder.Configuration.GetConnectionString("CONNECTION_STRING_NON_DTC");
+
+//是否调试模式
+string? isDebug = builder.Configuration.GetSection("IsDebug").Value;
+StaticGlobalVariables.IsDebug = bool.Parse((string.IsNullOrEmpty(isDebug) ? "false" : isDebug.Trim()));
+
+//数据访问仓库
+string? dalType = builder.Configuration.GetSection("MicroShopDAL").Value;
+StaticGlobalVariables.MicroShopDAL = string.IsNullOrEmpty(dalType) ? "MicroShop.SQLServerDAL" : dalType.Trim();
 
 // Add services to the container.
 builder.Services.AddControllers(options =>
@@ -23,11 +40,11 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
-    options.SwaggerDoc("v1", new OpenApiInfo
+    options.SwaggerDoc("v1.0", new OpenApiInfo
     {
-        Version = "v1",
-        Title = "Adminn API",
-        Description = "MicroShop Admin API docs",
+        Version = "v1.0",
+        Title = "MicroShop API",
+        Description = "MicroShop API docs",
         TermsOfService = new Uri("https://www.cnblogs.com/zsxfbj/"),
         Contact = new OpenApiContact
         {
@@ -36,25 +53,17 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     options.OrderActionsBy(o => o.RelativePath);
-
-    
+        
     var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
     if (!string.IsNullOrEmpty(basePath))
     {
-        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Permission.Enums.xml"));
-        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Permission.Model.xml"));
-        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Web.Common.xml"));
-        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Web.AdminApi.xml"));
+        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Enums.xml"));
+        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Model.xml"));
+        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Web.xml"));
     }
     options.OperationFilter<HeaderParameterOperationFilter>();
 });
 
-
-builder.Services.AddDbContext<PermissionContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CONNECTION_STRING_NON_DTC")).EnableSensitiveDataLogging());
-
-builder.Services.AddDbContext<ProductContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CONNECTION_STRING_NON_DTC")).EnableSensitiveDataLogging());
 
 // 图形验证码
 builder.Services.AddCaptcha(builder.Configuration, option =>
@@ -70,7 +79,7 @@ builder.Services.AddCaptcha(builder.Configuration, option =>
 
     option.ImageOption.Width = 150;  
     option.ImageOption.Height = 50; 
-    option.ImageOption.BackgroundColor = SixLabors.ImageSharp.Color.White;  
+    option.ImageOption.BackgroundColor = SkiaSharp.SKColor.Parse("#0000000");  
 
     option.ImageOption.BubbleCount = 5;  
     option.ImageOption.BubbleMinRadius = 3;  
@@ -82,16 +91,7 @@ builder.Services.AddCaptcha(builder.Configuration, option =>
     option.ImageOption.FontSize = 28;  
     option.ImageOption.FontFamily = DefaultFontFamilys.Instance.Kaiti;  
 
-    
 });
-
-//Init Redis
-string redisConnectionString = builder.Configuration.GetConnectionString("RedisConnectionString");
-if (!string.IsNullOrEmpty(redisConnectionString))
-{
-    RedisClient.InitConnect(redisConnectionString);
-
-}
 
 //Cors configuring
 builder.Services.AddCors(options =>
@@ -115,24 +115,15 @@ var app = builder.Build();
 
 MicroShop.Utility.Common.HttpContext.Configure(app.Services.GetRequiredService<IHttpContextAccessor>());
 
-PermissionContext permissionContext = new PermissionContext();
-
+ 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    if (!permissionContext.Database.EnsureCreated())
-    {       
-        permissionContext.Database.Migrate();
-    }
-
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 else
 {
-    permissionContext.Database.EnsureCreated();
-
-
     app.UseHsts();
 }
 

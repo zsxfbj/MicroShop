@@ -12,13 +12,13 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="createMenu">创建菜单请求</param>
         /// <returns>MicroShop.Model.Permission.MenuDTO or null</returns>
-        Task<MenuDTO> CreateAsync(CreateMenuDTO createMenu);
+        MenuDTO Create(CreateMenuReqDTO createMenu);
 
         /// <summary>
         /// 修改菜单信息
         /// </summary>
         /// <param name="modifyMenu"></param>
-        void Modify(ModifyMenuDTO modifyMenu);
+        MenuDTO Modify(ModifyMenuReqDTO modifyMenu);
 
         /// <summary>
         /// 根据菜单id删除
