@@ -21,9 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Permission\BLL\MicroShop.Permission.BLL.csproj" />
-    <ProjectReference Include="..\..\Product\BLL\MicroShop.Product.BLL.csproj" />
-    <ProjectReference Include="..\Common\MicroShop.Web.Common.csproj" />
+    <ProjectReference Include="..\..\BLL\MicroShop.BLL.csproj" />
+    <ProjectReference Include="..\..\DALFactory\MicroShop.DALFactory.csproj" />
+    <ProjectReference Include="..\..\Entity\MicroShop.SQLServerDAL.csproj" />
+    <ProjectReference Include="..\..\Enums\MicroShop.Enums.csproj" />
+    <ProjectReference Include="..\..\IDAL\MicroShop.IDAL.csproj" />
+    <ProjectReference Include="..\..\Model\MicroShop.Model.csproj" />
+    <ProjectReference Include="..\..\Utility\MicroShop.Utility.csproj" />
   </ItemGroup>
 
 </Project>

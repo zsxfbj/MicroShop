@@ -1,7 +1,8 @@
 ﻿using MicroShop.IDAL.Permission;
 using MicroShop.Model.Common.Exception;
-using MicroShop.Model.Permission;
-using MicroShop.Model.Web;
+using MicroShop.Model.DTO.Permission;
+using MicroShop.Model.VO.Permission;
+using MicroShop.Model.VO.Web;
 using MicroShop.SQLServerDAL.Entity;
 using MicroShop.SQLServerDAL.Entity.Permission;
 
@@ -18,7 +19,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="req"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public RoleDTO Create(CreateRoleReqDTO req)
+        public RoleVO Create(CreateRoleReqDTO req)
         {
             Role role = new Role();
             ToEntity(req, role);
@@ -60,14 +61,14 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        public PageResultDTO<RoleDTO> GetPageResult(QueryRoleReqDTO req)
+        public PageResultVO<RoleVO> GetPageResult(QueryRoleReqDTO req)
         {
-            PageResultDTO<RoleDTO> pageResult = new PageResultDTO<RoleDTO>
+            PageResultVO<RoleVO> pageResult = new PageResultVO<RoleVO>
             {
                 PageIndex = req.PageIndex.HasValue ? req.PageIndex.Value : 1,
                 PageSize = req.PageSize.HasValue ? req.PageSize.Value : 15,
                 RecordCount = 0,
-                Data = new List<RoleDTO>()
+                Data = new List<RoleVO>()
             };
 
             using (var context = new MicroShopContext())
@@ -93,7 +94,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="roleId"></param>
         /// <returns></returns>
         /// <exception cref="ServiceException"></exception>
-        public RoleDTO GetRole(int roleId)
+        public RoleVO GetRole(int roleId)
         {
             using(var context = new MicroShopContext())
             {
@@ -110,7 +111,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<RoleDTO> GetRoles()
+        public List<RoleVO> GetRoles()
         {
             using (var context = new MicroShopContext())
             {
@@ -125,7 +126,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="req"></param>
         /// <returns></returns>
         /// <exception cref="ServiceException"></exception>
-        public RoleDTO Modify(ModifyRoleReqDTO req)
+        public RoleVO Modify(ModifyRoleReqDTO req)
         {
             using (var context = new MicroShopContext())
             {
@@ -163,9 +164,9 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="role"></param>
         /// <returns></returns>
-        private static RoleDTO ToDTO(Role role)
+        private static RoleVO ToDTO(Role role)
         {
-            return new RoleDTO
+            return new RoleVO
             {
                 RoleId = role.RoleId,
                 RoleName = string.IsNullOrEmpty(role.RoleName) ? "" : role.RoleName.Trim(),

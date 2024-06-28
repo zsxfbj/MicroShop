@@ -1,7 +1,8 @@
 ﻿using MicroShop.Enums.Web;
 using MicroShop.IDAL.Permission;
 using MicroShop.Model.Common.Exception;
-using MicroShop.Model.Permission;
+using MicroShop.Model.DTO.Permission;
+using MicroShop.Model.VO.Permission;
 using MicroShop.SQLServerDAL.Entity;
 using MicroShop.SQLServerDAL.Entity.Permission;
 
@@ -12,12 +13,63 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
     /// </summary>
     public class MenuDAL : IMenu
     {
+        #region Private Methods
+
+        #region private static void ToEntity(CreateMenuReqDTO req, Menu menu)
+        /// <summary>
+        /// 请求数据和表数据对应
+        /// </summary>
+        /// <param name="req">创建菜单的请求内容</param>
+        /// <param name="menu">菜单数据表对象</param>
+        private static void ToEntity(CreateMenuReqDTO req, Menu menu)
+        {
+            menu.OrderValue = req.OrderValue;
+            menu.MenuUrl = string.IsNullOrEmpty(req.MenuUrl) ? "" : req.MenuUrl.Trim();
+            menu.MenuName = string.IsNullOrEmpty(req.MenuName) ? "" : req.MenuName.Trim();
+            menu.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
+            menu.ParentId = req.ParentId;
+        }
+        #endregion private static void ToEntity(CreateMenuReqDTO req, Menu menu)
+
+        #region private static MenuDTO GetMenuDTO(MenuEntity entity)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
+        private static MenuVO ToVO(Menu entity)
+        {
+            if (entity == null)
+            {
+                throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "菜单记录为null" };
+            }
+
+            return new MenuVO
+            {
+                CreatedAt = entity.CreatedAt,
+                MenuId = entity.MenuId,
+                MenuName = entity.MenuName,
+                MenuUrl = entity.MenuUrl,
+                Note = entity.Note,
+                OrderValue = entity.OrderValue,
+                ParentId = entity.ParentId,
+                UpdatedAt = entity.UpdatedAt
+            };
+        }
+        #endregion private static MenuDTO GetMenuDTO(MenuEntity entity)
+
+        #endregion Private Methods
+
+        #region Public Methods
+
+        #region public MenuVO Create(CreateMenuReqDTO req)
         /// <summary>
         /// 创建菜单的方法
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        public MenuDTO Create(CreateMenuReqDTO req)
+        public MenuVO Create(CreateMenuReqDTO req)
         {
             using (var context = new MicroShopContext())
             {
@@ -25,15 +77,17 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 ToEntity(req, entity);
                 context.Menus.Add(entity);
                 context.SaveChanges();
-                return GetMenuDTO(entity);
+                return ToVO(entity);
             }           
         }
+        #endregion public MenuVO Create(CreateMenuReqDTO req)
 
+        #region public void Delete(int menuId)
         /// <summary>
-        /// 
+        /// 根据菜单Id删除记录，同时删除角色菜单表对应的记录
         /// </summary>
-        /// <param name="menuId"></param>
-        /// <exception cref="ServiceException"></exception>
+        /// <param name="menuId">菜单Id</param>
+        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
         public void Delete(int menuId)
         {
             using (var context = new MicroShopContext())
@@ -60,14 +114,16 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 context.SaveChanges();
             }
         }
+        #endregion public void Delete(int menuId)
 
+        #region public MenuVO GetMenu(int menuId)
         /// <summary>
-        /// 
+        /// 根据菜单Id获取菜单记录
         /// </summary>
-        /// <param name="menuId"></param>
-        /// <returns></returns>
-        /// <exception cref="ServiceException"></exception>
-        public MenuDTO GetMenuDTO(int menuId)
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>MicroShop.Model.VO.Permission.MenuVO</returns>
+        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
+        public MenuVO GetMenu(int menuId)
         {
             using (var context = new MicroShopContext())
             {
@@ -76,30 +132,34 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 {
                     throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "菜单记录不存在" };
                 }
-                return GetMenuDTO(menu);
+                return ToVO(menu);
             }        
         }
+        #endregion public MenuVO GetMenu(int menuId)
 
+        #region public List<MenuVO> GetMenus(int parentId = 0)
         /// <summary>
-        /// 
+        /// 根据上级编号获取菜单列表
         /// </summary>
         /// <param name="parentId"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
-        public List<MenuDTO> GetMenus(int parentId = 0)
+        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
+        public List<MenuVO> GetMenus(int parentId = 0)
         {
             using (var context = new MicroShopContext())
             {
-                return context.Menus.Where(x => x.ParentId == parentId).OrderBy(x => x.OrderValue).Select(entity => GetMenuDTO(entity)).ToList();
+                return context.Menus.Where(x => x.ParentId == parentId).OrderBy(x => x.OrderValue).Select(entity => ToVO(entity)).ToList();
             }
         }
+        #endregion public List<MenuVO> GetMenus(int parentId = 0)
 
+        #region public MenuVO Modify(ModifyMenuReqDTO req)
         /// <summary>
-        /// 
+        /// 修改菜单信息
         /// </summary>
-        /// <param name="req"></param>
-        /// <exception cref="ServiceException"></exception>
-        public MenuDTO Modify(ModifyMenuReqDTO req)
+        /// <param name="req">修改菜单的请求</param>
+        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
+        public MenuVO Modify(ModifyMenuReqDTO req)
         {
             using (var context = new MicroShopContext())
             {
@@ -113,51 +173,12 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 menu.UpdatedAt = DateTime.Now;
                 context.Menus.Update(menu);
                 context.SaveChanges();
-
-                return GetMenuDTO(menu);
+                return ToVO(menu);
             }
         }
+        #endregion public MenuVO Modify(ModifyMenuReqDTO req)
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="req"></param>
-        /// <param name="menu"></param>
-        private static void ToEntity(CreateMenuReqDTO req, Menu menu)
-        {
-            menu.OrderValue = req.OrderValue;
-            menu.MenuUrl = string.IsNullOrEmpty(req.MenuUrl) ? "" : req.MenuUrl.Trim();
-            menu.MenuName = string.IsNullOrEmpty(req.MenuName) ? "" : req.MenuName.Trim();
-            menu.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
-            menu.ParentId = req.ParentId;
-        }
+        #endregion Public Methods
 
-        #region private static MenuDTO GetMenuDTO(MenuEntity entity)
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        /// <exception cref="ServiceException"></exception>
-        private static MenuDTO GetMenuDTO(Menu entity)
-        {
-            if (entity == null)
-            {
-                throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "菜单记录为null" };
-            }
-
-            return new MenuDTO
-            {
-                CreatedAt = entity.CreatedAt,
-                MenuId = entity.MenuId,
-                MenuName = entity.MenuName,
-                MenuUrl = entity.MenuUrl,
-                Note = entity.Note,
-                OrderValue = entity.OrderValue,
-                ParentId = entity.ParentId,
-                UpdatedAt = entity.UpdatedAt
-            };
-        }
-        #endregion private static MenuDTO GetMenuDTO(MenuEntity entity)
     }
 }

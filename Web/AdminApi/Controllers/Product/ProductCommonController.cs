@@ -17,9 +17,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Product
         /// </summary>
         /// <returns></returns>
         [HttpGet("currency-types")]
-        public ApiResultDTO<Dictionary<Int32, string>> GetCurrencyTypes()
+        public ApiResultVO<Dictionary<Int32, string>> GetCurrencyTypes()
         {
-            return new ApiResultDTO<Dictionary<Int32, string>> { Result = BCommon.GetInstance().GetCurrencyTypes(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<Dictionary<Int32, string>> { Result = BCommon.GetInstance().GetCurrencyTypes(), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -27,9 +27,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Product
         /// </summary>
         /// <returns></returns>
         [HttpGet("media-types")]
-        public ApiResultDTO<Dictionary<Int32, string>> GetMediaTypes()
+        public ApiResultVO<Dictionary<Int32, string>> GetMediaTypes()
         {
-            return new ApiResultDTO<Dictionary<Int32, string>> { Result = BCommon.GetInstance().GetMediaTypes(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<Dictionary<Int32, string>> { Result = BCommon.GetInstance().GetMediaTypes(), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -37,9 +37,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Product
         /// </summary>
         /// <returns></returns>
         [HttpGet("product-status")]
-        public ApiResultDTO<Dictionary<Int32, string>> GetProductStatusList()
+        public ApiResultVO<Dictionary<Int32, string>> GetProductStatusList()
         {
-            return new ApiResultDTO<Dictionary<Int32, string>> { Result = BCommon.GetInstance().GetProductStatusList(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<Dictionary<Int32, string>> { Result = BCommon.GetInstance().GetProductStatusList(), ResultCode = RequestResultCodeEnum.Success };
         }
     }
 }

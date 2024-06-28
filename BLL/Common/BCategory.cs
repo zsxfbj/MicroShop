@@ -1,6 +1,7 @@
 ﻿using MicroShop.DALFactory.Common;
 using MicroShop.IDAL.Common;
-using MicroShop.Model.Common.Category;
+using MicroShop.Model.DTO.Common;
+using MicroShop.Model.VO.Common;
 using MicroShop.Utility.Cache;
 using MicroShop.Utility.Common;
 
@@ -26,9 +27,9 @@ namespace MicroShop.BLL.Common
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        public CategoryDTO Create(CreateCategoryReqDTO req)
+        public CategoryVO Create(CreateCategoryReqDTO req)
         {            
-            CategoryDTO category = dal.Create(req);
+            CategoryVO category = dal.Create(req);
 
             //缓存
             RedisClient.SetAdd(CACHE_KEY + category.CategoryId, System.Text.Json.JsonSerializer.Serialize(category));

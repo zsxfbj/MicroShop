@@ -1,6 +1,7 @@
 ﻿
-using MicroShop.Model.Permission;
-using MicroShop.Model.Web;
+using MicroShop.Model.DTO.Permission;
+using MicroShop.Model.VO.Permission;
+using MicroShop.Model.VO.Web;
 
 namespace MicroShop.IDAL.Permission
 {
@@ -14,21 +15,21 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        RoleDTO GetRole(int roleId);
+        RoleVO GetRole(int roleId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        RoleDTO Create(CreateRoleReqDTO req);
+        RoleVO Create(CreateRoleReqDTO req);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        RoleDTO Modify(ModifyRoleReqDTO req);
+        RoleVO Modify(ModifyRoleReqDTO req);
 
         /// <summary>
         /// 
@@ -41,12 +42,12 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="queryRole"></param>
         /// <returns></returns>
-        PageResultDTO<RoleDTO> GetPageResult(QueryRoleReqDTO req);
+        PageResultVO<RoleVO> GetPageResult(QueryRoleReqDTO req);
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        List<RoleDTO> GetRoles();
+        List<RoleVO> GetRoles();
     }
 }

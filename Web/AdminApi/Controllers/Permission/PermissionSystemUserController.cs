@@ -1,4 +1,7 @@
 ﻿using Lazy.Captcha.Core;
+using MicroShop.Enums.Web;
+using MicroShop.Model.VO.Permission;
+using MicroShop.Model.VO.Web;
 using MicroShop.Permission.BLL;
 using MicroShop.Permission.Model;
 using MicroShop.Web.AdminApi.Filter;
@@ -21,9 +24,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth]
         [HttpPost("create")]
-        public ApiResultDTO<SystemUserDTO> Create([FromBody] CreateSystemUserDTO createSystemUser)
+        public ApiResultVO<SystemUserDTO> Create([FromBody] CreateSystemUserDTO createSystemUser)
         {
-            return new ApiResultDTO<SystemUserDTO> { Result = BSystemUser.GetInstance().Create(createSystemUser), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserDTO> { Result = BSystemUser.GetInstance().Create(createSystemUser), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -33,9 +36,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth]
         [HttpPost("modify")]
-        public ApiResultDTO<SystemUserDTO> Modify([FromBody] ModifySystemUserDTO modifySystemUser)
+        public ApiResultVO<SystemUserVO> Modify([FromBody] ModifySystemUserDTO modifySystemUser)
         {
-            return new ApiResultDTO<SystemUserDTO> { Result = BSystemUser.GetInstance().Modify(modifySystemUser), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.GetInstance().Modify(modifySystemUser), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -45,9 +48,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth]
         [HttpGet("detail/{userId}")]
-        public ApiResultDTO<SystemUserDTO> GetSystemUser([FromRoute] int userId)
+        public ApiResultVO<SystemUserVO> GetSystemUser([FromRoute] int userId)
         {
-            return new ApiResultDTO<SystemUserDTO> { Result = BSystemUser.GetInstance().GetSystemUserDTO(userId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.GetInstance().GetSystemUserDTO(userId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -57,10 +60,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpGet("delete/{userId}")]
-        public ApiResultDTO<string> Delete([FromRoute] int userId)
+        public ApiResultVO<string> Delete([FromRoute] int userId)
         {
             BSystemUser.GetInstance().Delete(userId);
-            return ApiResultDTO<string>.Success("");
+            return ApiResultVO<string>.Success("");
         }
 
         /// <summary>
@@ -71,10 +74,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpGet("login-status/{userId}")]
-        public ApiResultDTO<string> SetLoginStatus([FromRoute] int userId)
+        public ApiResultVO<string> SetLoginStatus([FromRoute] int userId)
         {
             BSystemUser.GetInstance().SetLoginStatus(userId);
-            return ApiResultDTO<string>.Success("");
+            return ApiResultVO<string>.Success("");
         }
 
         /// <summary>
@@ -84,9 +87,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("page")]
-        public ApiResultDTO<PageResultDTO<SystemUserDTO>> GetPagedSystemUsers([FromBody] QuerySystemUserDTO querySystemUser)
+        public ApiResultVO<PageResultVO<SystemUserVO>> GetPagedSystemUsers([FromBody] QuerySystemUserDTO querySystemUser)
         {
-            return new ApiResultDTO<PageResultDTO<SystemUserDTO>> { Result = BSystemUser.GetInstance().GetPagedSystemUsers(querySystemUser), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<PageResultVO<SystemUserVO>> { Result = BSystemUser.GetInstance().GetPagedSystemUsers(querySystemUser), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -95,7 +98,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="systemUserLogin"></param>
         /// <returns>SystemUserLoginResultDTO</returns>
         [HttpPost("login")]
-        public ApiResultDTO<SystemUserLoginResultDTO> Login([FromBody] SystemUserLoginDTO systemUserLogin)
+        public ApiResultVO<SystemUserLoginResultDTO> Login([FromBody] SystemUserLoginDTO systemUserLogin)
         {
             if(systemUserLogin == null)
             {
@@ -110,7 +113,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
                 throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "验证码填写错误" };
             }
 
-            return new ApiResultDTO<SystemUserLoginResultDTO>() { Result = BSystemUser.GetInstance().Login(systemUserLogin), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserLoginResultDTO>() { Result = BSystemUser.GetInstance().Login(systemUserLogin), ResultCode = RequestResultCodeEnum.Success };
         }
 
         

@@ -3,7 +3,6 @@ using Lazy.Captcha.Core;
 using MicroShop.Utility.Cache;
 using MicroShop.Web.AdminApi.Filter;
 using MicroShop.Web.Common.Filter;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using MicroShop.Utility;
 

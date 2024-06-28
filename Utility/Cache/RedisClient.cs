@@ -629,7 +629,7 @@ namespace MicroShop.Utility.Cache
         /// 
         /// </summary>
         /// <returns></returns>
-        public static IEnumerable<string> GetAllKeys()
+        public static IEnumerable<string?>? GetAllKeys()
         {
             if (redisMultiplexer != null)
             {
@@ -796,14 +796,14 @@ namespace MicroShop.Utility.Cache
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="channel"></param>
+        /// <param name="channelName"></param>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public static async Task<long> PublishAsync(string channel, string msg)
+        public static async Task<long> PublishAsync(string channelName, string msg)
         {
             if (redisMultiplexer != null)
-            {
-                return await redisMultiplexer.GetSubscriber().PublishAsync(channel, msg);
+            {                
+                return await redisMultiplexer.GetSubscriber().PublishAsync(new RedisChannel(channelName, RedisChannel.PatternMode.Literal), msg);
             }
             throw new NullReferenceException("redis connection is not init, redisMultiplexer is null.");
         }
@@ -812,14 +812,14 @@ namespace MicroShop.Utility.Cache
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="channel"></param>
+        /// <param name="channelName"></param>
         /// <param name="handler"></param>
         /// <returns></returns>
-        public static async Task SubscribeAsync(string channel, Action<string, string> handler)
+        public static async Task SubscribeAsync(string channelName, Action<string, string> handler)
         {
             if (redisMultiplexer != null)
-            {
-                await redisMultiplexer.GetSubscriber().SubscribeAsync(channel, (chn, msg) => handler(chn, msg));
+            {               
+                await redisMultiplexer.GetSubscriber().SubscribeAsync(new RedisChannel(channelName, RedisChannel.PatternMode.Literal), (chn, msg) => handler(chn, msg));
             }
             else
             {
@@ -1123,7 +1123,7 @@ namespace MicroShop.Utility.Cache
         /// <typeparam name="T"></typeparam>
         /// <param name="values"></param>
         /// <returns></returns>
-        public static IEnumerable<T?> ToObjects<T>(this IEnumerable<RedisValue> values) where T : class
+        public static IEnumerable<T?>? ToObjects<T>(this IEnumerable<RedisValue> values) where T : class
         {
             var redisValues = values as RedisValue[] ?? values.ToArray();
             if (redisValues != null && redisValues.Any())
@@ -1166,7 +1166,12 @@ namespace MicroShop.Utility.Cache
 
             var dict = new ConcurrentDictionary<string, string>();
             foreach (var entry in hashEntries)
-                dict[entry.Name] = entry.Value;
+            {
+                if(!string.IsNullOrEmpty(entry.Name) && !string.IsNullOrEmpty(entry.Value))
+                {
+                    dict.TryAdd(entry.Name, entry.Value);                   
+                }                
+            }
             return dict;
         }
 

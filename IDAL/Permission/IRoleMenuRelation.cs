@@ -1,4 +1,5 @@
-﻿using MicroShop.Model.Permission;
+﻿using MicroShop.Model.DTO.Permission;
+using MicroShop.Model.VO.Permission;
 
 namespace MicroShop.IDAL.Permission
 {
@@ -26,6 +27,6 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        List<RoleMenuDTO> GetRoleMenus(int roleId = 0);
+        List<RoleMenuVO> GetRoleMenus(int roleId = 0);
     }
 }

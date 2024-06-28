@@ -1,5 +1,8 @@
 ﻿using Lazy.Captcha.Core;
-using MicroShop.Permission.BLL;
+using MicroShop.BLL;
+using MicroShop.Enums.Web;
+using MicroShop.Model.VO.Common;
+using MicroShop.Model.VO.Web;
 using MicroShop.Web.Common;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,9 +31,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <returns></returns>
         [HttpGet("login-status")]
-        public ApiResultDTO<Dictionary<Int32, string>> GetLoginStatus()
+        public ApiResultVO<Dictionary<Int32, string>> GetLoginStatus()
         {           
-            return new ApiResultDTO<Dictionary<Int32, string>> { Result = BCommon.GetInstance().GetLoginStatusList(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<Dictionary<Int32, string>> { Result = BCommon.GetInstance().GetLoginStatusList(), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -38,10 +41,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <returns></returns>
         [HttpGet("action-type")]
-        public ApiResultDTO<List<KeyValueDTO<Int32>>> GetActionTypes()
+        public ApiResultVO<List<KeyValueVO<Int32>>> GetActionTypes()
         {
            
-            return new ApiResultDTO<List<KeyValueDTO<Int32>>> { Result = BCommon.GetInstance().GetActionTypes(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<KeyValueVO<Int32>>> { Result = BCommon.GetInstance().GetActionTypes(), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>

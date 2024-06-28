@@ -1,5 +1,6 @@
 ﻿using MicroShop.IDAL.Permission;
-using MicroShop.Model.Permission;
+using MicroShop.Model.DTO.Permission;
+using MicroShop.Model.VO.Permission;
 using MicroShop.SQLServerDAL.Entity;
 
 namespace MicroShop.SQLServerDAL.DAL.Permission
@@ -15,9 +16,9 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="roleId"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public List<RoleMenuDTO> GetRoleMenus(int roleId = 0)
+        public List<RoleMenuVO> GetRoleMenus(int roleId = 0)
         {
-            List<RoleMenuDTO> roleMenus = new List<RoleMenuDTO>();
+            List<RoleMenuVO> roleMenus = new List<RoleMenuVO>();
             using (var context = new MicroShopContext())
             {
                 if (roleId <= 0)
@@ -27,7 +28,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                     {
                         foreach (var root in roleMenus)
                         {
-                            List<RoleMenuDTO> subMeus = GetMenus(root.MenuId, context);
+                            List<RoleMenuVO> subMeus = GetMenus(root.MenuId, context);
                             if (subMeus.Count > 0)
                             {
                                 root.SubMenus = subMeus;
@@ -42,7 +43,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                     {
                         foreach (var root in roleMenus)
                         {
-                            List<RoleMenuDTO> subMeus = GetMenus(roleId, root.MenuId, context);
+                            List<RoleMenuVO> subMeus = GetMenus(roleId, root.MenuId, context);
                             if (subMeus.Count > 0)
                             {
                                 root.SubMenus = subMeus;
@@ -81,17 +82,17 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="parentId"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        private static List<RoleMenuDTO> GetMenus(int parentId, MicroShopContext context)
+        private static List<RoleMenuVO> GetMenus(int parentId, MicroShopContext context)
         {
             return (from m in context.Menus
                     where m.ParentId == parentId
                     orderby m.OrderValue ascending
-                    select new RoleMenuDTO
+                    select new RoleMenuVO
                     {
                         MenuId = m.MenuId,
                         MenuName = m.MenuName,
                         ParentId = m.ParentId,
-                        SubMenus = new List<RoleMenuDTO>()
+                        SubMenus = new List<RoleMenuVO>()
                     }).ToList();
         }
         #endregion private static List<RoleMenuDTO> GetMenus(int parentId, MicroShopContext context)
@@ -104,18 +105,18 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="parentId"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        private static List<RoleMenuDTO> GetMenus(int roleId, int parentId, MicroShopContext context)
+        private static List<RoleMenuVO> GetMenus(int roleId, int parentId, MicroShopContext context)
         {
             return (from m in context.Menus
                     join rm in context.RoleMenuRelations on m.MenuId equals rm.MenuId
                     where rm.RoleId == roleId && m.ParentId == parentId
                     orderby m.OrderValue ascending
-                    select new RoleMenuDTO
+                    select new RoleMenuVO
                     {
                         MenuId = m.MenuId,
                         MenuName = m.MenuName,
                         ParentId = m.ParentId,
-                        SubMenus = new List<RoleMenuDTO>()
+                        SubMenus = new List<RoleMenuVO>()
                     }).ToList();
         }
         #endregion private static List<RoleMenuDTO> GetMenus(int roleId, int parentId, MicroShopContext context)       

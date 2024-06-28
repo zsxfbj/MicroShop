@@ -12,7 +12,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Utility\MicroShop.Utility.csproj" />
     <ProjectReference Include="..\..\Web\Common\MicroShop.Web.Common.csproj" />
-    <ProjectReference Include="..\Enums\MicroShop.Product.Enums.csproj" />
   </ItemGroup>
 
 </Project>

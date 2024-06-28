@@ -1,10 +1,11 @@
 ﻿using MicroShop.Enums.Common;
 using MicroShop.IDAL.Common;
-using MicroShop.Model.Common.Category;
 using MicroShop.Model.Common.Exception;
+using MicroShop.Model.DTO.Common;
+using MicroShop.Model.VO.Common;
 using MicroShop.SQLServerDAL.Entity;
 using MicroShop.SQLServerDAL.Entity.Common;
-using MicroShop.Utility.Common;
+using MicroShop.Utility.Enums;
 
 namespace MicroShop.SQLServerDAL.DAL.Common
 {
@@ -19,7 +20,7 @@ namespace MicroShop.SQLServerDAL.DAL.Common
         /// <param name="req"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public CategoryDTO Create(CreateCategoryReqDTO req)
+        public CategoryVO Create(CreateCategoryReqDTO req)
         {
             Category category = new Category();
             ToEntity(req, category);
@@ -53,17 +54,17 @@ namespace MicroShop.SQLServerDAL.DAL.Common
             throw new NotImplementedException();
         }
 
-        public List<CategoryDTO> GetCategories(int parentId, int? categoryType = null)
+        public List<CategoryVO> GetCategories(int parentId, int? categoryType = null)
         {
             throw new NotImplementedException();
         }
 
-        public CategoryDTO GetCategory(int categoryId)
+        public CategoryVO GetCategory(int categoryId)
         {
             throw new NotImplementedException();
         }
 
-        public CategoryDTO Modify(ModifyCategoryReqDTO req)
+        public CategoryVO Modify(ModifyCategoryReqDTO req)
         {
             throw new NotImplementedException();
         }
@@ -73,9 +74,9 @@ namespace MicroShop.SQLServerDAL.DAL.Common
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        private CategoryDTO ToDTO(Category entity)
+        private CategoryVO ToDTO(Category entity)
         {
-            CategoryDTO category = new CategoryDTO
+            CategoryVO category = new CategoryVO
             {
                 CategoryId = entity.CategoryId,
                 CategoryName = entity.CategoryName,

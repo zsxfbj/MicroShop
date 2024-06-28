@@ -20,9 +20,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("page")]
-        public ApiResultDTO<PageResultDTO<SystemUserActionLogDTO>> GetPagedSystemUserActions([FromBody]QuerySystemUserActionDTO querySystemUserAction)
+        public ApiResultVO<PageResultVO<SystemUserActionLogDTO>> GetPagedSystemUserActions([FromBody]QuerySystemUserActionDTO querySystemUserAction)
         {
-            return new ApiResultDTO<PageResultDTO<SystemUserActionLogDTO>>
+            return new ApiResultVO<PageResultVO<SystemUserActionLogDTO>>
             {
                 Result = BSystemUserActionLog.GetInstance().GetPagedSystemUserActions(querySystemUserAction),
                 ResultCode = RequestResultCodeEnum.Success
@@ -36,10 +36,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [HttpGet("delete/{logId}")]
         [LoginAuth(IsAdmin = true)]
-        public ApiResultDTO<string> DeleteOne([FromRoute] long logId)
+        public ApiResultVO<string> DeleteOne([FromRoute] long logId)
         {
             BSystemUserActionLog.GetInstance().Delete(logId);
-            return ApiResultDTO<string>.Success("");
+            return ApiResultVO<string>.Success("");
         }
 
         /// <summary>
@@ -49,10 +49,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [HttpPost("delete")]
         [LoginAuth(IsAdmin = true)]
-        public ApiResultDTO<string> Delete([FromBody] BatchDeleteSystemUserActionLogsDTO batchDeleteSystemUserActionLogs)
+        public ApiResultVO<string> Delete([FromBody] BatchDeleteSystemUserActionLogsDTO batchDeleteSystemUserActionLogs)
         {
             BSystemUserActionLog.GetInstance().Delete(batchDeleteSystemUserActionLogs);
-            return ApiResultDTO<string>.Success("");
+            return ApiResultVO<string>.Success("");
         }
 
         /// <summary>
@@ -61,10 +61,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [HttpGet("delete/all")]
         [LoginAuth(IsAdmin = true)]
-        public ApiResultDTO<string> DeleteAll()
+        public ApiResultVO<string> DeleteAll()
         {
             BSystemUserActionLog.GetInstance().DeleteAll();
-            return ApiResultDTO<string>.Success("");
+            return ApiResultVO<string>.Success("");
         }
 
     }

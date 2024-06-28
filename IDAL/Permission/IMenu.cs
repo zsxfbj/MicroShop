@@ -1,4 +1,5 @@
-﻿using MicroShop.Model.Permission;
+﻿using MicroShop.Model.DTO.Permission;
+using MicroShop.Model.VO.Permission;
 
 namespace MicroShop.IDAL.Permission
 {
@@ -12,13 +13,13 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="createMenu">创建菜单请求</param>
         /// <returns>MicroShop.Model.Permission.MenuDTO or null</returns>
-        MenuDTO Create(CreateMenuReqDTO createMenu);
+        MenuVO Create(CreateMenuReqDTO createMenu);
 
         /// <summary>
         /// 修改菜单信息
         /// </summary>
         /// <param name="modifyMenu"></param>
-        MenuDTO Modify(ModifyMenuReqDTO modifyMenu);
+        MenuVO Modify(ModifyMenuReqDTO modifyMenu);
 
         /// <summary>
         /// 根据菜单id删除
@@ -31,14 +32,14 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="menuId">菜单Id</param>
         /// <returns></returns>
-        MenuDTO GetMenuDTO(int menuId);
+        MenuVO GetMenu(int menuId);
 
         /// <summary>
         /// 根据父级菜单Id获取菜单列表，0为根级别
         /// </summary>
         /// <param name="parentId">父级菜单Id</param>
         /// <returns></returns>
-        List<MenuDTO> GetMenus(int parentId = 0);
+        List<MenuVO> GetMenus(int parentId = 0);
 
     }
 }

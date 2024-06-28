@@ -19,9 +19,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="menuId">菜单编号</param>
         /// <returns></returns>
         [HttpGet("detail/{menuId}")]
-        public ApiResultDTO<MenuDTO> GetMenu([FromRoute] int menuId)
+        public ApiResultVO<MenuDTO> GetMenu([FromRoute] int menuId)
         {
-            return new ApiResultDTO<MenuDTO> { Result = BMenu.GetInstance().GetMenuDTO(menuId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<MenuDTO> { Result = BMenu.GetInstance().GetMenuDTO(menuId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -29,9 +29,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>    
         /// <returns></returns>
         [HttpGet("list")]
-        public ApiResultDTO<List<MenuDTO>> GetMenus()
+        public ApiResultVO<List<MenuDTO>> GetMenus()
         {
-            return new ApiResultDTO<List<MenuDTO>> { Result = BMenu.GetInstance().GetMenus(0), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<MenuDTO>> { Result = BMenu.GetInstance().GetMenus(0), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -40,9 +40,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="parentId">上级编号</param>
         /// <returns></returns>
         [HttpGet("list/{parentId}")]
-        public ApiResultDTO<List<MenuDTO>> GetMenus([FromRoute] int parentId)
+        public ApiResultVO<List<MenuDTO>> GetMenus([FromRoute] int parentId)
         {
-            return new ApiResultDTO<List<MenuDTO>> { Result = BMenu.GetInstance().GetMenus(parentId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<MenuDTO>> { Result = BMenu.GetInstance().GetMenus(parentId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -51,10 +51,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="menuId">菜单编号</param>
         /// <returns></returns>
         [HttpGet("delete/{menuId}")]
-        public ApiResultDTO<string> Delete([FromRoute] int menuId)
+        public ApiResultVO<string> Delete([FromRoute] int menuId)
         {
             BMenu.GetInstance().Delete(menuId);
-            return ApiResultDTO<string>.Success("");
+            return ApiResultVO<string>.Success("");
         }
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="createMenu">创建菜单数据内容</param>
         /// <returns></returns>
         [HttpPost("create")]
-        public ApiResultDTO<MenuDTO> Create([FromBody] CreateMenuDTO createMenu)
+        public ApiResultVO<MenuDTO> Create([FromBody] CreateMenuDTO createMenu)
         {
-            return new ApiResultDTO<MenuDTO> { Result = BMenu.GetInstance().Create(createMenu), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<MenuDTO> { Result = BMenu.GetInstance().Create(createMenu), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -75,10 +75,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [HttpPost("modify")]
         [LoginAuth(MenuId = 0, IsAdmin = true)]
-        public ApiResultDTO<string> Modify([FromBody] ModifyMenuDTO modifyMenu)
+        public ApiResultVO<string> Modify([FromBody] ModifyMenuDTO modifyMenu)
         {
             BMenu.GetInstance().Modify(modifyMenu);
-            return ApiResultDTO<string>.Success("请求成功");
+            return ApiResultVO<string>.Success("请求成功");
         }
     }
 }

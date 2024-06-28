@@ -18,8 +18,4 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Enums\MicroShop.Product.Enums.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -12,8 +12,4 @@
     <ProjectReference Include="..\Utility\MicroShop.Utility.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Common\Tag\" />
-  </ItemGroup>
-
 </Project>

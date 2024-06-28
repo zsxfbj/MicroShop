@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using MicroShop.Model.VO.Web;
 using MicroShop.Permission.BLL;
 using MicroShop.Permission.Model;
 using MicroShop.Web.AdminApi.Filter;
@@ -21,9 +22,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns>RoleDTO</returns>
         [LoginAuth(IsAdmin = true)]
         [HttpGet("detail/{roleId}")]
-        public ApiResultDTO<RoleDTO> GetRole([FromRoute] int roleId)
+        public ApiResultVO<RoleDTO> GetRole([FromRoute] int roleId)
         {
-            return new ApiResultDTO<RoleDTO>() { Result = BRole.GetInstance().GetRole(roleId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<RoleDTO>() { Result = BRole.GetInstance().GetRole(roleId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -33,9 +34,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns>RoleDTO</returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("create")]
-        public ApiResultDTO<RoleDTO> CreateRole([FromBody] CreateRoleDTO createRole)
+        public ApiResultVO<RoleDTO> CreateRole([FromBody] CreateRoleDTO createRole)
         {
-            return new ApiResultDTO<RoleDTO> { Result = BRole.GetInstance().CreateRole(createRole), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<RoleDTO> { Result = BRole.GetInstance().CreateRole(createRole), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -45,10 +46,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns>RoleDTO</returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("modify")]
-        public ApiResultDTO<string> ModifyRole([FromBody] ModifyRoleDTO modifyRole)
+        public ApiResultVO<string> ModifyRole([FromBody] ModifyRoleDTO modifyRole)
         {
             BRole.GetInstance().ModifyRole(modifyRole);
-            return ApiResultDTO<string>.Success("");
+            return ApiResultVO<string>.Success("");
         }
 
         /// <summary>
@@ -58,10 +59,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpGet("delete/{roleId}")]
-        public ApiResultDTO<string> DeleteRole([FromRoute] int roleId)
+        public ApiResultVO<string> DeleteRole([FromRoute] int roleId)
         {
             BRole.GetInstance().DeleteRole(roleId);
-            return ApiResultDTO<string>.Success("");
+            return ApiResultVO<string>.Success("");
         }
 
         /// <summary>
@@ -71,9 +72,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("page")]
-        public ApiResultDTO<PageResultDTO<RoleDTO>> GetPageRoles([FromBody] QueryRoleDTO queryRole)
+        public ApiResultVO<PageResultVO<RoleDTO>> GetPageRoles([FromBody] QueryRoleDTO queryRole)
         {
-            return new ApiResultDTO<PageResultDTO<RoleDTO>> { Result = BRole.GetInstance().GetPageResult(queryRole), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<PageResultVO<RoleDTO>> { Result = BRole.GetInstance().GetPageResult(queryRole), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -81,9 +82,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <returns>List</returns>        
         [HttpGet("list")]
-        public ApiResultDTO<List<RoleDTO>> GetRoles()
+        public ApiResultVO<List<RoleDTO>> GetRoles()
         {
-            return new ApiResultDTO<List<RoleDTO>> { Result = BRole.GetInstance().GetRoles(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<RoleDTO>> { Result = BRole.GetInstance().GetRoles(), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -93,10 +94,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("set-menus")]
-        public ApiResultDTO<string> SetRoleMenuRelation([FromBody] RoleMenuRelationDTO roleMenuRelation)
+        public ApiResultVO<string> SetRoleMenuRelation([FromBody] RoleMenuRelationDTO roleMenuRelation)
         {
             BRoleMenuRelation.GetInstance().SetRoleMenuRelation(roleMenuRelation);
-            return ApiResultDTO<string>.Success("设置成功");
+            return ApiResultVO<string>.Success("设置成功");
         }
     }
 }
