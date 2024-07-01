@@ -173,14 +173,14 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="userId">用户编号</param>
         /// <returns>SystemUserDTO</returns>
         /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常信息</exception>
-        public SystemUserVO GetSystemUserDTO(int userId)
+        public SystemUserVO GetSystemUser(int userId)
         {
             using (var context = new MicroShopContext())
             {                
                 return ToDTO(GetSystemUser(userId, context), context);
             }
         }
-        #endregion public SystemUserDTO GetSystemUserDTO(int userId)
+        #endregion public GetSystemUser GetSystemUserDTO(int userId)
 
         #region public void Delete(int userId)
         /// <summary>

@@ -27,8 +27,7 @@ namespace MicroShop.IDAL.Permission
         /// 修改用户密码
         /// </summary>
         /// <param name="passowrd">新密码（明文）</param>
-        /// <param name="userId">用户Id</param>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">异常服务信息</exception>
+        /// <param name="userId">用户Id</param>       
         void ModifyLoginPassword(string passowrd, int userId);
 
         /// <summary>
@@ -36,13 +35,12 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        SystemUserVO GetSystemUserDTO(int userId);
+        SystemUserVO GetSystemUser(int userId);
 
         /// <summary>
         /// 根据用户Id删除用户记录，同时删除操作日志表里的所有数据
         /// </summary>
-        /// <param name="userId">用户Id</param>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常信息</exception>
+        /// <param name="userId">用户Id</param>    
         void Delete(int userId);
 
         /// <summary>

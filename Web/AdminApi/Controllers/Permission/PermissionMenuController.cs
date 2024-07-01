@@ -1,7 +1,9 @@
-﻿using MicroShop.Permission.BLL;
-using MicroShop.Permission.Model;
+﻿using MicroShop.BLL.Permission;
+using MicroShop.Enums.Web;
+using MicroShop.Model.DTO.Permission;
+using MicroShop.Model.VO.Permission;
+using MicroShop.Model.VO.Web;
 using MicroShop.Web.AdminApi.Filter;
-using MicroShop.Web.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroShop.Web.AdminApi.Controllers.Permission
@@ -19,9 +21,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="menuId">菜单编号</param>
         /// <returns></returns>
         [HttpGet("detail/{menuId}")]
-        public ApiResultVO<MenuDTO> GetMenu([FromRoute] int menuId)
+        public ApiResultVO<MenuVO> GetMenu([FromRoute] int menuId)
         {
-            return new ApiResultVO<MenuDTO> { Result = BMenu.GetInstance().GetMenuDTO(menuId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<MenuVO> { Result = BMenu.GetInstance().GetMenu(menuId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -29,9 +31,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>    
         /// <returns></returns>
         [HttpGet("list")]
-        public ApiResultVO<List<MenuDTO>> GetMenus()
+        public ApiResultVO<List<MenuVO>> GetMenus()
         {
-            return new ApiResultVO<List<MenuDTO>> { Result = BMenu.GetInstance().GetMenus(0), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetInstance().GetMenus(0), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -40,9 +42,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="parentId">上级编号</param>
         /// <returns></returns>
         [HttpGet("list/{parentId}")]
-        public ApiResultVO<List<MenuDTO>> GetMenus([FromRoute] int parentId)
+        public ApiResultVO<List<MenuVO>> GetMenus([FromRoute] int parentId)
         {
-            return new ApiResultVO<List<MenuDTO>> { Result = BMenu.GetInstance().GetMenus(parentId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetInstance().GetMenus(parentId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -51,6 +53,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="menuId">菜单编号</param>
         /// <returns></returns>
         [HttpGet("delete/{menuId}")]
+        [LoginAuth(IsAdmin = true)]
         public ApiResultVO<string> Delete([FromRoute] int menuId)
         {
             BMenu.GetInstance().Delete(menuId);
@@ -60,24 +63,25 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <summary>
         /// 创建菜单信息
         /// </summary>
-        /// <param name="createMenu">创建菜单数据内容</param>
+        /// <param name="req">创建菜单数据内容</param>
         /// <returns></returns>
         [HttpPost("create")]
-        public ApiResultVO<MenuDTO> Create([FromBody] CreateMenuDTO createMenu)
+        [LoginAuth(IsAdmin = true)]
+        public ApiResultVO<MenuVO> Create([FromBody] CreateMenuReqDTO req)
         {
-            return new ApiResultVO<MenuDTO> { Result = BMenu.GetInstance().Create(createMenu), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<MenuVO> { Result = BMenu.GetInstance().Create(req), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
         /// 修改菜单信息
         /// </summary>
-        /// <param name="modifyMenu"></param>
+        /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost("modify")]
-        [LoginAuth(MenuId = 0, IsAdmin = true)]
-        public ApiResultVO<string> Modify([FromBody] ModifyMenuDTO modifyMenu)
+        [LoginAuth(IsAdmin = true)]
+        public ApiResultVO<string> Modify([FromBody] ModifyMenuReqDTO req)
         {
-            BMenu.GetInstance().Modify(modifyMenu);
+            BMenu.GetInstance().Modify(req);
             return ApiResultVO<string>.Success("请求成功");
         }
     }

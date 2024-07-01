@@ -61,7 +61,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        public PageResultVO<RoleVO> GetPageResult(QueryRoleReqDTO req)
+        public PageResultVO<RoleVO> GetPageResult(RolePageReqDTO req)
         {
             PageResultVO<RoleVO> pageResult = new PageResultVO<RoleVO>
             {

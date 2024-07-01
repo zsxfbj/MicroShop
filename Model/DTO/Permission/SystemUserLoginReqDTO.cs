@@ -6,7 +6,7 @@ namespace MicroShop.Model.DTO.Permission
     /// 系统用户登录
     /// </summary>
     [Serializable]
-    public class SystemUserLoginDTO
+    public class SystemUserLoginReqDTO
     {
         /// <summary>
         /// 登录名

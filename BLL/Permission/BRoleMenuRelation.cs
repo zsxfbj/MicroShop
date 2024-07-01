@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MicroShop.DALFactory.Permission;
+﻿using MicroShop.DALFactory.Permission;
 using MicroShop.IDAL.Permission;
+using MicroShop.Model.DTO.Permission;
 using MicroShop.Utility.Common;
 
 namespace MicroShop.BLL.Permission
@@ -29,5 +25,13 @@ namespace MicroShop.BLL.Permission
            return dal.IsExist(roleId, menuId);
         }
 
+        /// <summary>
+        /// 设置角色菜单
+        /// </summary>
+        /// <param name="req"></param>
+        public void SetRoleMenuRelation(SetRoleMenuRelationReqDTO req)
+        {
+            dal.SetRoleMenuRelation(req);
+        }
     }
 }

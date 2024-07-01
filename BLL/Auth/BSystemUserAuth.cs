@@ -14,7 +14,9 @@ namespace MicroShop.BLL.Auth
         /// <summary>
         /// 缓存的Key
         /// </summary>
-        private const string SystemUserAccessTokenCacheKey = "SystemUserAccessToken-";
+        private const string SystemUserAccessTokenCacheKey = "ms-sys-user-auth-";
+
+
 
         #region  public SystemUserTokenDTO GetSystemUserToken()
         /// <summary>

@@ -1,5 +1,4 @@
-﻿using MicroShop.Product.BLL;
-using MicroShop.Web.Common;
+﻿using MicroShop.Model.VO.Web;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroShop.Web.AdminApi.Controllers.Product

@@ -7,7 +7,7 @@ namespace MicroShop.Model.DTO.Permission
     /// <summary>
     /// 查询角色
     /// </summary>
-    public class QueryRoleReqDTO : PageRequestDTO
+    public class RolePageReqDTO : PageRequestDTO
     {
         /// <summary>
         /// 角色名称

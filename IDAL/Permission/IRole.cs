@@ -42,7 +42,7 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="queryRole"></param>
         /// <returns></returns>
-        PageResultVO<RoleVO> GetPageResult(QueryRoleReqDTO req);
+        PageResultVO<RoleVO> GetPageResult(RolePageReqDTO req);
 
         /// <summary>
         /// 

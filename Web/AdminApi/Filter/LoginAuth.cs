@@ -17,12 +17,12 @@ namespace MicroShop.Web.AdminApi.Filter
         /// <summary>
         /// 系统菜单编号
         /// </summary>
-        public int? MenuId { get; set; }
+        public int MenuId { get; set; } = 0;
 
         /// <summary>
         /// 是否必须管理员
         /// </summary>
-        public bool? IsAdmin { get; set; }
+        public bool IsAdmin { get; set; } = false;
 
         /// <summary>
         /// 
@@ -40,7 +40,7 @@ namespace MicroShop.Web.AdminApi.Filter
         /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
         {           
-            if(IsAdmin != null && IsAdmin == true)
+            if(IsAdmin == true)
             {
                 SystemUserTokenDTO systemUserToken = BSystemUserAuth.GetInstance().GetSystemUserToken(context.HttpContext.Request.Headers[HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY]);
                 //判断是否登录
@@ -50,9 +50,9 @@ namespace MicroShop.Web.AdminApi.Filter
                 }
 
                 //判断菜单权限
-                if (MenuId != null && MenuId > 0)
+                if (MenuId > 0)
                 {
-                    if (!BRoleMenuRelation.GetInstance().IsExist(systemUserToken.RoleId, MenuId.Value))
+                    if (!BRoleMenuRelation.GetInstance().IsExist(systemUserToken.RoleId, MenuId))
                     {
                         throw new ServiceException { ErrorMessage = "无权访问页面！", ErrorCode = RequestResultCodeEnum.NotAllowAccess };
                     }

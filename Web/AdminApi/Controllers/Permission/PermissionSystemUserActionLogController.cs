@@ -1,4 +1,6 @@
-﻿using MicroShop.Permission.BLL;
+﻿using MicroShop.Model.VO.Permission;
+using MicroShop.Model.VO.Web;
+using MicroShop.Permission.BLL;
 using MicroShop.Permission.Model;
 using MicroShop.Web.AdminApi.Filter;
 using MicroShop.Web.Common;
@@ -20,9 +22,9 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("page")]
-        public ApiResultVO<PageResultVO<SystemUserActionLogDTO>> GetPagedSystemUserActions([FromBody]QuerySystemUserActionDTO querySystemUserAction)
+        public ApiResultVO<PageResultVO<SystemUserActionLogVO>> GetPagedSystemUserActions([FromBody]QuerySystemUserActionDTO querySystemUserAction)
         {
-            return new ApiResultVO<PageResultVO<SystemUserActionLogDTO>>
+            return new ApiResultVO<PageResultVO<SystemUserActionLogVO>>
             {
                 Result = BSystemUserActionLog.GetInstance().GetPagedSystemUserActions(querySystemUserAction),
                 ResultCode = RequestResultCodeEnum.Success

@@ -20,7 +20,7 @@ namespace MicroShop.IDAL.Permission
         /// 
         /// </summary>
         /// <param name="roleMenuRelation"></param>
-        void SetRoleMenuRelation(RoleMenuRelationDTO roleMenuRelation);
+        void SetRoleMenuRelation(SetRoleMenuRelationReqDTO roleMenuRelation);
 
         /// <summary>
         /// 

@@ -69,7 +69,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
             }
         }
 
-        public void SetRoleMenuRelation(RoleMenuRelationDTO roleMenuRelation)
+        public void SetRoleMenuRelation(SetRoleMenuRelationReqDTO roleMenuRelation)
         {
            
         }

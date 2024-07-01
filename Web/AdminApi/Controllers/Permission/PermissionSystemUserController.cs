@@ -1,9 +1,8 @@
-﻿using Lazy.Captcha.Core;
+﻿using MicroShop.BLL.Permission;
 using MicroShop.Enums.Web;
+using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
-using MicroShop.Permission.BLL;
-using MicroShop.Permission.Model;
 using MicroShop.Web.AdminApi.Filter;
 using MicroShop.Web.Common; 
 using Microsoft.AspNetCore.Mvc;
@@ -20,25 +19,25 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <summary>
         /// 创建系统用户
         /// </summary>
-        /// <param name="createSystemUser"></param>
+        /// <param name="req"></param>
         /// <returns></returns>
         [LoginAuth]
         [HttpPost("create")]
-        public ApiResultVO<SystemUserDTO> Create([FromBody] CreateSystemUserDTO createSystemUser)
+        public ApiResultVO<SystemUserVO> Create([FromBody] CreateSystemUserReqDTO req)
         {
-            return new ApiResultVO<SystemUserDTO> { Result = BSystemUser.GetInstance().Create(createSystemUser), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.GetInstance().Create(req), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
         /// 修改系统用户信息
         /// </summary>
-        /// <param name="modifySystemUser"></param>
+        /// <param name="req"></param>
         /// <returns></returns>
         [LoginAuth]
         [HttpPost("modify")]
-        public ApiResultVO<SystemUserVO> Modify([FromBody] ModifySystemUserDTO modifySystemUser)
+        public ApiResultVO<SystemUserVO> Modify([FromBody] ModifySystemUserReqDTO req)
         {
-            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.GetInstance().Modify(modifySystemUser), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.GetInstance().Modify(req), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -50,7 +49,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         [HttpGet("detail/{userId}")]
         public ApiResultVO<SystemUserVO> GetSystemUser([FromRoute] int userId)
         {
-            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.GetInstance().GetSystemUserDTO(userId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.GetInstance().GetSystemUser(userId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -83,13 +82,13 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="querySystemUser"></param>
+        /// <param name="req"></param>
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("page")]
-        public ApiResultVO<PageResultVO<SystemUserVO>> GetPagedSystemUsers([FromBody] QuerySystemUserDTO querySystemUser)
+        public ApiResultVO<PageResultVO<SystemUserVO>> GetPageResult([FromBody] SystemUserPageReqDTO req)
         {
-            return new ApiResultVO<PageResultVO<SystemUserVO>> { Result = BSystemUser.GetInstance().GetPagedSystemUsers(querySystemUser), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<PageResultVO<SystemUserVO>> { Result = BSystemUser.GetInstance().GetPageResult(req), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -98,7 +97,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="systemUserLogin"></param>
         /// <returns>SystemUserLoginResultDTO</returns>
         [HttpPost("login")]
-        public ApiResultVO<SystemUserLoginResultDTO> Login([FromBody] SystemUserLoginDTO systemUserLogin)
+        public ApiResultVO<SystemUserLoginResultDTO> Login([FromBody] SystemUserLoginReqDTO systemUserLogin)
         {
             if(systemUserLogin == null)
             {
@@ -115,11 +114,5 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
 
             return new ApiResultVO<SystemUserLoginResultDTO>() { Result = BSystemUser.GetInstance().Login(systemUserLogin), ResultCode = RequestResultCodeEnum.Success };
         }
-
-        
-
-
-
-
     }
 }

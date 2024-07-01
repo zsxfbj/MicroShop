@@ -6,7 +6,7 @@ namespace MicroShop.Model.DTO.Permission
     /// 角色菜单对应关系
     /// </summary>
     [Serializable]
-    public class RoleMenuRelationDTO
+    public class SetRoleMenuRelationReqDTO
     {
         /// <summary>
         /// 角色编号

@@ -1,9 +1,9 @@
-﻿using System.ComponentModel;
+﻿using MicroShop.BLL.Permission;
+using MicroShop.Enums.Web;
+using MicroShop.Model.DTO.Permission;
+using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
-using MicroShop.Permission.BLL;
-using MicroShop.Permission.Model;
 using MicroShop.Web.AdminApi.Filter;
-using MicroShop.Web.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroShop.Web.AdminApi.Controllers.Permission
@@ -19,36 +19,36 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// 获取角色详情
         /// </summary>
         /// <param name="roleId">角色编号</param>
-        /// <returns>RoleDTO</returns>
+        /// <returns>RoleVO</returns>
         [LoginAuth(IsAdmin = true)]
         [HttpGet("detail/{roleId}")]
-        public ApiResultVO<RoleDTO> GetRole([FromRoute] int roleId)
+        public ApiResultVO<RoleVO> GetRole([FromRoute] int roleId)
         {
-            return new ApiResultVO<RoleDTO>() { Result = BRole.GetInstance().GetRole(roleId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<RoleVO>() { Result = BRole.GetInstance().GetRole(roleId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
         /// 创建角色
         /// </summary>
-        /// <param name="createRole">创建角色的请求</param>
-        /// <returns>RoleDTO</returns>
+        /// <param name="req">创建角色的请求</param>
+        /// <returns>RoleVO</returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("create")]
-        public ApiResultVO<RoleDTO> CreateRole([FromBody] CreateRoleDTO createRole)
+        public ApiResultVO<RoleVO> CreateRole([FromBody] CreateRoleReqDTO req)
         {
-            return new ApiResultVO<RoleDTO> { Result = BRole.GetInstance().CreateRole(createRole), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<RoleVO> { Result = BRole.GetInstance().Create(req), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
         /// 修改角色
         /// </summary>
-        /// <param name="modifyRole">修改角色的请求</param>
-        /// <returns>RoleDTO</returns>
+        /// <param name="req">修改角色的请求</param>
+        /// <returns>RoleVO</returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("modify")]
-        public ApiResultVO<string> ModifyRole([FromBody] ModifyRoleDTO modifyRole)
+        public ApiResultVO<string> ModifyRole([FromBody] ModifyRoleReqDTO req)
         {
-            BRole.GetInstance().ModifyRole(modifyRole);
+            BRole.GetInstance().Modify(req);
             return ApiResultVO<string>.Success("");
         }
 
@@ -59,22 +59,22 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpGet("delete/{roleId}")]
-        public ApiResultVO<string> DeleteRole([FromRoute] int roleId)
+        public ApiResultVO<string> Delete([FromRoute] int roleId)
         {
-            BRole.GetInstance().DeleteRole(roleId);
+            BRole.GetInstance().Delete(roleId);
             return ApiResultVO<string>.Success("");
         }
 
         /// <summary>
         /// 获取分页记录
         /// </summary>
-        /// <param name="queryRole">查询分页内容</param>
+        /// <param name="req">查询分页内容</param>
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("page")]
-        public ApiResultVO<PageResultVO<RoleDTO>> GetPageRoles([FromBody] QueryRoleDTO queryRole)
+        public ApiResultVO<PageResultVO<RoleVO>> GetPageRoles([FromBody] RolePageReqDTO req)
         {
-            return new ApiResultVO<PageResultVO<RoleDTO>> { Result = BRole.GetInstance().GetPageResult(queryRole), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<PageResultVO<RoleVO>> { Result = BRole.GetInstance().GetPageResult(req), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -82,21 +82,21 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <returns>List</returns>        
         [HttpGet("list")]
-        public ApiResultVO<List<RoleDTO>> GetRoles()
+        public ApiResultVO<List<RoleVO>> GetRoles()
         {
-            return new ApiResultVO<List<RoleDTO>> { Result = BRole.GetInstance().GetRoles(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<RoleVO>> { Result = BRole.GetInstance().GetRoles(), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
-        /// 
+        /// 设置角色菜单
         /// </summary>
-        /// <param name="roleMenuRelation"></param>
+        /// <param name="req"></param>
         /// <returns></returns>
         [LoginAuth(IsAdmin = true)]
         [HttpPost("set-menus")]
-        public ApiResultVO<string> SetRoleMenuRelation([FromBody] RoleMenuRelationDTO roleMenuRelation)
+        public ApiResultVO<string> SetRoleMenuRelation([FromBody] SetRoleMenuRelationReqDTO req)
         {
-            BRoleMenuRelation.GetInstance().SetRoleMenuRelation(roleMenuRelation);
+            BRoleMenuRelation.GetInstance().SetRoleMenuRelation(req);
             return ApiResultVO<string>.Success("设置成功");
         }
     }
