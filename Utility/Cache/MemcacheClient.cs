@@ -43,7 +43,17 @@ namespace MicroShop.Utility.Cache
             DefaultCache.Set(key, value, new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.MaxValue, SlidingExpiration = TimeSpan.FromDays(Constants.ONE) });
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        /// <param name="expireTime"></param>
+        public static void SetValue<T>(string key, T value, DateTimeOffset expireTime)
+        {
+            DefaultCache.Set(key, value, new CacheItemPolicy { AbsoluteExpiration = expireTime });
+        }
 
         /// <summary>
         /// 获取缓存

@@ -28,6 +28,6 @@
         /// <summary>
         /// 应用Id令牌
         /// </summary>
-        public const string APP_ID_KEY = "X-App-Id";
+        public const string APP_CODE_KEY = "X-App-Code";
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Lazy.Captcha.Core;
-using MicroShop.BLL;
+using MicroShop.BLL.Common;
 using MicroShop.Enums.Web;
 using MicroShop.Model.VO.Common;
 using MicroShop.Model.VO.Web;
@@ -31,9 +31,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <returns></returns>
         [HttpGet("login-status")]
-        public ApiResultVO<Dictionary<Int32, string>> GetLoginStatus()
-        {           
-            return new ApiResultVO<Dictionary<Int32, string>> { Result = BCommon.GetInstance().GetLoginStatusList(), ResultCode = RequestResultCodeEnum.Success };
+        public ApiResultVO<List<KeyValueVO<int>>> GetLoginStatus()
+        {
+            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetInstance().GetLoginStatusList(), ResultCode = RequestResultCodeEnum.Success };
+
         }
 
         /// <summary>
@@ -44,7 +45,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         public ApiResultVO<List<KeyValueVO<Int32>>> GetActionTypes()
         {
            
-            return new ApiResultVO<List<KeyValueVO<Int32>>> { Result = BCommon.GetInstance().GetActionTypes(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<KeyValueVO<Int32>>> { Result = BEnum.GetInstance().GetSystemUserActionTypeList(), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>

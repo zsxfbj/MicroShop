@@ -29,12 +29,27 @@ namespace MicroShop.BLL.Common
         /// <returns></returns>
         public CategoryVO Create(CreateCategoryReqDTO req)
         {            
-            CategoryVO category = dal.Create(req);
+            CategoryVO vo = dal.Create(req);
 
             //缓存
-            RedisClient.SetAdd(CACHE_KEY + category.CategoryId, System.Text.Json.JsonSerializer.Serialize(category));
+            RedisClient.SetAdd(CACHE_KEY + vo.CategoryId, System.Text.Json.JsonSerializer.Serialize(vo));
            
-            return category;
-        }         
+            return vo;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        public CategoryVO Modify(ModifyCategoryReqDTO req)
+        {
+           CategoryVO vo =  dal.Modify(req);
+
+            //缓存
+            RedisClient.SetAdd(CACHE_KEY + vo.CategoryId, System.Text.Json.JsonSerializer.Serialize(vo));
+
+            return vo;
+        }
     }
 }

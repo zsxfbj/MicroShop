@@ -14,6 +14,13 @@ namespace MicroShop.Enums.Common
         /// </summary>
         [Description("商品")]
         [EnumMember(Value = "1")]
-        Product = 1
+        Product = 1,
+
+        /// <summary>
+        /// 文章
+        /// </summary>
+        [Description("文章")]
+        [EnumMember(Value = "10")]
+        Article = 10
     }
 }

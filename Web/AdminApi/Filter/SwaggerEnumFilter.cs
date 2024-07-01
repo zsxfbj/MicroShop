@@ -11,7 +11,6 @@ namespace MicroShop.Permission.WebApi.Filter
     /// </summary>
     public class SwaggerEnumFilter : IDocumentFilter
     {
-
         #region public void Apply(Microsoft.OpenApi.Models.OpenApiDocument swaggerDoc, DocumentFilterContext context)
         /// <summary>
         /// 
@@ -59,7 +58,7 @@ namespace MicroShop.Permission.WebApi.Filter
         /// <returns></returns>
         private static Dictionary<string, Type> GetAllEnum()
         {
-            Assembly ass = Assembly.Load("MicroShop.Permission.Enums");
+            Assembly ass = Assembly.Load("MicroShop.Enums");
             Type[] types = ass.GetTypes();
             Dictionary<string, Type> dict = new Dictionary<string, Type>();
 

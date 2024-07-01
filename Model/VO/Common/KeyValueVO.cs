@@ -9,7 +9,7 @@
         /// <summary>
         /// 键名
         /// </summary>
-        public T? Key { get; set; } = default;
+        public T Key { get; set; } = default(T)!;
 
         /// <summary>
         /// 键值

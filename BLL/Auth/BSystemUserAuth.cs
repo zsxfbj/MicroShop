@@ -41,7 +41,7 @@ namespace MicroShop.BLL.Auth
         /// </summary>
         /// <param name="accessor"></param>
         /// <returns></returns>
-        public SystemUserTokenDTO GetSystemUserToken(string accessToken = "", ClientTypeEnum clientType = ClientTypeEnum.PCWeb)
+        public SystemUserTokenDTO GetSystemUserToken(string? accessToken = "", ClientTypeEnum clientType = ClientTypeEnum.PCWeb)
         {
             if (string.IsNullOrEmpty(accessToken))
             {
