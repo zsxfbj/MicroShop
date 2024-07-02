@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using MicroShop.Enums.Common;
+using MicroShop.Enums.Payment;
 using MicroShop.Enums.Permission;
+using MicroShop.Enums.Product;
 using MicroShop.Model.VO.Common;
 using MicroShop.Utility.Cache;
 using MicroShop.Utility.Common;
@@ -14,9 +11,17 @@ namespace MicroShop.BLL.Common
 {
     public class BEnum : Singleton<BEnum>
     {
-        private const string LoginStatusCacheKey = "login-status-list";
+        private const string LoginStatusCacheKey = "enum-login-status-list";
 
-        private const string SystemUserActionTypeCacheKey = "sys-user-action=list";
+        private const string UserActionTypeCacheKey = "enum-user-action-list";
+
+        private const string CurrencyTypeCacheKey = "enum-currency-type-list";
+
+        private const string MediaTypeCacheKey = "enum-media-type-list";
+
+        private const string ProductStatusCacheKey = "enum-product-status-list";
+
+
 
         #region public List<KeyValueVO<int>> GetLoginStatusList()
         /// <summary>
@@ -42,12 +47,16 @@ namespace MicroShop.BLL.Common
         }
         #endregion public List<KeyValueVO<int>> GetLoginStatusList()
 
-
-        public List<KeyValueVO<int>> GetSystemUserActionTypeList()
+        #region public List<KeyValueVO<int>> GetUserActionTypeList()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<KeyValueVO<int>> GetUserActionTypeList()
         {
-            if (MemcacheClient.isExist(SystemUserActionTypeCacheKey))
+            if (MemcacheClient.isExist(UserActionTypeCacheKey))
             {
-                return MemcacheClient.GetValue<List<KeyValueVO<int>>>(SystemUserActionTypeCacheKey);
+                return MemcacheClient.GetValue<List<KeyValueVO<int>>>(UserActionTypeCacheKey);
             }
             List<KeyValueVO<int>> keyValues = new List<KeyValueVO<int>>();
 
@@ -56,9 +65,79 @@ namespace MicroShop.BLL.Common
                 keyValues.Add(new KeyValueVO<int> { Key = (int)actionType, Value = actionType.GetDescription() });
             }
             //设置缓存
-            MemcacheClient.SetValue(SystemUserActionTypeCacheKey, keyValues);
+            MemcacheClient.SetValue(UserActionTypeCacheKey, keyValues);
             return keyValues;
         }
+        #endregion public List<KeyValueVO<int>> GetUserActionTypeList()
 
+        #region public List<KeyValueVO<int>> GetCurrencyTypeList()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<KeyValueVO<int>> GetCurrencyTypeList()
+        {
+            if (MemcacheClient.isExist(CurrencyTypeCacheKey))
+            {
+                return MemcacheClient.GetValue<List<KeyValueVO<int>>>(CurrencyTypeCacheKey);
+            }
+            List<KeyValueVO<int>> keyValues = new List<KeyValueVO<int>>();
+
+            foreach (CurrencyTypeEnum currencyType in Enum.GetValues(typeof(CurrencyTypeEnum)))
+            {
+                keyValues.Add(new KeyValueVO<int> { Key = (int)currencyType, Value = currencyType.GetDescription() });
+            }
+            //设置缓存
+            MemcacheClient.SetValue(CurrencyTypeCacheKey, keyValues);
+            return keyValues;
+        }
+        #endregion public List<KeyValueVO<int>> GetCurrencyTypeList()
+
+        #region public List<KeyValueVO<int>> GetMediaTypeList()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<KeyValueVO<int>> GetMediaTypeList()
+        {
+            if (MemcacheClient.isExist(MediaTypeCacheKey))
+            {
+                return MemcacheClient.GetValue<List<KeyValueVO<int>>>(MediaTypeCacheKey);
+            }
+            List<KeyValueVO<int>> keyValues = new List<KeyValueVO<int>>();
+
+            foreach (MediaTypeEnum mediaType in Enum.GetValues(typeof(MediaTypeEnum)))
+            {
+                keyValues.Add(new KeyValueVO<int> { Key = (int)mediaType, Value = mediaType.GetDescription() });
+            }
+            //设置缓存
+            MemcacheClient.SetValue(MediaTypeCacheKey, keyValues);
+            return keyValues;
+        }
+        #endregion public List<KeyValueVO<int>> GetMediaTypeList()
+
+
+        #region public List<KeyValueVO<int>> GetProductStatusList()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<KeyValueVO<int>> GetProductStatusList()
+        {
+            if (MemcacheClient.isExist(ProductStatusCacheKey))
+            {
+                return MemcacheClient.GetValue<List<KeyValueVO<int>>>(ProductStatusCacheKey);
+            }
+            List<KeyValueVO<int>> keyValues = new List<KeyValueVO<int>>();
+
+            foreach (ProductStatusEnum productStatus in Enum.GetValues(typeof(ProductStatusEnum)))
+            {
+                keyValues.Add(new KeyValueVO<int> { Key = (int)productStatus, Value = productStatus.GetDescription() });
+            }
+            //设置缓存
+            MemcacheClient.SetValue(ProductStatusCacheKey, keyValues);
+            return keyValues;
+        }
+        #endregion public List<KeyValueVO<int>> GetProductStatusList()
     }
 }

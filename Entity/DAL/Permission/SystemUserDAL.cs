@@ -222,14 +222,14 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         }
         #endregion public void SetLoginStatus(int userId)
 
-        #region public SystemUserDTO GetSystemUserDTO(string loginName)
+        #region public SystemUserDTO GetSystemUser(string loginName)
         /// <summary>
         /// 根据登录名称查询系统用户信息
         /// </summary>
         /// <param name="loginName">登录名</param>
         /// <returns></returns>
         /// <exception cref="MicroShop.Model.Common.Exception.ServiceException"></exception>
-        public SystemUserVO GetSystemUserDTO(string loginName)
+        public SystemUserVO GetSystemUser(string loginName)
         {
             using (var context = new MicroShopContext())
             {
@@ -241,7 +241,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 return ToDTO(systemUser, context);
             }
         }
-        #endregion public SystemUserDTO GetSystemUserDTO(string loginName)
+        #endregion public SystemUserDTO GetSystemUser(string loginName)
 
         public PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
         {

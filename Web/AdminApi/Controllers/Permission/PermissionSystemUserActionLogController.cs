@@ -1,9 +1,9 @@
-﻿using MicroShop.Model.VO.Permission;
+﻿using MicroShop.BLL.Permission;
+using MicroShop.Enums.Web;
+using MicroShop.Model.DTO.Permission;
+using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
-using MicroShop.Permission.BLL;
-using MicroShop.Permission.Model;
 using MicroShop.Web.AdminApi.Filter;
-using MicroShop.Web.Common;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroShop.Web.AdminApi.Controllers.Permission
@@ -18,56 +18,30 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <summary>
         /// 分页查询系统用户操作日志
         /// </summary>
-        /// <param name="querySystemUserAction"></param>
+        /// <param name="req"></param>
         /// <returns></returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpPost("page")]
-        public ApiResultVO<PageResultVO<SystemUserActionLogVO>> GetPagedSystemUserActions([FromBody]QuerySystemUserActionDTO querySystemUserAction)
+        public ApiResultVO<PageResultVO<SystemUserActionLogVO>> GetPagedSystemUserActions([FromBody] SystemUserActionPageReqDTO req)
         {
             return new ApiResultVO<PageResultVO<SystemUserActionLogVO>>
             {
-                Result = BSystemUserActionLog.GetInstance().GetPagedSystemUserActions(querySystemUserAction),
+                Result = BSystemUserActionLog.GetInstance().GetPageResult(req),
                 ResultCode = RequestResultCodeEnum.Success
             };
         }
-
-        /// <summary>
-        /// 删除单个日志
-        /// </summary>
-        /// <param name="logId">日志编号</param>
-        /// <returns></returns>
-        [HttpGet("delete/{logId}")]
-        [LoginAuth(IsAdmin = true)]
-        public ApiResultVO<string> DeleteOne([FromRoute] long logId)
-        {
-            BSystemUserActionLog.GetInstance().Delete(logId);
-            return ApiResultVO<string>.Success("");
-        }
-
+               
         /// <summary>
         /// 批量删除日志
         /// </summary>
-        /// <param name="batchDeleteSystemUserActionLogs"></param>
+        /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost("delete")]
-        [LoginAuth(IsAdmin = true)]
-        public ApiResultVO<string> Delete([FromBody] BatchDeleteSystemUserActionLogsDTO batchDeleteSystemUserActionLogs)
+        [SysLoginAuth(IsAdmin = true)]
+        public ApiResultVO<string> Delete([FromBody] BatchDeleteLogReqDTO req)
         {
-            BSystemUserActionLog.GetInstance().Delete(batchDeleteSystemUserActionLogs);
+            BSystemUserActionLog.GetInstance().BatchDelete(req);
             return ApiResultVO<string>.Success("");
         }
-
-        /// <summary>
-        /// 全部删除
-        /// </summary>
-        /// <returns></returns>
-        [HttpGet("delete/all")]
-        [LoginAuth(IsAdmin = true)]
-        public ApiResultVO<string> DeleteAll()
-        {
-            BSystemUserActionLog.GetInstance().DeleteAll();
-            return ApiResultVO<string>.Success("");
-        }
-
     }
 }

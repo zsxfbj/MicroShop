@@ -7,7 +7,7 @@ namespace MicroShop.Model.DTO.Permission
     /// 系统用户登录结果
     /// </summary>
     [Serializable]
-    public class SystemUserLoginResultDTO
+    public class SystemUserLoginResultVO
     {
         /// <summary>
         /// 访问令牌

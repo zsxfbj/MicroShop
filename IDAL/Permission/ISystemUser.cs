@@ -54,7 +54,7 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="loginName"></param>
         /// <returns></returns>
-        SystemUserVO GetSystemUserDTO(string loginName);
+        SystemUserVO GetSystemUser(string loginName);
 
         /// <summary>
         /// 

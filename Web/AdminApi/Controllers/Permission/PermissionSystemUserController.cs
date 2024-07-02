@@ -1,5 +1,6 @@
 ﻿using MicroShop.BLL.Permission;
 using MicroShop.Enums.Web;
+using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
@@ -21,7 +22,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        [LoginAuth]
+        [SysLoginAuth]
         [HttpPost("create")]
         public ApiResultVO<SystemUserVO> Create([FromBody] CreateSystemUserReqDTO req)
         {
@@ -33,7 +34,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        [LoginAuth]
+        [SysLoginAuth]
         [HttpPost("modify")]
         public ApiResultVO<SystemUserVO> Modify([FromBody] ModifySystemUserReqDTO req)
         {
@@ -45,7 +46,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="userId">用户编号</param>
         /// <returns></returns>
-        [LoginAuth]
+        [SysLoginAuth]
         [HttpGet("detail/{userId}")]
         public ApiResultVO<SystemUserVO> GetSystemUser([FromRoute] int userId)
         {
@@ -57,7 +58,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpGet("delete/{userId}")]
         public ApiResultVO<string> Delete([FromRoute] int userId)
         {
@@ -71,7 +72,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="userId">用户编号</param>
         /// <returns></returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpGet("login-status/{userId}")]
         public ApiResultVO<string> SetLoginStatus([FromRoute] int userId)
         {
@@ -84,7 +85,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpPost("page")]
         public ApiResultVO<PageResultVO<SystemUserVO>> GetPageResult([FromBody] SystemUserPageReqDTO req)
         {
@@ -94,25 +95,25 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <summary>
         /// 系统用户登录
         /// </summary>
-        /// <param name="systemUserLogin"></param>
+        /// <param name="req"></param>
         /// <returns>SystemUserLoginResultDTO</returns>
         [HttpPost("login")]
-        public ApiResultVO<SystemUserLoginResultDTO> Login([FromBody] SystemUserLoginReqDTO systemUserLogin)
+        public ApiResultVO<SystemUserLoginResultVO> Login([FromBody] SystemUserLoginReqDTO req)
         {
-            if(systemUserLogin == null)
+            if(req == null)
             {
                 throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "登录请求内容不能为空" };
             }
-            if (string.IsNullOrEmpty(systemUserLogin.VerifyCode))
+            if (string.IsNullOrEmpty(req.VerifyCode))
             {
                 throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "图形验证码必须填写"};
             }
-            if(!_captcha.Validate(Utility.Common.HttpContext.GetHeaderValue(HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY), systemUserLogin.VerifyCode))
-            {
-                throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "验证码填写错误" };
-            }
+            //if(!_captcha.Validate(Utility.Common.HttpContext.GetHeaderValue(HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY), systemUserLogin.VerifyCode))
+            //{
+            //    throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "验证码填写错误" };
+            //}
 
-            return new ApiResultVO<SystemUserLoginResultDTO>() { Result = BSystemUser.GetInstance().Login(systemUserLogin), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserLoginResultVO>() { Result = BSystemUser.GetInstance().Login(req), ResultCode = RequestResultCodeEnum.Success };
         }
     }
 }

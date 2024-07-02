@@ -27,6 +27,6 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        PageResultVO<SystemUserActionLogVO> GetPagedSystemUserActions(SystemUserActionPageReqDTO req);
+        PageResultVO<SystemUserActionLogVO> GetPageResult(SystemUserActionPageReqDTO req);
     }
 }

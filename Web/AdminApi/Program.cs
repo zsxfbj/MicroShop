@@ -58,7 +58,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Enums.xml"));
         options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Model.xml"));
-        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Web.xml"));
+        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.WebApi.xml"));
     }
     options.OperationFilter<HeaderParameterOperationFilter>();
 });

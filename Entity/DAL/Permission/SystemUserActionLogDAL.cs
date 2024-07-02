@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MicroShop.IDAL.Permission;
+﻿using MicroShop.IDAL.Permission;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
@@ -17,9 +12,12 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
     /// </summary>
     public class SystemUserActionLogDAL : ISystemUserActionLog
     {
-
-
-        public PageResultVO<SystemUserActionLogVO> GetPagedSystemUserActions(SystemUserActionPageReqDTO req)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        public PageResultVO<SystemUserActionLogVO> GetPageResult(SystemUserActionPageReqDTO req)
         {
 
             PageResultVO<SystemUserActionLogVO> pageResult = new PageResultVO<SystemUserActionLogVO>
@@ -113,5 +111,6 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 }
             }            
         }
+ 
     }
 }

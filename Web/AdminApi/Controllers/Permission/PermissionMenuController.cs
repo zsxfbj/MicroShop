@@ -53,7 +53,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="menuId">菜单编号</param>
         /// <returns></returns>
         [HttpGet("delete/{menuId}")]
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         public ApiResultVO<string> Delete([FromRoute] int menuId)
         {
             BMenu.GetInstance().Delete(menuId);
@@ -66,7 +66,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="req">创建菜单数据内容</param>
         /// <returns></returns>
         [HttpPost("create")]
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         public ApiResultVO<MenuVO> Create([FromBody] CreateMenuReqDTO req)
         {
             return new ApiResultVO<MenuVO> { Result = BMenu.GetInstance().Create(req), ResultCode = RequestResultCodeEnum.Success };
@@ -78,7 +78,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// <param name="req"></param>
         /// <returns></returns>
         [HttpPost("modify")]
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         public ApiResultVO<string> Modify([FromBody] ModifyMenuReqDTO req)
         {
             BMenu.GetInstance().Modify(req);

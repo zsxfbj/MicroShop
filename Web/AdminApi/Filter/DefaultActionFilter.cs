@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
+using MicroShop.Enums.Web;
+using MicroShop.Model.VO.Web;
+using MicroShop.Utility.Enums;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-using MicroShop.Utility.Common;
 
 namespace MicroShop.Web.Common.Filter
 {
@@ -41,7 +37,7 @@ namespace MicroShop.Web.Common.Filter
             {
                 if (!context.HttpContext.Response.Headers.ContainsKey(HeaderParameters.USER_AUTH_TOKEN_KEY))
                 {
-                    context.HttpContext.Response.Headers.Add(HeaderParameters.USER_AUTH_TOKEN_KEY, HttpContext.Current.Request.Cookies[HeaderParameters.USER_AUTH_TOKEN_KEY]);
+                    context.HttpContext.Response.Headers.Add(HeaderParameters.USER_AUTH_TOKEN_KEY, Utility.Common.HttpContext.Current.Request.Cookies[HeaderParameters.USER_AUTH_TOKEN_KEY]);
                 }
                 else
                 {
@@ -53,7 +49,7 @@ namespace MicroShop.Web.Common.Filter
             {
                 if (!context.HttpContext.Response.Headers.ContainsKey(HeaderParameters.CLIENT_TYPE_KEY))
                 {
-                    context.HttpContext.Response.Headers.Add(HeaderParameters.CLIENT_TYPE_KEY, HttpContext.Current.Request.Cookies[HeaderParameters.CLIENT_TYPE_KEY]);
+                    context.HttpContext.Response.Headers.Add(HeaderParameters.CLIENT_TYPE_KEY, Utility.Common.HttpContext.Current.Request.Cookies[HeaderParameters.CLIENT_TYPE_KEY]);
                 }
                 else
                 {
@@ -65,7 +61,7 @@ namespace MicroShop.Web.Common.Filter
             {
                 if (!context.HttpContext.Response.Headers.ContainsKey(HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY))
                 {
-                    context.HttpContext.Response.Headers.Add(HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY, HttpContext.Current.Request.Cookies[HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY]);
+                    context.HttpContext.Response.Headers.Add(HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY, Utility.Common.HttpContext.Current.Request.Cookies[HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY]);
                 }
                 else
                 {

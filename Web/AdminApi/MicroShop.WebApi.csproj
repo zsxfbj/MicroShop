@@ -5,15 +5,8 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
-    <DocumentationFile>bin\MicroShop.Web.AdminApi.xml</DocumentationFile>
+    <DocumentationFile>bin\MicroShop.WebApi.xml</DocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Controllers\Common\**" />
-    <Content Remove="Controllers\Common\**" />
-    <EmbeddedResource Remove="Controllers\Common\**" />
-    <None Remove="Controllers\Common\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Lazy.Captcha.Core" Version="2.0.7" />
@@ -28,6 +21,10 @@
     <ProjectReference Include="..\..\IDAL\MicroShop.IDAL.csproj" />
     <ProjectReference Include="..\..\Model\MicroShop.Model.csproj" />
     <ProjectReference Include="..\..\Utility\MicroShop.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\Product\" />
   </ItemGroup>
 
 </Project>

@@ -20,7 +20,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="roleId">角色编号</param>
         /// <returns>RoleVO</returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpGet("detail/{roleId}")]
         public ApiResultVO<RoleVO> GetRole([FromRoute] int roleId)
         {
@@ -32,7 +32,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="req">创建角色的请求</param>
         /// <returns>RoleVO</returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpPost("create")]
         public ApiResultVO<RoleVO> CreateRole([FromBody] CreateRoleReqDTO req)
         {
@@ -44,7 +44,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="req">修改角色的请求</param>
         /// <returns>RoleVO</returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpPost("modify")]
         public ApiResultVO<string> ModifyRole([FromBody] ModifyRoleReqDTO req)
         {
@@ -57,7 +57,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="roleId">角色编号</param>
         /// <returns></returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpGet("delete/{roleId}")]
         public ApiResultVO<string> Delete([FromRoute] int roleId)
         {
@@ -70,7 +70,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="req">查询分页内容</param>
         /// <returns></returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpPost("page")]
         public ApiResultVO<PageResultVO<RoleVO>> GetPageRoles([FromBody] RolePageReqDTO req)
         {
@@ -92,7 +92,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        [LoginAuth(IsAdmin = true)]
+        [SysLoginAuth(IsAdmin = true)]
         [HttpPost("set-menus")]
         public ApiResultVO<string> SetRoleMenuRelation([FromBody] SetRoleMenuRelationReqDTO req)
         {
