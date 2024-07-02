@@ -19,7 +19,7 @@ namespace MicroShop.Web.AdminApi.Filter
         {
             if (operation.Parameters == null)
             {
-                operation.Parameters = new List<OpenApiParameter> 
+                operation.Parameters = new List<OpenApiParameter>
                 {
                     new OpenApiParameter
                     {
@@ -70,6 +70,7 @@ namespace MicroShop.Web.AdminApi.Filter
                         }
                     }
                 };
+               
             }
         }
     }

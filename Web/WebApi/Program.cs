@@ -5,6 +5,8 @@ using MicroShop.Web.AdminApi.Filter;
 using MicroShop.Web.Common.Filter;
 using Microsoft.OpenApi.Models;
 using MicroShop.Utility;
+using MicroShop.Permission.WebApi.Filter;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,13 @@ StaticGlobalVariables.MicroShopDAL = string.IsNullOrEmpty(dalType) ? "MicroShop.
 builder.Services.AddControllers(options =>
 {
     options.Filters.Add(new GlobalExceptionFilter());
+}).AddJsonOptions(options =>
+{
+
+    /*
+    .. Other config
+    */
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
 // add HttpContextAccessor 
@@ -52,15 +61,13 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     options.OrderActionsBy(o => o.RelativePath);
-        
-    var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
-    if (!string.IsNullOrEmpty(basePath))
-    {
-        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Enums.xml"));
-        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.Model.xml"));
-        options.IncludeXmlComments(Path.Combine(basePath, "MicroShop.WebApi.xml"));
-    }
+
+
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MicroShop.Enums.xml"));
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MicroShop.Model.xml"));
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MicroShop.WebApi.xml"));
     options.OperationFilter<HeaderParameterOperationFilter>();
+    options.SchemaFilter<SwaggerEnumFilter>();
 });
 
 
@@ -119,7 +126,11 @@ MicroShop.Utility.Common.HttpContext.Configure(app.Services.GetRequiredService<I
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c => {
+        c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "MicroShop API Docs v1.0");        
+        c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.Full);
+        c.DefaultModelExpandDepth(-1);
+    });
 }
 else
 {
