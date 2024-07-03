@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MicroShop.Web.AdminApi.Controllers.Permission
 {
     /// <summary>
-    /// 通用接口系统人员相关设置
+    /// 运营平台相关通用API
     /// </summary>
     [Route("permission/common")]
     [ApiController]

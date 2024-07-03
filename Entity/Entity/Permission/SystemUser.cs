@@ -29,28 +29,28 @@ namespace MicroShop.SQLServerDAL.Entity.Permission
         /// <summary>
         /// 登录名
         /// </summary>
-        [Column("login_name", TypeName = "nvarchar(50)")]
-        [Required(ErrorMessage = "登录名不能为控"), StringLength(50, ErrorMessage = "登录名最对50个字")]
+        [Column("login_name", TypeName = "nvarchar(32)")]
+        [Required(ErrorMessage = "登录名不能为控"), StringLength(32, ErrorMessage = "登录名最对32个字")]
         public string LoginName { get; set; } = string.Empty;
 
         /// <summary>
-        /// 访问的令牌
+        /// 密码加盐
         /// </summary>
-        [Column("access_token", TypeName = "varchar(256)")]
-        public string AccessToken { get; set; } = string.Empty;
+        [Column("salt", TypeName = "varchar(16)")]
+        public string Salt { get; set; } = string.Empty;
 
         /// <summary>
         /// 登录密码
         /// </summary>
-        [Column("login_password", TypeName = "varchar(256)")]
-        [Required(ErrorMessage = "登录密码不能为空"), StringLength(256, ErrorMessage = "登录密码不能为空")]
+        [Column("login_password", TypeName = "varchar(512)")]
+        [Required(ErrorMessage = "登录密码不能为空"), StringLength(512, ErrorMessage = "密码长度最多512位")]
         public string LoginPassword { get; set; } = string.Empty;
 
         /// <summary>
         /// 用户名
         /// </summary>
-        [Column("user_name", TypeName = "nvarchar(30)")]
-        [Required(ErrorMessage = "用户名不能为空"), StringLength(30, ErrorMessage = "用户名最多30个字")]
+        [Column("user_name", TypeName = "nvarchar(64)")]
+        [Required(ErrorMessage = "用户名不能为空"), StringLength(64, ErrorMessage = "用户名最多60个字")]
         public string UserName { get; set; } = string.Empty;
 
         /// <summary>
@@ -96,23 +96,9 @@ namespace MicroShop.SQLServerDAL.Entity.Permission
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         /// <summary>
-        /// 构造函数
+        /// 最新登录时间
         /// </summary>
-        public SystemUser()
-        {
-            UserId = 0;
-            RoleId = 0;
-            LoginName = "";
-            LoginPassword = "";
-            AccessToken = "";
-            LoginCount = 0;
-            UserName = "";
-            Email = "";
-            Mobile = "";
-            IsAdmin = false;
-            LoginStatus = LoginStatusEnum.Forbidden;
-            UpdatedAt = DateTime.Now;
-            CreatedAt = DateTime.Now;
-        }
+        [Column("last_login")]
+        public DateTime? LastLogin {  get; set; }
     }
 }

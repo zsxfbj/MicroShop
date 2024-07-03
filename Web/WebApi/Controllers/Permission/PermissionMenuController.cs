@@ -1,4 +1,5 @@
-﻿using MicroShop.BLL.Permission;
+﻿using System.ComponentModel;
+using MicroShop.BLL.Permission;
 using MicroShop.Enums.Web;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
@@ -9,10 +10,10 @@ using Microsoft.AspNetCore.Mvc;
 namespace MicroShop.Web.AdminApi.Controllers.Permission
 {
     /// <summary>
-    /// 菜单
+    /// 系统运营平台菜单API
     /// </summary>
     [Route("permission/menu")]
-    [ApiController]
+    [ApiController]   
     public class PermissionMenuController
     {
         /// <summary>

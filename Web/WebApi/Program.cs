@@ -61,11 +61,10 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
     options.OrderActionsBy(o => o.RelativePath);
-
-
-    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MicroShop.Enums.xml"));
-    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MicroShop.Model.xml"));
-    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MicroShop.WebApi.xml"));
+        
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MicroShop.Enums.xml"), true);
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MicroShop.Model.xml"), true);
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "MicroShop.WebApi.xml"), true);
     options.OperationFilter<HeaderParameterOperationFilter>();
     options.SchemaFilter<SwaggerEnumFilter>();
 });

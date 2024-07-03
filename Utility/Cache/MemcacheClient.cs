@@ -7,7 +7,7 @@ using MicroShop.Utility.Common;
 namespace MicroShop.Utility.Cache
 {
     /// <summary>
-    /// 框架缓存业务类
+    /// 框架自带缓存业务类
     /// </summary>
     public class MemcacheClient
     {

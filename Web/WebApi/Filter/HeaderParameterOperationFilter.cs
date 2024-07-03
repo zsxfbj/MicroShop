@@ -19,59 +19,59 @@ namespace MicroShop.Web.AdminApi.Filter
         {
             if (operation.Parameters == null)
             {
-                operation.Parameters = new List<OpenApiParameter>
-                {
-                    new OpenApiParameter
-                    {
-                        Name = HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY,
-                        In = ParameterLocation.Header,
-                        Description = "系统人员访问令牌",
-                        Required = false,
-                        Schema = new OpenApiSchema
-                        {
-                            Type = "String",
-                            Default = new OpenApiString("d2b36e54476a4fbab2e3a64d27452ee7")
-                        }
-                    },
-                    new OpenApiParameter
-                    {
-                        Name = HeaderParameters.USER_AUTH_TOKEN_KEY,
-                        In = ParameterLocation.Header,
-                        Description = "用户访问令牌",
-                        Required = false,
-                        Schema = new OpenApiSchema
-                        {
-                            Type = "String",
-                            Default = new OpenApiString("d2b36e54476a4fbab2e3a64d27452ee7")
-                        }
-                    },
-                    new OpenApiParameter
-                    {
-                        Name = HeaderParameters.CLIENT_TYPE_KEY,
-                        In = ParameterLocation.Header,
-                        Description = "客户端类型：100-PC网页端；200-手机网页端",
-                        Required = false,
-                        Schema = new OpenApiSchema
-                        {
-                            Type = "int",
-                            Default = new OpenApiInteger(100)
-                        }
-                    },
-                    new OpenApiParameter
-                    {
-                        Name = HeaderParameters.APP_CODE_KEY,
-                        In = ParameterLocation.Header,
-                        Description = "应用Code编码",
-                        Required = false,
-                        Schema = new OpenApiSchema
-                        {
-                            Type = "String",
-                            Default = new OpenApiString("ltq-wx-mini")
-                        }
-                    }
-                };
-               
+                operation.Parameters = new List<OpenApiParameter>();
+
             }
+
+            operation.Parameters.Add(new OpenApiParameter
+            {
+                Name = HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY,
+                In = ParameterLocation.Header,
+                Description = "系统人员访问令牌",
+                Required = false,
+                Schema = new OpenApiSchema
+                {
+                    Type = "String",
+                    Default = new OpenApiString("6c4ed755-2aac-d0f5-db89-e44be3894e4d")
+                }
+            });
+            operation.Parameters.Add(new OpenApiParameter
+            {
+                Name = HeaderParameters.USER_AUTH_TOKEN_KEY,
+                In = ParameterLocation.Header,
+                Description = "用户访问令牌",
+                Required = false,
+                Schema = new OpenApiSchema
+                {
+                    Type = "String",
+                    Default = new OpenApiString("67372eac-e160-f459-9b54-97633cec2a91")
+                }
+            });
+            operation.Parameters.Add(new OpenApiParameter
+            {
+                Name = HeaderParameters.CLIENT_TYPE_KEY,
+                In = ParameterLocation.Header,
+                Description = "客户端类型：100-PC网页端；200-手机网页端",
+                Required = false,
+                Schema = new OpenApiSchema
+                {
+                    Type = "int",
+                    Default = new OpenApiInteger(100)
+                }
+            });
+            operation.Parameters.Add(new OpenApiParameter
+            {
+                Name = HeaderParameters.APP_CODE_KEY,
+                In = ParameterLocation.Header,
+                Description = "应用Code编码",
+                Required = false,
+                Schema = new OpenApiSchema
+                {
+                    Type = "String",
+                    Default = new OpenApiString("ltq-wx-mini")
+                }
+            });
+
         }
     }
 }

@@ -15,34 +15,34 @@ namespace MicroShop.Model.VO.Permission
         /// <summary>
         /// 系统用户编号
         /// </summary>
-        public int UserId { get; set; }
+        public int UserId { get; set; } = 0;
 
         /// <summary>
         /// 角色编号
         /// </summary>
-        public int RoleId { get; set; }
+        public int RoleId { get; set; } = 0;
 
         /// <summary>
         /// 角色名称
         /// </summary>
-        public string RoleName { get; set; }
+        public string RoleName { get; set; } = string.Empty;
 
         /// <summary>
         /// 登录名
         /// </summary>         
-        public string LoginName { get; set; }
+        public string LoginName { get; set; } = string.Empty;
 
         /// <summary>
         /// 用户名
         /// </summary>     
         [Description("用户名")]
-        public string UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
         /// <summary>
         /// 是否管理员
         /// </summary> 
         [Description("是否管理员")]
-        public bool IsAdmin { get; set; }
+        public bool IsAdmin { get; set; } = false;
 
         /// <summary>
         /// 登录状态
@@ -66,39 +66,53 @@ namespace MicroShop.Model.VO.Permission
         /// 登录次数
         /// </summary>        
         [Description("登录次数")]
-        public int LoginCount { get; set; }
+        public int LoginCount { get; set; } = 0;
+
+        /// <summary>
+        /// 密钥加的盐，Json序列化不输出
+        /// </summary>
+        [Description("密钥加的盐")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+        public string Salt { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 登录密码
+        /// </summary>
+        [Description("登录密码")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.Always)]
+        public string LoginPassword { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 手机号
+        /// </summary>
+        [Description("手机号")]
+        public string Mobile { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 电子邮箱
+        /// </summary>
+        [Description("电子邮箱")]
+        public string Email { get; set; } = string.Empty;
 
         /// <summary>
         /// 创建时间
         /// </summary>
         [JsonConverter(typeof(DefaultDateTimeConverter))]
         [Description("创建时间")]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         /// <summary>
         /// 更新时间
         /// </summary>
         [JsonConverter(typeof(DefaultDateTimeConverter))]
         [Description("更新时间")]
-        public DateTime UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         /// <summary>
-        /// 构造函数
+        /// 最近登录时间
         /// </summary>
-        public SystemUserVO()
-        {
-            UserId = 0;
-            UserName = "";
-            RoleName = "";
-            RoleId = 0;
-            LoginName = "";
-            UserName = "";
-            IsAdmin = false;
-            LoginStatus = LoginStatusEnum.Forbidden;
-            LoginCount = 0;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-        }
+        [Description("最近登录时间")]
+        public String LastLogin { get; set; } = string.Empty;
 
     }
 }

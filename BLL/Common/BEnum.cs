@@ -4,12 +4,14 @@ using MicroShop.Enums.Permission;
 using MicroShop.Enums.Product;
 using MicroShop.Model.VO.Common;
 using MicroShop.Utility.Cache;
-using MicroShop.Utility.Common;
 using MicroShop.Utility.Enums;
 
 namespace MicroShop.BLL.Common
 {
-    public class BEnum : Singleton<BEnum>
+    /// <summary>
+    /// 枚举业务相关方法
+    /// </summary>
+    public class BEnum
     {
         private const string LoginStatusCacheKey = "enum-login-status-list";
 
@@ -21,16 +23,13 @@ namespace MicroShop.BLL.Common
 
         private const string ProductStatusCacheKey = "enum-product-status-list";
 
-
-
-        #region public List<KeyValueVO<int>> GetLoginStatusList()
+        #region public static List<KeyValueVO<int>> GetLoginStatusList()
         /// <summary>
         /// 获取登录状态列表
         /// </summary>
         /// <returns>List of KeyValueVO</returns>
-        public List<KeyValueVO<int>> GetLoginStatusList()
-        {
-           
+        public static List<KeyValueVO<int>> GetLoginStatusList()
+        {           
             if(MemcacheClient.isExist(LoginStatusCacheKey))
             {
                 return MemcacheClient.GetValue<List<KeyValueVO<int>>>(LoginStatusCacheKey);
@@ -47,12 +46,12 @@ namespace MicroShop.BLL.Common
         }
         #endregion public List<KeyValueVO<int>> GetLoginStatusList()
 
-        #region public List<KeyValueVO<int>> GetUserActionTypeList()
+        #region public static List<KeyValueVO<int>> GetUserActionTypeList()
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<KeyValueVO<int>> GetUserActionTypeList()
+        public static List<KeyValueVO<int>> GetUserActionTypeList()
         {
             if (MemcacheClient.isExist(UserActionTypeCacheKey))
             {
@@ -75,7 +74,7 @@ namespace MicroShop.BLL.Common
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<KeyValueVO<int>> GetCurrencyTypeList()
+        public static List<KeyValueVO<int>> GetCurrencyTypeList()
         {
             if (MemcacheClient.isExist(CurrencyTypeCacheKey))
             {
@@ -98,7 +97,7 @@ namespace MicroShop.BLL.Common
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<KeyValueVO<int>> GetMediaTypeList()
+        public static List<KeyValueVO<int>> GetMediaTypeList()
         {
             if (MemcacheClient.isExist(MediaTypeCacheKey))
             {
@@ -122,7 +121,7 @@ namespace MicroShop.BLL.Common
         /// 
         /// </summary>
         /// <returns></returns>
-        public List<KeyValueVO<int>> GetProductStatusList()
+        public static List<KeyValueVO<int>> GetProductStatusList()
         {
             if (MemcacheClient.isExist(ProductStatusCacheKey))
             {

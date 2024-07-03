@@ -12,8 +12,8 @@ namespace MicroShop.IDAL.Permission
         /// <summary>
         /// 新增系统用户
         /// </summary>
-        /// <param name="req"></param>
-        /// <returns></returns>
+        /// <param name="req">创建系统用户的请求</param>
+        /// <returns>MicroShop.Model.VO.Permission.SystemUserVO</returns>
         SystemUserVO Create(CreateSystemUserReqDTO req);
 
         /// <summary>
@@ -50,14 +50,14 @@ namespace MicroShop.IDAL.Permission
         void SetLoginStatus(int userId);
 
         /// <summary>
-        /// 
+        /// 根据登录名查询系统用户记录
         /// </summary>
-        /// <param name="loginName"></param>
+        /// <param name="loginName">登录名</param>
         /// <returns></returns>
         SystemUserVO GetSystemUser(string loginName);
 
         /// <summary>
-        /// 
+        /// 根据查询条件，对系统用户进行分页查询
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>

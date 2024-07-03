@@ -3,26 +3,26 @@
 namespace MicroShop.Model.VO.Web
 {
     /// <summary>
-    /// 
+    /// API接口返回基础结构
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">泛型</typeparam>
     [Serializable]
     public class ApiResultVO<T>
     {
         /// <summary>
-        /// 请求结果
+        /// 请求结果状态值
         /// </summary>
-        public RequestResultCodeEnum ResultCode { get; set; }
+        public RequestResultCodeEnum ResultCode { get; set; } = RequestResultCodeEnum.UnkownError;
 
         /// <summary>
         /// 错误消息
         /// </summary>
-        public string? ErrorMessage { get; set; }
+        public string ErrorMessage { get; set; } = string.Empty;
 
         /// <summary>
         /// 结果数据
         /// </summary>
-        public T? Result { get; set; }
+        public T Result { get; set; } = default!;
 
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace MicroShop.Model.VO.Web
             {
                 ResultCode = requestResultCode,
                 ErrorMessage = errorMessage,
-                Result = default
+                Result = default!
             };             
         }
 
@@ -63,7 +63,7 @@ namespace MicroShop.Model.VO.Web
         {
             this.ResultCode = RequestResultCodeEnum.Success;
             this.ErrorMessage = string.Empty;
-            this.Result = default;
+            this.Result = default!;
         }
 
     }

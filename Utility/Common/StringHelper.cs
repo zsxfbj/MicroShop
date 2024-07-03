@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace MicroShop.Utility.Common
@@ -18,6 +19,24 @@ namespace MicroShop.Utility.Common
             return Guid.NewGuid().ToString("N");
         }
         #endregion public static string GetGuid()
+
+        #region public static string GetRandNum(int length)
+        /// <summary>
+        /// 取得随机数
+        /// </summary>
+        /// <param name="length">随机数的长度</param>
+        /// <returns></returns>
+        public static string GetRandNum(int length)
+        {
+            Random randNum = new Random(unchecked((int)DateTime.Now.Ticks));
+            StringBuilder sb = new StringBuilder(length);
+            for (int i = 0; i < length; i++)
+            {
+                sb.Append(randNum.Next(0, 9));
+            }
+            return sb.ToString();
+        }
+        #endregion
 
         #region public static bool IsVehicleNumber(string vehicleNumber)
         /// <summary>

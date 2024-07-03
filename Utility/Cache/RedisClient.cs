@@ -79,7 +79,7 @@ namespace MicroShop.Utility.Cache
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static async Task<T> StringGetAsync<T>(string key) where T : class
+        public static async Task<T?> StringGetAsync<T>(string key) where T : class
         {
             if (_db != null)
             {
@@ -94,7 +94,7 @@ namespace MicroShop.Utility.Cache
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static T StringGet<T>(string key) where T : class
+        public static T? StringGet<T>(string key) where T : class
         {
             if (_db != null)
             {

@@ -9,14 +9,12 @@ namespace MicroShop.BLL.Auth
     /// <summary>
     /// 系统用户认证相关
     /// </summary>
-    public class BSystemUserAuth : Singleton<BSystemUserAuth>        
+    public class BSystemUserAuth
     {
         /// <summary>
         /// 缓存的Key
         /// </summary>
         private const string SystemUserAccessTokenCacheKey = "ms-sys-user-auth-";
-
-
 
         #region  public SystemUserTokenDTO GetSystemUserToken()
         /// <summary>
@@ -24,16 +22,9 @@ namespace MicroShop.BLL.Auth
         /// </summary>
         /// <param name="accessor"></param>
         /// <returns></returns>
-        public SystemUserTokenDTO GetSystemUserToken()
-        {
-            string accessToken = HttpContext.Current.Request.Headers[HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY];
-            string clientTypeValue = HttpContext.Current.Request.Headers[HeaderParameters.CLIENT_TYPE_KEY];
-            ClientTypeEnum clientType = ClientTypeEnum.PCWeb;
-            if (Enum.IsDefined(typeof(ClientTypeEnum), clientTypeValue))
-            {
-                clientType = (ClientTypeEnum)Enum.Parse(typeof(ClientTypeEnum), clientTypeValue);
-            }
-            return GetSystemUserToken(accessToken, clientType);
+        public static SystemUserTokenDTO GetSystemUserToken()
+        {   
+            return GetSystemUserToken(HttpContext.Current.Request.Headers[HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY]);
         }
         #endregion public SystemUserTokenDTO GetSystemUserToken(IHttpContextAccessor accessor)
 
@@ -43,7 +34,7 @@ namespace MicroShop.BLL.Auth
         /// </summary>
         /// <param name="accessor"></param>
         /// <returns></returns>
-        public SystemUserTokenDTO GetSystemUserToken(string? accessToken = "", ClientTypeEnum clientType = ClientTypeEnum.PCWeb)
+        public static SystemUserTokenDTO GetSystemUserToken(string? accessToken = "")
         {
             if (string.IsNullOrEmpty(accessToken))
             {
@@ -63,8 +54,7 @@ namespace MicroShop.BLL.Auth
                 systemUserToken = new SystemUserTokenDTO
                 {
                     AccessToken = accessToken,
-                    UserId = 0,
-                    ClientType = clientType,
+                    UserId = 0,                
                     Email = "",
                     IsAdmin = false,
                     Mobile = "",
@@ -82,8 +72,8 @@ namespace MicroShop.BLL.Auth
         /// <summary>
         /// 缓存访问令牌
         /// </summary>
-        /// <param name="systemUserToken"></param>
-        public void CacheSystemUserToken(SystemUserTokenDTO systemUserToken)
+        /// <param name="systemUserToken">系统用户访问令牌</param>
+        public static void CacheSystemUserToken(SystemUserTokenDTO systemUserToken)
         {
             if (systemUserToken != null)
             {
@@ -91,7 +81,10 @@ namespace MicroShop.BLL.Auth
                 {
                     systemUserToken.AccessToken = StringHelper.GetGuid();
                 }
-                RedisClient.StringSet(SystemUserAccessTokenCacheKey + systemUserToken.AccessToken, systemUserToken, TimeSpan.FromHours(18));
+                //更新缓存时间
+                systemUserToken.CacheTime = DateTime.Now.ToString(Constants.DEFAULT_DATETIME_FORMAT);
+                //缓存15天
+                RedisClient.StringSet(SystemUserAccessTokenCacheKey + systemUserToken.AccessToken, systemUserToken, TimeSpan.FromDays(Constants.FIFTEEN));
             }
         }
         #endregion public void CacheSystemUserToken(SystemUserTokenDTO systemUserToken)

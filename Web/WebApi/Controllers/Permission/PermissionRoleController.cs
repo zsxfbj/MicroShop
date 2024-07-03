@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MicroShop.Web.AdminApi.Controllers.Permission
 {
     /// <summary>
-    /// 角色接口
+    /// 运营平台角色API
     /// </summary>
     [Route("permission/role")]
     [ApiController]

@@ -11,63 +11,46 @@ namespace MicroShop.Model.Auth
         /// <summary>
         /// 令牌
         /// </summary>        
-        public string AccessToken { get; set; }
+        public string AccessToken { get; set; } = string.Empty;
 
         /// <summary>
         /// 用户编号
         /// </summary>
-        public int UserId { get; set; }
+        public int UserId { get; set; } = 0;
 
         /// <summary>
         /// 角色编号
         /// </summary>
-        public int RoleId { get; set; }
+        public int RoleId { get; set; } = 0;
 
         /// <summary>
         /// 角色名称
         /// </summary>
-        public string RoleName { get; set; }
+        public string RoleName { get; set; } = string.Empty;
 
         /// <summary>
         /// 是否管理员
         /// </summary>
-        public bool IsAdmin { get; set; }
+        public bool IsAdmin { get; set; }   = false;
 
         /// <summary>
         /// 用户名
         /// </summary>
-        public string UserName { set; get; }
+        public string UserName { set; get; } = string.Empty;
 
         /// <summary>
         /// 电子邮箱
         /// </summary>
-        public string Email { get; set; }
-
-        /// <summary>
-        /// 访问的客户端类型
-        /// </summary>
-        public ClientTypeEnum ClientType { get; set; }
-
+        public string Email { get; set; } = string.Empty;
+        
         /// <summary>
         /// 手机号
         /// </summary>
-        public string Mobile { get; set; }
+        public string Mobile { get; set; } = string.Empty;
 
         /// <summary>
-        /// 构造函数
+        /// 最新的缓存时间
         /// </summary>
-        public SystemUserTokenDTO()
-        {
-            AccessToken = Utility.Common.StringHelper.GetGuid();
-            UserId = 0;
-            RoleId = 0;
-            RoleName = string.Empty;
-            UserName = string.Empty;
-            Email = string.Empty;
-            Mobile = string.Empty;
-            ClientType = ClientTypeEnum.PCWeb;
-            IsAdmin = false;
-        }
-
+        public string CacheTime {  get; set; } = string.Empty;
     }
 }
