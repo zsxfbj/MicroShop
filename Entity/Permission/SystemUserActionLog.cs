@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using MicroShop.Enums.Permission;
 using MicroShop.Enums.Web;
 
-namespace MicroShop.SQLServerDAL.Entity.Permission
+namespace MicroShop.SQLServerDAL.Permission
 {
     /// <summary>
     /// 系统用户操作记录表

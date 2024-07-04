@@ -23,12 +23,7 @@ namespace MicroShop.BLL.Permission
         /// <returns></returns>
         public MenuVO Create(CreateMenuReqDTO req)
         {
-            SystemUserTokenDTO userToken = BSystemUserAuth.GetInstance().GetSystemUserToken();
-
-            if (!userToken.IsAdmin) 
-            {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotAllowAccess, ErrorMessage = "您非系统管理员，无法执行该操作" };
-            }
+           
 
             MenuVO dto = dal.Create(req);
 
@@ -37,12 +32,7 @@ namespace MicroShop.BLL.Permission
 
         public void Modify(ModifyMenuReqDTO req)
         {
-            SystemUserTokenDTO userToken = BSystemUserAuth.GetInstance().GetSystemUserToken();
-
-            if (!userToken.IsAdmin)
-            {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotAllowAccess, ErrorMessage = "您非系统管理员，无法执行该操作" };
-            }
+          
 
             dal.Modify(req);
         }
@@ -54,12 +44,7 @@ namespace MicroShop.BLL.Permission
         /// <exception cref="ServiceException"></exception>
         public void Delete(int menuId) 
         {
-            SystemUserTokenDTO userToken = BSystemUserAuth.GetInstance().GetSystemUserToken();
-
-            if (!userToken.IsAdmin)
-            {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotAllowAccess, ErrorMessage = "您非系统管理员，无法执行该操作" };
-            }
+            
 
             dal.Delete(menuId);
         }
@@ -72,12 +57,7 @@ namespace MicroShop.BLL.Permission
         /// <exception cref="ServiceException"></exception>
         public MenuVO GetMenu(int menuId)
         {
-            SystemUserTokenDTO userToken = BSystemUserAuth.GetInstance().GetSystemUserToken();
-
-            if (!userToken.IsAdmin)
-            {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotAllowAccess, ErrorMessage = "您非系统管理员，无法执行该操作" };
-            }
+            
 
             return dal.GetMenu(menuId);
         }

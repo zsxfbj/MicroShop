@@ -26,7 +26,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         {
             return new ApiResultVO<PageResultVO<SystemUserActionLogVO>>
             {
-                Result = BSystemUserActionLog.GetInstance().GetPageResult(req),
+                Result = BSystemUserActionLog.GetPageResult(req),
                 ResultCode = RequestResultCodeEnum.Success
             };
         }
@@ -40,7 +40,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         [SysLoginAuth(IsAdmin = true)]
         public ApiResultVO<string> Delete([FromBody] BatchDeleteLogReqDTO req)
         {
-            BSystemUserActionLog.GetInstance().BatchDelete(req);
+            BSystemUserActionLog.BatchDelete(req);
             return ApiResultVO<string>.Success("");
         }
     }

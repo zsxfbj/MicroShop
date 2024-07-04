@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MicroShop.SQLServerDAL.Entity.Product
+namespace MicroShop.SQLServerDAL.Product
 {
     /// <summary>
     /// 产品规格名称
@@ -16,7 +16,7 @@ namespace MicroShop.SQLServerDAL.Entity.Product
         [Key]
         [Column("spec_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long SpecId { get; set; } = default(long);
+        public long SpecId { get; set; } = default;
 
         /// <summary>
         /// 商品编号

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MicroShop.SQLServerDAL.Entity.Permission
+namespace MicroShop.SQLServerDAL.Permission
 {
     /// <summary>
     /// 管理后台菜单表

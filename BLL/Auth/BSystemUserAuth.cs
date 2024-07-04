@@ -18,10 +18,9 @@ namespace MicroShop.BLL.Auth
 
         #region  public SystemUserTokenDTO GetSystemUserToken()
         /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="accessor"></param>
-        /// <returns></returns>
+        /// 从请求参数里获取系统用户访问令牌
+        /// </summary>       
+        /// <returns>SystemUserTokenDTO</returns>
         public static SystemUserTokenDTO GetSystemUserToken()
         {   
             return GetSystemUserToken(HttpContext.Current.Request.Headers[HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY]);
@@ -34,7 +33,7 @@ namespace MicroShop.BLL.Auth
         /// </summary>
         /// <param name="accessor"></param>
         /// <returns></returns>
-        public static SystemUserTokenDTO GetSystemUserToken(string? accessToken = "")
+        public static SystemUserTokenDTO GetSystemUserToken(string? accessToken)
         {
             if (string.IsNullOrEmpty(accessToken))
             {

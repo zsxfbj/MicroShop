@@ -20,6 +20,13 @@ namespace MicroShop.IDAL.Permission
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="roleName"></param>
+        /// <returns></returns>
+        RoleVO? GetRole(string roleName);
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         RoleVO Create(CreateRoleReqDTO req);

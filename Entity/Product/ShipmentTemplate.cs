@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MicroShop.SQLServerDAL.Entity.Product
+namespace MicroShop.SQLServerDAL.Product
 {
     /// <summary>
     /// 运费模板

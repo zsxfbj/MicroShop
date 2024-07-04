@@ -3,19 +3,18 @@ using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.SQLServerDAL.Entity;
 
-namespace MicroShop.SQLServerDAL.DAL.Permission
+namespace MicroShop.SQLServerDAL.Permission
 {
     /// <summary>
     /// 
     /// </summary>
     public class RoleMenuRelationDAL : IRoleMenuRelation
-    {      
+    {
         /// <summary>
         /// 根据角色Id获取菜单树
         /// </summary>
         /// <param name="roleId"></param>
-        /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <returns></returns>     
         public List<RoleMenuVO> GetRoleMenus(int roleId = 0)
         {
             List<RoleMenuVO> roleMenus = new List<RoleMenuVO>();
@@ -71,7 +70,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
 
         public void SetRoleMenuRelation(SetRoleMenuRelationReqDTO roleMenuRelation)
         {
-           
+
         }
 
         #region private static List<RoleMenuDTO> GetMenus(int parentId, MicroShopContext context)

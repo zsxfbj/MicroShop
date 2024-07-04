@@ -49,6 +49,33 @@ namespace MicroShop.BLL.Permission
         }
         #endregion private static void RemoveCache(int userId)
 
+        #region private static void ToSystemUserToken(SystemUserVO systemUser, SystemUserTokenDTO systemUserToken)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="systemUser"></param>
+        /// <param name="systemUserToken"></param>
+        private static void ToSystemUserToken(SystemUserVO systemUser, SystemUserTokenDTO systemUserToken)
+        {
+            systemUserToken.UserId = systemUser.UserId;
+            systemUserToken.UserName = systemUser.UserName;
+            systemUserToken.RoleId = systemUser.RoleId;
+            systemUserToken.Mobile = systemUser.Mobile;
+            systemUserToken.Email = systemUser.Email;
+            systemUserToken.IsAdmin = systemUser.IsAdmin;
+
+            if (systemUser.RoleId > 0)
+            {
+                RoleVO role = BRole.GetRole(systemUser.RoleId);
+                systemUserToken.RoleName = role.RoleName;
+            }
+            else
+            {
+                systemUserToken.RoleName = "";
+            }
+        }
+        #endregion private static void ToSystemUserToken(SystemUserVO systemUser, SystemUserTokenDTO systemUserToken)
+
         #region public static SystemUserVO Create(CreateSystemUserReqDTO req)
         /// <summary>
         /// 创建系统用户
@@ -201,16 +228,29 @@ namespace MicroShop.BLL.Permission
         }
         #endregion public static void SetLoginStatus(int userId)
 
+        #region public static PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
         /// <summary>
-        /// 
+        /// 分页查询
         /// </summary>
-        /// <param name="req"></param>
-        /// <returns></returns>
+        /// <param name="req">分页查询请求</param>
+        /// <returns>PageResultVO of SystemUserVO</returns>
         public static PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
         {
-            return dal.GetPageResult(req);
-        }
+            try
+            {
+                req.InitData();
 
+                return dal.GetPageResult(req);
+            }
+            catch (Exception e)
+            {
+                LogHelper.Error("BSystemUser.GetPageResult: " + e.ToString());
+                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "分页查询系统用户时访问数据库异常！" };
+            }
+        }
+        #endregion public static PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
+
+        #region public static SystemUserLoginResultVO Login(SystemUserLoginReqDTO req)
         /// <summary>
         /// 系统用户登录
         /// </summary>
@@ -219,19 +259,27 @@ namespace MicroShop.BLL.Permission
         public static SystemUserLoginResultVO Login(SystemUserLoginReqDTO req)
         {
             SystemUserTokenDTO systemUserToken = BSystemUserAuth.GetSystemUserToken();
-            SystemUserVO systemUser;
+           
             if (systemUserToken.UserId > 0)
             {
-                systemUser = dal.GetSystemUser(systemUserToken.UserId);
+                //移除同key的登录状态
+                RemoveCache(systemUserToken.UserId);
             }
-            else
+
+            SystemUserVO systemUser;
+            try
             {
                 systemUser = dal.GetSystemUser(req.LoginName);
-
             }
-            if (systemUser == null)
+            catch (Exception e)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "用户信息异常，请清空浏览器缓存后，再重新登录！" };
+                LogHelper.Error("BSystemUser.Login: " + e.ToString());
+                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "根据登录名查询用户时访问数据库异常！" };
+            }
+
+            if (systemUser == null || systemUser.LoginStatus == Enums.Permission.LoginStatusEnum.Forbidden)
+            {
+                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "该用户信息不存在或已被禁止登录！" };
             }
 
             //比较密码
@@ -241,22 +289,14 @@ namespace MicroShop.BLL.Permission
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "登录密码错误！" };
             }
 
-            if (systemUserToken.UserId == 0)
-            {
-                systemUserToken.UserId = systemUser.UserId;
-                systemUserToken.UserName = systemUser.UserName;
-                systemUserToken.RoleId = systemUser.RoleId;
-                if (systemUser.RoleId > 0)
-                {
-                    RoleVO role = BRole.GetInstance().GetRole(systemUser.RoleId);
-                    systemUserToken.RoleName = role.RoleName;
-                }
-                else
-                {
-                    systemUserToken.RoleName = "";
-                }
-            }
+            //赋值数据
+            ToSystemUserToken(systemUser, systemUserToken);
+            //缓存15天
+            RedisClient.StringSet(SystemUserTokenCacheKey + systemUser.UserId, systemUserToken.AccessToken, TimeSpan.FromDays(Constants.FIFTEEN));
+            //缓存系统用户令牌信息
+            BSystemUserAuth.CacheSystemUserToken(systemUserToken);
 
+            //返回登录结果
             return new SystemUserLoginResultVO
             {
                 AccessToken = systemUserToken.AccessToken,
@@ -265,10 +305,11 @@ namespace MicroShop.BLL.Permission
                 LoginName = systemUser.LoginName,
                 RoleId = systemUser.RoleId,
                 RoleName = systemUserToken.RoleName,
-                RoleMenus = new List<RoleMenuVO>(),
+                RoleMenus = systemUser.RoleId > 0 ? BRoleMenuRelation.GetRoleMenus(systemUser.RoleId) : new List<RoleMenuVO>(),
                 UpdatedAt = systemUser.UpdatedAt,
                 UserName = systemUser.UserName
             };
         }
+        #endregion public static SystemUserLoginResultVO Login(SystemUserLoginReqDTO req)
     }
 }

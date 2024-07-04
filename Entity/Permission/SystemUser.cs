@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using MicroShop.Enums.Permission;
 
-namespace MicroShop.SQLServerDAL.Entity.Permission
+namespace MicroShop.SQLServerDAL.Permission
 {
     /// <summary>
     /// 系统用户表
@@ -99,6 +99,6 @@ namespace MicroShop.SQLServerDAL.Entity.Permission
         /// 最新登录时间
         /// </summary>
         [Column("last_login")]
-        public DateTime? LastLogin {  get; set; }
+        public DateTime? LastLogin { get; set; }
     }
 }

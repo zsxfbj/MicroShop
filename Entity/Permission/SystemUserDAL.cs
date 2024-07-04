@@ -5,10 +5,9 @@ using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
 using MicroShop.SQLServerDAL.Entity;
-using MicroShop.SQLServerDAL.Entity.Permission;
 using MicroShop.Utility.Common;
 
-namespace MicroShop.SQLServerDAL.DAL.Permission
+namespace MicroShop.SQLServerDAL.Permission
 {
     /// <summary>
     /// 
@@ -61,10 +60,10 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 LastLogin = systemUser.LastLogin.HasValue ? systemUser.LastLogin.Value.ToString(Constants.DEFAULT_DATETIME_FORMAT) : ""
             };
 
-            if(systemUser.RoleId > 0)
+            if (systemUser.RoleId > 0)
             {
                 Role? role = context.Roles.FirstOrDefault(x => x.RoleId == systemUser.RoleId);
-                if(role != null)
+                if (role != null)
                 {
                     dto.RoleName = role.RoleName;
                 }
@@ -101,7 +100,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="req">新增系统用户请求内容</param>
         /// <returns>MicroShop.Model.Permission.SystemUserDTO</returns>      
         public SystemUserVO Create(CreateSystemUserReqDTO req)
-        {           
+        {
             SystemUser systemUser = new SystemUser();
             //数据转化
             ToEntity(req, systemUser);
@@ -114,8 +113,8 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 //入库
                 context.SystemUsers.Add(systemUser);
                 context.SaveChanges();
-                return ToVO(systemUser, context);             
-            }           
+                return ToVO(systemUser, context);
+            }
         }
         #endregion public SystemUserVO Create(CreateSystemUserReqDTO req)
 
@@ -125,7 +124,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="req">修改系统用户的请求内容</param>
         /// <returns>MicroShop.Model.Permission.SystemUserDTO</returns>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException"></exception>
+        /// <exception cref="ServiceException"></exception>
         public SystemUserVO Modify(ModifySystemUserReqDTO req)
         {
             using (var context = new MicroShopContext())
@@ -158,7 +157,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="passowrd">密码</param>
         /// <param name="userId">用户Id</param>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常信息</exception>
+        /// <exception cref="ServiceException">服务异常信息</exception>
         public void ModifyLoginPassword(string passowrd, int userId)
         {
             using (var context = new MicroShopContext())
@@ -179,11 +178,11 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="userId">用户编号</param>
         /// <returns>SystemUserDTO</returns>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常信息</exception>
+        /// <exception cref="ServiceException">服务异常信息</exception>
         public SystemUserVO GetSystemUser(int userId)
         {
             using (var context = new MicroShopContext())
-            {                
+            {
                 return ToVO(GetSystemUser(userId, context), context);
             }
         }
@@ -194,7 +193,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// 根据用户Id删除用户记录，同时删除操作日志表里的所有数据
         /// </summary>
         /// <param name="userId">用户Id</param>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常信息</exception>
+        /// <exception cref="ServiceException">服务异常信息</exception>
         public void Delete(int userId)
         {
             using (var context = new MicroShopContext())
@@ -215,7 +214,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// 禁用/启动用户登录状态
         /// </summary>
         /// <param name="userId">用户Id</param>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常信息</exception>
+        /// <exception cref="ServiceException">服务异常信息</exception>
         public void SetLoginStatus(int userId)
         {
             using (var context = new MicroShopContext())
@@ -235,7 +234,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="loginName">登录名</param>
         /// <returns></returns>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException"></exception>
+        /// <exception cref="ServiceException"></exception>
         public SystemUserVO GetSystemUser(string loginName)
         {
             using (var context = new MicroShopContext())
@@ -289,7 +288,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 pageResult.Data = query.OrderByDescending(x => x.UserId).Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => ToVO(entity, context)).ToList();
                 //输出结果
                 return pageResult;
-            }   
+            }
         }
         #endregion public PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
     }

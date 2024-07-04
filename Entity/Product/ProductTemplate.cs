@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MicroShop.SQLServerDAL.Entity.Product
+namespace MicroShop.SQLServerDAL.Product
 {
     /// <summary>
     /// 商品信息模板表(相当于商品模板信息)

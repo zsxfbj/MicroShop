@@ -4,9 +4,8 @@ using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.SQLServerDAL.Entity;
-using MicroShop.SQLServerDAL.Entity.Permission;
 
-namespace MicroShop.SQLServerDAL.DAL.Permission
+namespace MicroShop.SQLServerDAL.Permission
 {
     /// <summary>
     /// Menu表基于SQLServer的增删改查实现
@@ -37,7 +36,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
+        /// <exception cref="ServiceException">服务异常错误</exception>
         private static MenuVO ToVO(Menu entity)
         {
             if (entity == null)
@@ -78,7 +77,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 context.Menus.Add(entity);
                 context.SaveChanges();
                 return ToVO(entity);
-            }           
+            }
         }
         #endregion public MenuVO Create(CreateMenuReqDTO req)
 
@@ -87,7 +86,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// 根据菜单Id删除记录，同时删除角色菜单表对应的记录
         /// </summary>
         /// <param name="menuId">菜单Id</param>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
+        /// <exception cref="ServiceException">服务异常错误</exception>
         public void Delete(int menuId)
         {
             using (var context = new MicroShopContext())
@@ -122,18 +121,18 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="menuId">菜单Id</param>
         /// <returns>MicroShop.Model.VO.Permission.MenuVO</returns>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
+        /// <exception cref="ServiceException">服务异常错误</exception>
         public MenuVO GetMenu(int menuId)
         {
             using (var context = new MicroShopContext())
             {
-                Menu? menu = context.Menus.FirstOrDefault(x=>x.MenuId == menuId);
+                Menu? menu = context.Menus.FirstOrDefault(x => x.MenuId == menuId);
                 if (menu == null)
                 {
                     throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "菜单记录不存在" };
                 }
                 return ToVO(menu);
-            }        
+            }
         }
         #endregion public MenuVO GetMenu(int menuId)
 
@@ -143,7 +142,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// </summary>
         /// <param name="parentId"></param>
         /// <returns></returns>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
+        /// <exception cref="ServiceException">服务异常错误</exception>
         public List<MenuVO> GetMenus(int parentId = 0)
         {
             using (var context = new MicroShopContext())
@@ -158,7 +157,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// 修改菜单信息
         /// </summary>
         /// <param name="req">修改菜单的请求</param>
-        /// <exception cref="MicroShop.Model.Common.Exception.ServiceException">服务异常错误</exception>
+        /// <exception cref="ServiceException">服务异常错误</exception>
         public MenuVO Modify(ModifyMenuReqDTO req)
         {
             using (var context = new MicroShopContext())

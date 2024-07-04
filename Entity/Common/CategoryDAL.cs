@@ -4,10 +4,9 @@ using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Common;
 using MicroShop.Model.VO.Common;
 using MicroShop.SQLServerDAL.Entity;
-using MicroShop.SQLServerDAL.Entity.Common;
 using MicroShop.Utility.Enums;
 
-namespace MicroShop.SQLServerDAL.DAL.Common
+namespace MicroShop.SQLServerDAL.Common
 {
     /// <summary>
     /// SQLServer的分类管理
@@ -26,7 +25,7 @@ namespace MicroShop.SQLServerDAL.DAL.Common
             ToEntity(req, category);
             category.CreatedAt = DateTime.Now;
             category.UpdatedAt = DateTime.Now;
-                       
+
             using (var context = new MicroShopContext())
             {
                 if (category.ParentId == 0)
@@ -35,7 +34,7 @@ namespace MicroShop.SQLServerDAL.DAL.Common
                 }
                 else
                 {
-                    Category? parent = context.Categories.FirstOrDefault(x=>x.CategoryId == category.ParentId);
+                    Category? parent = context.Categories.FirstOrDefault(x => x.CategoryId == category.ParentId);
                     if (parent == null)
                     {
                         throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "上级分类记录未查询到" };
@@ -46,7 +45,7 @@ namespace MicroShop.SQLServerDAL.DAL.Common
                 context.Categories.Add(category);
                 context.SaveChanges();
             }
-            return ToDTO(category);            
+            return ToDTO(category);
         }
 
         public void Delete(int categoryId)
@@ -105,7 +104,7 @@ namespace MicroShop.SQLServerDAL.DAL.Common
             category.CategoryName = string.IsNullOrEmpty(req.CategoryName) ? "" : req.CategoryName.Trim();
             category.CategoryType = req.CategoryType;
             category.ParentId = req.ParentId;
-            category.OrderValue = req.OrderValue.HasValue ?  req.OrderValue.Value : 1;
+            category.OrderValue = req.OrderValue.HasValue ? req.OrderValue.Value : 1;
             category.IconUrl = string.IsNullOrEmpty(req.IconUrl) ? "" : req.IconUrl.Trim();
             category.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
             category.ImageUrl = string.IsNullOrEmpty(req.ImageUrl) ? "" : req.ImageUrl.Trim();

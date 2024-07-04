@@ -3,9 +3,8 @@ using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
 using MicroShop.SQLServerDAL.Entity;
-using MicroShop.SQLServerDAL.Entity.Permission;
 
-namespace MicroShop.SQLServerDAL.DAL.Permission
+namespace MicroShop.SQLServerDAL.Permission
 {
     /// <summary>
     /// 
@@ -77,8 +76,8 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="logs"></param>
         public void BatchInsert(List<SystemUserActionLogVO> logs)
         {
-            List<SystemUserActionLog> entities = new List<SystemUserActionLog> ();
-            foreach(SystemUserActionLogVO vo in logs) 
+            List<SystemUserActionLog> entities = new List<SystemUserActionLog>();
+            foreach (SystemUserActionLogVO vo in logs)
             {
                 SystemUserActionLog entity = new SystemUserActionLog();
                 entity.UserId = vo.UserId;
@@ -86,15 +85,15 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 entity.AccessToken = vo.AccessToken;
                 entity.RemoteIp = vo.RemoteIp;
                 entity.ActionType = vo.ActionType;
-                
+
                 entities.Add(entity);
             }
 
-            using(var context = new MicroShopContext())
+            using (var context = new MicroShopContext())
             {
                 context.SystemUserActionLogs.AddRange(entities);
                 context.BulkSaveChanges();
-            }          
+            }
         }
 
         /// <summary>
@@ -103,14 +102,14 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         /// <param name="logIds"></param>       
         public void BatchDelete(List<long> logIds)
         {
-            if(logIds != null && logIds.Count > 0)
+            if (logIds != null && logIds.Count > 0)
             {
                 using (var context = new MicroShopContext())
                 {
-                    context.SystemUserActionLogs.Where(x => logIds.Contains(x.LogId)).DeleteFromQuery();    
+                    context.SystemUserActionLogs.Where(x => logIds.Contains(x.LogId)).DeleteFromQuery();
                 }
-            }            
+            }
         }
- 
+
     }
 }

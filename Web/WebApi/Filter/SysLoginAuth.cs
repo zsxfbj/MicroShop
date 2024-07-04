@@ -45,7 +45,7 @@ namespace MicroShop.Web.AdminApi.Filter
         /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            SystemUserTokenDTO systemUserToken = BSystemUserAuth.GetInstance().GetSystemUserToken(context.HttpContext.Request.Headers[HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY]);
+            SystemUserTokenDTO systemUserToken = BSystemUserAuth.GetSystemUserToken(context.HttpContext.Request.Headers[HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY]);
             //判断是否登录
             if (systemUserToken.UserId == 0)
             {
@@ -53,12 +53,9 @@ namespace MicroShop.Web.AdminApi.Filter
             }
 
             //判断菜单权限
-            if (MenuId > 0)
+            if (MenuId > 0 && !BRoleMenuRelation.IsExist(systemUserToken.RoleId, MenuId))
             {
-                if (!BRoleMenuRelation.GetInstance().IsExist(systemUserToken.RoleId, MenuId))
-                {
-                    throw new ServiceException { ErrorMessage = "无权访问页面！", ErrorCode = RequestResultCodeEnum.NotAllowAccess };
-                }
+                throw new ServiceException { ErrorMessage = "无权访问页面！", ErrorCode = RequestResultCodeEnum.NotAllowAccess };
             }
         }
     }

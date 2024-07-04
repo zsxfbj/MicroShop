@@ -4,15 +4,50 @@ using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
 using MicroShop.SQLServerDAL.Entity;
-using MicroShop.SQLServerDAL.Entity.Permission;
 
-namespace MicroShop.SQLServerDAL.DAL.Permission
+namespace MicroShop.SQLServerDAL.Permission
 {
     /// <summary>
-    /// 
+    /// Role表数据访问层
     /// </summary>
     public class RoleDAL : IRole
     {
+
+        #region private static void ToEntity(CreateRoleReqDTO req, Role role)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="req"></param>
+        /// <param name="role"></param>
+        private static void ToEntity(CreateRoleReqDTO req, Role role)
+        {
+            role.RoleName = string.IsNullOrEmpty(req.RoleName) ? "" : req.RoleName.Trim();
+            role.IsEnable = req.IsEnable;
+            role.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
+        }
+        #endregion private static void ToEntity(CreateRoleReqDTO req, Role role)
+
+
+        #region private ToVO ToVO(Role role)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        private static RoleVO ToVO(Role role)
+        {
+            return new RoleVO
+            {
+                RoleId = role.RoleId,
+                RoleName = string.IsNullOrEmpty(role.RoleName) ? "" : role.RoleName.Trim(),
+                Note = string.IsNullOrEmpty(role.Note) ? "" : role.Note.Trim(),
+                IsEnable = role.IsEnable,
+                CreatedAt = role.CreatedAt,
+                UpdatedAt = role.UpdatedAt
+            };
+        }
+        #endregion private ToVO ToVO(Role role)
+
         /// <summary>
         /// 
         /// </summary>
@@ -28,7 +63,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 context.Roles.Add(role);
                 context.SaveChanges();
             }
-            return ToDTO(role);
+            return ToVO(role);
         }
 
         /// <summary>
@@ -76,13 +111,13 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 if (string.IsNullOrWhiteSpace(req.RoleName))
                 {
                     pageResult.RecordCount = context.Roles.Count();
-                    pageResult.Data = context.Roles.Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => ToDTO(entity)).ToList();
+                    pageResult.Data = context.Roles.Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => ToVO(entity)).ToList();
                 }
                 else
                 {
                     var query = context.Roles.Where(x => x.RoleName.Contains(req.RoleName.Trim()));
                     pageResult.RecordCount = query.Count();
-                    pageResult.Data = query.Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => ToDTO(entity)).ToList();
+                    pageResult.Data = query.Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => ToVO(entity)).ToList();
                 }
             }
             return pageResult;
@@ -103,7 +138,7 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 {
                     throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "角色记录不存在" };
                 }
-                return ToDTO(role);
+                return ToVO(role);
             }           
         }
 
@@ -115,11 +150,11 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
         {
             using (var context = new MicroShopContext())
             {
-                return context.Roles.OrderByDescending(x => x.RoleId).Select(entity => ToDTO(entity)).ToList();
+                return context.Roles.OrderByDescending(x => x.RoleId).Select(entity => ToVO(entity)).ToList();
             }
         }
 
-        #region public RoleDTO Modify(ModifyRoleReqDTO req)
+        #region public RoleVO Modify(ModifyRoleReqDTO req)
         /// <summary>
         /// 
         /// </summary>
@@ -139,43 +174,28 @@ namespace MicroShop.SQLServerDAL.DAL.Permission
                 role.UpdatedAt = DateTime.Now;
                 context.Roles.Update(role);
                 context.SaveChanges();
-                return ToDTO(role);
+                return ToVO(role);
             }
         }
-        #endregion public RoleDTO Modify(ModifyRoleReqDTO req)
+        #endregion public RoleVO Modify(ModifyRoleReqDTO req)
 
-        #region private static void ToEntity(CreateRoleReqDTO req, Role role)
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="req"></param>
-        /// <param name="role"></param>
-        private static void ToEntity(CreateRoleReqDTO req, Role role)
-        {
-            role.RoleName = string.IsNullOrEmpty(req.RoleName) ? "" : req.RoleName.Trim();
-            role.IsEnable = req.IsEnable;
-            role.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
-        }
-        #endregion private static void ToEntity(CreateRoleReqDTO req, Role role)
-
-        #region private RoleDTO GetRole(Role role)
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="role"></param>
+        /// <param name="roleName"></param>
         /// <returns></returns>
-        private static RoleVO ToDTO(Role role)
+        public RoleVO? GetRole(string roleName)
         {
-            return new RoleVO
+            using (var context = new MicroShopContext())
             {
-                RoleId = role.RoleId,
-                RoleName = string.IsNullOrEmpty(role.RoleName) ? "" : role.RoleName.Trim(),
-                Note = string.IsNullOrEmpty(role.Note) ? "" : role.Note.Trim(),
-                IsEnable = role.IsEnable,
-                CreatedAt = role.CreatedAt,
-                UpdatedAt = role.UpdatedAt
-            };
+                Role? role = context.Roles.FirstOrDefault(x => x.RoleName == roleName.Trim());
+                if(role != null)
+                {
+                    return ToVO(role);
+                }
+                return null;
+            }            
         }
-        #endregion private RoleDTO GetRole(Role role)
+
     }
 }

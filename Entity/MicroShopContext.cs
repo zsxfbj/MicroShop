@@ -1,6 +1,6 @@
-﻿using MicroShop.SQLServerDAL.Entity.Common;
-using MicroShop.SQLServerDAL.Entity.Permission;
-using MicroShop.SQLServerDAL.Entity.Product;
+﻿using MicroShop.SQLServerDAL.Common;
+using MicroShop.SQLServerDAL.Permission;
+using MicroShop.SQLServerDAL.Product;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -32,6 +32,15 @@ namespace MicroShop.SQLServerDAL.Entity
                 }
             }
             base.OnConfiguring(optionsBuilder);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="modelBuilder"></param>
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<RoleMenuRelation>().HasKey(t => new { t.RoleId, t.MenuId });
         }
 
         #region Permission部分的表
@@ -75,7 +84,7 @@ namespace MicroShop.SQLServerDAL.Entity
         /// <summary>
         /// 产品主表
         /// </summary>
-        public DbSet<Product.Product> Products { get; set; } = default!;
+        public DbSet<SQLServerDAL.Product.Product> Products { get; set; } = default!;
 
         /// <summary>
         /// 产品轮播图

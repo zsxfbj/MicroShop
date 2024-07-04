@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MicroShop.SQLServerDAL.Entity.Permission
+namespace MicroShop.SQLServerDAL.Permission
 {
     /// <summary>
     /// 系统管理库的角色表
