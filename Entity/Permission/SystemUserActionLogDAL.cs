@@ -18,7 +18,6 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <returns></returns>
         public PageResultVO<SystemUserActionLogVO> GetPageResult(SystemUserActionPageReqDTO req)
         {
-
             PageResultVO<SystemUserActionLogVO> pageResult = new PageResultVO<SystemUserActionLogVO>
             {
                 PageIndex = req.PageIndex.HasValue ? req.PageIndex.Value : 1,
@@ -71,28 +70,27 @@ namespace MicroShop.SQLServerDAL.Permission
         }
 
         /// <summary>
-        /// 批量入库
+        /// 新增数据
         /// </summary>
-        /// <param name="logs"></param>
-        public void BatchInsert(List<SystemUserActionLogVO> logs)
-        {
-            List<SystemUserActionLog> entities = new List<SystemUserActionLog>();
-            foreach (SystemUserActionLogVO vo in logs)
-            {
-                SystemUserActionLog entity = new SystemUserActionLog();
-                entity.UserId = vo.UserId;
-                entity.UserName = vo.UserName;
-                entity.AccessToken = vo.AccessToken;
-                entity.RemoteIp = vo.RemoteIp;
-                entity.ActionType = vo.ActionType;
-
-                entities.Add(entity);
-            }
-
+        /// <param name="vo"></param>
+        public void Save(SystemUserActionLogVO vo)
+        {              
             using (var context = new MicroShopContext())
             {
-                context.SystemUserActionLogs.AddRange(entities);
-                context.BulkSaveChanges();
+                SystemUserActionLog entity = new SystemUserActionLog
+                {
+                    UserId = vo.UserId,
+                    UserName = vo.UserName,
+                    AccessToken = vo.AccessToken,
+                    RemoteIp = vo.RemoteIp,
+                    ActionType = vo.ActionType,
+                    RequestUrl = vo.RequestUrl,
+                    OperateContent = vo.OperateContent,
+                    UserAgent = vo.UserAgent,
+                    CreatedAt = DateTime.Now
+                };
+                context.SystemUserActionLogs.Add(entity);
+                context.SaveChanges();
             }
         }
 

@@ -29,13 +29,13 @@ namespace MicroShop.SQLServerDAL.Product
         /// 省份
         /// </summary>
         [Column("province")]
-        public string Province { get; set; }
+        public string Province { get; set; }  = string.Empty;
 
         /// <summary>
         /// 城市
         /// </summary>
         [Column("city")]
-        public string City { get; set; }
+        public string City { get; set; } = string.Empty;
 
         /// <summary>
         /// 支持配送

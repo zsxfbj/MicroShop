@@ -23,14 +23,16 @@ namespace MicroShop.Model.DTO.Web
         [DefaultValue("10")]
         public int? PageSize { get; set; }
 
+        #region public virtual void InitData()
         /// <summary>
         /// 初始化数据
         /// </summary>
-        public void InitData()
+        public virtual void InitData()
         {
             if (!PageIndex.HasValue || PageIndex.Value < 1) { PageIndex = 1; }
 
             if (!PageSize.HasValue || PageSize.Value < 1) { PageSize = 10; }
         }
+        #endregion public virtual void InitData()
     }
 }

@@ -4,7 +4,6 @@ using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
-using MicroShop.Utility.Common;
 
 namespace MicroShop.BLL.Permission
 {
@@ -27,30 +26,12 @@ namespace MicroShop.BLL.Permission
         /// <exception cref="ServiceException">业务逻辑或者数据库访问异常</exception>
         public static RoleVO Create(CreateRoleReqDTO req)
         {
-            RoleVO? check = null;
-            try
-            {
-                check = dal.GetRole(req.RoleName.Trim());
-            }
-            catch (Exception ex) 
-            {
-                LogHelper.Error("BRole.Create:" + ex.Message);
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "创建角色比对角色名时，数据库访问异常！" };
-            }
-            
+            RoleVO? check = dal.GetRole(req.RoleName.Trim());            
             if(check != null)
             {
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = string.Format("名称为【{0}】的角色记录已存在，请修改后再提交。", req.RoleName) };
             }
-            try
-            {
-                return dal.Create(req);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error("BRole.Create:" + ex.Message);
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "创建角色记录保存时，数据库访问异常！" };
-            }           
+            return dal.Create(req);
         }
         #endregion public static RoleVO Create(CreateRoleReqDTO req)
 
@@ -63,61 +44,68 @@ namespace MicroShop.BLL.Permission
         /// <exception cref="ServiceException">业务逻辑或者数据库访问异常</exception>
         public static RoleVO Modify(ModifyRoleReqDTO req)
         {
-            RoleVO? check = null;
-            try
-            {
-                check = dal.GetRole(req.RoleName.Trim());
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error("BRole.Modify:" + ex.Message);
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "修改角色比对角色名时，数据库访问异常！" };
-            }
+            RoleVO? check = dal.GetRole(req.RoleName.Trim());
+            
             if(check != null && check.RoleId != req.RoleId)
             {
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = string.Format("名称为【{0}】的角色记录已存在，请修改后再提交。", req.RoleName) };
             }
-            try
-            {
-                return dal.Modify(req);
-            }
-            catch (Exception ex)
-            {
-                LogHelper.Error("BRole.Modify:" + ex.Message);
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "修改角色记录保存时，数据库访问异常！" };
-            }           
+            return dal.Modify(req);
         }
         #endregion public static RoleVO Modify(ModifyRoleReqDTO req)
 
+        #region public static void Delete(int roleId)
+        /// <summary>
+        /// 根据角色Id删除记录
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        /// <exception cref="ServiceException"></exception>
         public static void Delete(int roleId)
         {
+            if(roleId < 1)
+            {
+                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "参数值错误" };
+            }
             dal.Delete(roleId);
         }
+        #endregion public static void Delete(int roleId)
 
+        #region public static RoleVO GetRole(int roleId)
         /// <summary>
-        /// 
+        /// 根据角色Id读取角色详细信息
         /// </summary>
-        /// <param name="roleId"></param>
-        /// <returns></returns>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>RoleVO</returns>
         public static RoleVO GetRole(int roleId)
         {
+            if (roleId < 1)
+            {
+                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "参数值错误" };
+            }
             return dal.GetRole(roleId);
         }
+        #endregion public static RoleVO GetRole(int roleId)
 
+        #region public static PageResultVO<RoleVO> GetPageResult(RolePageReqDTO req)
         /// <summary>
-        /// 
+        /// 角色分页查询方法
         /// </summary>
-        /// <param name="req"></param>
-        /// <returns></returns>
+        /// <param name="req">分页查询请求内容</param>
+        /// <returns>PageResultVO about RoleVO</returns>
         public static PageResultVO<RoleVO> GetPageResult(RolePageReqDTO req)
         {
+            req.InitData();
             return dal.GetPageResult(req);
         }
+        #endregion public static PageResultVO<RoleVO> GetPageResult(RolePageReqDTO req)
 
+        #region public static List<RoleVO> GetRoles()
         /// <summary>
-        /// 
+        /// 获取可用的角色列表
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of RoleVO</returns>
         public static List<RoleVO> GetRoles() { return dal.GetRoles(); }
+
+        #endregion public static List<RoleVO> GetRoles()
     }
 }

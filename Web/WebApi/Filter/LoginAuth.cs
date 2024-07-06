@@ -37,7 +37,7 @@ namespace MicroShop.Web.AdminApi.Filter
         public void OnActionExecuting(ActionExecutingContext context)
         {           
              
-            UserTokenDTO userToken = null;
+            UserTokenDTO? userToken = null;
             if(userToken == null || userToken.UserId == 0)
             {
                 throw new ServiceException { ErrorMessage = "登录信息已失效，请重新登录系统！", ErrorCode = RequestResultCodeEnum.NotAllowAnonymous };

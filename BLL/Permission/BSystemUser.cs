@@ -42,6 +42,7 @@ namespace MicroShop.BLL.Permission
                 //设置已登录的系统用户登录状态无效
                 SystemUserTokenDTO systemUserToken = BSystemUserAuth.GetSystemUserToken(token);
                 systemUserToken.UserId = 0;
+                systemUserToken.IsAdmin = false;
                 BSystemUserAuth.CacheSystemUserToken(systemUserToken);
                 //移除缓存
                 RedisClient.KeyDelete(key);

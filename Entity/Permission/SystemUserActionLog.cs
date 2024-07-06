@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using MicroShop.Enums.Permission;
-using MicroShop.Enums.Web;
 
 namespace MicroShop.SQLServerDAL.Permission
 {
@@ -13,7 +12,7 @@ namespace MicroShop.SQLServerDAL.Permission
     public class SystemUserActionLog
     {
         /// <summary>
-        /// 日志编号
+        /// 增值流水号
         /// </summary>
         [Key]
         [Column("log_id", TypeName = "bigint")]
@@ -42,7 +41,7 @@ namespace MicroShop.SQLServerDAL.Permission
         /// 操作类型
         /// </summary>
         [Column("action_type", TypeName = "int")]
-        public ActionTypeEnum ActionType { get; set; } = ActionTypeEnum.None;
+        public ActionTypeEnum ActionType { get; set; } = ActionTypeEnum.View;
 
         /// <summary>
         /// 远程访问的IP
@@ -51,16 +50,16 @@ namespace MicroShop.SQLServerDAL.Permission
         public string RemoteIp { get; set; } = "127.0.0.1";
 
         /// <summary>
-        /// 客户端类型
-        /// </summary>
-        [Column("client_type", TypeName = "int")]
-        public ClientTypeEnum ClientType { get; set; } = ClientTypeEnum.PCWeb;
-
-        /// <summary>
         /// 访问的客户端头信息
         /// </summary>
-        [Column("user_agent", TypeName = "varchar(256)")]
+        [Column("user_agent", TypeName = "varchar(512)")]
         public string UserAgent { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 请求的相对地址
+        /// </summary>
+        [Column("request_url", TypeName = "varchar(1024)")]
+        public string RequestUrl { get; set; } = string.Empty;
 
         /// <summary>
         /// 操作内容
@@ -73,23 +72,6 @@ namespace MicroShop.SQLServerDAL.Permission
         /// </summary>
         [Column("created_at", TypeName = "datetime")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public SystemUserActionLog()
-        {
-            LogId = 0;
-            UserId = 0;
-            UserName = "";
-            AccessToken = "";
-            ActionType = ActionTypeEnum.None;
-            ClientType = ClientTypeEnum.PCWeb;
-            RemoteIp = "127.0.0.1";
-            UserAgent = "";
-            OperateContent = "";
-            CreatedAt = DateTime.Now;
-        }
-
+ 
     }
 }

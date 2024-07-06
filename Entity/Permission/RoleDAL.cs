@@ -108,16 +108,33 @@ namespace MicroShop.SQLServerDAL.Permission
 
             using (var context = new MicroShopContext())
             {
+                IQueryable<Role>? query = null;
                 if (string.IsNullOrWhiteSpace(req.RoleName))
                 {
+                    query = context.Roles.Where(x => x.RoleName.Contains(req.RoleName.Trim()));
+                }
+                if(req.IsEnable != null)
+                {
+                    if(query == null)
+                    {
+                        query = context.Roles.Where(x => x.IsEnable == req.IsEnable.Value);
+                    }
+                    else
+                    {
+                        query = query.Where(x => x.IsEnable == req.IsEnable.Value);
+                    }
+                }
+                if(query == null)
+                {
                     pageResult.RecordCount = context.Roles.Count();
-                    pageResult.Data = context.Roles.Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => ToVO(entity)).ToList();
+                    pageResult.Data = context.Roles.OrderByDescending(x => x.RoleId).Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => ToVO(entity)).ToList();
+
                 }
                 else
                 {
-                    var query = context.Roles.Where(x => x.RoleName.Contains(req.RoleName.Trim()));
                     pageResult.RecordCount = query.Count();
-                    pageResult.Data = query.Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => ToVO(entity)).ToList();
+                    pageResult.Data = query.OrderByDescending(x => x.RoleId).Skip((pageResult.PageIndex - 1) * pageResult.PageSize).Take(pageResult.PageSize).Select(entity => ToVO(entity)).ToList();
+
                 }
             }
             return pageResult;
@@ -150,7 +167,7 @@ namespace MicroShop.SQLServerDAL.Permission
         {
             using (var context = new MicroShopContext())
             {
-                return context.Roles.OrderByDescending(x => x.RoleId).Select(entity => ToVO(entity)).ToList();
+                return context.Roles.Where(x => x.IsEnable == true).OrderByDescending(x => x.RoleId).Select(entity => ToVO(entity)).ToList();
             }
         }
 

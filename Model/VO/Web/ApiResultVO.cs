@@ -1,4 +1,5 @@
-﻿using MicroShop.Enums.Web;
+﻿using System.Text.Json.Serialization;
+using MicroShop.Enums.Web;
 
 namespace MicroShop.Model.VO.Web
 {
@@ -22,7 +23,8 @@ namespace MicroShop.Model.VO.Web
         /// <summary>
         /// 结果数据
         /// </summary>
-        public T Result { get; set; } = default!;
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public T? Result { get; set; } = default!;
 
 
         /// <summary>

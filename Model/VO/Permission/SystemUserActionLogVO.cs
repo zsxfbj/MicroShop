@@ -15,27 +15,27 @@ namespace MicroShop.Model.VO.Permission
         /// 日志编号
         /// </summary>
         [JsonConverter(typeof(LongToStringConverter))]
-        public long LogId { get; set; }
+        public long LogId { get; set; } = 0L;
 
         /// <summary>
         /// 用户编号
         /// </summary>
-        public int UserId { get; set; }
+        public int UserId { get; set; } = 0;
 
         /// <summary>
         /// 用户名称
         /// </summary>
-        public string UserName { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
         /// <summary>
         /// 访问令牌
         /// </summary>
-        public string AccessToken { get; set; }
+        public string AccessToken { get; set; } = string.Empty;
 
         /// <summary>
         /// 操作类型
         /// </summary>
-        public ActionTypeEnum ActionType { get; set; }
+        public ActionTypeEnum ActionType { get; set; } = ActionTypeEnum.View;
 
         /// <summary>
         /// 操作类型名称
@@ -51,38 +51,29 @@ namespace MicroShop.Model.VO.Permission
         /// <summary>
         /// 客户端Ip
         /// </summary>
-        public string RemoteIp { get; set; }
+        public string RemoteIp { get; set; } = string.Empty;
 
         /// <summary>
         /// 客户端
         /// </summary>
-        public string UserAgent { get; set; }
+        public string UserAgent { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 请求Url地址
+        /// </summary>
+        public string RequestUrl { get; set; } = string.Empty;
 
         /// <summary>
         /// 操作内容
         /// </summary>
-        public string OperateContent { get; set; }
+        public string OperateContent { get; set; } = string.Empty;
 
         /// <summary>
         /// 创建时间
         /// </summary>
         [JsonConverter(typeof(DefaultDateTimeConverter))]
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public SystemUserActionLogVO()
-        {
-            LogId = 0;
-            UserId = 0;
-            UserName = "";
-            AccessToken = "";
-            ActionType = ActionTypeEnum.None;
-            RemoteIp = "";
-            UserAgent = "";
-            OperateContent = "";
-            CreatedAt = DateTime.Now;
-        }
+        
     }
 }

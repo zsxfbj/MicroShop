@@ -29,7 +29,7 @@ namespace MicroShop.Model.DTO.Permission
         /// <summary>
         /// 操作类型
         /// </summary>
-        public ActionTypeEnum? ActionType { get; set; } = ActionTypeEnum.None;
+        public ActionTypeEnum? ActionType { get; set; } = ActionTypeEnum.View;
 
         /// <summary>
         /// 开始日期

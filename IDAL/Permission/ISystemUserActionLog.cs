@@ -9,12 +9,11 @@ namespace MicroShop.IDAL.Permission
     /// </summary>
     public interface ISystemUserActionLog
     {
-
         /// <summary>
-        /// 批量添加记录
+        /// 添加记录
         /// </summary>
-        /// <param name="logs"></param>
-        void BatchInsert(List<SystemUserActionLogVO> logs);
+        /// <param name="vo"></param>
+        void Save(SystemUserActionLogVO vo);
 
         /// <summary>
         /// 批量删除日志记录
