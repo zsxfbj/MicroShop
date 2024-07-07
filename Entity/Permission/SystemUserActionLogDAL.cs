@@ -20,8 +20,8 @@ namespace MicroShop.SQLServerDAL.Permission
         {
             PageResultVO<SystemUserActionLogVO> pageResult = new PageResultVO<SystemUserActionLogVO>
             {
-                PageIndex = req.PageIndex.HasValue ? req.PageIndex.Value : 1,
-                PageSize = req.PageSize.HasValue ? req.PageSize.Value : 10,
+                PageIndex = req.PageIndex,
+                PageSize = req.PageSize,
                 Data = new List<SystemUserActionLogVO>(),
                 RecordCount = 0
             };

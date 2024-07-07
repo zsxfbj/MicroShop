@@ -105,20 +105,5 @@ namespace MicroShop.SQLServerDAL.Permission
         /// </summary>
         [Column("updated_at")]
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public Menu()
-        {
-            MenuId = 0;
-            ParentId = 0;
-            MenuName = string.Empty;
-            MenuUrl = string.Empty;
-            Note = string.Empty;
-            OrderValue = 1;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-        }
     }
 }

@@ -12,6 +12,7 @@ namespace MicroShop.Model.DTO.Permission
         /// <summary>
         /// 菜单类型
         /// </summary>
+        [Required(ErrorMessage = "请选择菜单类型")]
         public MenuTypeEnum MenuType { get; set; } = MenuTypeEnum.Text;
 
         /// <summary>

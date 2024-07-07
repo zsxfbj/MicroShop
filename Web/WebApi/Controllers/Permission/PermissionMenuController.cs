@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using MicroShop.BLL.Permission;
+﻿using MicroShop.BLL.Permission;
 using MicroShop.Enums.Web;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
@@ -24,7 +23,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         [HttpGet("detail/{menuId}")]
         public ApiResultVO<MenuVO> GetMenu([FromRoute] int menuId)
         {
-            return new ApiResultVO<MenuVO> { Result = BMenu.GetInstance().GetMenu(menuId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<MenuVO> { Result = BMenu.GetMenu(menuId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -34,7 +33,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         [HttpGet("list")]
         public ApiResultVO<List<MenuVO>> GetMenus()
         {
-            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetInstance().GetMenus(0), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetMenus(0), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -45,7 +44,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         [HttpGet("list/{parentId}")]
         public ApiResultVO<List<MenuVO>> GetMenus([FromRoute] int parentId)
         {
-            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetInstance().GetMenus(parentId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetMenus(parentId), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -57,7 +56,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         [SysLoginAuth(IsAdmin = true)]
         public ApiResultVO<string> Delete([FromRoute] int menuId)
         {
-            BMenu.GetInstance().Delete(menuId);
+            BMenu.Delete(menuId);
             return ApiResultVO<string>.Success("");
         }
 
@@ -70,7 +69,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         [SysLoginAuth(IsAdmin = true)]
         public ApiResultVO<MenuVO> Create([FromBody] CreateMenuReqDTO req)
         {
-            return new ApiResultVO<MenuVO> { Result = BMenu.GetInstance().Create(req), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<MenuVO> { Result = BMenu.Create(req), ResultCode = RequestResultCodeEnum.Success };
         }
 
         /// <summary>
@@ -82,7 +81,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         [SysLoginAuth(IsAdmin = true)]
         public ApiResultVO<string> Modify([FromBody] ModifyMenuReqDTO req)
         {
-            BMenu.GetInstance().Modify(req);
+            BMenu.Modify(req);
             return ApiResultVO<string>.Success("请求成功");
         }
     }

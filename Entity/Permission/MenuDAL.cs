@@ -22,11 +22,17 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <param name="menu">菜单数据表对象</param>
         private static void ToEntity(CreateMenuReqDTO req, Menu menu)
         {
+            menu.MenuType = req.MenuType;
+            menu.MenuName = req.MenuName.Trim();
+            menu.ParentId = req.ParentId;            
+            menu.Path = req.Path.Trim();          
+            menu.Note = req.Note.Trim();
+            menu.Icon = req.Icon;
+            menu.ComponentConfig = req.ComponentConfig;
+            menu.ComponentName = req.ComponentName;
+            menu.Permission = req.Permission;
+            menu.IsEnable = req.IsEnable;
             menu.OrderValue = req.OrderValue;
-            menu.MenuUrl = string.IsNullOrEmpty(req.MenuUrl) ? "" : req.MenuUrl.Trim();
-            menu.MenuName = string.IsNullOrEmpty(req.MenuName) ? "" : req.MenuName.Trim();
-            menu.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
-            menu.ParentId = req.ParentId;
         }
         #endregion private static void ToEntity(CreateMenuReqDTO req, Menu menu)
 
@@ -45,14 +51,20 @@ namespace MicroShop.SQLServerDAL.Permission
             }
 
             return new MenuVO
-            {
-                CreatedAt = entity.CreatedAt,
+            {                
                 MenuId = entity.MenuId,
-                MenuName = entity.MenuName,
-                MenuUrl = entity.MenuUrl,
-                Note = entity.Note,
-                OrderValue = entity.OrderValue,
                 ParentId = entity.ParentId,
+                MenuName = entity.MenuName,
+                MenuType = entity.MenuType,
+                Path = entity.Path,
+                Icon = entity.Icon,
+                IsEnable = entity.IsEnable,
+                ComponentName = entity.ComponentName,
+                ComponentConfig = entity.ComponentConfig,
+                Permission = entity.Permission,
+                Note = entity.Note,
+                OrderValue = entity.OrderValue,              
+                CreatedAt = entity.CreatedAt,
                 UpdatedAt = entity.UpdatedAt
             };
         }

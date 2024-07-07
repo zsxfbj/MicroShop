@@ -5,6 +5,7 @@ using MicroShop.Model.Auth;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
+using MicroShop.SQLServerDAL.Permission;
 using MicroShop.Utility.Common;
 
 namespace MicroShop.BLL.Permission
@@ -16,7 +17,18 @@ namespace MicroShop.BLL.Permission
     {
         private readonly static IMenu dal = MenuFactory.Create();
 
-
+        private static void InitData(CreateMenuReqDTO req)
+        {
+            req.OrderValue = req.OrderValue;
+            req.Path = string.IsNullOrEmpty(req.Path) ? "" : req.Path.Trim();
+            req.MenuName = string.IsNullOrEmpty(req.MenuName) ? "" : req.MenuName.Trim();
+            req.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
+            req.ParentId = req.ParentId;
+            req.Icon = string.IsNullOrEmpty(req.Icon) ? "" : req.Icon.Trim();
+            req.ComponentName = string.IsNullOrEmpty(req.ComponentName) ? "" : req.ComponentName.Trim();
+            req.ComponentConfig = string.IsNullOrEmpty(req.ComponentConfig) ? "" : req.ComponentConfig.Trim();
+            req.Permission = string.IsNullOrEmpty(req.Permission) ? "" : req.Permission.Trim();
+        }
 
         /// <summary>
         /// 
