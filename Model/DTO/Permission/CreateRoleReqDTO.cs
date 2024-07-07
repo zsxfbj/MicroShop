@@ -20,7 +20,8 @@ namespace MicroShop.Model.DTO.Permission
         /// <summary>
         /// 是否启用
         /// </summary>
-        [DefaultValue(true)]
+        [DefaultValue(false)]
+        [Required(ErrorMessage = "先选择是否启用")]
         public bool IsEnable { get; set; } = false;
 
         /// <summary>

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MicroShop.Enums.Permission;
 
 namespace MicroShop.SQLServerDAL.Permission
 {
@@ -28,16 +29,57 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <summary>
         /// 菜单名称
         /// </summary>
-        [Column("menu_name", TypeName = "nvarchar(30)")]
+        [Column("menu_name", TypeName = "nvarchar(32)")]
         [Required(ErrorMessage = "菜单名称必须填写"), MaxLength(30, ErrorMessage = "菜单名称不能超过30个字")]
         public string MenuName { get; set; } = string.Empty;
 
         /// <summary>
+        /// 菜单类型
+        /// </summary>
+        [Column("menu_type", TypeName = "int")]
+        public MenuTypeEnum MenuType { get; set; } = MenuTypeEnum.Text;
+
+        /// <summary>
         /// 菜单地址
         /// </summary>
-        [Column("menu_url", TypeName = "varchar(255)")]
-        [MaxLength(255, ErrorMessage = "菜单地址不能超过255个字")]
-        public string MenuUrl { get; set; } = string.Empty;
+        [Column("path", TypeName = "varchar(256)")]
+        [MaxLength(255, ErrorMessage = "菜单地址不能超过255个字符")]
+        public string Path { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Icon配置
+        /// </summary>
+        [Column("icon", TypeName = "varchar(256)")]
+        [MaxLength(255, ErrorMessage = "Icon配置不能超过255个字符")]
+        public string Icon { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 组件名称
+        /// </summary>
+        [Column("component_name", TypeName = "varchar(64)")]
+        [StringLength(64, ErrorMessage = "组件名称最多60个字符")]
+        public string ComponentName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 组件配置内容
+        /// </summary>
+        [Column("component_config", TypeName = "varchar(256)")]
+        [StringLength(250, ErrorMessage = "组件配置最多250个字符")]
+        public string ComponentConfig { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 权限
+        /// </summary>
+        [Column("permission", TypeName = "varchar(256)")]
+        [StringLength(200, ErrorMessage = "权限最多200个字符")]
+        public string Permission { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        [Column("is_enable", TypeName = "bit")]
+        [Required(ErrorMessage = "必须选择是否启用")]
+        public bool IsEnable { get; set; } = false;
 
         /// <summary>
         /// 排序值
@@ -48,8 +90,8 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <summary>
         /// 备注
         /// </summary>
-        [Column("note", TypeName = "nvarchar(255)")]
-        [MaxLength(255, ErrorMessage = "备注不能超过255个字")]
+        [Column("note", TypeName = "nvarchar(256)")]
+        [MaxLength(256, ErrorMessage = "备注不能超过250个字")]
         public string Note { get; set; } = string.Empty;
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using MicroShop.Utility.Serialize.Json;
+﻿using MicroShop.Enums.Permission;
+using MicroShop.Utility.Serialize.Json;
 using System.Text.Json.Serialization;
 
 namespace MicroShop.Model.VO.Permission
@@ -25,9 +26,39 @@ namespace MicroShop.Model.VO.Permission
         public string MenuName { get; set; } = string.Empty;
 
         /// <summary>
-        /// 菜单地址
+        /// 菜单类型
         /// </summary>
-        public string MenuUrl { get; set; } = string.Empty;
+        public MenuTypeEnum MenuType { get; set; } = MenuTypeEnum.Text;
+
+        /// <summary>
+        /// 地址
+        /// </summary>
+        public string Path { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 图标
+        /// </summary>
+        public string Icon {  get; set; } = string.Empty;   
+
+        /// <summary>
+        /// 组件名称
+        /// </summary>
+        public string ComponentName {  get; set; } = string.Empty;
+
+        /// <summary>
+        /// 组件配置内容
+        /// </summary>
+        public string ComponentConfig { get; set; } = string.Empty;
+
+        /// <summary>
+        /// 权限
+        /// </summary>
+        public string Permission { get; set; } = string.Empty; 
+
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool IsEnable { get; set; } = false;
 
         /// <summary>
         /// 排序值

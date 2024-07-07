@@ -17,14 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Model", "Model\Mi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.DALFactory", "DALFactory\MicroShop.DALFactory.csproj", "{928A5E47-5873-4957-BA2E-65FAD01F31B7}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{21DE409F-078C-425C-85F9-BEEAB965FADD}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sql", "sql", "{3E05224A-BA24-4245-97F3-C1BF4C1E294B}"
-	ProjectSection(SolutionItems) = preProject
-		init_database.sql = init_database.sql
-		v1.0.sql = v1.0.sql
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.WebApi", "Web\WebApi\MicroShop.WebApi.csproj", "{A4FFFEB6-8CFC-4521-B824-1120D12C4A31}"
 EndProject
 Global
@@ -68,9 +60,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{3E05224A-BA24-4245-97F3-C1BF4C1E294B} = {21DE409F-078C-425C-85F9-BEEAB965FADD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A0BE2C84-A67C-4352-822B-053DE5BC22A4}

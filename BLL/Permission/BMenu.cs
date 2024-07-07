@@ -12,16 +12,18 @@ namespace MicroShop.BLL.Permission
     /// <summary>
     /// 菜单业务逻辑类
     /// </summary>
-    public class BMenu : Singleton<BMenu>
+    public class BMenu
     {
         private readonly static IMenu dal = MenuFactory.Create();
+
+
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        public MenuVO Create(CreateMenuReqDTO req)
+        public static MenuVO Create(CreateMenuReqDTO req)
         {
            
 
@@ -30,7 +32,7 @@ namespace MicroShop.BLL.Permission
             return dto;
         }
 
-        public void Modify(ModifyMenuReqDTO req)
+        public static void Modify(ModifyMenuReqDTO req)
         {
           
 
@@ -42,7 +44,7 @@ namespace MicroShop.BLL.Permission
         /// </summary>
         /// <param name="menuId"></param>
         /// <exception cref="ServiceException"></exception>
-        public void Delete(int menuId) 
+        public static void Delete(int menuId) 
         {
             
 
@@ -55,7 +57,7 @@ namespace MicroShop.BLL.Permission
         /// </summary>
         /// <param name="menuId"></param>
         /// <exception cref="ServiceException"></exception>
-        public MenuVO GetMenu(int menuId)
+        public static MenuVO GetMenu(int menuId)
         {
             
 
@@ -65,10 +67,14 @@ namespace MicroShop.BLL.Permission
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="parentId"></param>
+        /// <param name="parentId">父级Id</param>
         /// <returns></returns>
-        public List<MenuVO> GetMenus(int parentId)
+        public static List<MenuVO> GetMenus(int parentId)
         {
+            if(parentId < 1)
+            {
+                parentId = 0;
+            }
             return dal.GetMenus(parentId);
         }
     }

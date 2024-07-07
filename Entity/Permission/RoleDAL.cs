@@ -12,21 +12,21 @@ namespace MicroShop.SQLServerDAL.Permission
     /// </summary>
     public class RoleDAL : IRole
     {
+        #region Private Methods
 
         #region private static void ToEntity(CreateRoleReqDTO req, Role role)
         /// <summary>
-        /// 
+        /// 外部数据赋值到实体类
         /// </summary>
-        /// <param name="req"></param>
-        /// <param name="role"></param>
+        /// <param name="req">请求保存的数据对象</param>
+        /// <param name="role">实体对象</param>
         private static void ToEntity(CreateRoleReqDTO req, Role role)
         {
-            role.RoleName = string.IsNullOrEmpty(req.RoleName) ? "" : req.RoleName.Trim();
+            role.RoleName = req.RoleName;
             role.IsEnable = req.IsEnable;
-            role.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
+            role.Note = req.Note;
         }
         #endregion private static void ToEntity(CreateRoleReqDTO req, Role role)
-
 
         #region private ToVO ToVO(Role role)
         /// <summary>
@@ -48,6 +48,9 @@ namespace MicroShop.SQLServerDAL.Permission
         }
         #endregion private ToVO ToVO(Role role)
 
+        #endregion Private Methods
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -55,7 +58,7 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
         public RoleVO Create(CreateRoleReqDTO req)
-        {
+        {           
             Role role = new Role();
             ToEntity(req, role);
             using (var context = new MicroShopContext())
@@ -100,8 +103,8 @@ namespace MicroShop.SQLServerDAL.Permission
         {
             PageResultVO<RoleVO> pageResult = new PageResultVO<RoleVO>
             {
-                PageIndex = req.PageIndex.HasValue ? req.PageIndex.Value : 1,
-                PageSize = req.PageSize.HasValue ? req.PageSize.Value : 15,
+                PageIndex = req.PageIndex,
+                PageSize = req.PageSize,
                 RecordCount = 0,
                 Data = new List<RoleVO>()
             };

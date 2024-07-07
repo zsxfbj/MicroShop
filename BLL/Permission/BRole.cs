@@ -17,6 +17,17 @@ namespace MicroShop.BLL.Permission
         /// </summary>
         private readonly static IRole dal = RoleFactory.Create();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="req"></param>
+        private static void InitData(CreateRoleReqDTO req)
+        {
+            req.RoleName = req.RoleName.Trim();
+            req.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
+        }
+
+
         #region public static RoleVO Create(CreateRoleReqDTO req)
         /// <summary>
         /// 创建角色记录
@@ -26,6 +37,8 @@ namespace MicroShop.BLL.Permission
         /// <exception cref="ServiceException">业务逻辑或者数据库访问异常</exception>
         public static RoleVO Create(CreateRoleReqDTO req)
         {
+            InitData(req);
+
             RoleVO? check = dal.GetRole(req.RoleName.Trim());            
             if(check != null)
             {
@@ -44,6 +57,8 @@ namespace MicroShop.BLL.Permission
         /// <exception cref="ServiceException">业务逻辑或者数据库访问异常</exception>
         public static RoleVO Modify(ModifyRoleReqDTO req)
         {
+            InitData(req);
+
             RoleVO? check = dal.GetRole(req.RoleName.Trim());
             
             if(check != null && check.RoleId != req.RoleId)

@@ -13,15 +13,15 @@ namespace MicroShop.Model.DTO.Web
         /// 当前索引，默认1开始
         /// </summary>
         [Range(1, int.MaxValue, ErrorMessage = "页面索引从1开始")]
-        [DefaultValue("1")]
-        public int? PageIndex { get; set; }
+        [DefaultValue(1)]
+        public int PageIndex { get; set; } = 1;
 
         /// <summary>
         /// 每页记录数
         /// </summary>
         [Range(1, int.MaxValue, ErrorMessage = "每页记录数不能少于1")]
-        [DefaultValue("10")]
-        public int? PageSize { get; set; }
+        [DefaultValue(15)]
+        public int PageSize { get; set; } = 15;
 
         #region public virtual void InitData()
         /// <summary>
@@ -29,9 +29,9 @@ namespace MicroShop.Model.DTO.Web
         /// </summary>
         public virtual void InitData()
         {
-            if (!PageIndex.HasValue || PageIndex.Value < 1) { PageIndex = 1; }
+            if (PageIndex < 1) { PageIndex = 1; }
 
-            if (!PageSize.HasValue || PageSize.Value < 1) { PageSize = 10; }
+            if ( PageSize < 1) { PageSize = 15; }
         }
         #endregion public virtual void InitData()
     }
