@@ -1,12 +1,8 @@
-﻿using MicroShop.BLL.Auth;
-using MicroShop.DALFactory.Permission;
+﻿using MicroShop.DALFactory.Permission;
 using MicroShop.IDAL.Permission;
-using MicroShop.Model.Auth;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
-using MicroShop.SQLServerDAL.Permission;
-using MicroShop.Utility.Common;
 
 namespace MicroShop.BLL.Permission
 {
@@ -17,17 +13,28 @@ namespace MicroShop.BLL.Permission
     {
         private readonly static IMenu dal = MenuFactory.Create();
 
-        private static void InitData(CreateMenuReqDTO req)
+        /// <summary>
+        /// 初始化保存数据
+        /// </summary>
+        /// <param name="req"></param>
+        private static MenuDTO InitData(CreateMenuReqDTO req)
         {
-            req.OrderValue = req.OrderValue;
-            req.Path = string.IsNullOrEmpty(req.Path) ? "" : req.Path.Trim();
-            req.MenuName = string.IsNullOrEmpty(req.MenuName) ? "" : req.MenuName.Trim();
-            req.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
-            req.ParentId = req.ParentId;
-            req.Icon = string.IsNullOrEmpty(req.Icon) ? "" : req.Icon.Trim();
-            req.ComponentName = string.IsNullOrEmpty(req.ComponentName) ? "" : req.ComponentName.Trim();
-            req.ComponentConfig = string.IsNullOrEmpty(req.ComponentConfig) ? "" : req.ComponentConfig.Trim();
-            req.Permission = string.IsNullOrEmpty(req.Permission) ? "" : req.Permission.Trim();
+            MenuDTO menu = new MenuDTO
+            {
+                OrderValue = req.OrderValue,
+                Path = string.IsNullOrEmpty(req.Path) ? "" : req.Path.Trim(),
+                MenuName = string.IsNullOrEmpty(req.MenuName) ? "" : req.MenuName.Trim(),
+                MenuType = req.MenuType,
+                Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim(),
+                ParentId = req.ParentId,
+                Icon = string.IsNullOrEmpty(req.Icon) ? "" : req.Icon.Trim(),
+                ComponentName = string.IsNullOrEmpty(req.ComponentName) ? "" : req.ComponentName.Trim(),
+                ComponentConfig = string.IsNullOrEmpty(req.ComponentConfig) ? "" : req.ComponentConfig.Trim(),
+                Permission = string.IsNullOrEmpty(req.Permission) ? "" : req.Permission.Trim(),
+                IsEnable = req.IsEnable,
+                Hidden = req.Hidden
+            };
+            return menu;
         }
 
         /// <summary>
@@ -37,29 +44,33 @@ namespace MicroShop.BLL.Permission
         /// <returns></returns>
         public static MenuVO Create(CreateMenuReqDTO req)
         {
-           
-
-            MenuVO dto = dal.Create(req);
-
-            return dto;
-        }
-
-        public static void Modify(ModifyMenuReqDTO req)
-        {
-          
-
-            dal.Modify(req);
+            MenuDTO menu = InitData(req);
+            return dal.Save(menu);
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="menuId"></param>
-        /// <exception cref="ServiceException"></exception>
-        public static void Delete(int menuId) 
+        /// <param name="req"></param>
+        /// <returns></returns>
+        public static MenuVO Modify(ModifyMenuReqDTO req)
         {
-            
+            MenuDTO menu = InitData(req);
+            menu.MenuId = req.MenuId;
+            return dal.Save(menu);
+        }
 
+        /// <summary>
+        /// 根据menuId删除记录
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <exception cref="ServiceException"></exception>
+        public static void Delete(int menuId)
+        {
+            if (menuId < 1)
+            {
+                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "参数值错误" };
+            }
             dal.Delete(menuId);
         }
 
@@ -71,7 +82,10 @@ namespace MicroShop.BLL.Permission
         /// <exception cref="ServiceException"></exception>
         public static MenuVO GetMenu(int menuId)
         {
-            
+            if (menuId < 1)
+            {
+                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "参数值错误" };
+            }
 
             return dal.GetMenu(menuId);
         }
@@ -83,7 +97,7 @@ namespace MicroShop.BLL.Permission
         /// <returns></returns>
         public static List<MenuVO> GetMenus(int parentId)
         {
-            if(parentId < 1)
+            if (parentId < 1)
             {
                 parentId = 0;
             }

@@ -9,17 +9,11 @@ namespace MicroShop.IDAL.Permission
     public interface IMenu
     {
         /// <summary>
-        /// 新增菜单
+        /// 保存菜单记录
         /// </summary>
-        /// <param name="createMenu">创建菜单请求</param>
-        /// <returns>MicroShop.Model.Permission.MenuDTO or null</returns>
-        MenuVO Create(CreateMenuReqDTO createMenu);
-
-        /// <summary>
-        /// 修改菜单信息
-        /// </summary>
-        /// <param name="modifyMenu"></param>
-        MenuVO Modify(ModifyMenuReqDTO modifyMenu);
+        /// <param name="menu">菜单数据对象</param>
+        /// <returns>a value of MicroShop.Model.Permission.MenuDTO or null</returns>
+        MenuVO Save(MenuDTO menu);
 
         /// <summary>
         /// 根据菜单id删除

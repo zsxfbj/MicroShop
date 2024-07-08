@@ -14,7 +14,7 @@ namespace MicroShop.IDAL.Permission
         /// <param name="roleId"></param>
         /// <param name="menuId"></param>
         /// <returns></returns>
-        bool IsExist(int roleId, int menuId);
+        bool HasPermission(int roleId, string permission);
 
         /// <summary>
         /// 

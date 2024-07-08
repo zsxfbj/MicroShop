@@ -1,86 +1,75 @@
-﻿using System.ComponentModel.DataAnnotations;
-using MicroShop.Enums.Permission;
+﻿using MicroShop.Enums.Permission;
 
 namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>
-    /// 创建菜单请求
+    /// 菜单数据转化对象类
     /// </summary>
-    [Serializable]
-    public class CreateMenuReqDTO
+    public class MenuDTO
     {
         /// <summary>
-        /// 菜单类型
+        /// 菜单编号
         /// </summary>
-        [Required(ErrorMessage = "请选择菜单类型")]
-        public MenuTypeEnum MenuType { get; set; } = MenuTypeEnum.Text;
+        public int MenuId { get; set; }
+
+        /// <summary>
+        /// 上级菜单编号
+        /// </summary>
+        public int ParentId { get; set; } = 0;
 
         /// <summary>
         /// 菜单名称
         /// </summary>
-        [Required(ErrorMessage = "菜单必须填写")]
-        [StringLength(20, ErrorMessage = "菜单名称最多20个字")]
         public string MenuName { get; set; } = string.Empty;
 
         /// <summary>
-        /// 上级菜单
+        /// 菜单类型
         /// </summary>
-        [Required(ErrorMessage = "必须指定上级菜单")]
-        [Range(0, int.MaxValue, ErrorMessage = "上级菜单编号格式错误")]
-        public int ParentId { get; set; } = 0;
+        public MenuTypeEnum MenuType { get; set; } = MenuTypeEnum.Text;
 
         /// <summary>
-        /// 菜单地址
+        /// 地址
         /// </summary>
-        [StringLength(200, ErrorMessage = "菜单地址最多200个字符")]
         public string Path { get; set; } = string.Empty;
 
         /// <summary>
-        /// 图表样式
+        /// 图标
         /// </summary>
-        [StringLength(200, ErrorMessage = "图表样式最多200个字符")]
         public string Icon { get; set; } = string.Empty;
 
         /// <summary>
         /// 组件名称
         /// </summary>
-        [StringLength(64, ErrorMessage = "组件名称最多60个字符")]
         public string ComponentName { get; set; } = string.Empty;
 
         /// <summary>
         /// 组件配置内容
         /// </summary>
-        [StringLength(250, ErrorMessage = "组件配置最多250个字符")]
         public string ComponentConfig { get; set; } = string.Empty;
 
         /// <summary>
         /// 权限
         /// </summary>
-        [StringLength(250, ErrorMessage = "权限最多250个字符")]
         public string Permission { get; set; } = string.Empty;
 
         /// <summary>
         /// 是否启用
         /// </summary>
-        [Required(ErrorMessage = "必须选择是否启用")]
         public bool IsEnable { get; set; } = false;
 
         /// <summary>
         /// 是否隐藏
         /// </summary>
-        [Required(ErrorMessage = "必须选择是否隐藏")]
         public bool Hidden { get; set; } = false;
 
         /// <summary>
-        /// 排序值（升序）
+        /// 排序值
         /// </summary>
-        [Range(0, int.MaxValue, ErrorMessage = "排序值必须大于等于0")]
         public int OrderValue { get; set; } = 1;
 
         /// <summary>
         /// 备注
         /// </summary>
-        [StringLength(250, ErrorMessage = "备注最多250个字")]
         public string Note { get; set; } = string.Empty;
     }
 }

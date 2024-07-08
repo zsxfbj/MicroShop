@@ -16,18 +16,26 @@ namespace MicroShop.BLL.Permission
         /// </summary>
         private readonly static IRoleMenuRelation dal = RoleMenuRelationFactory.Create();
 
+        #region public static bool HasPermission(int roleId, string permission)
         /// <summary>
-        /// 
+        /// 判断是否有权限访问
         /// </summary>
         /// <param name="roleId"></param>
-        /// <param name="menuId"></param>
+        /// <param name="permission"></param>
         /// <returns></returns>
-        public static bool IsExist(int roleId, int menuId)
+        public static bool HasPermission(int roleId, string permission)
         {
-           if(roleId <= 0 || menuId <= 0) { throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "请求的参数错误" }; }
-            
-           return dal.IsExist(roleId, menuId);
+            if(roleId < 1)
+            {
+                return false;
+            }
+            if (string.IsNullOrEmpty(permission))
+            {
+                return true;
+            }            
+            return dal.HasPermission(roleId, permission);
         }
+        #endregion public static bool HasPermission(int roleId, string permission)
 
         /// <summary>
         /// 

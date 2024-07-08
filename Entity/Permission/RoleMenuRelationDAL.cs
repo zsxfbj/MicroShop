@@ -58,13 +58,13 @@ namespace MicroShop.SQLServerDAL.Permission
         /// 
         /// </summary>
         /// <param name="roleId"></param>
-        /// <param name="menuId"></param>
+        /// <param name="permission"></param>
         /// <returns></returns>
-        public bool IsExist(int roleId, int menuId)
+        public bool HasPermission(int roleId, string permission)
         {
             using (var context = new MicroShopContext())
             {
-                return context.RoleMenuRelations.Count(x => x.RoleId == roleId && x.MenuId == menuId) > 0;
+                return context.RoleMenuRelations.Count(x => x.RoleId == roleId && x.Permission == permission) > 0;
             }
         }
 

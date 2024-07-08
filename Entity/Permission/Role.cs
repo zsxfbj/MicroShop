@@ -39,6 +39,12 @@ namespace MicroShop.SQLServerDAL.Permission
         public string Note { get; set; } = string.Empty;
 
         /// <summary>
+        /// 是否删除
+        /// </summary>
+        [Column("is_deleted", TypeName = "bit")]
+        public bool IsDeleted { get; set; } = false;
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         [Column("created_at", TypeName = "datetime")]
@@ -49,18 +55,6 @@ namespace MicroShop.SQLServerDAL.Permission
         /// </summary>
         [Column("updated_at", TypeName = "datetime")]
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public Role()
-        {
-            RoleId = 0;
-            RoleName = string.Empty;
-            IsEnable = false;
-            Note = string.Empty;
-            CreatedAt = DateTime.Now;
-            UpdatedAt = DateTime.Now;
-        }
+               
     }
 }

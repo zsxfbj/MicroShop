@@ -82,6 +82,18 @@ namespace MicroShop.SQLServerDAL.Permission
         public bool IsEnable { get; set; } = false;
 
         /// <summary>
+        /// 是否隐藏
+        /// </summary>
+        [Column("hidden", TypeName = "bit")]
+        public bool Hidden { get; set; } = false;
+
+        /// <summary>
+        /// 是否删除
+        /// </summary>
+        [Column("is_deleted", TypeName = "bit")]
+        public bool IsDeleted { get; set; } = false;
+
+        /// <summary>
         /// 排序值
         /// </summary>
         [Column("order_value", TypeName = "int")]

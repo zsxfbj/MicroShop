@@ -19,7 +19,7 @@ namespace MicroShop.Web.AdminApi.Filter
         /// <summary>
         /// 系统菜单编号
         /// </summary>
-        public int MenuId { get; set; } = 0;
+        public string Permission { get; set; } = string.Empty;
 
         /// <summary>
         /// 操作类型
@@ -65,7 +65,7 @@ namespace MicroShop.Web.AdminApi.Filter
             }
 
             //判断菜单权限
-            if (MenuId > 0 && !BRoleMenuRelation.IsExist(systemUserToken.RoleId, MenuId))
+            if (!BRoleMenuRelation.HasPermission(systemUserToken.RoleId, Permission))
             {
                 throw new ServiceException { ErrorMessage = "您无权访问该菜单！", ErrorCode = RequestResultCodeEnum.NotAllowAccess };
             }

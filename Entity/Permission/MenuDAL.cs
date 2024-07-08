@@ -18,21 +18,23 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <summary>
         /// 请求数据和表数据对应
         /// </summary>
-        /// <param name="req">创建菜单的请求内容</param>
-        /// <param name="menu">菜单数据表对象</param>
-        private static void ToEntity(CreateMenuReqDTO req, Menu menu)
+        /// <param name="menu">需要保存菜单的数据</param>
+        /// <param name="entity">菜单数据表对象</param>
+        private static void ToEntity(MenuDTO menu, Menu entity)
         {
-            menu.MenuType = req.MenuType;
-            menu.MenuName = req.MenuName.Trim();
-            menu.ParentId = req.ParentId;            
-            menu.Path = req.Path.Trim();          
-            menu.Note = req.Note.Trim();
-            menu.Icon = req.Icon;
-            menu.ComponentConfig = req.ComponentConfig;
-            menu.ComponentName = req.ComponentName;
-            menu.Permission = req.Permission;
-            menu.IsEnable = req.IsEnable;
-            menu.OrderValue = req.OrderValue;
+            entity.MenuId = menu.MenuId;
+            entity.MenuType = menu.MenuType;
+            entity.MenuName = menu.MenuName.Trim();
+            entity.ParentId = menu.ParentId;
+            entity.Path = menu.Path.Trim();
+            entity.Note = menu.Note.Trim();
+            entity.Icon = menu.Icon;
+            entity.ComponentConfig = menu.ComponentConfig;
+            entity.ComponentName = menu.ComponentName;
+            entity.Permission = menu.Permission;
+            entity.IsEnable = menu.IsEnable;
+            entity.Hidden = menu.Hidden;
+            entity.OrderValue = menu.OrderValue;
         }
         #endregion private static void ToEntity(CreateMenuReqDTO req, Menu menu)
 
@@ -59,6 +61,7 @@ namespace MicroShop.SQLServerDAL.Permission
                 Path = entity.Path,
                 Icon = entity.Icon,
                 IsEnable = entity.IsEnable,
+                Hidden = entity.Hidden,
                 ComponentName = entity.ComponentName,
                 ComponentConfig = entity.ComponentConfig,
                 Permission = entity.Permission,
@@ -74,24 +77,48 @@ namespace MicroShop.SQLServerDAL.Permission
 
         #region Public Methods
 
-        #region public MenuVO Create(CreateMenuReqDTO req)
+        #region public MenuVO Save(MenuDTO menu)
         /// <summary>
         /// 创建菜单的方法
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        public MenuVO Create(CreateMenuReqDTO req)
+        public MenuVO Save(MenuDTO menu)
         {
             using (var context = new MicroShopContext())
             {
-                Menu entity = new Menu();
-                ToEntity(req, entity);
-                context.Menus.Add(entity);
+                Menu? entity = null;
+                if(menu.MenuId > 0)
+                {
+                    entity = context.Menus.FirstOrDefault(x => x.MenuId == menu.MenuId);
+                }
+                if (entity == null) 
+                {
+                    entity = new Menu
+                    {
+                         MenuId = 0,
+                         CreatedAt = DateTime.Now,
+                         IsDeleted = false
+                    };
+                }
+
+                ToEntity(menu, entity);
+                entity.UpdatedAt = DateTime.Now;
+
+                if(entity.MenuId == 0)
+                {
+                    context.Menus.Add(entity);
+                }
+                else
+                {
+                    context.Menus.Update(entity);
+                }              
                 context.SaveChanges();
+
                 return ToVO(entity);
             }
         }
-        #endregion public MenuVO Create(CreateMenuReqDTO req)
+        #endregion public MenuVO Save(MenuDTO menu)
 
         #region public void Delete(int menuId)
         /// <summary>
@@ -103,8 +130,8 @@ namespace MicroShop.SQLServerDAL.Permission
         {
             using (var context = new MicroShopContext())
             {
-                Menu? menu = context.Menus.FirstOrDefault(x => x.MenuId == menuId);
-                if (menu == null)
+                Menu? entity = context.Menus.FirstOrDefault(x => x.MenuId == menuId);
+                if (entity == null)
                 {
                     throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "菜单记录不存在" };
                 }
@@ -114,14 +141,12 @@ namespace MicroShop.SQLServerDAL.Permission
                     throw new ServiceException { ErrorCode = RequestResultCodeEnum.HasSubRecords, ErrorMessage = "该菜单下还有子菜单，无法删除" };
                 }
 
-                //删除关联记录
-                List<RoleMenuRelation> roleMenuRelations = context.RoleMenuRelations.Where(x => x.MenuId == menuId).ToList();
-                if (roleMenuRelations.Count > 0)
-                {
-                    context.RoleMenuRelations.RemoveRange(roleMenuRelations);
-                }
-
-                context.Menus.Remove(menu);
+                //更新标记位
+                entity.IsDeleted = true;
+                entity.UpdatedAt = DateTime.Now;
+                
+                //更新为主
+                context.Menus.Update(entity);
                 context.SaveChanges();
             }
         }
@@ -138,12 +163,12 @@ namespace MicroShop.SQLServerDAL.Permission
         {
             using (var context = new MicroShopContext())
             {
-                Menu? menu = context.Menus.FirstOrDefault(x => x.MenuId == menuId);
-                if (menu == null)
+                Menu? entity = context.Menus.FirstOrDefault(x => x.MenuId == menuId);
+                if (entity == null || entity.IsDeleted == false)
                 {
-                    throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "菜单记录不存在" };
+                    throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "菜单记录不存在或已删除！" };
                 }
-                return ToVO(menu);
+                return ToVO(entity);
             }
         }
         #endregion public MenuVO GetMenu(int menuId)
@@ -159,35 +184,10 @@ namespace MicroShop.SQLServerDAL.Permission
         {
             using (var context = new MicroShopContext())
             {
-                return context.Menus.Where(x => x.ParentId == parentId).OrderBy(x => x.OrderValue).Select(entity => ToVO(entity)).ToList();
+                return context.Menus.Where(x => x.ParentId == parentId && x.IsDeleted == false).OrderBy(x => x.OrderValue).Select(entity => ToVO(entity)).ToList();
             }
         }
         #endregion public List<MenuVO> GetMenus(int parentId = 0)
-
-        #region public MenuVO Modify(ModifyMenuReqDTO req)
-        /// <summary>
-        /// 修改菜单信息
-        /// </summary>
-        /// <param name="req">修改菜单的请求</param>
-        /// <exception cref="ServiceException">服务异常错误</exception>
-        public MenuVO Modify(ModifyMenuReqDTO req)
-        {
-            using (var context = new MicroShopContext())
-            {
-                Menu? menu = context.Menus.FirstOrDefault(x => x.MenuId == req.MenuId);
-                if (menu == null)
-                {
-                    throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "菜单记录不存在" };
-                }
-
-                ToEntity(req, menu);
-                menu.UpdatedAt = DateTime.Now;
-                context.Menus.Update(menu);
-                context.SaveChanges();
-                return ToVO(menu);
-            }
-        }
-        #endregion public MenuVO Modify(ModifyMenuReqDTO req)
 
         #endregion Public Methods
 

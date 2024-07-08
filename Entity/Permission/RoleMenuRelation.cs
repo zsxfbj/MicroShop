@@ -25,19 +25,16 @@ namespace MicroShop.SQLServerDAL.Permission
         public int MenuId { get; set; } = 0;
 
         /// <summary>
+        /// 权限
+        /// </summary>
+        [Column("permission", TypeName = "varchar(256)")]
+        [StringLength(200, ErrorMessage = "权限最多200个字符")]
+        public string Permission { get; set; } = string.Empty;
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         [Column("created_at")]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public RoleMenuRelation()
-        {
-            RoleId = 0;
-            MenuId = 0;
-            CreatedAt = DateTime.Now;
-        }
     }
 }

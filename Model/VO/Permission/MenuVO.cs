@@ -61,6 +61,11 @@ namespace MicroShop.Model.VO.Permission
         public bool IsEnable { get; set; } = false;
 
         /// <summary>
+        /// 是否隐藏
+        /// </summary>
+        public bool Hidden { get; set; } = false;
+
+        /// <summary>
         /// 排序值
         /// </summary>
         public int OrderValue { get; set; } = 1;
