@@ -1,4 +1,5 @@
 ﻿using MicroShop.BLL.Auth;
+using MicroShop.BLL.Common;
 using MicroShop.DALFactory.Permission;
 using MicroShop.IDAL.Permission;
 using MicroShop.Model.Auth;
@@ -35,7 +36,7 @@ namespace MicroShop.BLL.Permission
         {
             //清理缓存
             string key = SystemUserTokenCacheKey + userId;
-            if (RedisClient.KeyExists(key))
+            if (BCache.IsExist(key))
             {
                 //读取用户的访问令牌
                 string? token = RedisClient.StringGet<string>(key);
@@ -43,9 +44,11 @@ namespace MicroShop.BLL.Permission
                 SystemUserTokenDTO systemUserToken = BSystemUserAuth.GetSystemUserToken(token);
                 systemUserToken.UserId = 0;
                 systemUserToken.IsAdmin = false;
+                systemUserToken.RoleId = 0;
+                systemUserToken.RoleName = "";
                 BSystemUserAuth.CacheSystemUserToken(systemUserToken);
                 //移除缓存
-                RedisClient.KeyDelete(key);
+                BCache.Remove(key);
             }
         }
         #endregion private static void RemoveCache(int userId)
@@ -64,7 +67,7 @@ namespace MicroShop.BLL.Permission
             systemUserToken.Mobile = systemUser.Mobile;
             systemUserToken.Email = systemUser.Email;
             systemUserToken.IsAdmin = systemUser.IsAdmin;
-
+            systemUserToken.LastLogin = systemUser.LastLogin;
             if (systemUser.RoleId > 0)
             {
                 RoleVO role = BRole.GetRole(systemUser.RoleId);
@@ -76,6 +79,24 @@ namespace MicroShop.BLL.Permission
             }
         }
         #endregion private static void ToSystemUserToken(SystemUserVO systemUser, SystemUserTokenDTO systemUserToken)
+
+        #region private static void ToDTO(CreateSystemUserReqDTO req, SystemUserDTO systemUser)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="req"></param>
+        /// <param name="systemUser"></param>
+        private static void ToDTO(CreateSystemUserReqDTO req, SystemUserDTO systemUser)
+        {
+            systemUser.RoleId = req.RoleId;
+            systemUser.LoginName = req.LoginName.Trim();
+            systemUser.UserName = req.UserName.Trim();           
+            systemUser.IsAdmin = req.IsAdmin;
+            systemUser.Mobile = string.IsNullOrEmpty(req.Mobile) ? "" : req.Mobile.Trim();
+            systemUser.Email = string.IsNullOrEmpty(req.Email) ? "" : req.Email.Trim();
+            systemUser.LoginStatus = req.LoginStatus;                     
+        }
+        #endregion private static void ToDTO(CreateSystemUserReqDTO req, SystemUserDTO systemUser)
 
         #region public static SystemUserVO Create(CreateSystemUserReqDTO req)
         /// <summary>
@@ -104,7 +125,18 @@ namespace MicroShop.BLL.Permission
 
             try
             {
-                return dal.Create(req);
+                SystemUserDTO systemUser = new SystemUserDTO
+                {
+                    LastLogin = "",
+                    LoginCount = 0,
+                    UserId = 0
+                };
+
+                ToDTO(req, systemUser);
+                systemUser.Salt = StringHelper.GetRandNum(6);
+                systemUser.LoginPassword = (systemUser.Salt + req.LoginPassword.Trim()).Sha256();
+
+                return dal.Save(systemUser);
             }
             catch (Exception e)
             {
@@ -140,10 +172,28 @@ namespace MicroShop.BLL.Permission
 
             try
             {
+                //查询记录
+                SystemUserVO vo = dal.GetSystemUser(req.UserId);
+                SystemUserDTO systemUser = new SystemUserDTO();
+                systemUser.UserId = req.UserId;
+                systemUser.Salt = vo.Salt;
+                systemUser.LoginPassword = vo.LoginPassword;
+                systemUser.LoginCount = vo.LoginCount;
+                systemUser.LastLogin = vo.LastLogin;
+                ToDTO(req, systemUser);
+
+                //如果密码为空则不修改
+                if (!string.IsNullOrEmpty(req.LoginPassword))
+                {
+                    systemUser.Salt = StringHelper.GetRandNum(6);
+                    systemUser.LoginPassword = (systemUser.Salt + req.LoginPassword.Trim()).Sha256();
+                }
+
                 //清理缓存
                 RemoveCache(req.UserId);
+
                 //更新并返回最新试图
-                return dal.Modify(req); 
+                return dal.Save(systemUser); 
             }
             catch (Exception e)
             {
@@ -293,7 +343,7 @@ namespace MicroShop.BLL.Permission
             //赋值数据
             ToSystemUserToken(systemUser, systemUserToken);
             //缓存15天
-            RedisClient.StringSet(SystemUserTokenCacheKey + systemUser.UserId, systemUserToken.AccessToken, TimeSpan.FromDays(Constants.FIFTEEN));
+            BCache.SetValue(SystemUserTokenCacheKey + systemUser.UserId, systemUserToken.AccessToken, TimeSpan.FromDays(Constants.FIFTEEN));
             //缓存系统用户令牌信息
             BSystemUserAuth.CacheSystemUserToken(systemUserToken);
 

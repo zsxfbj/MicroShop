@@ -49,6 +49,11 @@ namespace MicroShop.Model.Auth
         public string Mobile { get; set; } = string.Empty;
 
         /// <summary>
+        /// 上次登录时间
+        /// </summary>
+        public string LastLogin { get; set; } = string.Empty;
+
+        /// <summary>
         /// 最新的缓存时间
         /// </summary>
         public string CacheTime {  get; set; } = string.Empty;

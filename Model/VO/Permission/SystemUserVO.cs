@@ -112,7 +112,7 @@ namespace MicroShop.Model.VO.Permission
         /// 最近登录时间
         /// </summary>
         [Description("最近登录时间")]
-        public String LastLogin { get; set; } = string.Empty;
+        public string LastLogin { get; set; } = string.Empty;
 
     }
 }

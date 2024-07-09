@@ -27,6 +27,6 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        List<RoleMenuVO> GetRoleMenus(int roleId = 0);
+        List<RoleMenuVO> GetRoleMenus(int roleId, bool showHidden);
     }
 }

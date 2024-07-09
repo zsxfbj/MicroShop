@@ -33,7 +33,7 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="parentId">父级菜单Id</param>
         /// <returns></returns>
-        List<MenuVO> GetMenus(int parentId = 0);
+        List<MenuVO> GetMenus(int parentId);
 
     }
 }

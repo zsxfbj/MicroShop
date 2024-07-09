@@ -84,6 +84,12 @@ namespace MicroShop.SQLServerDAL.Permission
         public int LoginCount { get; set; } = 0;
 
         /// <summary>
+        /// 是否删除
+        /// </summary>
+        [Column("is_deleted", TypeName = "bit")]
+        public bool IsDeleted { get; set; } = false;
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         [Column("created_at", TypeName = "datetime")]
@@ -99,6 +105,6 @@ namespace MicroShop.SQLServerDAL.Permission
         /// 最新登录时间
         /// </summary>
         [Column("last_login")]
-        public DateTime? LastLogin { get; set; }
+        public DateTime? LastLogin { get; set; } = default(DateTime);
     }
 }

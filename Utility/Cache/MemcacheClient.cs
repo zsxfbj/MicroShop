@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Runtime.Caching;
+using System.Text.Json;
 using MicroShop.Utility.Common;
-
 
 namespace MicroShop.Utility.Cache
 {
@@ -11,6 +11,9 @@ namespace MicroShop.Utility.Cache
     /// </summary>
     public class MemcacheClient
     {
+        /// <summary>
+        /// 使用默认的数据缓存库
+        /// </summary>
         private readonly static MemoryCache DefaultCache = MemoryCache.Default;
 
         /// <summary>
@@ -18,7 +21,7 @@ namespace MicroShop.Utility.Cache
         /// </summary>
         public static T CreateObject<T>(string path, string typeName)
         {
-            if (MemcacheClient.isExist(path))
+            if (IsExist(path))
             {
                 return GetValue<T>(typeName);
             }
@@ -40,7 +43,7 @@ namespace MicroShop.Utility.Cache
         /// <returns></returns>
         public static void SetValue<T>(string key, T value)
         {
-            DefaultCache.Set(key, value, new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.MaxValue, SlidingExpiration = TimeSpan.FromDays(Constants.ONE) });
+            DefaultCache.Set(key, JsonSerializer.Serialize(value), new CacheItemPolicy { AbsoluteExpiration = DateTimeOffset.MaxValue, SlidingExpiration = TimeSpan.FromDays(Constants.ONE) });
         }
 
         /// <summary>
@@ -52,7 +55,7 @@ namespace MicroShop.Utility.Cache
         /// <param name="expireTime"></param>
         public static void SetValue<T>(string key, T value, DateTimeOffset expireTime)
         {
-            DefaultCache.Set(key, value, new CacheItemPolicy { AbsoluteExpiration = expireTime });
+            DefaultCache.Set(key, JsonSerializer.Serialize(value), new CacheItemPolicy { AbsoluteExpiration = expireTime });
         }
 
         /// <summary>
@@ -63,7 +66,16 @@ namespace MicroShop.Utility.Cache
         /// <returns></returns>
         public static T GetValue<T>(string key)
         {
-            return (T)DefaultCache.Get(key);
+            if (!IsExist(key))
+            {
+                return default!;
+            }
+            object obj = DefaultCache.Get(key);
+            if(obj == null)
+            {
+                return default!;
+            }
+            return JsonSerializer.Deserialize<T>(obj.ToString()!)!;
         }
 
         /// <summary>
@@ -80,7 +92,7 @@ namespace MicroShop.Utility.Cache
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static bool isExist(string key) { 
+        public static bool IsExist(string key) { 
             return DefaultCache.Contains(key);
         }
     }

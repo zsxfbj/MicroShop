@@ -40,15 +40,16 @@ namespace MicroShop.BLL.Permission
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="roleId"></param>
+        /// <param name="roleId">角色Id</param>
+        /// <param name="showHidden">显示隐藏菜单</param>
         /// <returns></returns>
-        public static List<RoleMenuVO> GetRoleMenus(int roleId)
+        public static List<RoleMenuVO> GetRoleMenus(int roleId, bool showHidden = false)
         {
             if(roleId < 1)
             {
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "请求的参数错误" };
             }
-            return dal.GetRoleMenus(roleId);
+            return dal.GetRoleMenus(roleId, showHidden);
         }
 
         /// <summary>

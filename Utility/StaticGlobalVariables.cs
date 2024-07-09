@@ -18,10 +18,10 @@
         public static string? SQLConnectionString { get; set; } = "Server=.\\SQLEXPRESS;Database=micro_shop;User ID=sa;Password=sheng@123;Trusted_Connection=True";
 
         /// <summary>
-        /// Redis访问链接
+        /// 缓存类型
         /// </summary>
-        public static string? RedisConnectionString { get; set; } = "RedisConnectionString";
-
+        public static string CacheType { get; set; } = "system";
+        
         /// <summary>
         /// 是否Debug模式
         /// </summary>

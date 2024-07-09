@@ -79,11 +79,11 @@ namespace MicroShop.Utility.Cache
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static async Task<T?> StringGetAsync<T>(string key) where T : class
+        public static async Task<T> StringGetAsync<T>(string key) where T : class
         {
             if (_db != null)
             {
-                return (await _db.StringGetAsync(key)).ToObject<T>();
+                return (await _db.StringGetAsync(key)).ToObject<T>()!;
             }
             throw new NullReferenceException("redis connection is not init, redis database is null.");
         }
@@ -94,11 +94,11 @@ namespace MicroShop.Utility.Cache
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static T? StringGet<T>(string key) where T : class
+        public static T StringGet<T>(string key) where T : class
         {
             if (_db != null)
             {
-                return _db.StringGet(key).ToObject<T>();
+                return _db.StringGet(key).ToObject<T>()!;
             }
             throw new NullReferenceException("redis connection is not init, redis database is null.");
         }

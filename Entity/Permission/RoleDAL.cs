@@ -215,23 +215,6 @@ namespace MicroShop.SQLServerDAL.Permission
         }
         #endregion public RoleVO? GetRole(string roleName)
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <param name="permission"></param>
-        /// <returns></returns>
-        public bool HasPermission(int roleId, string permission)
-        {
-            using (var context = new MicroShopContext())
-            {
-                var menuId = from r in context.RoleMenuRelations
-                            join m in context.Menus on r.MenuId equals m.MenuId
-                            where m.Permission == permission && r.RoleId == roleId
-                            select r.MenuId;
-                return menuId
-            }
-        }
         #endregion Public Methods
     }
 }

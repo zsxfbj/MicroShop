@@ -12,17 +12,10 @@ namespace MicroShop.IDAL.Permission
         /// <summary>
         /// 新增系统用户
         /// </summary>
-        /// <param name="req">创建系统用户的请求</param>
+        /// <param name="req">保存用户请求</param>
         /// <returns>MicroShop.Model.VO.Permission.SystemUserVO</returns>
-        SystemUserVO Create(CreateSystemUserReqDTO req);
-
-        /// <summary>
-        /// 修改系统用户
-        /// </summary>
-        /// <param name="req"></param>
-        /// <returns></returns>
-        SystemUserVO Modify(ModifySystemUserReqDTO req);
-
+        SystemUserVO Save(SystemUserDTO systemUser);
+             
         /// <summary>
         /// 修改用户密码
         /// </summary>

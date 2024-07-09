@@ -19,14 +19,12 @@ namespace MicroShop.SQLServerDAL.Entity
         {           
             if (!optionsBuilder.IsConfigured)
             {
-                IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");
+                IConfigurationBuilder builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json");              
 
-                var appSettings = builder.Build();
-
-                optionsBuilder.UseSqlServer(appSettings.GetConnectionString("CONNECTION_STRING_NON_DTC"));
+                optionsBuilder.UseSqlServer(builder.Build().GetConnectionString("CONNECTION_STRING_NON_DTC"));
 
                 //允许打开SQL日志
-                if (appSettings.GetSection("debug").Equals("true"))
+                if (builder.Build().GetSection("debug").Equals("true"))
                 {
                     optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Debug).EnableDetailedErrors();
                 }

@@ -1,6 +1,5 @@
-﻿using MicroShop.Enums.Web;
+﻿using MicroShop.BLL.Common;
 using MicroShop.Model.Auth;
-using MicroShop.Utility.Cache;
 using MicroShop.Utility.Common;
 using MicroShop.Web.Common;
 
@@ -43,9 +42,9 @@ namespace MicroShop.BLL.Auth
             SystemUserTokenDTO? systemUserToken = null;
             string cacheKey = SystemUserAccessTokenCacheKey + accessToken;
 
-            if (RedisClient.KeyExists(cacheKey))
+            if (BCache.IsExist(cacheKey))
             {
-                systemUserToken = RedisClient.StringGet<SystemUserTokenDTO>(cacheKey);
+                systemUserToken = BCache.GetValue<SystemUserTokenDTO>(cacheKey);
             }
 
             if (systemUserToken == null)
@@ -60,9 +59,10 @@ namespace MicroShop.BLL.Auth
                     RoleId = 0,
                     UserName = string.Empty
                 };
+                //缓存
+                BCache.SetValue(cacheKey, systemUserToken, TimeSpan.FromMinutes(Constants.FIFTEEN));
             }
-            //缓存
-            RedisClient.StringSet(cacheKey, systemUserToken, TimeSpan.FromMinutes(15));
+            
             return systemUserToken;
         }
         #endregion public SystemUserTokenDTO GetSystemUserToken(string accessToken = "")
@@ -83,7 +83,7 @@ namespace MicroShop.BLL.Auth
                 //更新缓存时间
                 systemUserToken.CacheTime = DateTime.Now.ToString(Constants.DEFAULT_DATETIME_FORMAT);
                 //缓存15天
-                RedisClient.StringSet(SystemUserAccessTokenCacheKey + systemUserToken.AccessToken, systemUserToken, TimeSpan.FromDays(Constants.FIFTEEN));
+                BCache.SetValue(SystemUserAccessTokenCacheKey + systemUserToken.AccessToken, systemUserToken, TimeSpan.FromDays(Constants.FIFTEEN));
             }
         }
         #endregion public void CacheSystemUserToken(SystemUserTokenDTO systemUserToken)

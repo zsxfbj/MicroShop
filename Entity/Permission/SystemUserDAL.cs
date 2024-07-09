@@ -22,15 +22,19 @@ namespace MicroShop.SQLServerDAL.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <param name="systemUser"></param>
-        private static void ToEntity(CreateSystemUserReqDTO req, SystemUser systemUser)
-        {
-            systemUser.Email = string.IsNullOrEmpty(req.Email) ? "" : req.Email.Trim();
-            systemUser.Mobile = string.IsNullOrEmpty(req.Mobile) ? "" : req.Mobile.Trim();
-            systemUser.UserName = string.IsNullOrEmpty(req.UserName) ? "" : req.UserName.Trim();
-            systemUser.RoleId = req.RoleId;
-            systemUser.LoginStatus = req.LoginStatus;
-            systemUser.LoginName = string.IsNullOrEmpty(req.LoginName) ? "" : req.LoginName.Trim();
-            systemUser.IsAdmin = req.IsAdmin;
+        private static void ToEntity(SystemUserDTO systemUser, SystemUser entity)
+        {            
+            entity.RoleId = systemUser.RoleId;
+            entity.LoginName = systemUser.LoginName;
+            entity.UserName = systemUser.UserName;           
+            entity.LoginStatus = systemUser.LoginStatus;
+            entity.Salt = systemUser.Salt;
+            entity.LoginPassword = systemUser.LoginPassword;
+            entity.LoginCount = systemUser.LoginCount;
+            entity.IsAdmin = systemUser.IsAdmin;
+            entity.Email = systemUser.Email;
+            entity.Mobile = systemUser.Mobile;
+            entity.LastLogin = string.IsNullOrEmpty(systemUser.LastLogin) ? null : DateTime.Parse(systemUser.LastLogin);
         }
         #endregion private static void ToEntity(CreateSystemUserReqDTO req, SystemUser systemUser)
 
@@ -99,58 +103,41 @@ namespace MicroShop.SQLServerDAL.Permission
         /// </summary>
         /// <param name="req">新增系统用户请求内容</param>
         /// <returns>MicroShop.Model.Permission.SystemUserDTO</returns>      
-        public SystemUserVO Create(CreateSystemUserReqDTO req)
-        {
-            SystemUser systemUser = new SystemUser();
-            //数据转化
-            ToEntity(req, systemUser);
-            //密码处理
-            systemUser.Salt = StringHelper.GetRandNum(6);
-            systemUser.LoginPassword = (systemUser.Salt + req.LoginPassword.Trim()).Sha256();
-
+        public SystemUserVO Save(SystemUserDTO systemUser)
+        {       
             using (var context = new MicroShopContext())
             {
-                //入库
-                context.SystemUsers.Add(systemUser);
+                SystemUser? entity = null; ;
+                if (systemUser.UserId > 0)
+                {
+                    entity = context.SystemUsers.FirstOrDefault(x => x.UserId == systemUser.UserId);                    
+                }
+
+                if(entity == null)
+                {
+                    entity = new SystemUser();
+                    entity.UserId = 0;
+                    entity.CreatedAt = DateTime.Now;
+                }
+                entity.UpdatedAt = DateTime.Now;
+
+                //数据转化
+                ToEntity(systemUser, entity);
+               
+                if(entity.UserId == 0)
+                {
+                    context.SystemUsers.Add(entity);
+                }
+                else
+                {
+                    context.SystemUsers.Update(entity);
+                }              
                 context.SaveChanges();
-                return ToVO(systemUser, context);
+                return ToVO(entity, context);
             }
         }
         #endregion public SystemUserVO Create(CreateSystemUserReqDTO req)
-
-        #region public SystemUserVO Modify(ModifySystemUserReqDTO req)
-        /// <summary>
-        /// 修改系统用户信息
-        /// </summary>
-        /// <param name="req">修改系统用户的请求内容</param>
-        /// <returns>MicroShop.Model.Permission.SystemUserDTO</returns>
-        /// <exception cref="ServiceException"></exception>
-        public SystemUserVO Modify(ModifySystemUserReqDTO req)
-        {
-            using (var context = new MicroShopContext())
-            {
-                SystemUser? systemUser = context.SystemUsers.FirstOrDefault(x => x.UserId == req.UserId);
-                if (systemUser == null)
-                {
-                    throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = string.Format("编号为{0}，登录名为{1}系统用户记录不存在", req.UserId, req.LoginName) };
-                }
-
-                ToEntity(req, systemUser);
-                //判断是否修改了密码：如果密码框有输入，则自动修改密码，否者不变。
-                if (!string.IsNullOrEmpty(req.LoginPassword))
-                {
-                    systemUser.Salt = StringHelper.GetRandNum(6);
-                    systemUser.LoginPassword = (systemUser.Salt + req.LoginPassword.Trim()).Sha256();
-                }
-
-                systemUser.UpdatedAt = DateTime.Now;
-                context.SystemUsers.Update(systemUser);
-                context.SaveChanges();
-                return ToVO(systemUser, context);
-            }
-        }
-        #endregion public SystemUserVO Modify(ModifySystemUserReqDTO req)
-
+               
         #region public void ModifyLoginPassword(string passowrd, int userId)
         /// <summary>
         /// 修改用户密码
@@ -239,7 +226,7 @@ namespace MicroShop.SQLServerDAL.Permission
         {
             using (var context = new MicroShopContext())
             {
-                SystemUser? systemUser = context.SystemUsers.FirstOrDefault(x => x.LoginName == loginName.Trim());
+                SystemUser? systemUser = context.SystemUsers.FirstOrDefault(x => x.LoginName == loginName.Trim() && x.IsDeleted == false);
                 if (systemUser == null)
                 {
                     throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = string.Format("登录名为{0}的系统用户记录不存在", loginName) };

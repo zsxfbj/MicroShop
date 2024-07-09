@@ -180,7 +180,7 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <param name="parentId"></param>
         /// <returns></returns>
         /// <exception cref="ServiceException">服务异常错误</exception>
-        public List<MenuVO> GetMenus(int parentId = 0)
+        public List<MenuVO> GetMenus(int parentId)
         {
             using (var context = new MicroShopContext())
             {

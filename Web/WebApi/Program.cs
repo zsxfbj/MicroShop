@@ -11,11 +11,15 @@ using System.Text.Json.Serialization;
 var builder = WebApplication.CreateBuilder(args);
 
 //Init Redis
-StaticGlobalVariables.RedisConnectionString = builder.Configuration.GetConnectionString("RedisConnectionString");
-if (!string.IsNullOrEmpty(StaticGlobalVariables.RedisConnectionString))
-{
-    RedisClient.InitConnect(StaticGlobalVariables.RedisConnectionString);
-}
+//StaticGlobalVariables.RedisConnectionString = builder.Configuration.GetConnectionString("RedisConnectionString");
+//if (!string.IsNullOrEmpty(StaticGlobalVariables.RedisConnectionString))
+//{
+//    RedisClient.InitConnect(StaticGlobalVariables.RedisConnectionString);
+//}
+
+//缓存模式：默认-system，Redis-redis
+string? cacheType = builder.Configuration.GetSection("CacheType").Value;
+StaticGlobalVariables.CacheType = string.IsNullOrEmpty(cacheType) ? "system" : cacheType.Trim();
 
 //数据库链接字符串
 StaticGlobalVariables.SQLConnectionString = builder.Configuration.GetConnectionString("CONNECTION_STRING_NON_DTC");
@@ -34,7 +38,6 @@ builder.Services.AddControllers(options =>
     options.Filters.Add(new GlobalExceptionFilter());
 }).AddJsonOptions(options =>
 {
-
     /*
     .. Other config
     */

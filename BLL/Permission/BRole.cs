@@ -128,21 +128,5 @@ namespace MicroShop.BLL.Permission
         public static List<RoleVO> GetRoles() { return dal.GetRoles(); }
 
         #endregion public static List<RoleVO> GetRoles()
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="roleId"></param>
-        /// <param name="permission"></param>
-        /// <returns></returns>
-        public static bool HasPermission(int roleId,string permission)
-        {
-            if (string.IsNullOrEmpty(permission))
-            {
-                return true;
-            }
-            //返回是否有权限
-            return dal.HasPermission(roleId, permission.Trim());
-        }
     }
 }
