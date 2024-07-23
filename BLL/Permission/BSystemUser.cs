@@ -133,6 +133,7 @@ namespace MicroShop.BLL.Permission
                 };
 
                 ToDTO(req, systemUser);
+
                 systemUser.Salt = StringHelper.GetRandNum(6);
                 systemUser.LoginPassword = (systemUser.Salt + req.LoginPassword.Trim()).Sha256();
 
@@ -174,12 +175,14 @@ namespace MicroShop.BLL.Permission
             {
                 //查询记录
                 SystemUserVO vo = dal.GetSystemUser(req.UserId);
-                SystemUserDTO systemUser = new SystemUserDTO();
-                systemUser.UserId = req.UserId;
-                systemUser.Salt = vo.Salt;
-                systemUser.LoginPassword = vo.LoginPassword;
-                systemUser.LoginCount = vo.LoginCount;
-                systemUser.LastLogin = vo.LastLogin;
+                SystemUserDTO systemUser = new SystemUserDTO
+                {
+                    UserId = req.UserId,
+                    Salt = vo.Salt,
+                    LoginPassword = vo.LoginPassword,
+                    LoginCount = vo.LoginCount,
+                    LastLogin = vo.LastLogin
+                };
                 ToDTO(req, systemUser);
 
                 //如果密码为空则不修改
@@ -268,6 +271,7 @@ namespace MicroShop.BLL.Permission
             {
                 //清除缓存
                 RemoveCache(userId);
+
                 //更新用户可登录系统的状态
                 dal.SetLoginStatus(userId);
             }

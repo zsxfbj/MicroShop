@@ -10,26 +10,22 @@ namespace MicroShop.Model.DTO.Permission
     {
         /// <summary>
         /// 角色编号
-        /// </summary>
-        [Description("角色编号")]
+        /// </summary>      
         public int RoleId { get; set; } = 0;
 
         /// <summary>
         /// 角色名称
-        /// </summary>
-        [Description("角色名称")]
+        /// </summary>      
         public string RoleName { get; set; } = string.Empty;
 
         /// <summary>
         /// 是否可用
-        /// </summary>
-        [Description("是否可用")]
+        /// </summary>      
         public bool IsEnable { get; set; } = false;
 
         /// <summary>
         /// 备注
         /// </summary>
-        [Description("备注")]
         public string Note { get; set; } = string.Empty;
     }
 }

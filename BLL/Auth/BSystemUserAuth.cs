@@ -26,7 +26,7 @@ namespace MicroShop.BLL.Auth
         }
         #endregion public SystemUserTokenDTO GetSystemUserToken(IHttpContextAccessor accessor)
 
-        #region public SystemUserTokenDTO GetSystemUserToken(string accessToken = "")
+        #region public static SystemUserTokenDTO GetSystemUserToken(string? accessToken)
         /// <summary>
         /// 获取用户访问令牌
         /// </summary>
@@ -65,9 +65,9 @@ namespace MicroShop.BLL.Auth
             
             return systemUserToken;
         }
-        #endregion public SystemUserTokenDTO GetSystemUserToken(string accessToken = "")
+        #endregion public static SystemUserTokenDTO GetSystemUserToken(string? accessToken)
 
-        #region public void CacheSystemUserToken(SystemUserTokenDTO systemUserToken)
+        #region public static void CacheSystemUserToken(SystemUserTokenDTO systemUserToken)
         /// <summary>
         /// 缓存访问令牌
         /// </summary>
@@ -86,6 +86,6 @@ namespace MicroShop.BLL.Auth
                 BCache.SetValue(SystemUserAccessTokenCacheKey + systemUserToken.AccessToken, systemUserToken, TimeSpan.FromDays(Constants.FIFTEEN));
             }
         }
-        #endregion public void CacheSystemUserToken(SystemUserTokenDTO systemUserToken)
+        #endregion public static void CacheSystemUserToken(SystemUserTokenDTO systemUserToken)
     }
 }

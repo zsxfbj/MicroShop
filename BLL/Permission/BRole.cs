@@ -21,15 +21,11 @@ namespace MicroShop.BLL.Permission
         /// 
         /// </summary>
         /// <param name="req"></param>
-        private static RoleDTO InitData(CreateRoleReqDTO req)
+        private static void InitData(CreateRoleReqDTO req, RoleDTO role)
         {
-            RoleDTO role = new RoleDTO
-            {
-                RoleName = req.RoleName.Trim(),
-                Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim(),
-                IsEnable = req.IsEnable
-            };
-            return role;
+            role.RoleName = req.RoleName.Trim();
+            role.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
+            role.IsEnable = req.IsEnable;   
         }
 
         #region public static RoleVO Create(CreateRoleReqDTO req)
@@ -40,15 +36,19 @@ namespace MicroShop.BLL.Permission
         /// <returns>the object of RoleVO</returns>
         /// <exception cref="ServiceException">业务逻辑或者数据库访问异常</exception>
         public static RoleVO Create(CreateRoleReqDTO req)
-        {
-            RoleDTO role =  InitData(req);
-            role.RoleId = 0;
-
-            RoleVO? check = dal.GetRole(role.RoleName);            
-            if(check != null)
+        {           
+            RoleVO? check = dal.GetRole(req.RoleName.Trim());
+            if (check != null)
             {
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = string.Format("名称为【{0}】的角色记录已存在，请修改后再提交。", req.RoleName) };
             }
+
+            RoleDTO role = new RoleDTO
+            {
+                RoleId = 0
+            };
+            InitData(req, role);
+
             return dal.Save(role);
         }
         #endregion public static RoleVO Create(CreateRoleReqDTO req)
@@ -61,16 +61,19 @@ namespace MicroShop.BLL.Permission
         /// <returns>the object of RoleVO</returns>
         /// <exception cref="ServiceException">业务逻辑或者数据库访问异常</exception>
         public static RoleVO Modify(ModifyRoleReqDTO req)
-        {
-            RoleDTO role = InitData(req);
-            role.RoleId = req.RoleId;
-
+        {           
             RoleVO? check = dal.GetRole(req.RoleName.Trim());
-            
-            if(check != null && check.RoleId != req.RoleId)
+
+            if (check != null && check.RoleId != req.RoleId)
             {
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = string.Format("名称为【{0}】的角色记录已存在，请修改后再提交。", req.RoleName) };
             }
+
+            RoleDTO role = new RoleDTO
+            {
+                RoleId = req.RoleId
+            };
+            InitData(req, role);
             return dal.Save(role);
         }
         #endregion public static RoleVO Modify(ModifyRoleReqDTO req)
@@ -83,7 +86,7 @@ namespace MicroShop.BLL.Permission
         /// <exception cref="ServiceException"></exception>
         public static void Delete(int roleId)
         {
-            if(roleId < 1)
+            if (roleId < 1)
             {
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "参数值错误" };
             }

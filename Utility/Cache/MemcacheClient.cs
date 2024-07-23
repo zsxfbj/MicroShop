@@ -17,20 +17,25 @@ namespace MicroShop.Utility.Cache
         private readonly static MemoryCache DefaultCache = MemoryCache.Default;
 
         /// <summary>
+        /// 工厂实例化缓存
+        /// </summary>
+        private readonly static MemoryCache FactoryCache = new MemoryCache("FactoryCache");
+
+        /// <summary>
         /// 类反射，自动创建，有则直接返回
         /// </summary>
         public static T CreateObject<T>(string path, string typeName)
         {
             if (IsExist(path))
-            {
-                return GetValue<T>(typeName);
+            {                
+                return (T)FactoryCache.Get(typeName);
             }
             T? objType = (T?)Assembly.Load(path).CreateInstance(typeName);
             if (objType == null)
             {
                 throw new NotImplementedException("请完成" + typeName + "类的编写");
             }
-            SetValue(typeName, objType);
+            FactoryCache.Set(typeName, objType, DateTimeOffset.MaxValue);
             return objType;
         }
 
