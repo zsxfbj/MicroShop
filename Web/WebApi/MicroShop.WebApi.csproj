@@ -10,6 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="Lazy.Captcha.Core" Version="2.0.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.32" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.32" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
   </ItemGroup>
 
