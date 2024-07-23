@@ -107,7 +107,7 @@ namespace MicroShop.BLL.Permission
         public static SystemUserVO Create(CreateSystemUserReqDTO req)
         {
             //判断登录名是否重复
-            SystemUserVO checkUser;
+            SystemUserVO? checkUser;
             try
             {
                 checkUser = dal.GetSystemUser(req.LoginName.Trim());
@@ -156,7 +156,7 @@ namespace MicroShop.BLL.Permission
         public static SystemUserVO Modify(ModifySystemUserReqDTO req)
         {
             //判断登录名是否重复
-            SystemUserVO checkUser;
+            SystemUserVO? checkUser;
             try
             {
                 checkUser = dal.GetSystemUser(req.LoginName.Trim());
@@ -321,7 +321,7 @@ namespace MicroShop.BLL.Permission
                 RemoveCache(systemUserToken.UserId);
             }
 
-            SystemUserVO systemUser;
+            SystemUserVO? systemUser;
             try
             {
                 systemUser = dal.GetSystemUser(req.LoginName);

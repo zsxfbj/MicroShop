@@ -22,7 +22,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        [SysLoginAuth]
+        //[SysLoginAuth]
         [HttpPost("create")]
         public ApiResultVO<SystemUserVO> Create([FromBody] CreateSystemUserReqDTO req)
         {
@@ -46,7 +46,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="userId">用户编号</param>
         /// <returns></returns>
-        [SysLoginAuth]
+        //[SysLoginAuth]
         [HttpGet("detail/{userId}")]
         public ApiResultVO<SystemUserVO> GetSystemUser([FromRoute] int userId)
         {

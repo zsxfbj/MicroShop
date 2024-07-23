@@ -222,14 +222,14 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <param name="loginName">登录名</param>
         /// <returns></returns>
         /// <exception cref="ServiceException"></exception>
-        public SystemUserVO GetSystemUser(string loginName)
+        public SystemUserVO? GetSystemUser(string loginName)
         {
             using (var context = new MicroShopContext())
             {
                 SystemUser? systemUser = context.SystemUsers.FirstOrDefault(x => x.LoginName == loginName.Trim() && x.IsDeleted == false);
                 if (systemUser == null)
                 {
-                    throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = string.Format("登录名为{0}的系统用户记录不存在", loginName) };
+                    return null;
                 }
                 return ToVO(systemUser, context);
             }

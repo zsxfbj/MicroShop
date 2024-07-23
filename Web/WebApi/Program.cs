@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using MicroShop.Utility;
 using MicroShop.Permission.WebApi.Filter;
 using System.Text.Json.Serialization;
+using MicroShop.Utility.Serialize.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -41,7 +42,8 @@ builder.Services.AddControllers(options =>
     /*
     .. Other config
     */
-    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+    options.JsonSerializerOptions.Converters.Add(new DecimalConverter());
+    options.JsonSerializerOptions.Converters.Add(new LongToStringConverter());
 });
 
 // add HttpContextAccessor 
@@ -125,26 +127,27 @@ MicroShop.Utility.Common.HttpContext.Configure(app.Services.GetRequiredService<I
 
  
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c => {
-        c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "MicroShop API Docs v1.0");        
-        c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.Full);
-        c.DefaultModelExpandDepth(-1);
-    });
-}
-else
+if (!app.Environment.IsDevelopment())
 {
     app.UseHsts();
 }
+else
+{
+    app.UseDeveloperExceptionPage();
+}
+ 
+
+app.UseSwagger();
+app.UseSwaggerUI(c => {
+    c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "MicroShop API Docs v1.0");
+    c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.Full);
+    c.DefaultModelExpandDepth(-1);
+});
 
 app.UseCors("cors");
-
+app.UseStaticFiles();
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.Run();

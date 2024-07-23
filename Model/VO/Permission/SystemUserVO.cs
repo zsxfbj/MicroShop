@@ -47,7 +47,7 @@ namespace MicroShop.Model.VO.Permission
         /// <summary>
         /// 登录状态
         /// </summary>       
-        [Description("登录状态")]
+        [Description("登录状态")]      
         public LoginStatusEnum LoginStatus { get; set; } = LoginStatusEnum.Forbidden;
 
         /// <summary>

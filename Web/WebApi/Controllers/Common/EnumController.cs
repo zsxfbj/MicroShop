@@ -1,4 +1,5 @@
-﻿using MicroShop.BLL.Common;
+﻿using System.ComponentModel.DataAnnotations;
+using MicroShop.BLL.Common;
 using MicroShop.Enums.Web;
 using MicroShop.Model.VO.Common;
 using MicroShop.Model.VO.Web;
@@ -11,6 +12,7 @@ namespace MicroShop.WebApi.Controllers.Common
     /// </summary>
     [Route("common/enum")]
     [ApiController]
+    [Display(GroupName = "common", Name ="enum", Description = "枚举列表API")]
     public class EnumController
     {
         /// <summary>

@@ -20,7 +20,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// </summary>
         /// <param name="roleId">角色编号</param>
         /// <returns>RoleVO</returns>
-        [SysLoginAuth]
+        //[SysLoginAuth]
         [HttpGet("detail/{roleId}")]
         public ApiResultVO<RoleVO> GetRole([FromRoute] int roleId)
         {

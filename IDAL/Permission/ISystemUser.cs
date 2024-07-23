@@ -47,7 +47,7 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="loginName">登录名</param>
         /// <returns></returns>
-        SystemUserVO GetSystemUser(string loginName);
+        SystemUserVO? GetSystemUser(string loginName);
 
         /// <summary>
         /// 根据查询条件，对系统用户进行分页查询
