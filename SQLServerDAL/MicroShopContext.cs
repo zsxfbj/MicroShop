@@ -1,10 +1,10 @@
-﻿using MicroShop.SQLServerDAL.Common;
-using MicroShop.SQLServerDAL.Permission;
-using MicroShop.SQLServerDAL.Product;
+﻿using MicroShop.Entity.Common;
+using MicroShop.Entity.Permission;
+using MicroShop.Entity.Mall;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace MicroShop.SQLServerDAL.Entity
+namespace MicroShop.SQLServerDAL
 {
     /// <summary>
     /// 数据库虚拟类
@@ -82,7 +82,7 @@ namespace MicroShop.SQLServerDAL.Entity
         /// <summary>
         /// 产品主表
         /// </summary>
-        public DbSet<SQLServerDAL.Product.Product> Products { get; set; } = default!;
+        public DbSet<Product> Products { get; set; } = default!;
 
         /// <summary>
         /// 产品轮播图

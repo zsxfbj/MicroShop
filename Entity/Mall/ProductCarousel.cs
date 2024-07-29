@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using MicroShop.Enums.Common;
 
-namespace MicroShop.SQLServerDAL.Product
+namespace MicroShop.Entity.Mall
 {
     /// <summary>
     /// 商品轮播图表

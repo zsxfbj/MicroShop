@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using MicroShop.Enums.Permission;
 
-namespace MicroShop.SQLServerDAL.Permission
+namespace MicroShop.Entity.Permission
 {
     /// <summary>
     /// 系统用户表
@@ -88,6 +88,18 @@ namespace MicroShop.SQLServerDAL.Permission
         /// </summary>
         [Column("is_deleted", TypeName = "bit")]
         public bool IsDeleted { get; set; } = false;
+
+        /// <summary>
+        /// Erp对应的编码
+        /// </summary>
+        [Column("erp_code", TypeName = "varchar(64)")]
+        public string ErpCode { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Erp对应的名称
+        /// </summary>
+        [Column("erp_name", TypeName = "nvarchar(64)")]
+        public string ErpName { get; set; } = string.Empty;
 
         /// <summary>
         /// 创建时间

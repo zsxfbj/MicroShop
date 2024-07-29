@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MicroShop.SQLServerDAL.Common
+namespace MicroShop.Entity.Common
 {
     /// <summary>
     /// 商品目录表
@@ -14,14 +14,14 @@ namespace MicroShop.SQLServerDAL.Common
         /// 目录编号
         /// </summary>
         [Key]
-        [Column("category_id", TypeName = "int")]
+        [Column("category_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryId { get; set; } = 0;
 
         /// <summary>
         /// 分类名称
         /// </summary>
-        [Column("category_name", TypeName = "nvarchar(32)")]
+        [Column("category_name")]
         [Required(ErrorMessage = "分类名称不能为空")]
         [MaxLength(32)]
         public string CategoryName { get; set; } = string.Empty;
@@ -29,13 +29,13 @@ namespace MicroShop.SQLServerDAL.Common
         /// <summary>
         /// 分类类型：1-商品
         /// </summary>
-        [Column("category_type", TypeName = "int")]
+        [Column("category_type")]
         public int CategoryType { get; set; } = 1;
 
         /// <summary>
         /// 上级编号
         /// </summary>
-        [Column("parent_id", TypeName = "int")]
+        [Column("parent_id")]
         public int ParentId { get; set; } = 0;
 
         /// <summary>

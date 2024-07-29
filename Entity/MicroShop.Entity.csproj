@@ -7,11 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DALFactory\MicroShop.DALFactory.csproj" />
     <ProjectReference Include="..\Enums\MicroShop.Enums.csproj" />
-    <ProjectReference Include="..\IDAL\MicroShop.IDAL.csproj" />
-    <ProjectReference Include="..\Model\MicroShop.Model.csproj" />
-    <ProjectReference Include="..\Utility\MicroShop.Utility.csproj" />
   </ItemGroup>
 
 </Project>

@@ -61,6 +61,8 @@ namespace MicroShop.SQLServerDAL.Permission
                 RoleName = "",
                 Mobile = string.IsNullOrEmpty(systemUser.Mobile) ? "" : systemUser.Mobile,
                 Email = string.IsNullOrEmpty(systemUser.Email) ? "" : systemUser.Email,
+                ErpCode = string.IsNullOrEmpty(systemUser.ErpCode) ? "" : systemUser.ErpCode,
+                ErpName = string.IsNullOrEmpty(systemUser.ErpName) ? "" : systemUser.ErpName,
                 LastLogin = systemUser.LastLogin.HasValue ? systemUser.LastLogin.Value.ToString(Constants.DEFAULT_DATETIME_FORMAT) : ""
             };
 

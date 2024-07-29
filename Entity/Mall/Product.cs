@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using MicroShop.Enums.Payment;
 using MicroShop.Enums.Product;
 
-namespace MicroShop.SQLServerDAL.Product
+namespace MicroShop.Entity.Mall
 {
     /// <summary>
     /// 产品表

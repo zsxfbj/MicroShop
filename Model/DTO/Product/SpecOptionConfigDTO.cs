@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
+﻿using System.ComponentModel;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+using MicroShop.Utility.Serialize.Json;
 
 namespace MicroShop.Model.DTO.Product
 {
@@ -17,7 +13,7 @@ namespace MicroShop.Model.DTO.Product
         /// <summary>
         /// SKU名称编号
         /// </summary>
-        [JsonConverter(typeof(Utility.Serialize.Json.LongToStringConverter))]
+        [JsonConverter(typeof(LongToStringConverter))]
         [Description("规格编号")]       
         public long SpecId { get; set; }
 
@@ -30,7 +26,7 @@ namespace MicroShop.Model.DTO.Product
         /// <summary>
         /// 规格选项编号
         /// </summary>
-        [JsonConverter(typeof(Utility.Serialize.Json.LongToStringConverter))]
+        [JsonConverter(typeof(LongToStringConverter))]
         [Description("规格选项编号")]
         public long SpecOptionId { get; set; } = 0L;
 

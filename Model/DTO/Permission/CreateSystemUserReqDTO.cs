@@ -64,5 +64,18 @@ namespace MicroShop.Model.DTO.Permission
         [StringLength(16, ErrorMessage = "手机号码长度超过16位")]
         public string Mobile { get; set; } = string.Empty;
 
+
+        /// <summary>
+        /// Erp对应的编码
+        /// </summary>
+        [StringLength(32, ErrorMessage = "Erp对应的编码长度超过32个字符")]
+        public string ErpCode { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Erp对应的名称
+        /// </summary>
+        [StringLength(32, ErrorMessage = "Erp对应的名称长度超过32个字数")]
+        public string ErpName { get; set; } = string.Empty;
+
     }
 }

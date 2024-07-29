@@ -94,7 +94,9 @@ namespace MicroShop.BLL.Permission
             systemUser.IsAdmin = req.IsAdmin;
             systemUser.Mobile = string.IsNullOrEmpty(req.Mobile) ? "" : req.Mobile.Trim();
             systemUser.Email = string.IsNullOrEmpty(req.Email) ? "" : req.Email.Trim();
-            systemUser.LoginStatus = req.LoginStatus;                     
+            systemUser.LoginStatus = req.LoginStatus;
+            systemUser.ErpCode = string.IsNullOrEmpty(req.ErpCode) ? "" : req.ErpCode.Trim();
+            systemUser.ErpName = string.IsNullOrEmpty(req.ErpName) ? "" : req.ErpName.Trim();
         }
         #endregion private static void ToDTO(CreateSystemUserReqDTO req, SystemUserDTO systemUser)
 

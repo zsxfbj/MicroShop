@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Entity\MicroShop.Entity.csproj" />
     <ProjectReference Include="..\Enums\MicroShop.Enums.csproj" />
     <ProjectReference Include="..\IDAL\MicroShop.IDAL.csproj" />
     <ProjectReference Include="..\Utility\MicroShop.Utility.csproj" />
@@ -20,6 +21,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="6.0.1" />
     <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Mall\" />
   </ItemGroup>
 
 </Project>

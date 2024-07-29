@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Entity\MicroShop.SQLServerDAL.csproj" />
     <ProjectReference Include="..\IDAL\MicroShop.IDAL.csproj" />
     <ProjectReference Include="..\Utility\MicroShop.Utility.csproj" />
   </ItemGroup>

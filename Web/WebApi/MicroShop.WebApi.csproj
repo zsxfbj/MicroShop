@@ -18,7 +18,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BLL\MicroShop.BLL.csproj" />
     <ProjectReference Include="..\..\DALFactory\MicroShop.DALFactory.csproj" />
-    <ProjectReference Include="..\..\Entity\MicroShop.SQLServerDAL.csproj" />
     <ProjectReference Include="..\..\Enums\MicroShop.Enums.csproj" />
     <ProjectReference Include="..\..\IDAL\MicroShop.IDAL.csproj" />
     <ProjectReference Include="..\..\Model\MicroShop.Model.csproj" />

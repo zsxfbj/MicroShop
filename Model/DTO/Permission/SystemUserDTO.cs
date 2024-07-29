@@ -3,7 +3,7 @@
 namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>
-    /// 系统用户视图
+    /// 系统用户数据转对象类
     /// </summary>
     [Serializable]
     public class SystemUserDTO
@@ -60,6 +60,7 @@ namespace MicroShop.Model.DTO.Permission
 
         /// <summary>
         /// 电子邮箱
+        /// </summary>
         public string Email { get; set; } = string.Empty;
               
         /// <summary>
@@ -67,5 +68,14 @@ namespace MicroShop.Model.DTO.Permission
         /// </summary>
         public string LastLogin { get; set; } = string.Empty;
 
+        /// <summary>
+        /// Erp对应的编码
+        /// </summary>
+        public string ErpCode { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Erp对应的名称
+        /// </summary>
+        public string ErpName { get; set; } = string.Empty;
     }
 }

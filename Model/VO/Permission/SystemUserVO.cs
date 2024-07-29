@@ -95,6 +95,18 @@ namespace MicroShop.Model.VO.Permission
         public string Email { get; set; } = string.Empty;
 
         /// <summary>
+        /// Erp对应的编码
+        /// </summary>
+        [Description("Erp对应的编码")]
+        public string ErpCode { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Erp对应的名称
+        /// </summary>
+        [Description("Erp对应的名称")]
+        public string ErpName { get; set; } = string.Empty;
+
+        /// <summary>
         /// 创建时间
         /// </summary>
         [JsonConverter(typeof(DefaultDateTimeConverter))]

@@ -3,7 +3,7 @@ using MicroShop.IDAL.Common;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Common;
 using MicroShop.Model.VO.Common;
-using MicroShop.SQLServerDAL.Entity;
+using MicroShop.Entity.Common;
 using MicroShop.Utility.Enums;
 
 namespace MicroShop.SQLServerDAL.Common
@@ -18,7 +18,7 @@ namespace MicroShop.SQLServerDAL.Common
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <exception cref="ServiceException"></exception>
         public CategoryVO Create(CreateCategoryReqDTO req)
         {
             Category category = new Category();

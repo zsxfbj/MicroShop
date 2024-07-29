@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MicroShop.SQLServerDAL.Common
+namespace MicroShop.Entity.Common
 {
     /// <summary>
     /// 品牌表

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using MicroShop.Enums.Product;
 
-namespace MicroShop.SQLServerDAL.Product
+namespace MicroShop.Entity.Mall
 {
     /// <summary>
     /// 运费设置

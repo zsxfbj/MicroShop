@@ -5,8 +5,6 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Enums", "Enums\MicroShop.Enums.csproj", "{55502189-30AB-4312-85A2-C53D14B68E45}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.SQLServerDAL", "Entity\MicroShop.SQLServerDAL.csproj", "{9875567D-462F-40DF-B4BA-E33E6E0042CA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Utility", "Utility\MicroShop.Utility.csproj", "{44CAD205-CB1F-4964-B3DE-951DA1A567E1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.IDAL", "IDAL\MicroShop.IDAL.csproj", "{0D979B7E-36BF-4F4E-B24F-625C7FD8319E}"
@@ -19,6 +17,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.DALFactory", "DAL
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.WebApi", "Web\WebApi\MicroShop.WebApi.csproj", "{A4FFFEB6-8CFC-4521-B824-1120D12C4A31}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.SQLServerDAL", "SQLServerDAL\MicroShop.SQLServerDAL.csproj", "{7C03B44A-47F5-4A39-8B34-1109C91F01AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Entity", "Entity\MicroShop.Entity.csproj", "{81EDD377-443B-434C-B218-7F9F0D9579D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +31,6 @@ Global
 		{55502189-30AB-4312-85A2-C53D14B68E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55502189-30AB-4312-85A2-C53D14B68E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55502189-30AB-4312-85A2-C53D14B68E45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9875567D-462F-40DF-B4BA-E33E6E0042CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9875567D-462F-40DF-B4BA-E33E6E0042CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9875567D-462F-40DF-B4BA-E33E6E0042CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9875567D-462F-40DF-B4BA-E33E6E0042CA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44CAD205-CB1F-4964-B3DE-951DA1A567E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44CAD205-CB1F-4964-B3DE-951DA1A567E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44CAD205-CB1F-4964-B3DE-951DA1A567E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -57,6 +55,14 @@ Global
 		{A4FFFEB6-8CFC-4521-B824-1120D12C4A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A4FFFEB6-8CFC-4521-B824-1120D12C4A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A4FFFEB6-8CFC-4521-B824-1120D12C4A31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C03B44A-47F5-4A39-8B34-1109C91F01AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C03B44A-47F5-4A39-8B34-1109C91F01AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C03B44A-47F5-4A39-8B34-1109C91F01AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C03B44A-47F5-4A39-8B34-1109C91F01AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
