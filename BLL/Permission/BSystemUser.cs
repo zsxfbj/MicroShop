@@ -79,27 +79,7 @@ namespace MicroShop.BLL.Permission
             }
         }
         #endregion private static void ToSystemUserToken(SystemUserVO systemUser, SystemUserTokenDTO systemUserToken)
-
-        #region private static void ToDTO(CreateSystemUserReqDTO req, SystemUserDTO systemUser)
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="req"></param>
-        /// <param name="systemUser"></param>
-        private static void ToDTO(CreateSystemUserReqDTO req, SystemUserDTO systemUser)
-        {
-            systemUser.RoleId = req.RoleId;
-            systemUser.LoginName = req.LoginName.Trim();
-            systemUser.UserName = req.UserName.Trim();           
-            systemUser.IsAdmin = req.IsAdmin;
-            systemUser.Mobile = string.IsNullOrEmpty(req.Mobile) ? "" : req.Mobile.Trim();
-            systemUser.Email = string.IsNullOrEmpty(req.Email) ? "" : req.Email.Trim();
-            systemUser.LoginStatus = req.LoginStatus;
-            systemUser.ErpCode = string.IsNullOrEmpty(req.ErpCode) ? "" : req.ErpCode.Trim();
-            systemUser.ErpName = string.IsNullOrEmpty(req.ErpName) ? "" : req.ErpName.Trim();
-        }
-        #endregion private static void ToDTO(CreateSystemUserReqDTO req, SystemUserDTO systemUser)
-
+           
         #region public static SystemUserVO Create(CreateSystemUserReqDTO req)
         /// <summary>
         /// 创建系统用户
@@ -108,6 +88,10 @@ namespace MicroShop.BLL.Permission
         /// <returns>MicroShop.Model.VO.Permission.SystemUserVO</returns>
         public static SystemUserVO Create(CreateSystemUserReqDTO req)
         {
+            if(string.IsNullOrEmpty(req.LoginPassword)|| req.LoginPassword.Length < 6)
+            {
+                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "登录密码长度不得少于6位" };
+            }
             //判断登录名是否重复
             SystemUserVO? checkUser;
             try
@@ -125,27 +109,7 @@ namespace MicroShop.BLL.Permission
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = "登录名有重复，请修改登录账号" };
             }
 
-            try
-            {
-                SystemUserDTO systemUser = new SystemUserDTO
-                {
-                    LastLogin = "",
-                    LoginCount = 0,
-                    UserId = 0
-                };
-
-                ToDTO(req, systemUser);
-
-                systemUser.Salt = StringHelper.GetRandNum(6);
-                systemUser.LoginPassword = (systemUser.Salt + req.LoginPassword.Trim()).Sha256();
-
-                return dal.Save(systemUser);
-            }
-            catch (Exception e)
-            {
-                LogHelper.Error("BSystemUser.Create: " + e.ToString());
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "新增系统用户记录入库发生异常！" };
-            }
+            return dal.Create(req);
         }
         #endregion public static SystemUserVO Create(CreateSystemUserReqDTO req)
 
@@ -173,38 +137,11 @@ namespace MicroShop.BLL.Permission
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = "登录名有重复，请修改登录账号" };
             }
 
-            try
-            {
-                //查询记录
-                SystemUserVO vo = dal.GetSystemUser(req.UserId);
-                SystemUserDTO systemUser = new SystemUserDTO
-                {
-                    UserId = req.UserId,
-                    Salt = vo.Salt,
-                    LoginPassword = vo.LoginPassword,
-                    LoginCount = vo.LoginCount,
-                    LastLogin = vo.LastLogin
-                };
-                ToDTO(req, systemUser);
+            //清理缓存
+            RemoveCache(req.UserId);
 
-                //如果密码为空则不修改
-                if (!string.IsNullOrEmpty(req.LoginPassword))
-                {
-                    systemUser.Salt = StringHelper.GetRandNum(6);
-                    systemUser.LoginPassword = (systemUser.Salt + req.LoginPassword.Trim()).Sha256();
-                }
-
-                //清理缓存
-                RemoveCache(req.UserId);
-
-                //更新并返回最新试图
-                return dal.Save(systemUser); 
-            }
-            catch (Exception e)
-            {
-                LogHelper.Error("BSystemUser.Modify: " + e.ToString());
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "修改系统用户记录入库发生异常！" };
-            }
+            //更新并返回最新试图
+            return dal.Modify(req);
         }
         #endregion public static SystemUserVO Modify(ModifySystemUserReqDTO req)
 

@@ -1,5 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using MicroShop.Utility.Serialize.Json;
 
 namespace MicroShop.Model.DTO.Permission
 {
@@ -13,7 +14,8 @@ namespace MicroShop.Model.DTO.Permission
         /// 角色编号
         /// </summary>
         [Required(ErrorMessage = "角色编号不能为空")]
-        [Range(1, int.MaxValue, ErrorMessage = "角色编号数据错误")]
-        public int RoleId { get; set; }
+        [Range(1, long.MaxValue, ErrorMessage = "角色编号数据错误")]
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long RoleId { get; set; }
     }
 }

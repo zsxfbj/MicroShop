@@ -14,7 +14,7 @@ namespace MicroShop.Model.DTO.Permission
         /// 角色编号
         /// </summary>
         [Required(ErrorMessage = "请选择用户角色")]
-        [Range(0, int.MaxValue, ErrorMessage = "请选择用户角色")]
+        [Range(1, int.MaxValue, ErrorMessage = "请选择用户角色")]
         public int RoleId { get; set; }
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace MicroShop.Model.DTO.Permission
         /// <summary>
         /// 登录密码
         /// </summary>
-        [StringLength(30, MinimumLength = 6, ErrorMessage = "密码6~30位")]
+        [StringLength(30, ErrorMessage = "密码6~30位")]
         public string LoginPassword { get; set; } = string.Empty;
 
         /// <summary>
@@ -63,7 +63,6 @@ namespace MicroShop.Model.DTO.Permission
         [RegularExpression(pattern: @"^1[3456789]\d{9}$", ErrorMessage = "手机号码格式错误")]
         [StringLength(16, ErrorMessage = "手机号码长度超过16位")]
         public string Mobile { get; set; } = string.Empty;
-
 
         /// <summary>
         /// Erp对应的编码

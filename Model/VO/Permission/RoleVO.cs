@@ -25,7 +25,8 @@ namespace MicroShop.Model.VO.Permission
         /// 角色编号
         /// </summary>
         [Description("角色编号")]
-        public int RoleId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long RoleId { get; set; } = 0;
 
         /// <summary>
         /// 角色名称

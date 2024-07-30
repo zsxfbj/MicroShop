@@ -1,5 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using MicroShop.Utility.Serialize.Json;
 
 namespace MicroShop.Model.DTO.Permission
 {
@@ -13,7 +14,8 @@ namespace MicroShop.Model.DTO.Permission
         /// 菜单编号
         /// </summary>
         [Required(ErrorMessage = "菜单编号不能为空")]
-        [Range(1, int.MaxValue, ErrorMessage = "菜单编号格式错误")]
-        public int MenuId { get; set; } = 0;
+        [Range(1, long.MaxValue, ErrorMessage = "菜单编号格式错误")]
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long MenuId { get; set; } = 0L;
     }
 }

@@ -20,7 +20,8 @@ namespace MicroShop.Model.VO.Permission
         /// <summary>
         /// 用户编号
         /// </summary>
-        public int UserId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long UserId { get; set; } = 0;
 
         /// <summary>
         /// 用户名称

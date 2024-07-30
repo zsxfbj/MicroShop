@@ -13,12 +13,14 @@ namespace MicroShop.Model.VO.Permission
         /// <summary>
         /// 菜单编号
         /// </summary>
-        public int MenuId { get; set; }
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long MenuId { get; set; }
 
         /// <summary>
         /// 上级菜单编号
         /// </summary>
-        public int ParentId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long ParentId { get; set; } = 0;
 
         /// <summary>
         /// 菜单名称

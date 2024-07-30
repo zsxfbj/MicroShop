@@ -14,21 +14,20 @@ namespace MicroShop.Entity.Permission
         /// 角色编号
         /// </summary>
         [Key]
-        [Column("role_id", TypeName = "int")]
-        public int RoleId { get; set; } = 0;
+        [Column("role_id")]
+        public long RoleId { get; set; } = 0L;
 
         /// <summary>
         /// 菜单编号
         /// </summary>
         [Key]
-        [Column("menu_id", TypeName = "int")]
-        public int MenuId { get; set; } = 0;
+        [Column("menu_id")]
+        public long MenuId { get; set; } = 0L;
 
         /// <summary>
         /// 权限
         /// </summary>
-        [Column("permission", TypeName = "varchar(256)")]
-        [StringLength(200, ErrorMessage = "权限最多200个字符")]
+        [Column("permission")]       
         public string Permission { get; set; } = string.Empty;
 
         /// <summary>

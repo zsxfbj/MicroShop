@@ -1,7 +1,7 @@
 ﻿using MicroShop.IDAL.Permission;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
-using MicroShop.SQLServerDAL.Entity;
+using MicroShop.Entity.Permission;
 
 namespace MicroShop.SQLServerDAL.Permission
 {

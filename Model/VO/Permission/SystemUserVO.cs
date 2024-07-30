@@ -15,12 +15,14 @@ namespace MicroShop.Model.VO.Permission
         /// <summary>
         /// 系统用户编号
         /// </summary>
-        public int UserId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long UserId { get; set; } = 0;
 
         /// <summary>
         /// 角色编号
         /// </summary>
-        public int RoleId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long RoleId { get; set; } = 0;
 
         /// <summary>
         /// 角色名称

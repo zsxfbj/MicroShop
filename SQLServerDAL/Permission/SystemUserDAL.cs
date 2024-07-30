@@ -4,8 +4,9 @@ using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
-using MicroShop.SQLServerDAL.Entity;
+using MicroShop.Entity.Permission;
 using MicroShop.Utility.Common;
+using MicroShop.Enums.Web;
 
 namespace MicroShop.SQLServerDAL.Permission
 {
@@ -22,19 +23,18 @@ namespace MicroShop.SQLServerDAL.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <param name="systemUser"></param>
-        private static void ToEntity(SystemUserDTO systemUser, SystemUser entity)
-        {            
-            entity.RoleId = systemUser.RoleId;
-            entity.LoginName = systemUser.LoginName;
-            entity.UserName = systemUser.UserName;           
-            entity.LoginStatus = systemUser.LoginStatus;
-            entity.Salt = systemUser.Salt;
-            entity.LoginPassword = systemUser.LoginPassword;
-            entity.LoginCount = systemUser.LoginCount;
-            entity.IsAdmin = systemUser.IsAdmin;
-            entity.Email = systemUser.Email;
-            entity.Mobile = systemUser.Mobile;
-            entity.LastLogin = string.IsNullOrEmpty(systemUser.LastLogin) ? null : DateTime.Parse(systemUser.LastLogin);
+        private static void ToEntity(CreateSystemUserReqDTO req, SystemUser entity)
+        {
+            entity.RoleId = req.RoleId;
+            entity.LoginName = req.LoginName.Trim();
+            entity.UserName = req.UserName.Trim();
+            entity.LoginStatus = req.LoginStatus;
+            entity.LoginPassword = req.LoginPassword;
+            entity.IsAdmin = req.IsAdmin;
+            entity.Email = req.Email;
+            entity.Mobile = req.Mobile;
+            entity.ErpCode = req.ErpCode;
+            entity.ErpName = req.ErpName;
         }
         #endregion private static void ToEntity(CreateSystemUserReqDTO req, SystemUser systemUser)
 
@@ -99,47 +99,81 @@ namespace MicroShop.SQLServerDAL.Permission
 
         #endregion Private Methods
 
+        #region Public Methods
+
         #region public SystemUserVO Create(CreateSystemUserReqDTO req)
         /// <summary>
         /// 创建系统用户
         /// </summary>
         /// <param name="req">新增系统用户请求内容</param>
         /// <returns>MicroShop.Model.Permission.SystemUserDTO</returns>      
-        public SystemUserVO Save(SystemUserDTO systemUser)
-        {       
+        public SystemUserVO Create(CreateSystemUserReqDTO req)
+        {
             using (var context = new MicroShopContext())
             {
-                SystemUser? entity = null; ;
-                if (systemUser.UserId > 0)
+                SystemUser entity = new SystemUser
                 {
-                    entity = context.SystemUsers.FirstOrDefault(x => x.UserId == systemUser.UserId);                    
-                }
-
-                if(entity == null)
-                {
-                    entity = new SystemUser();
-                    entity.UserId = 0;
-                    entity.CreatedAt = DateTime.Now;
-                }
-                entity.UpdatedAt = DateTime.Now;
+                    UserId = 0,
+                    LastLogin = null,
+                    LoginCount = 0,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    Salt = StringHelper.GetRandNum(6)
+                };
 
                 //数据转化
-                ToEntity(systemUser, entity);
-               
-                if(entity.UserId == 0)
-                {
-                    context.SystemUsers.Add(entity);
-                }
-                else
-                {
-                    context.SystemUsers.Update(entity);
-                }              
+                ToEntity(req, entity);
+
+                //生成密码
+                entity.LoginPassword = (entity.Salt + req.LoginPassword.Trim()).Sha256();
+
+                //加到数据库缓存里
+                context.SystemUsers.Add(entity);
+
+                //保存到数据库文件里
                 context.SaveChanges();
+
+                //返回系统用户视图
                 return ToVO(entity, context);
             }
         }
         #endregion public SystemUserVO Create(CreateSystemUserReqDTO req)
-               
+
+        #region public SystemUserVO Modify(ModifySystemUserReqDTO req)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        public SystemUserVO Modify(ModifySystemUserReqDTO req)
+        {
+            using var context = new MicroShopContext();
+            SystemUser? entity = context.SystemUsers.FirstOrDefault(x => x.UserId == req.UserId);
+            if (entity == null || entity.IsDeleted)
+            {
+                throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "编号为【" + req.UserId + "】系统用户记录不存在" };
+            }
+            //数据转化
+            ToEntity(req, entity);
+            entity.UpdatedAt = DateTime.Now;
+
+            if (!string.IsNullOrEmpty(req.LoginPassword))
+            {
+                entity.Salt = StringHelper.GetRandNum(6);
+                entity.LoginPassword = (entity.Salt + req.LoginPassword.Trim()).Sha256();
+            }
+
+            //推送到数据库缓存里
+            context.SystemUsers.Update(entity);
+
+            //保存到数据库文件里
+            context.SaveChanges();
+
+            //返回系统用户视图
+            return ToVO(entity, context);
+        }
+        #endregion public SystemUserVO Modify(ModifySystemUserReqDTO req)
+
         #region public void ModifyLoginPassword(string passowrd, int userId)
         /// <summary>
         /// 修改用户密码
@@ -280,5 +314,8 @@ namespace MicroShop.SQLServerDAL.Permission
             }
         }
         #endregion public PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
+
+        #endregion Public Methods
+
     }
 }

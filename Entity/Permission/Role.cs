@@ -16,13 +16,12 @@ namespace MicroShop.Entity.Permission
         [Key]
         [Column("role_id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int RoleId { get; set; } = 0;
+        public long RoleId { get; set; } = 0;
 
         /// <summary>
         /// 角色名称
         /// </summary>
-        [Column("role_name")]
-        [MaxLength(30, ErrorMessage = "角色名称最多30个字"), Required(ErrorMessage = "角色名称必须填写")]
+        [Column("role_name")]      
         public string RoleName { get; set; } = string.Empty;
 
         /// <summary>
@@ -34,8 +33,7 @@ namespace MicroShop.Entity.Permission
         /// <summary>
         /// 备注
         /// </summary>
-        [Column("note")]
-        [MaxLength(255, ErrorMessage = "备注不能超过255个字")]
+        [Column("note")]      
         public string Note { get; set; } = string.Empty;
 
         /// <summary>

@@ -1,4 +1,7 @@
-﻿namespace MicroShop.Model.VO.Permission
+﻿using System.Text.Json.Serialization;
+using MicroShop.Utility.Serialize.Json;
+
+namespace MicroShop.Model.VO.Permission
 {
     /// <summary>
     /// 角色菜单
@@ -9,7 +12,8 @@
         /// <summary>
         /// 菜单编号
         /// </summary>
-        public int MenuId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long MenuId { get; set; } = 0;
 
         /// <summary>
         /// 菜单名称
@@ -19,7 +23,8 @@
         /// <summary>
         /// 上级菜单编号
         /// </summary>
-        public int ParentId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long ParentId { get; set; } = 0;
 
         /// <summary>
         /// 下级菜单
