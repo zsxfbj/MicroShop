@@ -3,6 +3,7 @@ namespace MicroShop.Utility.Enums
 {
     /// <summary>
     /// 枚举、类型的值
+    /// 备注：网上看到的示例，暂时没使用
     /// </summary>
     public struct EnumObject
     {
@@ -12,10 +13,9 @@ namespace MicroShop.Utility.Enums
         /// <param name="um"></param>       
         public EnumObject(Enum um)
         {
-            this.Id = (int)Convert.ChangeType(um, typeof(int));
-            this.Name = um.ToString();
-            this.Description = um.GetDescription();
-          
+            Id = (int)Convert.ChangeType(um, typeof(int));
+            Name = um.ToString();
+            Description = um.GetDescription();          
         }
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace MicroShop.Utility.Enums
         /// <param name="name"></param>
         public EnumObject(int id, string name)
         {
-            this.Id = id;
-            this.Name = this.Description = name;          
+            Id = id;
+            Name = Description = name;          
         }
 
         /// <summary>
@@ -37,26 +37,25 @@ namespace MicroShop.Utility.Enums
         /// <param name="description"></param>
         public EnumObject(int id, string name, string description)
         {
-            this.Id = id;
-            this.Name = name;
-            this.Description = description;            
+            Id = id;
+            Name = name;
+            Description = description;            
         }
 
         /// <summary>
         /// 枚举的数值
         /// </summary>
-        public int Id;
+        public int Id { get; private set; }
 
         /// <summary>
         /// 枚举的Key值
         /// </summary>
-        public string Name;
+        public string Name { get; private set; }
 
         /// <summary>
         /// 枚举的描述值
         /// </summary>
-        public string Description;
-
+        public string Description { get; private set; }
       
     }
 }

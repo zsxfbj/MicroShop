@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.WebApi", "Web\Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.SQLServerDAL", "SQLServerDAL\MicroShop.SQLServerDAL.csproj", "{7C03B44A-47F5-4A39-8B34-1109C91F01AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Entity", "Entity\MicroShop.Entity.csproj", "{81EDD377-443B-434C-B218-7F9F0D9579D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Entity", "Entity\MicroShop.Entity.csproj", "{81EDD377-443B-434C-B218-7F9F0D9579D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.AppCommon", "AppCommon\MicroShop.AppCommon.csproj", "{99738F96-6352-489F-B5C6-64E6873BC590}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99738F96-6352-489F-B5C6-64E6873BC590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99738F96-6352-489F-B5C6-64E6873BC590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99738F96-6352-489F-B5C6-64E6873BC590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99738F96-6352-489F-B5C6-64E6873BC590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

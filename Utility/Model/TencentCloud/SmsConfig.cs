@@ -49,7 +49,5 @@ namespace MicroShop.Utility.Model.TencentCloud
             SecretId = string.Empty;
             SecretKey = string.Empty;
         }
-
-
     }
 }

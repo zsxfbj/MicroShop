@@ -42,9 +42,5 @@ namespace MicroShop.Utility.Model.TencentCloud
             BucketName = string.Empty;
             Region = string.Empty;
         }
-
-       
-
-
     }
 }

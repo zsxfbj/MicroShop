@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Prouct\" />
+    <Folder Include="Mall\" />
   </ItemGroup>
 
   <ItemGroup>

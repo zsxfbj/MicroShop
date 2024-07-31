@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace MicroShop.Utility.Common
 {
@@ -16,7 +11,7 @@ namespace MicroShop.Utility.Common
         /// </summary>
         /// <param name="sectionName"></param>
         /// <returns></returns>
-        public static string GetConfig(string sectionName)
+        public static string? GetConfig(string sectionName)
         {
             return builder.Build().GetSection(sectionName).ToString();
         }
