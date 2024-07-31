@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <Folder Include="Serialize\Xml\" />
-    <Folder Include="Web\" />
   </ItemGroup>
 
   <ItemGroup>
