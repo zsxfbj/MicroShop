@@ -20,12 +20,11 @@ namespace MicroShop.SQLServerDAL.Permission
         /// </summary>
         /// <param name="entity">数据实体对象</param>
         /// <param name="role">数据转对象实例</param>
-        private static void ToEntity(RoleDTO role, Role entity)
+        private static void ToEntity(CreateRoleReqDTO req, Role entity)
         {
-            entity.RoleId = role.RoleId;
-            entity.RoleName = role.RoleName;
-            entity.IsEnable = role.IsEnable;
-            entity.Note = role.Note;
+            entity.RoleName = req.RoleName.Trim();
+            entity.IsEnable = req.IsEnable;
+            entity.Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim();
         }
         #endregion private static void ToEntity(CreateRoleReqDTO req, Role role)
 
@@ -53,60 +52,70 @@ namespace MicroShop.SQLServerDAL.Permission
 
         #region Public Methods
 
-        #region public RoleVO Save(RoleDTO role)
+        #region public RoleVO Create(CreateRoleReqDTO role)
         /// <summary>
         /// 保存到数据库里
         /// </summary>
         /// <param name="role">角色实体对象</param>
         /// <returns>a value of RoleVO</returns>
-        public RoleVO Save(RoleDTO role)
-        {           
+        public RoleVO Create(CreateRoleReqDTO req)
+        {
             using (var context = new MicroShopContext())
             {
-                Role? entity = null;
+                Role entity = new Role
+                {
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                    IsDeleted = false,
+                    RoleId = 0
+                };
 
-                if (role.RoleId > 0)
-                {
-                    entity = context.Roles.FirstOrDefault(x => x.RoleId == role.RoleId);       
-                }
-               
-                if(entity == null)
-                {
-                    entity = new Role
-                    {
-                        CreatedAt = DateTime.Now,
-                        IsDeleted = false,
-                        RoleId = 0
-                    };
-                }
                 //赋值到数据对象类里
-                ToEntity(role, entity);    
-                
-                entity.UpdatedAt = DateTime.Now;
+                ToEntity(req, entity);
 
-                //根据RoleId判断是更新还是新增
-                if(entity.RoleId > 0)
-                {
-                    context.Roles.Add(entity);
-                }
-                else
-                {
-                    context.Roles.Update(entity);
-                }               
+                context.Roles.Add(entity);
                 context.SaveChanges();
+
                 //返回对象视图
                 return ToVO(entity);
-            }          
+            }
         }
-        #endregion public RoleVO Save(RoleDTO role)
+        #endregion public RoleVO Create(CreateRoleReqDTO req)
 
-        #region public void Delete(int roleId)
+        #region public RoleVO Modify(ModifyRoleReqDTO req)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        /// <exception cref="ServiceException"></exception>
+        public RoleVO Modify(ModifyRoleReqDTO req)
+        {
+            using (var context = new MicroShopContext())
+            {
+                Role? entity = context.Roles.FirstOrDefault(x => x.RoleId == req.RoleId);
+
+                if(entity == null || entity.IsDeleted)
+                {
+                    throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "编号为【" + req.RoleId + "】的角色记录不存在或已被删除" };
+                }
+                ToEntity(req, entity);
+                entity.UpdatedAt = DateTime.Now;
+                context.Roles.Update(entity);
+                context.SaveChanges();
+
+                return ToVO(entity);
+            }
+        }
+        #endregion public RoleVO Modify(ModifyRoleReqDTO req)
+
+        #region public void Delete(long roleId)
         /// <summary>
         /// 删除角色记录
         /// </summary>
         /// <param name="roleId">角色编号</param>
         /// <exception cref="ServiceException"></exception>
-        public void Delete(int roleId)
+        public void Delete(long roleId)
         {
             using (var context = new MicroShopContext())
             {
@@ -142,13 +151,13 @@ namespace MicroShop.SQLServerDAL.Permission
 
             using (var context = new MicroShopContext())
             {
-                IQueryable<Role>? query = context.Roles.Where(x => x.IsDeleted == false); 
+                IQueryable<Role>? query = context.Roles.Where(x => x.IsDeleted == false);
 
                 if (string.IsNullOrWhiteSpace(req.RoleName))
                 {
                     query = query.Where(x => x.RoleName.Contains(req.RoleName.Trim()));
                 }
-                if(req.IsEnable != null)
+                if (req.IsEnable != null)
                 {
                     query = query.Where(x => x.IsEnable == req.IsEnable.Value);
                 }
@@ -167,9 +176,9 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <param name="roleId"></param>
         /// <returns></returns>
         /// <exception cref="ServiceException"></exception>
-        public RoleVO GetRole(int roleId)
+        public RoleVO GetRole(long roleId)
         {
-            using(var context = new MicroShopContext())
+            using (var context = new MicroShopContext())
             {
                 Role? role = context.Roles.FirstOrDefault(x => x.RoleId == roleId);
                 if (role == null || role.IsDeleted == true)
@@ -177,7 +186,7 @@ namespace MicroShop.SQLServerDAL.Permission
                     throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "角色记录不存在或者已被删除" };
                 }
                 return ToVO(role);
-            }           
+            }
         }
         #endregion public RoleVO GetRole(int roleId)
 
@@ -206,12 +215,12 @@ namespace MicroShop.SQLServerDAL.Permission
             using (var context = new MicroShopContext())
             {
                 Role? role = context.Roles.FirstOrDefault(x => x.RoleName == roleName.Trim() && x.IsDeleted == false);
-                if(role != null)
+                if (role != null)
                 {
                     return ToVO(role);
                 }
                 return null;
-            }            
+            }
         }
         #endregion public RoleVO? GetRole(string roleName)
 

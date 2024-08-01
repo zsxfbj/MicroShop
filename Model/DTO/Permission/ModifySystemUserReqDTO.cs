@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using MicroShop.Utility.Serialize.Json;
 
 namespace MicroShop.Model.DTO.Permission
 {
@@ -13,8 +15,9 @@ namespace MicroShop.Model.DTO.Permission
         /// 系统用户编号
         /// </summary>
         [Required(ErrorMessage = "系统用户编号不能为空")]
-        [Range(1, int.MaxValue, ErrorMessage = "请指定要修改的系统用户")]
-        public int UserId { get; set; } = 0;
+        [Range(1, long.MaxValue, ErrorMessage = "请指定要修改的系统用户")]
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long UserId { get; set; } = 0;
 
     }
 }

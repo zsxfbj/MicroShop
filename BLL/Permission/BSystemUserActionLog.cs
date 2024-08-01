@@ -43,6 +43,11 @@ namespace MicroShop.BLL.Permission
             }          
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="systemUserToken"></param>
+        /// <param name="actionType"></param>
         public static void SaveAction(SystemUserTokenDTO systemUserToken, ActionTypeEnum actionType)
         {
             SystemUserActionLogVO vo = new SystemUserActionLogVO
@@ -57,7 +62,9 @@ namespace MicroShop.BLL.Permission
                 UserAgent = HttpContext.GetUserAgent()
             };
 
-            if (HttpContext.Current.Request.Method == "POST") 
+            string httpMethod = HttpContext.Current.Request.Method;
+
+            if (httpMethod.Equals("POST", StringComparison.OrdinalIgnoreCase) || httpMethod.Equals("PUT", StringComparison.OrdinalIgnoreCase)) 
             {
                 StreamReader stream = new StreamReader(HttpContext.Current.Request.Body);
                 vo.OperateContent = stream.ReadToEndAsync().GetAwaiter().GetResult();              

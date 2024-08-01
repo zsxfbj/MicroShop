@@ -220,7 +220,7 @@ namespace MicroShop.Utility.Cache
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public static T Dequeue<T>(string key) where T : class
+        public static T? Dequeue<T>(string key) where T : class
         {
             if (_db != null)
             {
@@ -237,7 +237,7 @@ namespace MicroShop.Utility.Cache
         /// <param name="start"></param>
         /// <param name="stop"></param>
         /// <returns></returns>
-        public static async Task<IEnumerable<T>> PeekRangeAsync<T>(string key, long start = 0, long stop = -1) where T : class
+        public static async Task<IEnumerable<T?>?> PeekRangeAsync<T>(string key, long start = 0, long stop = -1) where T : class
         {
             if (_db == null)
             {
@@ -254,7 +254,7 @@ namespace MicroShop.Utility.Cache
         /// <param name="start"></param>
         /// <param name="stop"></param>
         /// <returns></returns>
-        public static IEnumerable<T> PeekRange<T>(string key, long start = 0, long stop = -1) where T : class
+        public static IEnumerable<T?>? PeekRange<T>(string key, long start = 0, long stop = -1) where T : class
         {
             if (_db != null)
             {
@@ -324,7 +324,7 @@ namespace MicroShop.Utility.Cache
         /// <returns></returns>
         public static long SetRemove<T>(string key, IEnumerable<T> values)
         {
-            if (_db != null)
+            if (_db != null && values != null)
             {
                 return _db.SetRemove(key, values.ToRedisValues());
             }

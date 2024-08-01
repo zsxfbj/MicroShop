@@ -26,6 +26,8 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Product\" />
+    <Folder Include="Controllers\User\" />
+    <Folder Include="Core\" />
   </ItemGroup>
 
 </Project>

@@ -28,26 +28,26 @@ namespace MicroShop.IDAL.Permission
         /// </summary>
         /// <param name="passowrd">新密码（明文）</param>
         /// <param name="userId">用户Id</param>       
-        void ModifyLoginPassword(string passowrd, int userId);
+        void ModifyLoginPassword(string passowrd, long userId);
 
         /// <summary>
         /// 根据UserId获取系统用户基本信息
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        SystemUserVO GetSystemUser(int userId);
+        SystemUserVO GetSystemUser(long userId);
 
         /// <summary>
         /// 根据用户Id删除用户记录，同时删除操作日志表里的所有数据
         /// </summary>
         /// <param name="userId">用户Id</param>    
-        void Delete(int userId);
+        void Delete(long userId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="userId"></param>
-        void SetLoginStatus(int userId);
+        void SetLoginStatus(long userId);
 
         /// <summary>
         /// 根据登录名查询系统用户记录

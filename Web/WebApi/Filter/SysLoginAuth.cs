@@ -5,10 +5,9 @@ using MicroShop.Enums.Web;
 using MicroShop.Model.Auth;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Utility.Common;
-using MicroShop.Web.Common;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace MicroShop.Web.AdminApi.Filter
+namespace MicroShop.WebApi.Filter
 {
     /// <summary>
     /// 系统用户登录效验

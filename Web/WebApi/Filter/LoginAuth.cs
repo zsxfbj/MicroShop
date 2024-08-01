@@ -1,13 +1,10 @@
-﻿using MicroShop.BLL.Auth;
-using MicroShop.BLL.Permission;
-using MicroShop.Enums.Web;
+﻿using MicroShop.Enums.Web;
 using MicroShop.Model.Auth;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Utility.Common;
-using MicroShop.Web.Common;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace MicroShop.Web.AdminApi.Filter
+namespace MicroShop.WebApi.Filter
 {
     /// <summary>
     /// 用户登录效验
@@ -18,8 +15,7 @@ namespace MicroShop.Web.AdminApi.Filter
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="context"></param>
-        /// <exception cref="NotImplementedException"></exception>
+        /// <param name="context"></param>      
         public void OnActionExecuted(ActionExecutedContext context)
         {
             string? token = context.HttpContext.Request.Headers[HeaderParameters.USER_AUTH_TOKEN_KEY];
@@ -35,14 +31,12 @@ namespace MicroShop.Web.AdminApi.Filter
         /// </summary>
         /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
-        {           
-             
+        {  
             UserTokenDTO? userToken = null;
             if(userToken == null || userToken.UserId == 0)
             {
                 throw new ServiceException { ErrorMessage = "登录信息已失效，请重新登录系统！", ErrorCode = RequestResultCodeEnum.NotAllowAnonymous };
-            }
-             
+            }             
         }
     }
 

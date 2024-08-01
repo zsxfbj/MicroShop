@@ -17,7 +17,7 @@ namespace MicroShop.DALFactory.Permission
         public static IMenu Create()
         {
             string className = StaticGlobalVariables.MicroShopDAL + ".Permission.MenuDAL";
-            return MemcacheClient.CreateObject<IMenu>(string.IsNullOrWhiteSpace(StaticGlobalVariables.MicroShopDAL) ? Constants.MICRO_SHOP_DAL : StaticGlobalVariables.MicroShopDAL, className);
+            return MemcacheClient.CreateObject<IMenu>(StaticGlobalVariables.MicroShopDAL, className);
         }
     }
 }

@@ -1,13 +1,10 @@
 using Lazy.Captcha.Core.Generator;
 using Lazy.Captcha.Core;
-using MicroShop.Utility.Cache;
-using MicroShop.Web.AdminApi.Filter;
-using MicroShop.Web.Common.Filter;
 using Microsoft.OpenApi.Models;
 using MicroShop.Utility;
-using MicroShop.Permission.WebApi.Filter;
-using System.Text.Json.Serialization;
 using MicroShop.Utility.Serialize.Json;
+using MicroShop.WebApi.Filter;
+using MicroShop.Utility.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //缓存模式：默认-system，Redis-redis
 string? cacheType = builder.Configuration.GetSection("CacheType").Value;
-StaticGlobalVariables.CacheType = string.IsNullOrEmpty(cacheType) ? "system" : cacheType.Trim();
+StaticGlobalVariables.CacheType = string.IsNullOrEmpty(cacheType) ? Constants.DEFAULT_CACHE_TYPE : cacheType.ToLower().Trim();
 
 //数据库链接字符串
 StaticGlobalVariables.SQLConnectionString = builder.Configuration.GetConnectionString("CONNECTION_STRING_NON_DTC");
@@ -31,7 +28,7 @@ StaticGlobalVariables.IsDebug = bool.Parse((string.IsNullOrEmpty(isDebug) ? "fal
 
 //数据访问仓库
 string? dalType = builder.Configuration.GetSection("MicroShopDAL").Value;
-StaticGlobalVariables.MicroShopDAL = string.IsNullOrEmpty(dalType) ? "MicroShop.SQLServerDAL" : dalType.Trim();
+StaticGlobalVariables.MicroShopDAL = string.IsNullOrEmpty(dalType) ? Constants.DEFAULT_DAL : dalType.Trim();
 
 // Add services to the container.
 builder.Services.AddControllers(options =>

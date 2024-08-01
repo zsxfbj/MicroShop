@@ -1,15 +1,15 @@
 ﻿using Lazy.Captcha.Core;
-using MicroShop.Web.Common;
+using MicroShop.Model.Auth;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MicroShop.Web.AdminApi.Controllers.Permission
+namespace MicroShop.WebApi.Controllers.Admin
 {
     /// <summary>
     /// 运营平台相关通用API
     /// </summary>
-    [Route("permission/common")]
+    [Route("admin/common")]
     [ApiController]
-    public class PermissionCommonController
+    public class CommonController
     {
         private readonly ICaptcha _captcha;
 
@@ -17,10 +17,10 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         /// 构造函数
         /// </summary>      
         /// <param name="captcha"></param>
-        public PermissionCommonController(ICaptcha captcha)
+        public CommonController(ICaptcha captcha)
         {
             _captcha = captcha;
-        }      
+        }
 
         /// <summary>
         /// 生成图形验证码

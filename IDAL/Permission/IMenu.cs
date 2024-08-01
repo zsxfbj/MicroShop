@@ -11,9 +11,16 @@ namespace MicroShop.IDAL.Permission
         /// <summary>
         /// 保存菜单记录
         /// </summary>
-        /// <param name="menu">菜单数据对象</param>
+        /// <param name="req">菜单数据对象</param>
         /// <returns>a value of MicroShop.Model.Permission.MenuDTO or null</returns>
-        MenuVO Save(MenuDTO menu);
+        MenuVO Create(CreateMenuReqDTO req);
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="req"></param>
+        /// <returns></returns>
+        MenuVO Modify(ModifyMenuReqDTO req);
 
         /// <summary>
         /// 根据菜单id删除

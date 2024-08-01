@@ -17,7 +17,7 @@ namespace MicroShop.DALFactory.Permission
         public static ISystemUser Create()
         {
             string className = StaticGlobalVariables.MicroShopDAL + ".Permission.SystemUserDAL";
-            return MemcacheClient.CreateObject<ISystemUser>(string.IsNullOrWhiteSpace(StaticGlobalVariables.MicroShopDAL) ? Constants.MICRO_SHOP_DAL : StaticGlobalVariables.MicroShopDAL, className);
+            return MemcacheClient.CreateObject<ISystemUser>(StaticGlobalVariables.MicroShopDAL, className);
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
-using MicroShop.Model.VO.Permission;
+using MicroShop.Utility.Serialize.Json;
 
-namespace MicroShop.Model.DTO.Permission
+namespace MicroShop.Model.VO.Permission
 {
     /// <summary>
     /// 系统用户登录结果
@@ -27,7 +27,8 @@ namespace MicroShop.Model.DTO.Permission
         /// <summary>
         /// 角色编号
         /// </summary>
-        public int RoleId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long RoleId { get; set; } = 0L;
 
         /// <summary>
         /// 角色名称
@@ -47,7 +48,7 @@ namespace MicroShop.Model.DTO.Permission
         /// <summary>
         /// 更新时间
         /// </summary>        
-        [JsonConverter(typeof(Utility.Serialize.Json.DefaultDateTimeConverter))]
+        [JsonConverter(typeof(DefaultDateTimeConverter))]
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         /// <summary>

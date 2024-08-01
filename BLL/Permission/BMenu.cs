@@ -1,4 +1,5 @@
-﻿using MicroShop.DALFactory.Permission;
+﻿using MicroShop.BLL.Common;
+using MicroShop.DALFactory.Permission;
 using MicroShop.IDAL.Permission;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
@@ -11,32 +12,16 @@ namespace MicroShop.BLL.Permission
     /// </summary>
     public class BMenu
     {
+        /// <summary>
+        /// 数据访问实现
+        /// </summary>
         private readonly static IMenu dal = MenuFactory.Create();
 
         /// <summary>
-        /// 初始化保存数据
+        /// 缓存的Key
         /// </summary>
-        /// <param name="req"></param>
-        private static MenuDTO InitData(CreateMenuReqDTO req)
-        {
-            MenuDTO menu = new MenuDTO
-            {
-                OrderValue = req.OrderValue,
-                Path = string.IsNullOrEmpty(req.Path) ? "" : req.Path.Trim(),
-                MenuName = string.IsNullOrEmpty(req.MenuName) ? "" : req.MenuName.Trim(),
-                MenuType = req.MenuType,
-                Note = string.IsNullOrEmpty(req.Note) ? "" : req.Note.Trim(),
-                ParentId = req.ParentId,
-                Icon = string.IsNullOrEmpty(req.Icon) ? "" : req.Icon.Trim(),
-                ComponentName = string.IsNullOrEmpty(req.ComponentName) ? "" : req.ComponentName.Trim(),
-                ComponentConfig = string.IsNullOrEmpty(req.ComponentConfig) ? "" : req.ComponentConfig.Trim(),
-                Permission = string.IsNullOrEmpty(req.Permission) ? "" : req.Permission.Trim(),
-                IsEnable = req.IsEnable,
-                Hidden = req.Hidden
-            };
-            return menu;
-        }
-
+        private const string CacheKey = "sys-menu-";
+               
         /// <summary>
         /// 
         /// </summary>
@@ -44,8 +29,9 @@ namespace MicroShop.BLL.Permission
         /// <returns></returns>
         public static MenuVO Create(CreateMenuReqDTO req)
         {
-            MenuDTO menu = InitData(req);
-            return dal.Save(menu);
+            MenuVO vo = dal.Create(req);
+            BCache.SetValue(CacheKey + vo.MenuId, vo);
+            return vo;
         }
 
         /// <summary>
@@ -54,10 +40,10 @@ namespace MicroShop.BLL.Permission
         /// <param name="req"></param>
         /// <returns></returns>
         public static MenuVO Modify(ModifyMenuReqDTO req)
-        {
-            MenuDTO menu = InitData(req);
-            menu.MenuId = req.MenuId;
-            return dal.Save(menu);
+        {            
+            MenuVO vo =  dal.Modify(req);
+            BCache.SetValue(CacheKey + vo.MenuId, vo);
+            return vo;
         }
 
         /// <summary>
@@ -72,8 +58,9 @@ namespace MicroShop.BLL.Permission
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "参数值错误" };
             }
             dal.Delete(menuId);
+            //移除缓存
+            BCache.Remove(CacheKey + menuId);
         }
-
 
         /// <summary>
         /// 
@@ -86,8 +73,15 @@ namespace MicroShop.BLL.Permission
             {
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "参数值错误" };
             }
+            string key = CacheKey + menuId;
+            if (BCache.IsExist(key)) 
+            {
+                return BCache.GetValue<MenuVO>(key);
+            }
 
-            return dal.GetMenu(menuId);
+            MenuVO vo = dal.GetMenu(menuId);
+            BCache.SetValue(key, vo);
+            return vo;
         }
 
         /// <summary>

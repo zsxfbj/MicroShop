@@ -1,6 +1,7 @@
 ﻿using MicroShop.Model.Common.Exception;
 using MicroShop.Utility;
 using MicroShop.Utility.Cache;
+using MicroShop.Utility.Common;
 using Microsoft.Extensions.Configuration;
 
 namespace MicroShop.BLL.Common
@@ -36,7 +37,7 @@ namespace MicroShop.BLL.Common
         /// <param name="value">缓存的对象</param>
         public static void SetValue<T>(string key, T value)
         {
-            if(StaticGlobalVariables.CacheType.Equals("system", StringComparison.OrdinalIgnoreCase))
+            if(StaticGlobalVariables.CacheType.Equals(Constants.DEFAULT_CACHE_TYPE, StringComparison.OrdinalIgnoreCase))
             {
                 MemcacheClient.SetValue(key, value);
             }
@@ -59,7 +60,7 @@ namespace MicroShop.BLL.Common
         /// <param name="expiry">过期的时长</param>
         public static void SetValue<T>(string key, T value, TimeSpan expiry)
         {
-            if (StaticGlobalVariables.CacheType.Equals("system", StringComparison.OrdinalIgnoreCase))
+            if (StaticGlobalVariables.CacheType.Equals(Constants.DEFAULT_CACHE_TYPE, StringComparison.OrdinalIgnoreCase))
             {
                 DateTimeOffset offset = DateTimeOffset.Now.AddTicks(expiry.Ticks);
                 MemcacheClient.SetValue(key, value, offset);
@@ -82,7 +83,7 @@ namespace MicroShop.BLL.Common
         /// <returns></returns>
         public static T GetValue<T>(string key) where T : class 
         {
-            if (StaticGlobalVariables.CacheType.Equals("system", StringComparison.OrdinalIgnoreCase))
+            if (StaticGlobalVariables.CacheType.Equals(Constants.DEFAULT_CACHE_TYPE, StringComparison.OrdinalIgnoreCase))
             {
                 return MemcacheClient.GetValue<T>(key);
             }
@@ -102,7 +103,7 @@ namespace MicroShop.BLL.Common
         /// <param name="key">缓存Key</param>
         public static void Remove(string key)
         {
-            if (StaticGlobalVariables.CacheType.Equals("system", StringComparison.OrdinalIgnoreCase))
+            if (StaticGlobalVariables.CacheType.Equals(Constants.DEFAULT_CACHE_TYPE, StringComparison.OrdinalIgnoreCase))
             {
                 MemcacheClient.Remove(key);
             }
@@ -123,7 +124,7 @@ namespace MicroShop.BLL.Common
         /// <returns></returns>
         public static bool IsExist(string key)
         {
-            if (StaticGlobalVariables.CacheType.Equals("system", StringComparison.OrdinalIgnoreCase))
+            if (StaticGlobalVariables.CacheType.Equals(Constants.DEFAULT_CACHE_TYPE, StringComparison.OrdinalIgnoreCase))
             {
                 return MemcacheClient.IsExist(key);
             }

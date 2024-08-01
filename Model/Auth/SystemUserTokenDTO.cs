@@ -1,4 +1,5 @@
-﻿using MicroShop.Enums.Web;
+﻿using System.Text.Json.Serialization;
+using MicroShop.Utility.Serialize.Json;
 
 namespace MicroShop.Model.Auth
 {
@@ -16,12 +17,14 @@ namespace MicroShop.Model.Auth
         /// <summary>
         /// 用户编号
         /// </summary>
-        public int UserId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long UserId { get; set; } = 0;
 
         /// <summary>
         /// 角色编号
         /// </summary>
-        public int RoleId { get; set; } = 0;
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long RoleId { get; set; } = 0;
 
         /// <summary>
         /// 角色名称

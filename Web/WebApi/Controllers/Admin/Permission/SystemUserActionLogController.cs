@@ -3,17 +3,17 @@ using MicroShop.Enums.Web;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
-using MicroShop.Web.AdminApi.Filter;
+using MicroShop.WebApi.Filter;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MicroShop.Web.AdminApi.Controllers.Permission
+namespace MicroShop.WebApi.Controllers.Admin.Permission
 {
     /// <summary>
     /// 系统用户操作接口
     /// </summary>
-    [Route("permission/system-user/action")]
+    [Route("admin/permission/system-user/action")]
     [ApiController]
-    public class PermissionSystemUserActionLogController
+    public class SystemUserActionLogController
     {
         /// <summary>
         /// 分页查询系统用户操作日志
@@ -30,7 +30,7 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
                 ResultCode = RequestResultCodeEnum.Success
             };
         }
-               
+
         /// <summary>
         /// 批量删除日志
         /// </summary>

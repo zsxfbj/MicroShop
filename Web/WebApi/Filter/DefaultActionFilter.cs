@@ -3,8 +3,9 @@ using MicroShop.Enums.Web;
 using MicroShop.Model.VO.Web;
 using MicroShop.Utility.Enums;
 using Microsoft.AspNetCore.Mvc;
+using MicroShop.Model.Auth;
 
-namespace MicroShop.Web.Common.Filter
+namespace MicroShop.WebApi.Filter
 {
     /// <summary>
     /// 默认过滤器

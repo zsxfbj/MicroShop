@@ -1,7 +1,6 @@
 ﻿using MicroShop.IDAL.Permission;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
-using MicroShop.Entity.Permission;
 
 namespace MicroShop.SQLServerDAL.Permission
 {
@@ -15,7 +14,7 @@ namespace MicroShop.SQLServerDAL.Permission
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>     
-        public List<RoleMenuVO> GetRoleMenus(int roleId, bool showHidden)
+        public List<RoleMenuVO> GetRoleMenus(long roleId, bool showHidden)
         {
             List<RoleMenuVO> roleMenus = new List<RoleMenuVO>();
             using (var context = new MicroShopContext())
@@ -60,7 +59,7 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <param name="roleId"></param>
         /// <param name="permission"></param>
         /// <returns></returns>
-        public bool HasPermission(int roleId, string permission)
+        public bool HasPermission(long roleId, string permission)
         {
             using (var context = new MicroShopContext())
             {
@@ -73,7 +72,7 @@ namespace MicroShop.SQLServerDAL.Permission
 
         }
 
-        #region private static List<RoleMenuDTO> GetMenus(int parentId, MicroShopContext context)
+        #region private static List<RoleMenuDTO> GetMenus(long parentId, MicroShopContext context)
         /// <summary>
         /// 
         /// </summary>
@@ -81,7 +80,7 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <param name="parentId"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        private static List<RoleMenuVO> GetMenus(int parentId, bool showHidden, MicroShopContext context)
+        private static List<RoleMenuVO> GetMenus(long parentId, bool showHidden, MicroShopContext context)
         {
             if (showHidden)
             {
@@ -111,7 +110,7 @@ namespace MicroShop.SQLServerDAL.Permission
             }
             
         }
-        #endregion private static List<RoleMenuDTO> GetMenus(int parentId, MicroShopContext context)
+        #endregion private static List<RoleMenuDTO> GetMenus(long parentId, MicroShopContext context)
 
         #region private static List<RoleMenuDTO> GetMenus(int roleId, int parentId, MicroShopContext context)
         /// <summary>
@@ -121,7 +120,7 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <param name="parentId"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        private static List<RoleMenuVO> GetMenus(int roleId, int parentId, bool showHidden, MicroShopContext context)
+        private static List<RoleMenuVO> GetMenus(long roleId, long parentId, bool showHidden, MicroShopContext context)
         {
             if (showHidden)
             {
@@ -152,7 +151,7 @@ namespace MicroShop.SQLServerDAL.Permission
                         }).ToList();
             }
         }
-        #endregion private static List<RoleMenuDTO> GetMenus(int roleId, int parentId, MicroShopContext context)       
+        #endregion private static List<RoleMenuDTO> GetMenus(long roleId, long parentId, MicroShopContext context)       
 
     }
 }

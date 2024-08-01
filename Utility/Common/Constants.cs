@@ -18,9 +18,14 @@ namespace MicroShop.Utility.Common
         public const Int32 FIFTEEN = 15;
 
         /// <summary>
+        /// 默认的缓存类型
+        /// </summary>
+        public const string DEFAULT_CACHE_TYPE = "system";
+
+        /// <summary>
         /// 默认数据访问仓库
         /// </summary>
-        public const string MICRO_SHOP_DAL = "MicroShop.SQLServerDAL";
+        public const string DEFAULT_DAL = "MicroShop.SQLServerDAL";
 
         /// <summary>
         /// 默认的日期时间格式

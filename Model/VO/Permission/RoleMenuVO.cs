@@ -10,10 +10,16 @@ namespace MicroShop.Model.VO.Permission
     public class RoleMenuVO
     {
         /// <summary>
+        /// 角色Id
+        /// </summary>
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long RoleId { get; set; } = 0L;
+
+        /// <summary>
         /// 菜单编号
         /// </summary>
         [JsonConverter(typeof(LongToStringConverter))]
-        public long MenuId { get; set; } = 0;
+        public long MenuId { get; set; } = 0L;
 
         /// <summary>
         /// 菜单名称

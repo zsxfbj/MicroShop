@@ -23,7 +23,7 @@ namespace MicroShop.BLL.Permission
         /// <param name="roleId"></param>
         /// <param name="permission"></param>
         /// <returns></returns>
-        public static bool HasPermission(int roleId, string permission)
+        public static bool HasPermission(long roleId, string permission)
         {
             if(roleId < 1)
             {
@@ -43,7 +43,7 @@ namespace MicroShop.BLL.Permission
         /// <param name="roleId">角色Id</param>
         /// <param name="showHidden">显示隐藏菜单</param>
         /// <returns></returns>
-        public static List<RoleMenuVO> GetRoleMenus(int roleId, bool showHidden = false)
+        public static List<RoleMenuVO> GetRoleMenus(long roleId, bool showHidden = false)
         {
             if(roleId < 1)
             {

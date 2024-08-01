@@ -3,17 +3,17 @@ using MicroShop.Enums.Web;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
-using MicroShop.Web.AdminApi.Filter;
+using MicroShop.WebApi.Filter;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MicroShop.Web.AdminApi.Controllers.Permission
+namespace MicroShop.WebApi.Controllers.Admin.Permission
 {
     /// <summary>
     /// 系统运营平台菜单API
     /// </summary>
-    [Route("permission/menu")]
-    [ApiController]   
-    public class PermissionMenuController
+    [Route("admin/permission/menu")]
+    [ApiController]
+    public class MenuController
     {
         /// <summary>
         /// 获取菜单详情

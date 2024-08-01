@@ -1,4 +1,6 @@
-﻿namespace MicroShop.Utility
+﻿using MicroShop.Utility.Common;
+
+namespace MicroShop.Utility
 {
     /// <summary>
     /// 静态全局变量，不处理执行默认值
@@ -10,12 +12,12 @@
         /// <summary>
         /// 数据访问层
         /// </summary>
-        public static string? MicroShopDAL { get; set; } = "MicroShop.SQLServerDAL";
+        public static string MicroShopDAL { get; set; } = Constants.DEFAULT_DAL;
 
         /// <summary>
         /// 数据库访问链接
         /// </summary>
-        public static string? SQLConnectionString { get; set; } = "Server=.\\SQLEXPRESS;Database=micro_shop;User ID=sa;Password=sheng@123;Trusted_Connection=True";
+        public static string SQLConnectionString { get; set; } = "Server=.\\SQLEXPRESS;Database=micro_shop;User ID=sa;Password=sheng@123;Trusted_Connection=True";
 
         /// <summary>
         /// 缓存类型
@@ -25,7 +27,7 @@
         /// <summary>
         /// 是否Debug模式
         /// </summary>
-        public static bool? IsDebug { get; set; } = true;
+        public static bool IsDebug { get; set; } = true;
 
     }
 }

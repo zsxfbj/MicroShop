@@ -1,7 +1,6 @@
 ﻿using MicroShop.IDAL.Common;
 using MicroShop.Utility;
 using MicroShop.Utility.Cache;
-using MicroShop.Utility.Common;
 
 namespace MicroShop.DALFactory.Common
 {
@@ -17,7 +16,7 @@ namespace MicroShop.DALFactory.Common
         public static ICategory Create()
         {         
             string className = StaticGlobalVariables.MicroShopDAL + ".Common.CategoryDAL";
-            return MemcacheClient.CreateObject<ICategory>(string.IsNullOrWhiteSpace(StaticGlobalVariables.MicroShopDAL) ? Constants.MICRO_SHOP_DAL : StaticGlobalVariables.MicroShopDAL, className);
+            return MemcacheClient.CreateObject<ICategory>(StaticGlobalVariables.MicroShopDAL, className);
         }
         
     }

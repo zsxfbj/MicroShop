@@ -1,9 +1,9 @@
-﻿using MicroShop.Web.Common;
+﻿using MicroShop.Model.Auth;
 using Microsoft.OpenApi.Any;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace MicroShop.Web.AdminApi.Filter
+namespace MicroShop.WebApi.Filter
 {
     /// <summary>
     /// Head头参数

@@ -4,18 +4,17 @@ using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
-using MicroShop.Web.AdminApi.Filter;
-using MicroShop.Web.Common; 
+using MicroShop.WebApi.Filter;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MicroShop.Web.AdminApi.Controllers.Permission
+namespace MicroShop.WebApi.Controllers.Admin.Permission
 {
     /// <summary>
     /// 系统用户相关接口
     /// </summary>
-    [Route("permission/system-user")]
+    [Route("admin/permission/system-user")]
     [ApiController]
-    public class PermissionSystemUserController
+    public class SystemUserController
     {
         /// <summary>
         /// 创建系统用户
@@ -100,13 +99,13 @@ namespace MicroShop.Web.AdminApi.Controllers.Permission
         [HttpPost("login")]
         public ApiResultVO<SystemUserLoginResultVO> Login([FromBody] SystemUserLoginReqDTO req)
         {
-            if(req == null)
+            if (req == null)
             {
                 throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "登录请求内容不能为空" };
             }
             if (string.IsNullOrEmpty(req.VerifyCode))
             {
-                throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "图形验证码必须填写"};
+                throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "图形验证码必须填写" };
             }
             //if(!_captcha.Validate(Utility.Common.HttpContext.GetHeaderValue(HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY), systemUserLogin.VerifyCode))
             //{

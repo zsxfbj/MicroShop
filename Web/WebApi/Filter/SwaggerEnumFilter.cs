@@ -1,13 +1,9 @@
-﻿
-using MicroShop.Utility.Enums;
-using Microsoft.OpenApi.Any;
+﻿using MicroShop.Utility.Enums;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
-using System.ComponentModel;
-using System.Reflection;
 using System.Text;
 
-namespace MicroShop.Permission.WebApi.Filter
+namespace MicroShop.WebApi.Filter
 {
     /// <summary>
     /// 向Swagger添加枚举值说明

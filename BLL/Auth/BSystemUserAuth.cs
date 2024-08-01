@@ -1,7 +1,6 @@
 ﻿using MicroShop.BLL.Common;
 using MicroShop.Model.Auth;
 using MicroShop.Utility.Common;
-using MicroShop.Web.Common;
 
 namespace MicroShop.BLL.Auth
 {

@@ -78,7 +78,7 @@ namespace MicroShop.SQLServerDAL.Permission
         }
         #endregion private static SystemUserDTO ToDTO(SystemUser systemUser)
 
-        #region private static SystemUser GetSystemUser(int userId, MicroShopContext context)
+        #region private static SystemUser GetSystemUser(long userId, MicroShopContext context)
         /// <summary>
         /// 
         /// </summary>
@@ -86,16 +86,16 @@ namespace MicroShop.SQLServerDAL.Permission
         /// <param name="context"></param>
         /// <returns></returns>
         /// <exception cref="ServiceException"></exception>
-        private static SystemUser GetSystemUser(int userId, MicroShopContext context)
+        private static SystemUser GetSystemUser(long userId, MicroShopContext context)
         {
             SystemUser? systemUser = context.SystemUsers.FirstOrDefault(x => x.UserId == userId);
             if (systemUser == null)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = string.Format("编号为{0}的系统用户记录不存在", userId) };
+                throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = string.Format("编号为{0}的系统用户记录不存在", userId) };
             }
             return systemUser;
         }
-        #endregion private static SystemUser GetSystemUser(int userId, MicroShopContext context)
+        #endregion private static SystemUser GetSystemUser(long userId, MicroShopContext context)
 
         #endregion Private Methods
 
@@ -174,14 +174,14 @@ namespace MicroShop.SQLServerDAL.Permission
         }
         #endregion public SystemUserVO Modify(ModifySystemUserReqDTO req)
 
-        #region public void ModifyLoginPassword(string passowrd, int userId)
+        #region public void ModifyLoginPassword(string passowrd, long userId)
         /// <summary>
         /// 修改用户密码
         /// </summary>
         /// <param name="passowrd">密码</param>
         /// <param name="userId">用户Id</param>
         /// <exception cref="ServiceException">服务异常信息</exception>
-        public void ModifyLoginPassword(string passowrd, int userId)
+        public void ModifyLoginPassword(string passowrd, long userId)
         {
             using (var context = new MicroShopContext())
             {
@@ -193,31 +193,31 @@ namespace MicroShop.SQLServerDAL.Permission
                 context.SaveChanges();
             }
         }
-        #endregion public void ModifyLoginPassword(string passowrd, int userId)
+        #endregion public void ModifyLoginPassword(string passowrd, long userId)
 
-        #region public SystemUserVO GetSystemUser(int userId)
+        #region public SystemUserVO GetSystemUser(long userId)
         /// <summary>
         /// 根据用户编号获取系统用户基础信息
         /// </summary>
         /// <param name="userId">用户编号</param>
         /// <returns>SystemUserDTO</returns>
         /// <exception cref="ServiceException">服务异常信息</exception>
-        public SystemUserVO GetSystemUser(int userId)
+        public SystemUserVO GetSystemUser(long userId)
         {
             using (var context = new MicroShopContext())
             {
                 return ToVO(GetSystemUser(userId, context), context);
             }
         }
-        #endregion public SystemUserVO GetSystemUser(int userId)
+        #endregion public SystemUserVO GetSystemUser(long userId)
 
-        #region public void Delete(int userId)
+        #region public void Delete(long userId)
         /// <summary>
         /// 根据用户Id删除用户记录，同时删除操作日志表里的所有数据
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <exception cref="ServiceException">服务异常信息</exception>
-        public void Delete(int userId)
+        public void Delete(long userId)
         {
             using (var context = new MicroShopContext())
             {
@@ -230,15 +230,15 @@ namespace MicroShop.SQLServerDAL.Permission
                 context.SaveChanges();
             }
         }
-        #endregion public void Delete(int userId)
+        #endregion public void Delete(long userId)
 
-        #region public void SetLoginStatus(int userId)
+        #region public void SetLoginStatus(long userId)
         /// <summary>
         /// 禁用/启动用户登录状态
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <exception cref="ServiceException">服务异常信息</exception>
-        public void SetLoginStatus(int userId)
+        public void SetLoginStatus(long userId)
         {
             using (var context = new MicroShopContext())
             {
@@ -249,7 +249,7 @@ namespace MicroShop.SQLServerDAL.Permission
                 context.SaveChanges();
             }
         }
-        #endregion public void SetLoginStatus(int userId)
+        #endregion public void SetLoginStatus(long userId)
 
         #region public SystemUserVO GetSystemUser(string loginName)
         /// <summary>

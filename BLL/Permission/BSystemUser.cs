@@ -27,12 +27,12 @@ namespace MicroShop.BLL.Permission
         /// </summary>
         private readonly static ISystemUser dal = SystemUserFactory.Create();
 
-        #region private static void RemoveCache(int userId)
+        #region private static void RemoveCache(long userId)
         /// <summary>
         /// 移除缓存
         /// </summary>
         /// <param name="userId">用户Id</param>
-        private static void RemoveCache(int userId)
+        private static void RemoveCache(long userId)
         {
             //清理缓存
             string key = SystemUserTokenCacheKey + userId;
@@ -51,7 +51,7 @@ namespace MicroShop.BLL.Permission
                 BCache.Remove(key);
             }
         }
-        #endregion private static void RemoveCache(int userId)
+        #endregion private static void RemoveCache(long userId)
 
         #region private static void ToSystemUserToken(SystemUserVO systemUser, SystemUserTokenDTO systemUserToken)
         /// <summary>
@@ -145,13 +145,13 @@ namespace MicroShop.BLL.Permission
         }
         #endregion public static SystemUserVO Modify(ModifySystemUserReqDTO req)
 
-        #region public static SystemUserVO GetSystemUser(int userId)
+        #region public static SystemUserVO GetSystemUser(long userId)
         /// <summary>
         /// 根据用户Id查询系统用户信息
         /// </summary>
         /// <param name="userId">用户Id</param>
         /// <returns>MicroShop.Model.VO.Permission.SystemUserVO</returns>
-        public static SystemUserVO GetSystemUser(int userId)
+        public static SystemUserVO GetSystemUser(long userId)
         {
             if (userId <= 0)
             {
@@ -167,14 +167,14 @@ namespace MicroShop.BLL.Permission
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "读取系统用户记录时访问数据库异常！" };
             }            
         }
-        #endregion public static SystemUserVO GetSystemUser(int userId)
+        #endregion public static SystemUserVO GetSystemUser(long userId)
 
-        #region public static void Delete(int userId)
+        #region public static void Delete(long userId)
         /// <summary>
         /// 根据用户Id删除用户信息
         /// </summary>
         /// <param name="userId">用户Id</param>
-        public static void Delete(int userId)
+        public static void Delete(long userId)
         {
             if (userId <= 0)
             {
@@ -193,14 +193,14 @@ namespace MicroShop.BLL.Permission
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "删除系统用户记录时访问数据库异常！" };
             }           
         }
-        #endregion public static void Delete(int userId)
+        #endregion public static void Delete(long userId)
 
-        #region public static void SetLoginStatus(int userId)
+        #region public static void SetLoginStatus(long userId)
         /// <summary>
         /// 设置系统用户的可登录状态
         /// </summary>
         /// <param name="userId">用户Id</param>
-        public static void SetLoginStatus(int userId)
+        public static void SetLoginStatus(long userId)
         {
             if (userId <= 0)
             {
@@ -220,7 +220,7 @@ namespace MicroShop.BLL.Permission
                 throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "更新系统用户可登录状态时访问数据库异常！" };
             }            
         }
-        #endregion public static void SetLoginStatus(int userId)
+        #endregion public static void SetLoginStatus(long userId)
 
         #region public static PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
         /// <summary>

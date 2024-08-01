@@ -17,7 +17,7 @@ namespace MicroShop.DALFactory.Permission
         public static IRole Create()
         {
             string className = StaticGlobalVariables.MicroShopDAL + ".Permission.RoleDAL";
-            return MemcacheClient.CreateObject<IRole>(string.IsNullOrWhiteSpace(StaticGlobalVariables.MicroShopDAL) ? Constants.MICRO_SHOP_DAL : StaticGlobalVariables.MicroShopDAL, className);
+            return MemcacheClient.CreateObject<IRole>(StaticGlobalVariables.MicroShopDAL, className);
         }
     }
 }

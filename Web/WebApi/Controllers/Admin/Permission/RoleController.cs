@@ -3,17 +3,17 @@ using MicroShop.Enums.Web;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
-using MicroShop.Web.AdminApi.Filter;
+using MicroShop.WebApi.Filter;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MicroShop.Web.AdminApi.Controllers.Permission
+namespace MicroShop.WebApi.Controllers.Admin.Permission
 {
     /// <summary>
     /// 运营平台角色API
     /// </summary>
-    [Route("permission/role")]
+    [Route("admin/permission/role")]
     [ApiController]
-    public class PermissionRoleController
+    public class RoleController
     {
         /// <summary>
         /// 获取角色详情

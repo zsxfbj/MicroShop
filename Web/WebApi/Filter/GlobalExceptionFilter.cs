@@ -5,7 +5,7 @@ using MicroShop.Model.VO.Web;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Enums.Web;
 
-namespace MicroShop.Web.Common.Filter
+namespace MicroShop.WebApi.Filter
 {
     /// <summary>
     /// 全局异常处理

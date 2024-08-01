@@ -1,5 +1,4 @@
-﻿
-using MicroShop.Model.DTO.Permission;
+﻿using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
 
@@ -10,13 +9,15 @@ namespace MicroShop.IDAL.Permission
     /// </summary>
     public interface IRole
     {
-        RoleVO GetRole(int roleId);
+        RoleVO GetRole(long roleId);
 
         RoleVO? GetRole(string roleName);
 
-        RoleVO Save(RoleDTO role);
+        RoleVO Create(CreateRoleReqDTO req);
+
+        RoleVO Modify(ModifyRoleReqDTO req);
  
-        void Delete(int roleId);
+        void Delete(long roleId);
 
         PageResultVO<RoleVO> GetPageResult(RolePageReqDTO req);
 

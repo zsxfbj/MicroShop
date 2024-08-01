@@ -1,4 +1,4 @@
-﻿namespace MicroShop.Web.Common
+﻿namespace MicroShop.Model.Auth
 {
     /// <summary>
     /// 头部请求参数

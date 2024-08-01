@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using MicroShop.Enums.Permission;
+using MicroShop.Utility.Serialize.Json;
 
 namespace MicroShop.Model.DTO.Permission
 {
@@ -14,8 +16,9 @@ namespace MicroShop.Model.DTO.Permission
         /// 角色编号
         /// </summary>
         [Required(ErrorMessage = "请选择用户角色")]
-        [Range(1, int.MaxValue, ErrorMessage = "请选择用户角色")]
-        public int RoleId { get; set; }
+        [Range(1, long.MaxValue, ErrorMessage = "请选择用户角色")]
+        [JsonConverter(typeof(LongToStringConverter))]
+        public long RoleId { get; set; }
 
         /// <summary>
         /// 登录名
