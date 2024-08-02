@@ -1,5 +1,7 @@
-﻿using System.Text.Json.Serialization;
-using MicroShop.Utility.Serialize.Json;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
+using MicroShop.Model.Serialize.Json;
 
 namespace MicroShop.Model.VO.Permission
 {

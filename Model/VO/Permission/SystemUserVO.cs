@@ -1,8 +1,9 @@
-﻿using MicroShop.Enums.Permission;
-using MicroShop.Utility.Enums;
-using MicroShop.Utility.Serialize.Json;
+﻿using MicroShop.Enum.Permission;
+using MicroShop.Enum;
+using MicroShop.Model.Serialize.Json;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
+using System;
 
 namespace MicroShop.Model.VO.Permission
 {
@@ -50,7 +51,7 @@ namespace MicroShop.Model.VO.Permission
         /// 登录状态
         /// </summary>       
         [Description("登录状态")]      
-        public LoginStatusEnum LoginStatus { get; set; } = LoginStatusEnum.Forbidden;
+        public LoginStatuses LoginStatus { get; set; } = LoginStatuses.Forbidden;
 
         /// <summary>
         /// 登录状态名称

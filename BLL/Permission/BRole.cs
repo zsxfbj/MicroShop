@@ -1,4 +1,5 @@
 ﻿using MicroShop.DALFactory.Permission;
+using MicroShop.Enum.Web;
 using MicroShop.IDAL.Permission;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
@@ -30,7 +31,7 @@ namespace MicroShop.BLL.Permission
             RoleVO? check = dal.GetRole(req.RoleName.Trim());
             if (check != null)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = string.Format("名称为【{0}】的角色记录已存在，请修改后再提交。", req.RoleName) };
+                throw new ServiceException { ErrorCode = RequestResultCodes.NameIsExist, ErrorMessage = string.Format("名称为【{0}】的角色记录已存在，请修改后再提交。", req.RoleName) };
             }          
            
             return dal.Create(req);
@@ -50,7 +51,7 @@ namespace MicroShop.BLL.Permission
 
             if (check != null && check.RoleId != req.RoleId)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = string.Format("名称为【{0}】的角色记录已存在，请修改后再提交。", req.RoleName) };
+                throw new ServiceException { ErrorCode = RequestResultCodes.NameIsExist, ErrorMessage = string.Format("名称为【{0}】的角色记录已存在，请修改后再提交。", req.RoleName) };
             }            
             
             return dal.Modify(req);
@@ -67,7 +68,7 @@ namespace MicroShop.BLL.Permission
         {
             if (roleId < 1)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "角色Id数值错误" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "角色Id数值错误" };
             }
             dal.Delete(roleId);
         }
@@ -83,7 +84,7 @@ namespace MicroShop.BLL.Permission
         {
             if (roleId < 1L)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "角色Id数值错误" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "角色Id数值错误" };
             }
             return dal.GetRole(roleId);
         }

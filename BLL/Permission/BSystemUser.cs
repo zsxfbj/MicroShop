@@ -1,6 +1,7 @@
 ﻿using MicroShop.BLL.Auth;
 using MicroShop.BLL.Common;
 using MicroShop.DALFactory.Permission;
+using MicroShop.Enum.Web;
 using MicroShop.IDAL.Permission;
 using MicroShop.Model.Auth;
 using MicroShop.Model.Common.Exception;
@@ -90,7 +91,7 @@ namespace MicroShop.BLL.Permission
         {
             if(string.IsNullOrEmpty(req.LoginPassword)|| req.LoginPassword.Length < 6)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "登录密码长度不得少于6位" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "登录密码长度不得少于6位" };
             }
             //判断登录名是否重复
             SystemUserVO? checkUser;
@@ -101,12 +102,12 @@ namespace MicroShop.BLL.Permission
             catch (Exception e)
             {
                 LogHelper.Error("BSystemUser.Create: " + e.ToString());
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "新增系统用户查询重复登录名发生异常！" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.DatabaseAccessError, ErrorMessage = "新增系统用户查询重复登录名发生异常！" };
             }
             //不为空则抛出异常
             if (checkUser != null)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = "登录名有重复，请修改登录账号" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.NameIsExist, ErrorMessage = "登录名有重复，请修改登录账号" };
             }
 
             return dal.Create(req);
@@ -130,11 +131,11 @@ namespace MicroShop.BLL.Permission
             catch (Exception e)
             {
                 LogHelper.Error("BSystemUser.Modify: " + e.ToString());
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "修改系统用户查询重复登录名发生异常！" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.DatabaseAccessError, ErrorMessage = "修改系统用户查询重复登录名发生异常！" };
             }
             if (checkUser != null && checkUser.UserId != req.UserId)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NameIsExist, ErrorMessage = "登录名有重复，请修改登录账号" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.NameIsExist, ErrorMessage = "登录名有重复，请修改登录账号" };
             }
 
             //清理缓存
@@ -155,7 +156,7 @@ namespace MicroShop.BLL.Permission
         {
             if (userId <= 0)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "用户Id参数错误" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "用户Id参数错误" };
             }
             try
             {
@@ -164,7 +165,7 @@ namespace MicroShop.BLL.Permission
             catch (Exception e)
             {
                 LogHelper.Error("BSystemUser.GetSystemUser: " + e.ToString());
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "读取系统用户记录时访问数据库异常！" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.DatabaseAccessError, ErrorMessage = "读取系统用户记录时访问数据库异常！" };
             }            
         }
         #endregion public static SystemUserVO GetSystemUser(long userId)
@@ -178,7 +179,7 @@ namespace MicroShop.BLL.Permission
         {
             if (userId <= 0)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "用户Id参数错误" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "用户Id参数错误" };
             }
             try
             {
@@ -190,7 +191,7 @@ namespace MicroShop.BLL.Permission
             catch (Exception e)
             {
                 LogHelper.Error("BSystemUser.Delete: " + e.ToString());
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "删除系统用户记录时访问数据库异常！" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.DatabaseAccessError, ErrorMessage = "删除系统用户记录时访问数据库异常！" };
             }           
         }
         #endregion public static void Delete(long userId)
@@ -204,7 +205,7 @@ namespace MicroShop.BLL.Permission
         {
             if (userId <= 0)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "用户Id参数错误" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "用户Id参数错误" };
             }
             try
             {
@@ -217,7 +218,7 @@ namespace MicroShop.BLL.Permission
             catch (Exception e)
             {
                 LogHelper.Error("BSystemUser.SetLoginStatus: " + e.ToString());
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "更新系统用户可登录状态时访问数据库异常！" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.DatabaseAccessError, ErrorMessage = "更新系统用户可登录状态时访问数据库异常！" };
             }            
         }
         #endregion public static void SetLoginStatus(long userId)
@@ -239,7 +240,7 @@ namespace MicroShop.BLL.Permission
             catch (Exception e)
             {
                 LogHelper.Error("BSystemUser.GetPageResult: " + e.ToString());
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "分页查询系统用户时访问数据库异常！" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.DatabaseAccessError, ErrorMessage = "分页查询系统用户时访问数据库异常！" };
             }
         }
         #endregion public static PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
@@ -268,19 +269,19 @@ namespace MicroShop.BLL.Permission
             catch (Exception e)
             {
                 LogHelper.Error("BSystemUser.Login: " + e.ToString());
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.DatabaseAccessError, ErrorMessage = "根据登录名查询用户时访问数据库异常！" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.DatabaseAccessError, ErrorMessage = "根据登录名查询用户时访问数据库异常！" };
             }
 
-            if (systemUser == null || systemUser.LoginStatus == Enums.Permission.LoginStatusEnum.Forbidden)
+            if (systemUser == null || systemUser.LoginStatus == Enum.Permission.LoginStatuses.Forbidden)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "该用户信息不存在或已被禁止登录！" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "该用户信息不存在或已被禁止登录！" };
             }
 
             //比较密码
             string password = (systemUser.Salt + req.LoginPassword).Sha256();
             if (!systemUser.LoginPassword.Equals(password, StringComparison.OrdinalIgnoreCase))
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "登录密码错误！" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "登录密码错误！" };
             }
 
             //赋值数据

@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>

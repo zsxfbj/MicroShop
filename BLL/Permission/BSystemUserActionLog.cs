@@ -1,5 +1,5 @@
 ﻿using MicroShop.DALFactory.Permission;
-using MicroShop.Enums.Permission;
+using MicroShop.Enum.Permission;
 using MicroShop.IDAL.Permission;
 using MicroShop.Model.Auth;
 using MicroShop.Model.DTO.Permission;
@@ -48,7 +48,7 @@ namespace MicroShop.BLL.Permission
         /// </summary>
         /// <param name="systemUserToken"></param>
         /// <param name="actionType"></param>
-        public static void SaveAction(SystemUserTokenDTO systemUserToken, ActionTypeEnum actionType)
+        public static void SaveAction(SystemUserTokenDTO systemUserToken, ActionTypes actionType)
         {
             SystemUserActionLogVO vo = new SystemUserActionLogVO
             {

@@ -47,7 +47,7 @@ namespace MicroShop.Entity.Mall
         /// 运费计费类型
         /// </summary>
         [Column("shipment_fee_type")]
-        public ShipmentFeeTypeEnum ShipmentFeeType { get; set; }
+        public ShipmentFeeTypes ShipmentFeeType { get; set; }
 
         /// <summary>
         /// 首重费用

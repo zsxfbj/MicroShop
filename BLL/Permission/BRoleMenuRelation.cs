@@ -1,4 +1,5 @@
 ﻿using MicroShop.DALFactory.Permission;
+using MicroShop.Enum.Web;
 using MicroShop.IDAL.Permission;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
@@ -47,7 +48,7 @@ namespace MicroShop.BLL.Permission
         {
             if(roleId < 1)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "请求的参数错误" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "请求的参数错误" };
             }
             return dal.GetRoleMenus(roleId, showHidden);
         }

@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Serialize\Xml\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.1.34" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.1.38" />
@@ -22,10 +18,6 @@
     <PackageReference Include="StackExchange.Redis" Version="2.7.33" />
     <PackageReference Include="System.Runtime.Caching" Version="6.0.0" />
     <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="6.103.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Enums\MicroShop.Enums.csproj" />
   </ItemGroup>
 
 </Project>

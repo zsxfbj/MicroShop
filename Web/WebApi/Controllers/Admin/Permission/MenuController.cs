@@ -1,5 +1,5 @@
 ﻿using MicroShop.BLL.Permission;
-using MicroShop.Enums.Web;
+using MicroShop.Enum.Web;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
@@ -23,7 +23,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpGet("detail/{menuId}")]
         public ApiResultVO<MenuVO> GetMenu([FromRoute] int menuId)
         {
-            return new ApiResultVO<MenuVO> { Result = BMenu.GetMenu(menuId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<MenuVO> { Result = BMenu.GetMenu(menuId), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -33,7 +33,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpGet("list")]
         public ApiResultVO<List<MenuVO>> GetMenus()
         {
-            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetMenus(0), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetMenus(0), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpGet("list/{parentId}")]
         public ApiResultVO<List<MenuVO>> GetMenus([FromRoute] int parentId)
         {
-            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetMenus(parentId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<MenuVO>> { Result = BMenu.GetMenus(parentId), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [SysLoginAuth(IsAdmin = true)]
         public ApiResultVO<MenuVO> Create([FromBody] CreateMenuReqDTO req)
         {
-            return new ApiResultVO<MenuVO> { Result = BMenu.Create(req), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<MenuVO> { Result = BMenu.Create(req), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>

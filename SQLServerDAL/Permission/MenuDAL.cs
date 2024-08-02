@@ -1,4 +1,4 @@
-﻿using MicroShop.Enums.Web;
+﻿using MicroShop.Enum.Web;
 using MicroShop.IDAL.Permission;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
@@ -48,7 +48,7 @@ namespace MicroShop.SQLServerDAL.Permission
         {
             if (entity == null)
             {
-                throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "菜单记录为null" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "菜单记录为null" };
             }
 
             return new MenuVO
@@ -115,7 +115,7 @@ namespace MicroShop.SQLServerDAL.Permission
             {
                 Menu? entity = context.Menus.FirstOrDefault(x => x.MenuId == req.MenuId);
                 if (entity == null || entity.IsDeleted) {
-                    throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "编号为【" + req.MenuId + "】菜单记录不存在！" };
+                    throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "编号为【" + req.MenuId + "】菜单记录不存在！" };
                 }
                 
                 entity.UpdatedAt = DateTime.Now;
@@ -143,12 +143,12 @@ namespace MicroShop.SQLServerDAL.Permission
                 Menu? entity = context.Menus.FirstOrDefault(x => x.MenuId == menuId);
                 if (entity == null)
                 {
-                    throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "菜单记录不存在" };
+                    throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "菜单记录不存在" };
                 }
 
                 if (context.Menus.Count(x => x.ParentId == menuId) > 0)
                 {
-                    throw new ServiceException { ErrorCode = RequestResultCodeEnum.HasSubRecords, ErrorMessage = "该菜单下还有子菜单，无法删除" };
+                    throw new ServiceException { ErrorCode = RequestResultCodes.HasSubRecords, ErrorMessage = "该菜单下还有子菜单，无法删除" };
                 }
 
                 //更新标记位
@@ -176,7 +176,7 @@ namespace MicroShop.SQLServerDAL.Permission
                 Menu? entity = context.Menus.FirstOrDefault(x => x.MenuId == menuId);
                 if (entity == null || entity.IsDeleted == false)
                 {
-                    throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "菜单记录不存在或已删除！" };
+                    throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "菜单记录不存在或已删除！" };
                 }
                 return ToVO(entity);
             }

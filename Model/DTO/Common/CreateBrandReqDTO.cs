@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
+using System;
 
 namespace MicroShop.Model.DTO.Common
 {

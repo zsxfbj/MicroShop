@@ -1,4 +1,4 @@
-﻿using MicroShop.Enums.Permission;
+﻿using MicroShop.Enum.Permission;
 using MicroShop.IDAL.Permission;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
@@ -6,7 +6,8 @@ using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
 using MicroShop.Entity.Permission;
 using MicroShop.Utility.Common;
-using MicroShop.Enums.Web;
+using MicroShop.Enum.Web;
+
 
 namespace MicroShop.SQLServerDAL.Permission
 {
@@ -91,7 +92,7 @@ namespace MicroShop.SQLServerDAL.Permission
             SystemUser? systemUser = context.SystemUsers.FirstOrDefault(x => x.UserId == userId);
             if (systemUser == null)
             {
-                throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = string.Format("编号为{0}的系统用户记录不存在", userId) };
+                throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = string.Format("编号为{0}的系统用户记录不存在", userId) };
             }
             return systemUser;
         }
@@ -151,7 +152,7 @@ namespace MicroShop.SQLServerDAL.Permission
             SystemUser? entity = context.SystemUsers.FirstOrDefault(x => x.UserId == req.UserId);
             if (entity == null || entity.IsDeleted)
             {
-                throw new ServiceException { ErrorCode = RequestResultCodeEnum.NotFound, ErrorMessage = "编号为【" + req.UserId + "】系统用户记录不存在" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "编号为【" + req.UserId + "】系统用户记录不存在" };
             }
             //数据转化
             ToEntity(req, entity);
@@ -243,7 +244,7 @@ namespace MicroShop.SQLServerDAL.Permission
             using (var context = new MicroShopContext())
             {
                 SystemUser systemUser = GetSystemUser(userId, context);
-                systemUser.LoginStatus = systemUser.LoginStatus == LoginStatusEnum.Allowable ? LoginStatusEnum.Forbidden : LoginStatusEnum.Allowable;
+                systemUser.LoginStatus = systemUser.LoginStatus == LoginStatuses.Allowable ? LoginStatuses.Forbidden : LoginStatuses.Allowable;
                 systemUser.UpdatedAt = DateTime.Now;
                 context.SystemUsers.Update(systemUser);
                 context.SaveChanges();

@@ -4,6 +4,7 @@ using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
 using MicroShop.Entity.Permission;
+using MicroShop.Enum.Web;
 
 namespace MicroShop.SQLServerDAL.Permission
 {
@@ -97,7 +98,7 @@ namespace MicroShop.SQLServerDAL.Permission
 
                 if(entity == null || entity.IsDeleted)
                 {
-                    throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "编号为【" + req.RoleId + "】的角色记录不存在或已被删除" };
+                    throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "编号为【" + req.RoleId + "】的角色记录不存在或已被删除" };
                 }
                 ToEntity(req, entity);
                 entity.UpdatedAt = DateTime.Now;
@@ -122,7 +123,7 @@ namespace MicroShop.SQLServerDAL.Permission
                 Role? role = context.Roles.FirstOrDefault(x => x.RoleId == roleId);
                 if (role == null)
                 {
-                    throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "角色记录不存在" };
+                    throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "角色记录不存在" };
                 }
 
                 role.IsDeleted = true;
@@ -183,7 +184,7 @@ namespace MicroShop.SQLServerDAL.Permission
                 Role? role = context.Roles.FirstOrDefault(x => x.RoleId == roleId);
                 if (role == null || role.IsDeleted == true)
                 {
-                    throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "角色记录不存在或者已被删除" };
+                    throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "角色记录不存在或者已被删除" };
                 }
                 return ToVO(role);
             }

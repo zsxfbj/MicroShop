@@ -8,8 +8,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Entity\MicroShop.Entity.csproj" />
-    <ProjectReference Include="..\Enums\MicroShop.Enums.csproj" />
+    <ProjectReference Include="..\Enum\MicroShop.Enum.csproj" />
     <ProjectReference Include="..\IDAL\MicroShop.IDAL.csproj" />
+    <ProjectReference Include="..\Model\MicroShop.Model.csproj" />
     <ProjectReference Include="..\Utility\MicroShop.Utility.csproj" />
   </ItemGroup>
 

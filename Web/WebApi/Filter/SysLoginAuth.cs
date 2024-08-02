@@ -1,7 +1,7 @@
 ﻿using MicroShop.BLL.Auth;
 using MicroShop.BLL.Permission;
-using MicroShop.Enums.Permission;
-using MicroShop.Enums.Web;
+using MicroShop.Enum.Permission;
+using MicroShop.Enum.Web;
 using MicroShop.Model.Auth;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Utility.Common;
@@ -23,7 +23,7 @@ namespace MicroShop.WebApi.Filter
         /// <summary>
         /// 操作类型
         /// </summary>
-        public ActionTypeEnum ActionType { get; set; } = ActionTypeEnum.View;
+        public ActionTypes ActionType { get; set; } = ActionTypes.View;
 
         /// <summary>
         /// 是否必须管理员
@@ -55,18 +55,18 @@ namespace MicroShop.WebApi.Filter
             //判断是否登录
             if (systemUserToken.UserId == 0)
             {
-                throw new ServiceException { ErrorMessage = "登录信息已失效，请重新登录系统！", ErrorCode = RequestResultCodeEnum.NotAllowAnonymous };
+                throw new ServiceException { ErrorMessage = "登录信息已失效，请重新登录系统！", ErrorCode = RequestResultCodes.NotAllowAnonymous };
             }
 
             if(IsAdmin && systemUserToken.IsAdmin == false)
             {
-                throw new ServiceException { ErrorMessage = "您无权访问该菜单！", ErrorCode = RequestResultCodeEnum.NotAllowAccess };
+                throw new ServiceException { ErrorMessage = "您无权访问该菜单！", ErrorCode = RequestResultCodes.NotAllowAccess };
             }
 
             //判断菜单权限
             if (!BRoleMenuRelation.HasPermission(systemUserToken.RoleId, Permission))
             {
-                throw new ServiceException { ErrorMessage = "您无权访问该菜单！", ErrorCode = RequestResultCodeEnum.NotAllowAccess };
+                throw new ServiceException { ErrorMessage = "您无权访问该菜单！", ErrorCode = RequestResultCodes.NotAllowAccess };
             }
         }
     }

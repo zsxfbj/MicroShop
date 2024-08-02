@@ -1,5 +1,5 @@
 ﻿using MicroShop.BLL.Permission;
-using MicroShop.Enums.Web;
+using MicroShop.Enum.Web;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
@@ -25,7 +25,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpPost("create")]
         public ApiResultVO<SystemUserVO> Create([FromBody] CreateSystemUserReqDTO req)
         {
-            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.Create(req), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.Create(req), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpPost("modify")]
         public ApiResultVO<SystemUserVO> Modify([FromBody] ModifySystemUserReqDTO req)
         {
-            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.Modify(req), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.Modify(req), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpGet("detail/{userId}")]
         public ApiResultVO<SystemUserVO> GetSystemUser([FromRoute] int userId)
         {
-            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.GetSystemUser(userId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserVO> { Result = BSystemUser.GetSystemUser(userId), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpPost("page")]
         public ApiResultVO<PageResultVO<SystemUserVO>> GetPageResult([FromBody] SystemUserPageReqDTO req)
         {
-            return new ApiResultVO<PageResultVO<SystemUserVO>> { Result = BSystemUser.GetPageResult(req), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<PageResultVO<SystemUserVO>> { Result = BSystemUser.GetPageResult(req), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -101,18 +101,18 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         {
             if (req == null)
             {
-                throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "登录请求内容不能为空" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "登录请求内容不能为空" };
             }
             if (string.IsNullOrEmpty(req.VerifyCode))
             {
-                throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "图形验证码必须填写" };
+                throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "图形验证码必须填写" };
             }
             //if(!_captcha.Validate(Utility.Common.HttpContext.GetHeaderValue(HeaderParameters.SYSTEM_USER_AUTH_TOKEN_KEY), systemUserLogin.VerifyCode))
             //{
-            //    throw new ServiceException { ErrorCode = RequestResultCodeEnum.RequestParameterError, ErrorMessage = "验证码填写错误" };
+            //    throw new ServiceException { ErrorCode = RequestResultCodes.RequestParameterError, ErrorMessage = "验证码填写错误" };
             //}
 
-            return new ApiResultVO<SystemUserLoginResultVO>() { Result = BSystemUser.Login(req), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<SystemUserLoginResultVO>() { Result = BSystemUser.Login(req), ResultCode = RequestResultCodes.Success };
         }
     }
 }

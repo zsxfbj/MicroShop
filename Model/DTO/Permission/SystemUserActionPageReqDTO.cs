@@ -1,5 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using MicroShop.Enums.Permission;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using MicroShop.Enum.Permission;
 using MicroShop.Model.DTO.Web;
 
 namespace MicroShop.Model.DTO.Permission
@@ -29,7 +30,7 @@ namespace MicroShop.Model.DTO.Permission
         /// <summary>
         /// 操作类型
         /// </summary>
-        public ActionTypeEnum? ActionType { get; set; } = ActionTypeEnum.View;
+        public ActionTypes? ActionType { get; set; }
 
         /// <summary>
         /// 开始日期

@@ -1,4 +1,6 @@
-﻿using System.Text.Json.Serialization;
+﻿using System;
+using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace MicroShop.Model.DTO.Permission
 {
@@ -11,7 +13,7 @@ namespace MicroShop.Model.DTO.Permission
         /// <summary>
         /// 日志编号
         /// </summary>
-        [JsonConverter(typeof(Utility.Serialize.Json.LongArrayToStringArrayConverter))]
+        [JsonConverter(typeof(Serialize.Json.LongArrayToStringArrayConverter))]
         public List<long>? LogIds { get; set; }
     }
 }

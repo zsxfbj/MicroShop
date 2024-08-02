@@ -18,7 +18,7 @@
         /// <summary>
         /// 类型名称
         /// </summary>
-        public string Name { get; set; } = String.Empty;
+        public string Name { get; set; } = string.Empty;
 
         /// <summary>
         /// 是否启用

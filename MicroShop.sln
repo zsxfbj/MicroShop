@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Enums", "Enums\MicroShop.Enums.csproj", "{55502189-30AB-4312-85A2-C53D14B68E45}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Utility", "Utility\MicroShop.Utility.csproj", "{44CAD205-CB1F-4964-B3DE-951DA1A567E1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.IDAL", "IDAL\MicroShop.IDAL.csproj", "{0D979B7E-36BF-4F4E-B24F-625C7FD8319E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.BLL", "BLL\MicroShop.BLL.csproj", "{E0F2D094-0CCF-43AF-B35B-B9DC98052175}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Model", "Model\MicroShop.Model.csproj", "{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.DALFactory", "DALFactory\MicroShop.DALFactory.csproj", "{928A5E47-5873-4957-BA2E-65FAD01F31B7}"
 EndProject
@@ -21,7 +17,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.SQLServerDAL", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Entity", "Entity\MicroShop.Entity.csproj", "{81EDD377-443B-434C-B218-7F9F0D9579D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.AppCommon", "AppCommon\MicroShop.AppCommon.csproj", "{99738F96-6352-489F-B5C6-64E6873BC590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.AppCommon", "AppCommon\MicroShop.AppCommon.csproj", "{99738F96-6352-489F-B5C6-64E6873BC590}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.WinFormApp", "WinFormApp\MicroShop.WinFormApp.csproj", "{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Enum", "Enum\MicroShop.Enum.csproj", "{B99D096C-0B60-47E9-A764-5DFF95EDBD46}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Model", "Model\MicroShop.Model.csproj", "{6F3D7455-AC2A-401C-AADC-E20C1D07307F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +31,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{55502189-30AB-4312-85A2-C53D14B68E45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{55502189-30AB-4312-85A2-C53D14B68E45}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{55502189-30AB-4312-85A2-C53D14B68E45}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{55502189-30AB-4312-85A2-C53D14B68E45}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44CAD205-CB1F-4964-B3DE-951DA1A567E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{44CAD205-CB1F-4964-B3DE-951DA1A567E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{44CAD205-CB1F-4964-B3DE-951DA1A567E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -45,10 +43,6 @@ Global
 		{E0F2D094-0CCF-43AF-B35B-B9DC98052175}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E0F2D094-0CCF-43AF-B35B-B9DC98052175}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E0F2D094-0CCF-43AF-B35B-B9DC98052175}.Release|Any CPU.Build.0 = Release|Any CPU
-		{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{981F2DCF-D8E5-4554-90A3-B1A165E2EB1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{928A5E47-5873-4957-BA2E-65FAD01F31B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{928A5E47-5873-4957-BA2E-65FAD01F31B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{928A5E47-5873-4957-BA2E-65FAD01F31B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +63,18 @@ Global
 		{99738F96-6352-489F-B5C6-64E6873BC590}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99738F96-6352-489F-B5C6-64E6873BC590}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99738F96-6352-489F-B5C6-64E6873BC590}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B99D096C-0B60-47E9-A764-5DFF95EDBD46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B99D096C-0B60-47E9-A764-5DFF95EDBD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B99D096C-0B60-47E9-A764-5DFF95EDBD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B99D096C-0B60-47E9-A764-5DFF95EDBD46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F3D7455-AC2A-401C-AADC-E20C1D07307F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3D7455-AC2A-401C-AADC-E20C1D07307F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3D7455-AC2A-401C-AADC-E20C1D07307F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3D7455-AC2A-401C-AADC-E20C1D07307F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

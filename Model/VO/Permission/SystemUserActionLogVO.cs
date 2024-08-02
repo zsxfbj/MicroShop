@@ -1,7 +1,8 @@
-﻿using System.Text.Json.Serialization;
-using MicroShop.Enums.Permission;
-using MicroShop.Utility.Enums;
-using MicroShop.Utility.Serialize.Json;
+﻿using System;
+using System.Text.Json.Serialization;
+using MicroShop.Enum.Permission;
+using MicroShop.Enum;
+using MicroShop.Model.Serialize.Json;
 
 namespace MicroShop.Model.VO.Permission
 {
@@ -36,7 +37,7 @@ namespace MicroShop.Model.VO.Permission
         /// <summary>
         /// 操作类型
         /// </summary>
-        public ActionTypeEnum ActionType { get; set; } = ActionTypeEnum.View;
+        public ActionTypes ActionType { get; set; } = ActionTypes.View;
 
         /// <summary>
         /// 操作类型名称

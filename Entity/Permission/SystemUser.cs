@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MicroShop.Enums.Permission;
+using MicroShop.Enum.Permission;
 
 namespace MicroShop.Entity.Permission
 {
@@ -71,7 +71,7 @@ namespace MicroShop.Entity.Permission
         /// 登录状态
         /// </summary>
         [Column("login_status")]
-        public LoginStatusEnum LoginStatus { get; set; } = LoginStatusEnum.Forbidden;
+        public LoginStatuses LoginStatus { get; set; } = LoginStatuses.Forbidden;
 
         /// <summary>
         /// 登录次数

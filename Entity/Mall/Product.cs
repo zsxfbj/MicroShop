@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MicroShop.Enums.Payment;
-using MicroShop.Enums.Product;
+using MicroShop.Enum.Payment;
+using MicroShop.Enum.Product;
 
 namespace MicroShop.Entity.Mall
 {
@@ -24,7 +24,7 @@ namespace MicroShop.Entity.Mall
         /// 商品类型
         /// </summary>
         [Column("product_type")]
-        public ProductTypeEnum ProductType { get; set; }
+        public ProductTypes ProductType { get; set; }
 
         /// <summary>
         /// 产品标题
@@ -72,7 +72,7 @@ namespace MicroShop.Entity.Mall
         /// 货币类型
         /// </summary>
         [Column("currency_type")]
-        public CurrencyTypeEnum CurrencyType { get; set; } = CurrencyTypeEnum.RMB;
+        public CurrencyTypes CurrencyType { get; set; } = CurrencyTypes.RMB;
 
         /// <summary>
         /// 市场价(范围价格)
@@ -114,7 +114,7 @@ namespace MicroShop.Entity.Mall
         /// 商品状态
         /// </summary>
         [Column("product_status")]
-        public ProductStatusEnum ProductStatus { get; set; }
+        public ProductStatuses ProductStatus { get; set; }
 
         /// <summary>
         /// 文本详情
@@ -146,7 +146,7 @@ namespace MicroShop.Entity.Mall
         public Product()
         {
             ProductId = 0;
-            ProductType = ProductTypeEnum.PhysicalProduct;
+            ProductType = ProductTypes.PhysicalProduct;
             ProductName = string.Empty;
             Description = string.Empty;
             Tags = string.Empty;
@@ -154,14 +154,14 @@ namespace MicroShop.Entity.Mall
             SuperiorBrand = false;
             HotFlag = false;
             ThumbnailUrl = string.Empty;
-            CurrencyType = CurrencyTypeEnum.RMB;
+            CurrencyType = CurrencyTypes.RMB;
             MarketPrice = string.Empty;
             SellingPrice = string.Empty;
             FreeShipment = false;
             ServiceCommitment = string.Empty;
             SupplierId = 0;
             ShipmentTemplateId = 0;
-            ProductStatus = ProductStatusEnum.Draft;
+            ProductStatus = ProductStatuses.Draft;
             TextDetail = string.Empty;
             ImageDetail = string.Empty;
             CreatedAt = DateTime.Now;

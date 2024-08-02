@@ -55,7 +55,7 @@ namespace MicroShop.BLL.Permission
         {
             if (menuId < 1)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "参数值错误" };
+                throw new ServiceException { ErrorCode = Enum.Web.RequestResultCodes.RequestParameterError, ErrorMessage = "参数值错误" };
             }
             dal.Delete(menuId);
             //移除缓存
@@ -71,7 +71,7 @@ namespace MicroShop.BLL.Permission
         {
             if (menuId < 1)
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.RequestParameterError, ErrorMessage = "参数值错误" };
+                throw new ServiceException { ErrorCode = Enum.Web.RequestResultCodes.RequestParameterError, ErrorMessage = "参数值错误" };
             }
             string key = CacheKey + menuId;
             if (BCache.IsExist(key)) 

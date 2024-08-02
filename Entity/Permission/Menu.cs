@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MicroShop.Enums.Permission;
+using MicroShop.Enum.Permission;
+
 
 namespace MicroShop.Entity.Permission
 {
@@ -35,7 +36,7 @@ namespace MicroShop.Entity.Permission
         /// 菜单类型
         /// </summary>
         [Column("menu_type")]
-        public MenuTypeEnum MenuType { get; set; } = MenuTypeEnum.Text;
+        public MenuTypes MenuType { get; set; } = MenuTypes.Text;
 
         /// <summary>
         /// 菜单地址

@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using NLog;
+﻿using NLog;
 
 namespace MicroShop.Utility.Common
 {

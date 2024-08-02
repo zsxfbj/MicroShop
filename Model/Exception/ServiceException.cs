@@ -1,5 +1,7 @@
-﻿using MicroShop.Enums.Web;
-using MicroShop.Utility.Enums;
+﻿using System;
+using MicroShop.Enum;
+using MicroShop.Enum.Web;
+ 
 
 namespace MicroShop.Model.Common.Exception
 {
@@ -12,7 +14,7 @@ namespace MicroShop.Model.Common.Exception
         /// <summary>
         /// 状态码
         /// </summary>
-        public RequestResultCodeEnum ErrorCode { get; set; } = RequestResultCodeEnum.UnkownError;
+        public RequestResultCodes ErrorCode { get; set; } = RequestResultCodes.UnkownError;
 
         /// <summary>
         /// 错误消息

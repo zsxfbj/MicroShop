@@ -1,5 +1,5 @@
 ﻿using MicroShop.BLL.Permission;
-using MicroShop.Enums.Web;
+using MicroShop.Enum.Web;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
@@ -24,7 +24,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpGet("detail/{roleId}")]
         public ApiResultVO<RoleVO> GetRole([FromRoute] int roleId)
         {
-            return new ApiResultVO<RoleVO>() { Result = BRole.GetRole(roleId), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<RoleVO>() { Result = BRole.GetRole(roleId), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpPost("create")]
         public ApiResultVO<RoleVO> CreateRole([FromBody] CreateRoleReqDTO req)
         {
-            return new ApiResultVO<RoleVO> { Result = BRole.Create(req), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<RoleVO> { Result = BRole.Create(req), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpPost("page")]
         public ApiResultVO<PageResultVO<RoleVO>> GetPageRoles([FromBody] RolePageReqDTO req)
         {
-            return new ApiResultVO<PageResultVO<RoleVO>> { Result = BRole.GetPageResult(req), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<PageResultVO<RoleVO>> { Result = BRole.GetPageResult(req), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
         [HttpGet("list")]
         public ApiResultVO<List<RoleVO>> GetRoles()
         {
-            return new ApiResultVO<List<RoleVO>> { Result = BRole.GetRoles(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<RoleVO>> { Result = BRole.GetRoles(), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>

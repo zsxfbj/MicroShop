@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Enums\MicroShop.Enums.csproj" />
-    <ProjectReference Include="..\Model\MicroShop.Model.csproj" />
+    <Folder Include="Product\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Product\" />
+    <ProjectReference Include="..\Enum\MicroShop.Enum.csproj" />
+    <ProjectReference Include="..\Model\MicroShop.Model.csproj" />
   </ItemGroup>
 
 </Project>

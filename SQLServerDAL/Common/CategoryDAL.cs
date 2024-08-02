@@ -1,10 +1,11 @@
-﻿using MicroShop.Enums.Common;
+﻿using MicroShop.Enum.Common;
 using MicroShop.IDAL.Common;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Model.DTO.Common;
 using MicroShop.Model.VO.Common;
 using MicroShop.Entity.Common;
-using MicroShop.Utility.Enums;
+using MicroShop.Enum.Web;
+using MicroShop.Enum;
 
 namespace MicroShop.SQLServerDAL.Common
 {
@@ -37,7 +38,7 @@ namespace MicroShop.SQLServerDAL.Common
                     Category? parent = context.Categories.FirstOrDefault(x => x.CategoryId == category.ParentId);
                     if (parent == null)
                     {
-                        throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "上级分类记录未查询到" };
+                        throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "上级分类记录未查询到" };
                     }
 
                     category.FullPath = parent.FullPath + ";" + category.ParentId;
@@ -82,7 +83,7 @@ namespace MicroShop.SQLServerDAL.Common
                 ParentId = entity.ParentId,
                 FullPath = entity.FullPath,
                 CategoryType = entity.CategoryType,
-                CategoryTypeName = ((CategoryTypeEnum)entity.CategoryType).GetDescription(),
+                CategoryTypeName = ((CategoryTypes)entity.CategoryType).GetDescription(),
                 Note = entity.Note,
                 ImageUrl = entity.ImageUrl,
                 IconUrl = entity.IconUrl,

@@ -1,9 +1,10 @@
-﻿using MicroShop.Enums.Common;
-using MicroShop.Enums.Payment;
-using MicroShop.Enums.Permission;
-using MicroShop.Enums.Product;
+﻿using MicroShop.Enum.Common;
+using MicroShop.Enum.Payment;
+using MicroShop.Enum.Permission;
+using MicroShop.Enum;
 using MicroShop.Model.VO.Common;
-using MicroShop.Utility.Enums;
+using MicroShop.Enum.Product;
+
 
 namespace MicroShop.BLL.Common
 {
@@ -35,7 +36,7 @@ namespace MicroShop.BLL.Common
             }
             List<KeyValueVO<int>> keyValues = new List<KeyValueVO<int>>();
 
-            foreach (LoginStatusEnum loginStatus in Enum.GetValues(typeof(LoginStatusEnum)))
+            foreach (LoginStatuses loginStatus in System.Enum.GetValues(typeof(LoginStatuses)))
             {
                 keyValues.Add(new KeyValueVO<int> { Key = (int)loginStatus, Value = loginStatus.GetDescription() });
             }
@@ -58,7 +59,7 @@ namespace MicroShop.BLL.Common
             }
             List<KeyValueVO<int>> keyValues = new List<KeyValueVO<int>>();
 
-            foreach (ActionTypeEnum actionType in Enum.GetValues(typeof(ActionTypeEnum)))
+            foreach (ActionTypes actionType in System.Enum.GetValues(typeof(ActionTypes)))
             {
                 keyValues.Add(new KeyValueVO<int> { Key = (int)actionType, Value = actionType.GetDescription() });
             }
@@ -81,7 +82,7 @@ namespace MicroShop.BLL.Common
             }
             List<KeyValueVO<int>> keyValues = new List<KeyValueVO<int>>();
 
-            foreach (CurrencyTypeEnum currencyType in Enum.GetValues(typeof(CurrencyTypeEnum)))
+            foreach (CurrencyTypes currencyType in System.Enum.GetValues(typeof(CurrencyTypes)))
             {
                 keyValues.Add(new KeyValueVO<int> { Key = (int)currencyType, Value = currencyType.GetDescription() });
             }
@@ -104,7 +105,7 @@ namespace MicroShop.BLL.Common
             }
             List<KeyValueVO<int>> keyValues = new List<KeyValueVO<int>>();
 
-            foreach (MediaTypeEnum mediaType in Enum.GetValues(typeof(MediaTypeEnum)))
+            foreach (MediaTypes mediaType in System.Enum.GetValues(typeof(MediaTypes)))
             {
                 keyValues.Add(new KeyValueVO<int> { Key = (int)mediaType, Value = mediaType.GetDescription() });
             }
@@ -127,7 +128,7 @@ namespace MicroShop.BLL.Common
             }
             List<KeyValueVO<int>> keyValues = new List<KeyValueVO<int>>();
 
-            foreach (ProductStatusEnum productStatus in Enum.GetValues(typeof(ProductStatusEnum)))
+            foreach (ProductStatuses productStatus in System.Enum.GetValues(typeof(ProductStatuses)))
             {
                 keyValues.Add(new KeyValueVO<int> { Key = (int)productStatus, Value = productStatus.GetDescription() });
             }

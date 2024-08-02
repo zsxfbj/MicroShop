@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using MicroShop.Model.DTO.Web;
 
 namespace MicroShop.Model.DTO.Permission

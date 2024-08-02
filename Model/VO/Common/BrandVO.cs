@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace MicroShop.Model.VO.Common
 {
@@ -6,7 +7,6 @@ namespace MicroShop.Model.VO.Common
     /// 品牌视图
     /// </summary>
     [Serializable]
-
     public class BrandVO
     {
         /// <summary>
@@ -61,7 +61,7 @@ namespace MicroShop.Model.VO.Common
         /// </summary>
         [Description("创建时间")]
         [DefaultValue("2020-01-01 00:00:00")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(Utility.Serialize.Json.DefaultDateTimeConverter))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Serialize.Json.DefaultDateTimeConverter))]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace MicroShop.Model.VO.Common
         /// </summary>
         [Description("更新时间")]
         [DefaultValue("2020-01-01 00:00:00")]
-        [System.Text.Json.Serialization.JsonConverter(typeof(Utility.Serialize.Json.DefaultDateTimeConverter))]
+        [System.Text.Json.Serialization.JsonConverter(typeof(Serialize.Json.DefaultDateTimeConverter))]
         public DateTime UpdatedAt { get; set; } = DateTime.MinValue;
 
          

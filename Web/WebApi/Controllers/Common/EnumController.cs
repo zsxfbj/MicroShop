@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using MicroShop.BLL.Common;
-using MicroShop.Enums.Web;
+using MicroShop.Enum.Web;
 using MicroShop.Model.VO.Common;
 using MicroShop.Model.VO.Web;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +22,7 @@ namespace MicroShop.WebApi.Controllers.Common
         [HttpGet("login-status-list")]
         public ApiResultVO<List<KeyValueVO<int>>> GetLoginStatus()
         {
-            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetLoginStatusList(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetLoginStatusList(), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace MicroShop.WebApi.Controllers.Common
         [HttpGet("action-type-list")]
         public ApiResultVO<List<KeyValueVO<int>>> GetUserActionTypeList()
         {
-            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetUserActionTypeList(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetUserActionTypeList(), ResultCode = RequestResultCodes.Success };
         }
 
 
@@ -43,7 +43,7 @@ namespace MicroShop.WebApi.Controllers.Common
         [HttpGet("currency-type-list")]
         public ApiResultVO<List<KeyValueVO<int>>> GetCurrencyTypes()
         {
-            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetCurrencyTypeList(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetCurrencyTypeList(), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace MicroShop.WebApi.Controllers.Common
         [HttpGet("media-type-list")]
         public ApiResultVO<List<KeyValueVO<int>>> GetMediaTypes()
         {
-            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetMediaTypeList(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetMediaTypeList(), ResultCode = RequestResultCodes.Success };
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace MicroShop.WebApi.Controllers.Common
         [HttpGet("product-status-list")]
         public ApiResultVO<List<KeyValueVO<int>>> GetProductStatusList()
         {
-            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetProductStatusList(), ResultCode = RequestResultCodeEnum.Success };
+            return new ApiResultVO<List<KeyValueVO<int>>> { Result = BEnum.GetProductStatusList(), ResultCode = RequestResultCodes.Success };
         }
     }
 }

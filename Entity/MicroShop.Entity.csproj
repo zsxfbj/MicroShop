@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Enums\MicroShop.Enums.csproj" />
+    <ProjectReference Include="..\Enum\MicroShop.Enum.csproj" />
   </ItemGroup>
 
 </Project>

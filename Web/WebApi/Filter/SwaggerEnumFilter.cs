@@ -1,7 +1,7 @@
-﻿using MicroShop.Utility.Enums;
-using Microsoft.OpenApi.Models;
+﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using System.Text;
+using MicroShop.Enum;
 
 namespace MicroShop.WebApi.Filter
 {
@@ -21,12 +21,12 @@ namespace MicroShop.WebApi.Filter
             {
                 StringBuilder stringBuilder = new StringBuilder();
                 schema.Enum.Clear();
-                Enum.GetNames(context.Type)
+                System.Enum.GetNames(context.Type)
                     .ToList()
                     .ForEach(name =>
                     {
-                        Enum e = (Enum)Enum.Parse(context.Type, name);
-                        var data = $"{Convert.ToInt64(Enum.Parse(context.Type, name))}:{name}({e.GetDescription()})";
+                        System.Enum e = (System.Enum)System.Enum.Parse(context.Type, name);
+                        var data = $"{Convert.ToInt64(System.Enum.Parse(context.Type, name))}:{name}({e.GetDescription()})";
 
                         stringBuilder.AppendLine(data);
                     });

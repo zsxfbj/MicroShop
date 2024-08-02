@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Filters;
-using MicroShop.Enums.Web;
+using MicroShop.Enum.Web;
+using MicroShop.Enum;
 using MicroShop.Model.VO.Web;
-using MicroShop.Utility.Enums;
 using Microsoft.AspNetCore.Mvc;
 using MicroShop.Model.Auth;
 
@@ -22,7 +22,7 @@ namespace MicroShop.WebApi.Filter
             if (!context.ModelState.IsValid)
             {
                 var errorMsg = context.ModelState.Values.SelectMany(e => e.Errors).Select(e => e.ErrorMessage).FirstOrDefault();
-                context.Result = new OkObjectResult(ApiResultVO<string>.Error(RequestResultCodeEnum.RequestParameterError, string.IsNullOrEmpty(errorMsg) ? RequestResultCodeEnum.RequestParameterError.GetDescription() : errorMsg.Trim()));
+                context.Result = new OkObjectResult(ApiResultVO<string>.Error(RequestResultCodes.RequestParameterError, string.IsNullOrEmpty(errorMsg) ? RequestResultCodes.RequestParameterError.GetDescription() : errorMsg.Trim()));
                 return;
             }
         }

@@ -1,5 +1,6 @@
-﻿using MicroShop.Enums.Permission;
-using MicroShop.Utility.Serialize.Json;
+﻿using MicroShop.Enum.Permission;
+using MicroShop.Model.Serialize.Json;
+using System;
 using System.Text.Json.Serialization;
 
 namespace MicroShop.Model.VO.Permission
@@ -30,7 +31,7 @@ namespace MicroShop.Model.VO.Permission
         /// <summary>
         /// 菜单类型
         /// </summary>
-        public MenuTypeEnum MenuType { get; set; } = MenuTypeEnum.Text;
+        public MenuTypes MenuType { get; set; } = MenuTypes.Text;
 
         /// <summary>
         /// 地址

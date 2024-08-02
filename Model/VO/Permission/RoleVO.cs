@@ -9,9 +9,10 @@
  *
  *********************************************************************************/
 
+using System;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
-using MicroShop.Utility.Serialize.Json;
+using MicroShop.Model.Serialize.Json;
 
 namespace MicroShop.Model.VO.Permission
 {

@@ -1,4 +1,4 @@
-﻿using MicroShop.Enums.Web;
+﻿using MicroShop.Enum.Web;
 using MicroShop.Model.Auth;
 using MicroShop.Model.Common.Exception;
 using MicroShop.Utility.Common;
@@ -35,7 +35,7 @@ namespace MicroShop.WebApi.Filter
             UserTokenDTO? userToken = null;
             if(userToken == null || userToken.UserId == 0)
             {
-                throw new ServiceException { ErrorMessage = "登录信息已失效，请重新登录系统！", ErrorCode = RequestResultCodeEnum.NotAllowAnonymous };
+                throw new ServiceException { ErrorMessage = "登录信息已失效，请重新登录系统！", ErrorCode = RequestResultCodes.NotAllowAnonymous };
             }             
         }
     }

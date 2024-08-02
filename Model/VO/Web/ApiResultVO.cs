@@ -1,5 +1,6 @@
-﻿using System.Text.Json.Serialization;
-using MicroShop.Enums.Web;
+﻿using System;
+using System.Text.Json.Serialization;
+using MicroShop.Enum.Web;
 
 namespace MicroShop.Model.VO.Web
 {
@@ -13,7 +14,7 @@ namespace MicroShop.Model.VO.Web
         /// <summary>
         /// 请求结果状态值
         /// </summary>
-        public RequestResultCodeEnum ResultCode { get; set; } = RequestResultCodeEnum.UnkownError;
+        public RequestResultCodes ResultCode { get; set; } = RequestResultCodes.UnkownError;
 
         /// <summary>
         /// 错误消息
@@ -24,7 +25,7 @@ namespace MicroShop.Model.VO.Web
         /// 结果数据
         /// </summary>
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public T? Result { get; set; } = default!;
+        public T Result { get; set; } = default!;
 
 
         /// <summary>
@@ -33,7 +34,7 @@ namespace MicroShop.Model.VO.Web
         /// <param name="requestResultCode">错误码</param>
         /// <param name="errorMessage">错误消息</param>
         /// <returns>ApiResult</returns>
-        public static ApiResultVO<T> Error(RequestResultCodeEnum requestResultCode, string errorMessage)
+        public static ApiResultVO<T> Error(RequestResultCodes requestResultCode, string errorMessage)
         {
             return new ApiResultVO<T>
             {
@@ -52,7 +53,7 @@ namespace MicroShop.Model.VO.Web
         {
             return new ApiResultVO<T>
             {
-                ResultCode = RequestResultCodeEnum.Success,
+                ResultCode = RequestResultCodes.Success,
                 ErrorMessage = String.Empty,
                 Result = result
             };
@@ -63,7 +64,7 @@ namespace MicroShop.Model.VO.Web
         /// </summary>
         public ApiResultVO()
         {
-            this.ResultCode = RequestResultCodeEnum.Success;
+            this.ResultCode = RequestResultCodes.Success;
             this.ErrorMessage = string.Empty;
             this.Result = default!;
         }

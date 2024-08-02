@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using MicroShop.Enums.Common;
+using MicroShop.Enum.Common;
 
 namespace MicroShop.Entity.Mall
 {
@@ -29,7 +29,7 @@ namespace MicroShop.Entity.Mall
         /// 媒体类型：1-图片；2-视频
         /// </summary>
         [Column("media_type")]
-        public MediaTypeEnum MediaType { get; set; } = MediaTypeEnum.Text;
+        public MediaTypes MediaType { get; set; } = MediaTypes.Image;
 
         /// <summary>
         /// 媒体访 nnnnnn问地址
@@ -62,7 +62,7 @@ namespace MicroShop.Entity.Mall
         {
             CarouselId = 0;
             ProductId = 0;
-            MediaType = MediaTypeEnum.Image;
+            MediaType = MediaTypes.Image;
             MediaUrl = "";
             OrderValue = 0;
             CreatedAt = DateTime.Now;

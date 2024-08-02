@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MicroShop.Enums.Permission;
+using MicroShop.Enum.Permission;
+
 
 namespace MicroShop.Entity.Permission
 {
@@ -39,7 +40,7 @@ namespace MicroShop.Entity.Permission
         /// 操作类型
         /// </summary>
         [Column("action_type")]
-        public ActionTypeEnum ActionType { get; set; } = ActionTypeEnum.View;
+        public ActionTypes ActionType { get; set; } = ActionTypes.View;
 
         /// <summary>
         /// 远程访问的IP

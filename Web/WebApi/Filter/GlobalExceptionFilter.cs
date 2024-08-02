@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using MicroShop.Model.VO.Web;
 using MicroShop.Model.Common.Exception;
-using MicroShop.Enums.Web;
+using MicroShop.Enum.Web;
 
 namespace MicroShop.WebApi.Filter
 {
@@ -34,12 +34,12 @@ namespace MicroShop.WebApi.Filter
                 }
                 else if (context.Exception.GetType() == typeof(FileNotFoundException))
                 {
-                    apiResult.ResultCode = RequestResultCodeEnum.NotFound;
+                    apiResult.ResultCode = RequestResultCodes.NotFound;
                     apiResult.ErrorMessage = "文件未找到";
                 }
                 else
                 {
-                    apiResult.ResultCode = RequestResultCodeEnum.UnkownError;
+                    apiResult.ResultCode = RequestResultCodes.UnkownError;
                     apiResult.ErrorMessage = context.Exception.Message;
                 }
                 result.Content = JsonConvert.SerializeObject(apiResult);

@@ -1,5 +1,5 @@
 ﻿using MicroShop.BLL.Permission;
-using MicroShop.Enums.Web;
+using MicroShop.Enum.Web;
 using MicroShop.Model.DTO.Permission;
 using MicroShop.Model.VO.Permission;
 using MicroShop.Model.VO.Web;
@@ -27,7 +27,7 @@ namespace MicroShop.WebApi.Controllers.Admin.Permission
             return new ApiResultVO<PageResultVO<SystemUserActionLogVO>>
             {
                 Result = BSystemUserActionLog.GetPageResult(req),
-                ResultCode = RequestResultCodeEnum.Success
+                ResultCode = RequestResultCodes.Success
             };
         }
 

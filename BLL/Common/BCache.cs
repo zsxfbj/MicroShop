@@ -23,7 +23,7 @@ namespace MicroShop.BLL.Common
             string? redisConnectionString = builder.Build().GetConnectionString("RedisConnectionString");
             if (string.IsNullOrEmpty(redisConnectionString))
             {
-                throw new ServiceException { ErrorCode = Enums.Web.RequestResultCodeEnum.NotFound, ErrorMessage = "请先配置Redis链接字符串" };
+                throw new ServiceException { ErrorCode = Enum.Web.RequestResultCodes.NotFound, ErrorMessage = "请先配置Redis链接字符串" };
             }
             RedisClient.InitConnect(redisConnectionString);
             isInit = true;
