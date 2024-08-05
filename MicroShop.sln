@@ -17,13 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.SQLServerDAL", "S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Entity", "Entity\MicroShop.Entity.csproj", "{81EDD377-443B-434C-B218-7F9F0D9579D7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.AppCommon", "AppCommon\MicroShop.AppCommon.csproj", "{99738F96-6352-489F-B5C6-64E6873BC590}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Enum", "Enum\MicroShop.Enum.csproj", "{B99D096C-0B60-47E9-A764-5DFF95EDBD46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.WinFormApp", "WinFormApp\MicroShop.WinFormApp.csproj", "{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Enum", "Enum\MicroShop.Enum.csproj", "{B99D096C-0B60-47E9-A764-5DFF95EDBD46}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Model", "Model\MicroShop.Model.csproj", "{6F3D7455-AC2A-401C-AADC-E20C1D07307F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.Model", "Model\MicroShop.Model.csproj", "{6F3D7455-AC2A-401C-AADC-E20C1D07307F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,14 +55,6 @@ Global
 		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{81EDD377-443B-434C-B218-7F9F0D9579D7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{99738F96-6352-489F-B5C6-64E6873BC590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{99738F96-6352-489F-B5C6-64E6873BC590}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{99738F96-6352-489F-B5C6-64E6873BC590}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{99738F96-6352-489F-B5C6-64E6873BC590}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E658C02-D567-486E-BAC6-2E2EEDB1A9C3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B99D096C-0B60-47E9-A764-5DFF95EDBD46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B99D096C-0B60-47E9-A764-5DFF95EDBD46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B99D096C-0B60-47E9-A764-5DFF95EDBD46}.Release|Any CPU.ActiveCfg = Release|Any CPU
