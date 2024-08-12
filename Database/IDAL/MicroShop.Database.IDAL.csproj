@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Product\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Enum\MicroShop.Common.Enum.csproj" />
+    <ProjectReference Include="..\..\Common\Model\MicroShop.Common.Model.csproj" />
+  </ItemGroup>
+
+</Project>

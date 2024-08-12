@@ -9,6 +9,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Common.Model", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Common.Utility", "Common\Utility\MicroShop.Common.Utility.csproj", "{2EDF8D28-1C66-4ED6-AE9D-2C2F53EF94FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Database.IDAL", "Database\IDAL\MicroShop.Database.IDAL.csproj", "{42AD08C9-3726-48BB-93B8-A3D30A5AA057}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Database.DALFactory", "Database\DALFactory\MicroShop.Database.DALFactory.csproj", "{26A2E42F-5941-43B2-AA4B-0535BAF28FDA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Database.Entity", "Database\Entity\MicroShop.Database.Entity.csproj", "{AA2ED569-9608-45FF-8EFF-2636C7DE3B20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Database.SQLServerDAL", "Database\SQLServerDAL\MicroShop.Database.SQLServerDAL.csproj", "{5DB641F9-A66B-4F5A-9C26-AA6FDA062A71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Business.IBLL", "Business\IBLL\MicroShop.Business.IBLL.csproj", "{18188F64-FA82-407B-B599-BBCE3CAEC8C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +37,26 @@ Global
 		{2EDF8D28-1C66-4ED6-AE9D-2C2F53EF94FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EDF8D28-1C66-4ED6-AE9D-2C2F53EF94FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EDF8D28-1C66-4ED6-AE9D-2C2F53EF94FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42AD08C9-3726-48BB-93B8-A3D30A5AA057}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42AD08C9-3726-48BB-93B8-A3D30A5AA057}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42AD08C9-3726-48BB-93B8-A3D30A5AA057}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42AD08C9-3726-48BB-93B8-A3D30A5AA057}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26A2E42F-5941-43B2-AA4B-0535BAF28FDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26A2E42F-5941-43B2-AA4B-0535BAF28FDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26A2E42F-5941-43B2-AA4B-0535BAF28FDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26A2E42F-5941-43B2-AA4B-0535BAF28FDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA2ED569-9608-45FF-8EFF-2636C7DE3B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA2ED569-9608-45FF-8EFF-2636C7DE3B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA2ED569-9608-45FF-8EFF-2636C7DE3B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA2ED569-9608-45FF-8EFF-2636C7DE3B20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DB641F9-A66B-4F5A-9C26-AA6FDA062A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB641F9-A66B-4F5A-9C26-AA6FDA062A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB641F9-A66B-4F5A-9C26-AA6FDA062A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB641F9-A66B-4F5A-9C26-AA6FDA062A71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18188F64-FA82-407B-B599-BBCE3CAEC8C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18188F64-FA82-407B-B599-BBCE3CAEC8C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18188F64-FA82-407B-B599-BBCE3CAEC8C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18188F64-FA82-407B-B599-BBCE3CAEC8C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
