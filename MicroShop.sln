@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Common.Enum", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Common.Model", "Common\Model\MicroShop.Common.Model.csproj", "{67AFF0B4-883B-44A1-8C84-B4D6B2FCDDD5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MicroShop.Common.Utility", "Common\Utility\MicroShop.Common.Utility.csproj", "{2EDF8D28-1C66-4ED6-AE9D-2C2F53EF94FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{67AFF0B4-883B-44A1-8C84-B4D6B2FCDDD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67AFF0B4-883B-44A1-8C84-B4D6B2FCDDD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67AFF0B4-883B-44A1-8C84-B4D6B2FCDDD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EDF8D28-1C66-4ED6-AE9D-2C2F53EF94FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDF8D28-1C66-4ED6-AE9D-2C2F53EF94FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDF8D28-1C66-4ED6-AE9D-2C2F53EF94FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDF8D28-1C66-4ED6-AE9D-2C2F53EF94FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
