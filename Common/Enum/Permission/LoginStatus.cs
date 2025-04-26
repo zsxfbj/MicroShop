@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace MicroShop.Common.Enum.Permission
+namespace MicroShop.Enum.Permission
 {
     /// <summary>
     /// 登录状态
     /// </summary>  
-    public enum LoginStatuses
+    public enum LoginStatus
     {
         /// <summary>
         /// 禁止的

@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace MicroShop.Common.Enum.Product
+namespace MicroShop.Enum.Product
 {
     /// <summary>
     /// 商品状态
     /// </summary>  
-    public enum ProductStatuses
+    public enum ProductStatus
     {
         /// <summary>
         /// 草稿状态

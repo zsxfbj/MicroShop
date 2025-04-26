@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace MicroShop.Common.Enum.Payment
+namespace MicroShop.Enum.Payment
 {
     /// <summary>
     /// 货币类型枚举

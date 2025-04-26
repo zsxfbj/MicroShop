@@ -2,7 +2,7 @@
 using System.Text.Json.Serialization;
 using MicroShop.Common.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.Auth
+namespace MicroShop.Model.Auth
 {
     /// <summary>
     /// 系统用户访问令牌

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace MicroShop.Common.Enum.Permission
+namespace MicroShop.Enum.Permission
 {
     /// <summary>
     /// 操作类型枚举

@@ -3,7 +3,7 @@
 namespace MicroShop.Common.Utility
 {
     /// <summary>
-    /// 常量类
+    /// 系统使用的默认值的常量
     /// </summary>
     public class Constants
     {
@@ -35,6 +35,7 @@ namespace MicroShop.Common.Utility
         /// <summary>
         /// 默认数据访问类
         /// </summary>
-        public const string DEFAULT_SQL_DAL = "MicroShop.SQLServerDAL";
+        public const string DEFAULT_SQL_DAL = "MicroShop.Database.SQLServerDAL";
+
     }
 }

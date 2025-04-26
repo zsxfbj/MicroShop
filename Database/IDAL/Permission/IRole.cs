@@ -10,15 +10,15 @@ namespace MicroShop.Database.IDAL.Permission
     /// </summary>
     public interface IRole
     {
-        RoleVO GetRole(long roleId);
+        RoleVO? GetRole(long roleId);
 
         RoleVO? GetRole(string roleName);
 
-        RoleVO Create(CreateRoleReqDTO req);
+        RoleVO? Create(CreateRoleReqDTO req);
 
-        RoleVO Modify(ModifyRoleReqDTO req);
+        RoleVO? Modify(ModifyRoleReqDTO req);
  
-        void Delete(long roleId);
+        int Delete(long roleId);
 
         PageResultVO<RoleVO> GetPageResult(RolePageReqDTO req);
 

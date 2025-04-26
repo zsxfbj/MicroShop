@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MicroShop.Common.Model.Serialize.Json
+namespace MicroShop.Model.Serialize.Json
 {
     /// <summary>
     ///  JSON序列化时Long型转String类型

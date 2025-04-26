@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace MicroShop.Common.Enum.Web
+namespace MicroShop.Enum.Web
 {
     /// <summary>
     /// 请求结果枚举

@@ -10,8 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\Enum\MicroShop.Common.Enum.csproj" />
-    <ProjectReference Include="..\..\Common\Model\MicroShop.Common.Model.csproj" />
+    <ProjectReference Include="..\..\Common\Enum\MicroShop.Enum.csproj" />
+    <ProjectReference Include="..\..\Common\Model\MicroShop.Model.csproj" />
   </ItemGroup>
 
 </Project>

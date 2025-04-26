@@ -1,6 +1,6 @@
 ﻿using System;
 using MicroShop.Common.Enum;
-using MicroShop.Common.Enum.Web;
+using MicroShop.Enum.Web;
  
 
 namespace MicroShop.Common.Model.Common.Exception

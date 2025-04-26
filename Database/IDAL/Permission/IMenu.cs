@@ -14,14 +14,14 @@ namespace MicroShop.Database.IDAL.Permission
         /// </summary>
         /// <param name="req">菜单数据对象</param>
         /// <returns>a value of MicroShop.Common.Model.Permission.MenuDTO or null</returns>
-        MenuVO Create(CreateMenuReqDTO req);
+        MenuVO? Create(CreateMenuReqDTO req);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        MenuVO Modify(ModifyMenuReqDTO req);
+        MenuVO? Modify(ModifyMenuReqDTO req);
 
         /// <summary>
         /// 根据菜单id删除
@@ -34,7 +34,7 @@ namespace MicroShop.Database.IDAL.Permission
         /// </summary>
         /// <param name="menuId">菜单Id</param>
         /// <returns></returns>
-        MenuVO GetMenu(int menuId);
+        MenuVO? GetMenu(int menuId);
 
         /// <summary>
         /// 根据父级菜单Id获取菜单列表，0为根级别

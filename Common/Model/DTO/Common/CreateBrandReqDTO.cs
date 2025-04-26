@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System;
 
-namespace MicroShop.Common.Model.DTO.Common
+namespace MicroShop.Model.DTO.Common
 {
     /// <summary>
     /// 创建品牌信息的请求

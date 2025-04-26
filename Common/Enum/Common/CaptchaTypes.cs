@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace MicroShop.Common.Enum
+namespace MicroShop.Enum.Common
 {
     /// <summary>
     /// 验证码类型枚举

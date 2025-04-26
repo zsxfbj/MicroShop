@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace MicroShop.Common.Enums.Product
+namespace MicroShop.Enums.Product
 {
     /// <summary>
     /// 运费类型

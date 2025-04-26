@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using MicroShop.Common.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.Auth
+namespace MicroShop.Model.Auth
 {
     /// <summary>
     /// 用户访问令牌类，存储相关的信息

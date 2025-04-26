@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace MicroShop.Common.Enum.Product
+namespace MicroShop.Enum.Product
 {
     /// <summary>
     /// 产品类型枚举

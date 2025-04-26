@@ -1,7 +1,7 @@
 ﻿using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MicroShop.Common.Model.Serialize.Json
+namespace MicroShop.Model.Serialize.Json
 {
     /// <summary>
     ///  Double数据类JSON序列化和反序列化的约定

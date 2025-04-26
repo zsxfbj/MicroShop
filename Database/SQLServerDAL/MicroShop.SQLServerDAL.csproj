@@ -7,11 +7,16 @@
 
   <ItemGroup>
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-    <PackageReference Include="System.Text.Json" Version="8.0.4" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Enum\MicroShop.Common.Enum.csproj" />
+    <Folder Include="Mall\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Utility\MicroShop.Common.Utility.csproj" />
+    <ProjectReference Include="..\IDAL\MicroShop.IDAL.csproj" />
   </ItemGroup>
 
 </Project>

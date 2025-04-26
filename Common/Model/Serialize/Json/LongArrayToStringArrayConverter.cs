@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace MicroShop.Common.Model.Serialize.Json
+namespace MicroShop.Model.Serialize.Json
 {
     public class LongArrayToStringArrayConverter : JsonConverter<List<long>>
     {

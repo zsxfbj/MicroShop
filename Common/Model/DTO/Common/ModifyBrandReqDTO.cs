@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 
-namespace MicroShop.Common.Model.DTO.Common
+namespace MicroShop.Model.DTO.Common
 {
     /// <summary>
     /// 

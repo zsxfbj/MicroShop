@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.DTO.System
+namespace MicroShop.Model.DTO.System
 {
     /// <summary>
     /// 系统字典
