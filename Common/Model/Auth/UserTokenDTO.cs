@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Model.Serialize.Json;
 
 namespace MicroShop.Model.Auth
 {
@@ -14,7 +14,7 @@ namespace MicroShop.Model.Auth
         /// <summary>
         /// 令牌
         /// </summary>      
-        [Required(ErrorMessage = "访问令牌不能为空")]
+        [Required(ErrorMessage = "访问令牌不能为空"), JsonRequired]
         public string Token { get; set; }
 
         /// <summary>

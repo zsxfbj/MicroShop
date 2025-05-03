@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using MicroShop.Common.Model.DTO.Permission;
 using MicroShop.Common.Model.VO.Permission;
-using MicroShop.Common.Model.VO.Web;
+using MicroShop.Model.Base;
 
-namespace MicroShop.Database.IDAL.Permission
+namespace MicroShop.IDAL.Permission
 {
     /// <summary>
     /// 
@@ -27,6 +27,6 @@ namespace MicroShop.Database.IDAL.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        PageResultVO<SystemUserActionLogVO> GetPageResult(SystemUserActionPageReqDTO req);
+        PageResult<SystemUserActionLogVO> GetPageResult(SystemUserActionPageReqDTO req);
     }
 }

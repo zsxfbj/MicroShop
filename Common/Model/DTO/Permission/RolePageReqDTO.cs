@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using MicroShop.Common.Model.DTO.Web;
+using MicroShop.Model.Base;
 
-namespace MicroShop.Common.Model.DTO.Permission
+namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>
     /// 查询角色
     /// </summary>
-    public class RolePageReqDTO : PageRequestDTO
+    public class RolePageReqDTO : PageRequest
     {
         /// <summary>
         /// 角色名称

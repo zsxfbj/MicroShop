@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using MicroShop.Common.Enum.Permission;
+using MicroShop.Enum.Permission;
 
-namespace MicroShop.Common.Model.DTO.Permission
+namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>
     /// 创建菜单请求

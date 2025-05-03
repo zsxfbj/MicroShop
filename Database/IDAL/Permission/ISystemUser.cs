@@ -1,8 +1,8 @@
 ﻿using MicroShop.Common.Model.DTO.Permission;
 using MicroShop.Common.Model.VO.Permission;
-using MicroShop.Common.Model.VO.Web;
+using MicroShop.Model.Base;
 
-namespace MicroShop.Database.IDAL.Permission
+namespace MicroShop.IDAL.Permission
 {
     /// <summary>
     /// 系统用户相关接口
@@ -61,6 +61,6 @@ namespace MicroShop.Database.IDAL.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req);
+        PageResult<SystemUserVO> GetPageResult(SystemUserPageReqDTO req);
     }
 }

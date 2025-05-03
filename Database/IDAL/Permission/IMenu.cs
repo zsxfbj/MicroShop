@@ -2,7 +2,7 @@
 using MicroShop.Common.Model.DTO.Permission;
 using MicroShop.Common.Model.VO.Permission;
 
-namespace MicroShop.Database.IDAL.Permission
+namespace MicroShop.IDAL.Permission
 {
     /// <summary>
     /// 系统菜单接口类

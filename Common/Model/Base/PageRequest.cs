@@ -2,13 +2,13 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace MicroShop.Common.Model.DTO.Web
+namespace MicroShop.Model.Base
 {
     /// <summary>
     /// 分页请求
     /// </summary>
     [Serializable]
-    public class PageRequestDTO
+    public class PageRequest
     {
         /// <summary>
         /// 当前索引，默认1开始

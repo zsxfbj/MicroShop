@@ -2,13 +2,13 @@
 using MicroShop.Common.Model.Common.Exception;
 using MicroShop.Common.Model.DTO.Permission;
 using MicroShop.Common.Model.VO.Permission;
-using MicroShop.Common.Model.VO.Web;
 using System.Data.SqlClient;
 using MicroShop.Common.Utility;
 using System.Data;
 using System.Collections.Generic;
 using System;
 using System.Text;
+using MicroShop.Model.Base;
 
 namespace MicroShop.Database.SQLServerDAL.Permission
 {
@@ -130,9 +130,9 @@ namespace MicroShop.Database.SQLServerDAL.Permission
         /// </summary>
         /// <param name="req">分页查询请求内容</param>
         /// <returns>a value of PageResultVO about RoleVO</returns>
-        public PageResultVO<RoleVO> GetPageResult(RolePageReqDTO req)
+        public PageResult<RoleVO> GetPageResult(RolePageReqDTO req)
         {
-            PageResultVO<RoleVO> pageResult = new PageResultVO<RoleVO>
+            PageResult<RoleVO> pageResult = new PageResult<RoleVO>
             {
                 PageIndex = req.PageIndex,
                 PageSize = req.PageSize,

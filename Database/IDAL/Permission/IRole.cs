@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using MicroShop.Common.Model.DTO.Permission;
 using MicroShop.Common.Model.VO.Permission;
-using MicroShop.Common.Model.VO.Web;
+using MicroShop.Model.Base;
 
-namespace MicroShop.Database.IDAL.Permission
+namespace MicroShop.IDAL.Permission
 {
     /// <summary>
     /// Role数据访问接口
@@ -20,7 +20,7 @@ namespace MicroShop.Database.IDAL.Permission
  
         int Delete(long roleId);
 
-        PageResultVO<RoleVO> GetPageResult(RolePageReqDTO req);
+        PageResult<RoleVO> GetPageResult(RolePageReqDTO req);
 
         List<RoleVO> GetRoles();
     }

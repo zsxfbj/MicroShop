@@ -1,7 +1,7 @@
 ﻿
 using System;
 
-namespace MicroShop.Common.Model.DTO.TencentCloud
+namespace MicroShop.Model.DTO.TencentCloud
 {
     /// <summary>
     /// 腾讯云云存储配置类

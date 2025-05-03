@@ -1,15 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using MicroShop.Common.Enum.Permission;
-using MicroShop.Common.Model.DTO.Web;
+using MicroShop.Enum.Permission;
+using MicroShop.Model.Base;
 
-namespace MicroShop.Common.Model.DTO.Permission
+namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>
     /// 查询系统用户操作日志
     /// </summary>
     [Serializable]
-    public class SystemUserActionPageReqDTO : PageRequestDTO
+    public class SystemUserActionPageReqDTO : PageRequest
     {
         /// <summary>
         /// 用户名

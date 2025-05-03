@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.DTO.Permission
+namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>
     /// 修改系统用户请求

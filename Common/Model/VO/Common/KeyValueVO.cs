@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MicroShop.Common.Model.VO.Common
+namespace MicroShop.Model.VO.Common
 {
     /// <summary>
     /// 键值对

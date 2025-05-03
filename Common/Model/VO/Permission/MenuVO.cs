@@ -1,9 +1,9 @@
-﻿using MicroShop.Common.Enum.Permission;
-using MicroShop.Common.Model.Serialize.Json;
+﻿using MicroShop.Enum.Permission;
+using MicroShop.Model.Serialize.Json;
 using System;
 using System.Text.Json.Serialization;
 
-namespace MicroShop.Common.Model.VO.Permission
+namespace MicroShop.Model.VO.Permission
 {
     /// <summary>
     /// 菜单数据视图

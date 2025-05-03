@@ -28,6 +28,11 @@ namespace MicroShop.Common.Utility
         public const string DEFAULT_DATETIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
         /// <summary>
+        /// 默认的日期格式
+        /// </summary>
+        public const string DEFAULT_DATE_FORMAT = "yyyy-MM-dd";
+
+        /// <summary>
         /// 默认缓存方式
         /// </summary>
         public const string DEFAULT_CACHE_TYPE = "system";
@@ -35,7 +40,7 @@ namespace MicroShop.Common.Utility
         /// <summary>
         /// 默认数据访问类
         /// </summary>
-        public const string DEFAULT_SQL_DAL = "MicroShop.Database.SQLServerDAL";
+        public const string DEFAULT_SQL_DAL = "MicroShop.SQLServerDAL";
 
     }
 }

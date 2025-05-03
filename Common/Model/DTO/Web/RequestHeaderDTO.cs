@@ -1,7 +1,7 @@
 ﻿using System;
-using MicroShop.Common.Enum.Web;
+using MicroShop.Enum.Web;
 
-namespace MicroShop.Common.Model.DTO.Web
+namespace MicroShop.Model.DTO.Web
 {
     /// <summary>
     /// 请求的Header参数及值

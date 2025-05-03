@@ -1,14 +1,15 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using MicroShop.Common.Model.DTO.Web;
+using MicroShop.Model.Base;
 
-namespace MicroShop.Common.Model.DTO.Permission
+
+namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>
     /// /
     /// </summary>
     [Serializable]
-    public class SystemUserPageReqDTO : PageRequestDTO
+    public class SystemUserPageReqDTO : PageRequest
     {
         /// <summary>
         /// 关键词（登录账号或者姓名）

@@ -1,8 +1,8 @@
 ﻿using MicroShop.Database.IDAL.Permission;
 using MicroShop.Common.Model.DTO.Permission;
 using MicroShop.Common.Model.VO.Permission;
-using MicroShop.Common.Model.VO.Web;
 using System.Collections.Generic;
+using MicroShop.Model.Base;
 
 namespace MicroShop.Database.SQLServerDAL.Permission
 {
@@ -16,9 +16,9 @@ namespace MicroShop.Database.SQLServerDAL.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        public PageResultVO<SystemUserActionLogVO> GetPageResult(SystemUserActionPageReqDTO req)
+        public PageResult<SystemUserActionLogVO> GetPageResult(SystemUserActionPageReqDTO req)
         {
-            PageResultVO<SystemUserActionLogVO> pageResult = new PageResultVO<SystemUserActionLogVO>
+            PageResult<SystemUserActionLogVO> pageResult = new PageResult<SystemUserActionLogVO>
             {
                 PageIndex = req.PageIndex,
                 PageSize = req.PageSize,

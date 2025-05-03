@@ -3,8 +3,8 @@ using MicroShop.Database.IDAL.Permission;
 using MicroShop.Common.Model.Common.Exception;
 using MicroShop.Common.Model.DTO.Permission;
 using MicroShop.Common.Model.VO.Permission;
-using MicroShop.Common.Model.VO.Web;
 using MicroShop.Common.Enum.Web;
+using MicroShop.Model.Base;
 
 namespace MicroShop.Database.SQLServerDAL.Permission
 {
@@ -276,9 +276,9 @@ namespace MicroShop.Database.SQLServerDAL.Permission
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
-        public PageResultVO<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
+        public PageResult<SystemUserVO> GetPageResult(SystemUserPageReqDTO req)
         {
-            PageResultVO<SystemUserVO> pageResult = new PageResultVO<SystemUserVO>
+            PageResult<SystemUserVO> pageResult = new PageResult<SystemUserVO>
             {
                 PageIndex = req.PageIndex,
                 PageSize = req.PageSize,

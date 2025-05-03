@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using MicroShop.Common.Model.DTO.Common;
-using MicroShop.Common.Model.VO.Common;
+using MicroShop.Model.DTO.Common;
+using MicroShop.Model.VO.Common;
 
-namespace MicroShop.Database.IDAL.Common
+namespace MicroShop.IDAL.Common
 {
     /// <summary>
     /// 分类接口

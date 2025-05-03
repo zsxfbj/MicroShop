@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
+using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.DTO.Permission
+namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>
     /// 批量删除日志
@@ -13,7 +14,7 @@ namespace MicroShop.Common.Model.DTO.Permission
         /// <summary>
         /// 日志编号
         /// </summary>
-        [JsonConverter(typeof(Serialize.Json.LongArrayToStringArrayConverter))]
+        [JsonConverter(typeof(LongArrayToStringArrayConverter))]
         public List<long>? LogIds { get; set; }
     }
 }

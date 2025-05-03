@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Text.Json.Serialization;
 using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.DTO.Product
+namespace MicroShop.Model.DTO.Product
 {
     /// <summary>
     /// 规格选项组

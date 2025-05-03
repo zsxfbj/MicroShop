@@ -1,4 +1,4 @@
-﻿namespace MicroShop.Common.Model.DTO.Permission
+﻿namespace MicroShop.Model.DTO.Permission
 {
     /// <summary>
     /// 部门对象

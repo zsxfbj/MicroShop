@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MicroShop.Common.Model.DTO.TencentCloud
+namespace MicroShop.Model.DTO.TencentCloud
 {
     /// <summary>
     /// 腾讯云短信通道参数

@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Model.Base;
+using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.VO.Web
+namespace MicroShop.Model.Base
 {
     /// <summary>
     /// 分页查询结果类
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class PageResultVO<T>
+    public class PageResult<T>
     {
         /// <summary>
         /// 具体列表数据

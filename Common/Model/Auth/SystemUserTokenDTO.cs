@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Model.Serialize.Json;
 
 namespace MicroShop.Model.Auth
 {
