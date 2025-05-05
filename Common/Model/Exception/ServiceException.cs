@@ -3,7 +3,7 @@ using MicroShop.Common.Enum;
 using MicroShop.Enum.Web;
  
 
-namespace MicroShop.Common.Model.Common.Exception
+namespace MicroShop.Model.Common.Exception
 {
     /// <summary>
     /// 服务异常类

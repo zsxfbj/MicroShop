@@ -17,8 +17,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.SQLServerDAL", "D
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.IBLL", "Business\IBLL\MicroShop.IBLL.csproj", "{18188F64-FA82-407B-B599-BBCE3CAEC8C9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MicroShop.SQLServer.Entity", "Database\Entity\MicroShop.SQLServer.Entity.csproj", "{58AC02B7-F1D6-4D1C-8B77-E80B417ABD6C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,10 +51,6 @@ Global
 		{18188F64-FA82-407B-B599-BBCE3CAEC8C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18188F64-FA82-407B-B599-BBCE3CAEC8C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18188F64-FA82-407B-B599-BBCE3CAEC8C9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58AC02B7-F1D6-4D1C-8B77-E80B417ABD6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58AC02B7-F1D6-4D1C-8B77-E80B417ABD6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58AC02B7-F1D6-4D1C-8B77-E80B417ABD6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58AC02B7-F1D6-4D1C-8B77-E80B417ABD6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

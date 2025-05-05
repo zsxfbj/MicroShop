@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Enum.Permission;
-using MicroShop.Common.Enum;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Enum.Permission;
+using MicroShop.Model.Serialize.Json;
+using MicroShop.Enum;
 
-namespace MicroShop.Common.Model.VO.Permission
+namespace MicroShop.Model.VO.Permission
 {
     /// <summary>
     /// 系统用户操作日志

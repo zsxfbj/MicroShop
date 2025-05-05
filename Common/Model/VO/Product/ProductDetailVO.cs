@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
-using MicroShop.Common.Enum.Product;
+using MicroShop.Enum.Product;
 
-namespace MicroShop.Common.Model.VO.Product
+namespace MicroShop.Model.VO.Product
 {
     /// <summary>
     /// 

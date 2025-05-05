@@ -1,17 +1,17 @@
-﻿using MicroShop.Database.IDAL.Common;
-using MicroShop.Common.Model.Common.Exception;
-using MicroShop.Common.Model.DTO.Common;
-using MicroShop.Common.Model.VO.Common;
-using MicroShop.Common.Enum.Web;
-using MicroShop.Common.Enum;
+﻿using MicroShop.IDAL.Common;
+using MicroShop.Model.Common.Exception;
+using MicroShop.Model.DTO.Common;
+using MicroShop.Model.VO.Common;
+using MicroShop.Enum.Web;
+using MicroShop.Enum;
 using MicroShop.Enum.Common;
 
-namespace MicroShop.Database.SQLServerDAL.Common
+namespace MicroShop.SQLServerDAL.Common
 {
     /// <summary>
     /// SQLServer的分类管理
     /// </summary>
-    public class Category : ICategory
+    public class CategoryDAL : ICategoryDAL
     {
         /// <summary>
         /// 
@@ -21,7 +21,7 @@ namespace MicroShop.Database.SQLServerDAL.Common
         /// <exception cref="ServiceException"></exception>
         public CategoryVO Create(CreateCategoryReqDTO req)
         {
-            Category category = new Category();
+            CategoryDAL category = new CategoryDAL();
             ToEntity(req, category);
             category.CreatedAt = DateTime.Now;
             category.UpdatedAt = DateTime.Now;
@@ -34,7 +34,7 @@ namespace MicroShop.Database.SQLServerDAL.Common
                 }
                 else
                 {
-                    Category? parent = context.Categories.FirstOrDefault(x => x.CategoryId == category.ParentId);
+                    CategoryDAL? parent = context.Categories.FirstOrDefault(x => x.CategoryId == category.ParentId);
                     if (parent == null)
                     {
                         throw new ServiceException { ErrorCode = RequestResultCodes.NotFound, ErrorMessage = "上级分类记录未查询到" };
@@ -73,7 +73,7 @@ namespace MicroShop.Database.SQLServerDAL.Common
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
-        private CategoryVO ToDTO(Category entity)
+        private CategoryVO ToDTO(CategoryDAL entity)
         {
             CategoryVO category = new CategoryVO
             {
@@ -99,7 +99,7 @@ namespace MicroShop.Database.SQLServerDAL.Common
         /// </summary>
         /// <param name="req"></param>
         /// <param name="category"></param>
-        private void ToEntity(CreateCategoryReqDTO req, Category category)
+        private void ToEntity(CreateCategoryReqDTO req, CategoryDAL category)
         {
             category.CategoryName = string.IsNullOrEmpty(req.CategoryName) ? "" : req.CategoryName.Trim();
             category.CategoryType = req.CategoryType;

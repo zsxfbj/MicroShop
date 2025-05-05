@@ -1,4 +1,16 @@
-﻿using MicroShop.Enum.Permission;
+﻿/*********************************************************************************
+ * 版权所有 (C) 2024 ShengXiongFeng
+ * 
+ * 文件名：MenuVO.cs
+ * 作者：ShengXiongFeng
+ * 创建日期：2024-06-23
+ * 最后修改：2025-05-02
+ * 描述：菜单视图
+ *
+ *********************************************************************************/
+
+
+using MicroShop.Enum.Permission;
 using MicroShop.Model.Serialize.Json;
 using System;
 using System.Text.Json.Serialization;

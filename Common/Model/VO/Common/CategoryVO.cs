@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Text.Json.Serialization;
 using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.VO.Common
+namespace MicroShop.Model.VO.Common
 {
     /// <summary>
     /// 分类视图
@@ -14,22 +14,20 @@ namespace MicroShop.Common.Model.VO.Common
         /// <summary>
         /// 目录编号
         /// </summary>
-        [DefaultValue(0)]
-        [Description("目录编号")]
-        public int CategoryId { get; set; } = 0;
+        [DefaultValue(0), Description("目录编号"), JsonConverter(typeof(LongToStringConverter))]
+        
+        public long Id { get; set; } = 0L;
 
         /// <summary>
         /// 目录名称
         /// </summary>
-        [DefaultValue("食品")]
-        [Description("目录名称")]
+        [DefaultValue(""), Description("目录名称")]        
         public string CategoryName { get; set; } = string.Empty;
 
         /// <summary>
         /// 分类类型
         /// </summary>
-        [Description("分类类型")]
-        [DefaultValue(1)]
+        [Description("分类类型"), DefaultValue(1)]       
         public int CategoryType { get; set; } = 1;
 
         /// <summary>
@@ -42,8 +40,8 @@ namespace MicroShop.Common.Model.VO.Common
         /// <summary>
         /// 上级编号
         /// </summary>        
-        [Description("上级编号")]
-        public int ParentId { get; set; } = 0;
+        [Description("上级编号"), JsonConverter(typeof(LongToStringConverter))]
+        public long ParentId { get; set; } = 0L;
 
         /// <summary>
         /// 级别全路径
@@ -95,9 +93,9 @@ namespace MicroShop.Common.Model.VO.Common
         /// </summary>
         public CategoryVO()
         {
-            CategoryId = 0;
+            Id = 0L;
             CategoryName = "";
-            ParentId = 0;
+            ParentId = 0L;
             FullPath = "";
             ImageUrl = "";
             IconUrl = "";

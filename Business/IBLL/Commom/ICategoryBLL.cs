@@ -1,13 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using MicroShop.Model.DTO.Common;
 using MicroShop.Model.VO.Common;
 
-namespace MicroShop.IDAL.Common
+namespace MicroShop.IBLL.Commom
 {
     /// <summary>
-    /// 分类接口
+    /// 
     /// </summary>
-    public interface ICategory
+    public interface ICategoryBLL
     {
         /// <summary>
         /// 新增分类
@@ -26,14 +28,14 @@ namespace MicroShop.IDAL.Common
         /// 根据Id删除记录
         /// </summary>
         /// <param name="categoryId">分类Id</param>
-        void Delete(int categoryId);
+        void Delete(long categoryId);
 
         /// <summary>
         /// 根据Id获取记录
         /// </summary>
         /// <param name="categoryId">分类Id</param>
         /// <returns></returns>
-        CategoryVO GetCategory(int categoryId);
+        CategoryVO GetCategory(long categoryId);
 
         /// <summary>
         /// 根据父级Id获取可用的分类列表
@@ -41,8 +43,6 @@ namespace MicroShop.IDAL.Common
         /// <param name="parentId">父级Id</param>
         /// <param name="categoryType">分类类型</param>
         /// <returns></returns>
-        List<CategoryVO> GetCategories(int parentId, int? categoryType = null);
-
-     
+        List<CategoryVO> GetCategories(long parentId, int? categoryType = null);
     }
 }

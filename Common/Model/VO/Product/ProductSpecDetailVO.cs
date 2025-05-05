@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.VO.Product
+namespace MicroShop.Model.VO.Product
 {
     /// <summary>
     /// 

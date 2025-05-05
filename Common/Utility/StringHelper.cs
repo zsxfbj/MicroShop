@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace MicroShop.Common.Utility
 {
     /// <summary>
-    /// 
+    /// 字符串帮助类
     /// </summary>
     public class StringHelper
     {

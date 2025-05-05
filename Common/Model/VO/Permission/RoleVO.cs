@@ -1,10 +1,10 @@
 ﻿/*********************************************************************************
  * 版权所有 (C) 2024 ShengXiongFeng
  * 
- * 文件名：RoleDTO.cs
+ * 文件名：RoleVO.cs
  * 作者：ShengXiongFeng
  * 创建日期：2024-06-23
- * 最后修改：2023-02-02
+ * 最后修改：2025-05-02
  * 描述：角色数据视图
  *
  *********************************************************************************/
@@ -12,9 +12,9 @@
 using System;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.VO.Permission
+namespace MicroShop.Model.VO.Permission
 {
     /// <summary>
     /// 角色数据视图

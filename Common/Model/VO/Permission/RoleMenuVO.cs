@@ -1,9 +1,20 @@
-﻿using System;
+﻿/*********************************************************************************
+ * 版权所有 (C) 2024 ShengXiongFeng
+ * 
+ * 文件名：RoleMenuVO.cs
+ * 作者：ShengXiongFeng
+ * 创建日期：2024-06-23
+ * 最后修改：2025-05-02
+ * 描述：角色菜单视图
+ *
+ *********************************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.VO.Permission
+namespace MicroShop.Model.VO.Permission
 {
     /// <summary>
     /// 角色菜单

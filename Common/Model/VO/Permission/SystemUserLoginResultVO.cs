@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Model.Serialize.Json;
+using MicroShop.Model.Serialize.Json;
 
-namespace MicroShop.Common.Model.VO.Permission
+namespace MicroShop.Model.VO.Permission
 {
     /// <summary>
     /// 系统用户登录结果

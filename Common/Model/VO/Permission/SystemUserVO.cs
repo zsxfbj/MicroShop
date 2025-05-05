@@ -1,11 +1,11 @@
-﻿using MicroShop.Common.Enum.Permission;
-using MicroShop.Common.Enum;
-using MicroShop.Common.Model.Serialize.Json;
+﻿using MicroShop.Enum.Permission;
+using MicroShop.Enum;
+using MicroShop.Model.Serialize.Json;
 using System.ComponentModel;
 using System.Text.Json.Serialization;
 using System;
 
-namespace MicroShop.Common.Model.VO.Permission
+namespace MicroShop.Model.VO.Permission
 {
     /// <summary>
     /// 系统用户视图
@@ -51,17 +51,17 @@ namespace MicroShop.Common.Model.VO.Permission
         /// 登录状态
         /// </summary>       
         [Description("登录状态")]      
-        public LoginStatuses LoginStatus { get; set; } = LoginStatuses.Forbidden;
+        public LoginStatus Status { get; set; } = LoginStatus.Forbidden;
 
         /// <summary>
         /// 登录状态名称
         /// </summary>
         [Description("登录状态名称")]
-        public string LoginStatusName
+        public string StatusName
         {
             get
             {
-                return LoginStatus.GetDescription();
+                return Status.GetDescription();
             }
         }
 

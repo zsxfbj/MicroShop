@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
 
-namespace MicroShop.Common.Enum
+namespace MicroShop.Enum
 {
     /// <summary>
     /// 枚举类型扩展方法

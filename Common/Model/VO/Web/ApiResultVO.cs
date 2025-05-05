@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.Json.Serialization;
-using MicroShop.Common.Enum.Web;
+using MicroShop.Enum.Web;
 
 namespace MicroShop.Common.Model.VO.Web
 {
